@@ -18,7 +18,7 @@ import javax.persistence.Table;
 
 /**
  *
- * @author Edwin Bratini
+ * @author Edwin Bratini <edwin.bratini@gmail.com>
  */
 @Entity
 @Table(name = "Empresas_Afiliados", catalog = "SYSCAFIL_DB", schema = "dbo")

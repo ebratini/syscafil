@@ -21,13 +21,15 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.UniqueConstraint;
 
 /**
  *
  * @author Edwin Bratini <edwin.bratini@gmail.com>
  */
 @Entity
-@Table(name = "Afiliados", catalog = "SYSCAFIL_DB", schema = "dbo")
+@Table(name = "Afiliados", catalog = "SYSCAFIL_DB", schema = "dbo", uniqueConstraints = {
+    @UniqueConstraint(columnNames = {"afl_dni"})})
 @NamedQueries({
     @NamedQuery(name = "Afiliado.findAll", query = "SELECT a FROM Afiliado a"),
     @NamedQuery(name = "Afiliado.findByAflId", query = "SELECT a FROM Afiliado a WHERE a.aflId = :aflId"),

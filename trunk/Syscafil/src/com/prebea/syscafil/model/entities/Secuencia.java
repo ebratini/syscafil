@@ -19,7 +19,7 @@ import javax.persistence.TemporalType;
 
 /**
  *
- * @author Edwin Bratini
+ * @author Edwin Bratini <edwin.bratini@gmail.com>
  */
 @Entity
 @Table(name = "Secuencias", catalog = "SYSCAFIL_DB", schema = "dbo")

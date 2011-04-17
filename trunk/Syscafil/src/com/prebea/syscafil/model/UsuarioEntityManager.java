@@ -62,6 +62,18 @@ public class UsuarioEntityManager {
         et.commit();
     }
 
+    public Usuario getUsuarioById(Integer usrId) {
+        Query q = em.createNamedQuery("Usuario.findByUsrId");
+        q.setParameter("usrId", usrId);
+        return (Usuario) q.getSingleResult();
+    }
+
+    public Usuario getUsuarioByLogin(String login) {
+        Query q = em.createNamedQuery("Usuario.findByUsrLogin");
+        q.setParameter("usrLogin", login);
+        return (Usuario) q.getSingleResult();
+    }
+
     public void close() {
         em.close();
         emf.close();

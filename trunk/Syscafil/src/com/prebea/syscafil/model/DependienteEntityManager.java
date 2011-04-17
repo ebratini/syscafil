@@ -50,11 +50,9 @@ public class DependienteEntityManager {
     }
 
     public Dependiente update(Dependiente dependiente) {
-        Dependiente dep = null;
         EntityTransaction et = em.getTransaction();
         et.begin();
-        dep = em.merge(dependiente);
-        return dep;
+        return em.merge(dependiente);
     }
 
     public void delete(Dependiente dependiente) {
@@ -85,6 +83,12 @@ public class DependienteEntityManager {
     public List<Dependiente> getDependienteByApellido(String apellido) {
         Query q = em.createNamedQuery("Dependiente.findByDepApellido");
         q.setParameter("depApellido", apellido);
+        return (List<Dependiente>) q.getResultList();
+    }
+
+    public List<Dependiente> getDependienteByStatus(char status) {
+        Query q = em.createNamedQuery("Dependiente.findByDepStatus");
+        q.setParameter("depStatus", status);
         return (List<Dependiente>) q.getResultList();
     }
 

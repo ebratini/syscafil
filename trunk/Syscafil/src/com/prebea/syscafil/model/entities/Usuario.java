@@ -18,13 +18,15 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.UniqueConstraint;
 
 /**
  *
- * @author Edwin Bratini
+ * @author Edwin Bratini <edwin.bratini@gmail.com>
  */
 @Entity
-@Table(name = "Usuarios", catalog = "SYSCAFIL_DB", schema = "dbo")
+@Table(name = "Usuarios", catalog = "SYSCAFIL_DB", schema = "dbo", uniqueConstraints = {
+    @UniqueConstraint(columnNames = {"usr_login"})})
 @NamedQueries({
     @NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u"),
     @NamedQuery(name = "Usuario.findByUsrId", query = "SELECT u FROM Usuario u WHERE u.usrId = :usrId"),
