@@ -62,6 +62,18 @@ public class PlanEntityManager {
         et.commit();
     }
 
+    public Plan getPlanById(Integer plnId) {
+        Query q = em.createNamedQuery("Plan.findByPlnId");
+        q.setParameter("plnId", plnId);
+        return (Plan) q.getSingleResult();
+    }
+
+    public List<Plan> getPlanByStatus(char status) {
+        Query q = em.createNamedQuery("Plan.findByPlnStatus");
+        q.setParameter("plnStatus", status);
+        return (List<Plan>) q.getResultList();
+    }
+
     public void close() {
         em.close();
         emf.close();

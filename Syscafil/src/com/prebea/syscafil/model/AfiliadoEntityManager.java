@@ -62,6 +62,36 @@ public class AfiliadoEntityManager {
         et.commit();
     }
 
+    public Afiliado getAfiliadoById(Integer aflId) {
+        Query q = em.createNamedQuery("Afiliado.findByAflId");
+        q.setParameter("aflId", aflId);
+        return (Afiliado) q.getSingleResult();
+    }
+
+    public Afiliado getAfiliadoByDNI(String dni) {
+        Query q = em.createNamedQuery("Afiliado.findByAflDni");
+        q.setParameter("aflDni", dni);
+        return (Afiliado) q.getSingleResult();
+    }
+
+    public List<Afiliado> getAfiliadoByNombre(String nombre) {
+        Query q = em.createNamedQuery("Afiliado.findByAflNombre");
+        q.setParameter("aflNombre", nombre);
+        return (List<Afiliado>) q.getResultList();
+    }
+
+    public List<Afiliado> getAfiliadoByApellido(String apellido) {
+        Query q = em.createNamedQuery("Afiliado.findByAflApellido");
+        q.setParameter("aflApellido", apellido);
+        return (List<Afiliado>) q.getResultList();
+    }
+
+    public List<Afiliado> getAfiliadoByStatus(char status) {
+        Query q = em.createNamedQuery("Afiliado.findByAflStatus");
+        q.setParameter("aflStatus", status);
+        return (List<Afiliado>) q.getResultList();
+    }
+
     public void close() {
         em.close();
         emf.close();

@@ -64,6 +64,30 @@ public class DependienteEntityManager {
         et.commit();
     }
 
+    public Dependiente getDependienteById(Integer depId) {
+        Query q = em.createNamedQuery("Dependiente.findByDepId");
+        q.setParameter("depId", depId);
+        return (Dependiente) q.getSingleResult();
+    }
+
+    public Dependiente getDependienteByDNI(String dni) {
+        Query q = em.createNamedQuery("Dependiente.findByDepDni");
+        q.setParameter("depDni", dni);
+        return (Dependiente) q.getSingleResult();
+    }
+
+    public List<Dependiente> getDependienteByNombre(String nombre) {
+        Query q = em.createNamedQuery("Dependiente.findByDepNombre");
+        q.setParameter("depNombre", nombre);
+        return (List<Dependiente>) q.getResultList();
+    }
+
+    public List<Dependiente> getDependienteByApellido(String apellido) {
+        Query q = em.createNamedQuery("Dependiente.findByDepApellido");
+        q.setParameter("depApellido", apellido);
+        return (List<Dependiente>) q.getResultList();
+    }
+
     public void close() {
         em.close();
         emf.close();
