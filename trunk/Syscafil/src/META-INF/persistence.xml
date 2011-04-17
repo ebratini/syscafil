@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+  <persistence-unit name="SyscafilPU" transaction-type="RESOURCE_LOCAL">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>com.prebea.syscafil.model.entities.SubcategoriaPlan</class>
+    <class>com.prebea.syscafil.model.entities.Dependiente</class>
+    <class>com.prebea.syscafil.model.entities.Usuario</class>
+    <class>com.prebea.syscafil.model.entities.Plan</class>
+    <class>com.prebea.syscafil.model.entities.Empresa</class>
+    <class>com.prebea.syscafil.model.entities.CategoriaPlan</class>
+    <class>com.prebea.syscafil.model.entities.EmpresaAfiliado</class>
+    <class>com.prebea.syscafil.model.entities.Rol</class>
+    <class>com.prebea.syscafil.model.entities.Permiso</class>
+    <class>com.prebea.syscafil.model.entities.Bitacora</class>
+    <class>com.prebea.syscafil.model.entities.Factura</class>
+    <class>com.prebea.syscafil.model.entities.Secuencia</class>
+    <class>com.prebea.syscafil.model.entities.AbonoFactura</class>
+    <class>com.prebea.syscafil.model.entities.Empleado</class>
+    <class>com.prebea.syscafil.model.entities.Afiliado</class>
+    <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:sqlserver://localhost:1433;databaseName=SYSCAFIL_DB"/>
+      <property name="javax.persistence.jdbc.password" value="Mssql88**"/>
+      <property name="javax.persistence.jdbc.driver" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
+      <property name="javax.persistence.jdbc.user" value="sa"/>
+    </properties>
+  </persistence-unit>
+</persistence>

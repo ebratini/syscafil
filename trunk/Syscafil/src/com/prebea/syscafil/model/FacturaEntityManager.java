@@ -5,7 +5,7 @@
 
 package com.prebea.syscafil.model;
 
-import com.prebea.syscafil.model.entities.Dependiente;
+import com.prebea.syscafil.model.entities.Factura;
 import java.util.List;
 import java.util.Map;
 import javax.persistence.EntityManager;
@@ -18,14 +18,14 @@ import javax.persistence.Query;
  *
  * @author Edwin Bratini <edwin.bratini@gmail.com>
  */
-public class DependienteEntityManager {
+public class FacturaEntityManager {
     private EntityManagerFactory emf = Persistence.createEntityManagerFactory("SyscafilPU");
     private EntityManager em = emf.createEntityManager();
 
-    public DependienteEntityManager() {
+    public FacturaEntityManager() {
     }
 
-    public DependienteEntityManager(Map properties) {
+    public FacturaEntityManager(Map properties) {
         emf = Persistence.createEntityManagerFactory("SyscafilPU", properties);
         em = emf.createEntityManager();
     }
@@ -37,30 +37,28 @@ public class DependienteEntityManager {
         et.commit();
     }
 
-    public void create(Dependiente dependiente) {
+    public void create(Factura factura) {
         EntityTransaction et = em.getTransaction();
         et.begin();
-        em.persist(dependiente);
+        em.persist(factura);
         et.commit();
     }
 
-    public List<Dependiente> retrieve() {
-        Query query = em.createNamedQuery("Dependiente.findAll");
-        return (List<Dependiente>) query.getResultList();
+    public List<Factura> retrieve() {
+        Query query = em.createNamedQuery("Factura.findAll");
+        return (List<Factura>) query.getResultList();
     }
 
-    public Dependiente update(Dependiente dependiente) {
-        Dependiente dep = null;
+    public Factura update(Factura factura) {
         EntityTransaction et = em.getTransaction();
         et.begin();
-        dep = em.merge(dependiente);
-        return dep;
+        return em.merge(factura);
     }
 
-    public void delete(Dependiente dependiente) {
+    public void delete(Factura factura) {
         EntityTransaction et = em.getTransaction();
         et.begin();
-        em.remove(dependiente);
+        em.remove(factura);
         et.commit();
     }
 

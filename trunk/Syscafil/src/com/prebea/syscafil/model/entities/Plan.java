@@ -1,0 +1,220 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+package com.prebea.syscafil.model.entities;
+
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.util.Collection;
+import java.util.Date;
+import javax.persistence.Basic;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+/**
+ *
+ * @author Edwin Bratini
+ */
+@Entity
+@Table(name = "Planes", catalog = "SYSCAFIL_DB", schema = "dbo")
+@NamedQueries({
+    @NamedQuery(name = "Plan.findAll", query = "SELECT p FROM Plan p"),
+    @NamedQuery(name = "Plan.findByPlnId", query = "SELECT p FROM Plan p WHERE p.plnId = :plnId"),
+    @NamedQuery(name = "Plan.findByPlnNombre", query = "SELECT p FROM Plan p WHERE p.plnNombre = :plnNombre"),
+    @NamedQuery(name = "Plan.findByPlnDescripcion", query = "SELECT p FROM Plan p WHERE p.plnDescripcion = :plnDescripcion"),
+    @NamedQuery(name = "Plan.findByPlnPrecioUnitario", query = "SELECT p FROM Plan p WHERE p.plnPrecioUnitario = :plnPrecioUnitario"),
+    @NamedQuery(name = "Plan.findByPlnPrecioDependienteExtra", query = "SELECT p FROM Plan p WHERE p.plnPrecioDependienteExtra = :plnPrecioDependienteExtra"),
+    @NamedQuery(name = "Plan.findByPlnStatus", query = "SELECT p FROM Plan p WHERE p.plnStatus = :plnStatus"),
+    @NamedQuery(name = "Plan.findByPlnUpdateBy", query = "SELECT p FROM Plan p WHERE p.plnUpdateBy = :plnUpdateBy"),
+    @NamedQuery(name = "Plan.findByPlnUpdateDate", query = "SELECT p FROM Plan p WHERE p.plnUpdateDate = :plnUpdateDate")})
+public class Plan implements Serializable {
+    private static final long serialVersionUID = 1L;
+    @Id
+    @Basic(optional = false)
+    @Column(name = "pln_id", nullable = false)
+    private Integer plnId;
+    @Basic(optional = false)
+    @Column(name = "pln_nombre", nullable = false, length = 20)
+    private String plnNombre;
+    @Basic(optional = false)
+    @Column(name = "pln_descripcion", nullable = false, length = 40)
+    private String plnDescripcion;
+    @Basic(optional = false)
+    @Column(name = "pln_precio_unitario", nullable = false, precision = 10, scale = 2)
+    private BigDecimal plnPrecioUnitario;
+    @Basic(optional = false)
+    @Column(name = "pln_precio_dependiente_extra", nullable = false, precision = 10, scale = 2)
+    private BigDecimal plnPrecioDependienteExtra;
+    @Basic(optional = false)
+    @Column(name = "pln_status", nullable = false)
+    private char plnStatus;
+    @Basic(optional = false)
+    @Column(name = "pln_update_by", nullable = false, length = 10)
+    private String plnUpdateBy;
+    @Basic(optional = false)
+    @Column(name = "pln_update_date", nullable = false)
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date plnUpdateDate;
+    @JoinColumn(name = "sup_id", referencedColumnName = "sup_id", nullable = false)
+    @ManyToOne(optional = false)
+    private SubcategoriaPlan subcategoriaPlan;
+    @JoinColumn(name = "cap_id", referencedColumnName = "cap_id", nullable = false)
+    @ManyToOne(optional = false)
+    private CategoriaPlan categoriaPlan;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "plan")
+    private Collection<Afiliado> afiliadoCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "plan")
+    private Collection<Factura> facturaCollection;
+
+    public Plan() {
+    }
+
+    public Plan(Integer plnId) {
+        this.plnId = plnId;
+    }
+
+    public Plan(Integer plnId, String plnNombre, String plnDescripcion, BigDecimal plnPrecioUnitario, BigDecimal plnPrecioDependienteExtra, char plnStatus, String plnUpdateBy, Date plnUpdateDate) {
+        this.plnId = plnId;
+        this.plnNombre = plnNombre;
+        this.plnDescripcion = plnDescripcion;
+        this.plnPrecioUnitario = plnPrecioUnitario;
+        this.plnPrecioDependienteExtra = plnPrecioDependienteExtra;
+        this.plnStatus = plnStatus;
+        this.plnUpdateBy = plnUpdateBy;
+        this.plnUpdateDate = plnUpdateDate;
+    }
+
+    public Integer getPlnId() {
+        return plnId;
+    }
+
+    public void setPlnId(Integer plnId) {
+        this.plnId = plnId;
+    }
+
+    public String getPlnNombre() {
+        return plnNombre;
+    }
+
+    public void setPlnNombre(String plnNombre) {
+        this.plnNombre = plnNombre;
+    }
+
+    public String getPlnDescripcion() {
+        return plnDescripcion;
+    }
+
+    public void setPlnDescripcion(String plnDescripcion) {
+        this.plnDescripcion = plnDescripcion;
+    }
+
+    public BigDecimal getPlnPrecioUnitario() {
+        return plnPrecioUnitario;
+    }
+
+    public void setPlnPrecioUnitario(BigDecimal plnPrecioUnitario) {
+        this.plnPrecioUnitario = plnPrecioUnitario;
+    }
+
+    public BigDecimal getPlnPrecioDependienteExtra() {
+        return plnPrecioDependienteExtra;
+    }
+
+    public void setPlnPrecioDependienteExtra(BigDecimal plnPrecioDependienteExtra) {
+        this.plnPrecioDependienteExtra = plnPrecioDependienteExtra;
+    }
+
+    public char getPlnStatus() {
+        return plnStatus;
+    }
+
+    public void setPlnStatus(char plnStatus) {
+        this.plnStatus = plnStatus;
+    }
+
+    public String getPlnUpdateBy() {
+        return plnUpdateBy;
+    }
+
+    public void setPlnUpdateBy(String plnUpdateBy) {
+        this.plnUpdateBy = plnUpdateBy;
+    }
+
+    public Date getPlnUpdateDate() {
+        return plnUpdateDate;
+    }
+
+    public void setPlnUpdateDate(Date plnUpdateDate) {
+        this.plnUpdateDate = plnUpdateDate;
+    }
+
+    public SubcategoriaPlan getSubcategoriaPlan() {
+        return subcategoriaPlan;
+    }
+
+    public void setSubcategoriaPlan(SubcategoriaPlan subcategoriaPlan) {
+        this.subcategoriaPlan = subcategoriaPlan;
+    }
+
+    public CategoriaPlan getCategoriaPlan() {
+        return categoriaPlan;
+    }
+
+    public void setCategoriaPlan(CategoriaPlan categoriaPlan) {
+        this.categoriaPlan = categoriaPlan;
+    }
+
+    public Collection<Afiliado> getAfiliadoCollection() {
+        return afiliadoCollection;
+    }
+
+    public void setAfiliadoCollection(Collection<Afiliado> afiliadoCollection) {
+        this.afiliadoCollection = afiliadoCollection;
+    }
+
+    public Collection<Factura> getFacturaCollection() {
+        return facturaCollection;
+    }
+
+    public void setFacturaCollection(Collection<Factura> facturaCollection) {
+        this.facturaCollection = facturaCollection;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (plnId != null ? plnId.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Plan)) {
+            return false;
+        }
+        Plan other = (Plan) object;
+        if ((this.plnId == null && other.plnId != null) || (this.plnId != null && !this.plnId.equals(other.plnId))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "com.prebea.syscafil.model.entities.Plan[plnId=" + plnId + "]";
+    }
+
+}
