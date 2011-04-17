@@ -64,6 +64,24 @@ public class EmpresaEntityManager {
         et.commit();
     }
 
+    public Empresa getEmpresaById(Integer empId) {
+        Query q = em.createNamedQuery("Empresa.findByEmpId");
+        q.setParameter("empId", empId);
+        return (Empresa) q.getSingleResult();
+    }
+
+    public Empresa getEmpresaByDNI(String dni) {
+        Query q = em.createNamedQuery("Empresa.findByEmpDni");
+        q.setParameter("empDni", dni);
+        return (Empresa) q.getSingleResult();
+    }
+
+    public List<Empresa> getEmpresaByRazonSocial(String razonSocial) {
+        Query q = em.createNamedQuery("Empresa.findByEmpRazonSocial");
+        q.setParameter("empRazonSocial", razonSocial);
+        return (List<Empresa>) q.getResultList();
+    }
+
     public void close() {
         em.close();
         emf.close();
