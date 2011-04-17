@@ -5,6 +5,7 @@
 
 package com.prebea.syscafil.model;
 
+import com.prebea.syscafil.model.entities.Afiliado;
 import com.prebea.syscafil.model.entities.Factura;
 import java.util.List;
 import java.util.Map;
@@ -60,6 +61,18 @@ public class FacturaEntityManager {
         et.begin();
         em.remove(factura);
         et.commit();
+    }
+
+    public Factura getFacturaByFacNo(Integer facNo) {
+        Query q = em.createNamedQuery("Factura.findByFacNo");
+        q.setParameter("facNo", facNo);
+        return (Factura) q.getSingleResult();
+    }
+
+    public List<Factura> getFacturaByAfiliado(Afiliado afiliado) {
+        Query q = em.createQuery("SELECT f FROM Factura f WHERE f.afiliado = :afiliado");
+        q.setParameter("afiliado", afiliado);
+        return (List<Factura>) q.getResultList();
     }
 
     public void close() {

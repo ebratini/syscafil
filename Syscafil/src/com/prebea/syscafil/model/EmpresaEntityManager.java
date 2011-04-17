@@ -50,11 +50,9 @@ public class EmpresaEntityManager {
     }
 
     public Empresa update(Empresa empresa) {
-        Empresa emp = null;
         EntityTransaction et = em.getTransaction();
         et.begin();
-        emp = em.merge(empresa);
-        return emp;
+        return em.merge(empresa);
     }
 
     public void delete(Empresa empresa) {

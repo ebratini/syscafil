@@ -22,7 +22,7 @@ import javax.persistence.TemporalType;
 
 /**
  *
- * @author Edwin Bratini
+ * @author Edwin Bratini <edwin.bratini@gmail.com>
  */
 @Entity
 @Table(name = "Abono_Facturas", catalog = "SYSCAFIL_DB", schema = "dbo")

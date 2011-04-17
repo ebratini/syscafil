@@ -16,13 +16,15 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 /**
  *
- * @author Edwin Bratini
+ * @author Edwin Bratini <edwin.bratini@gmail.com>
  */
 @Entity
-@Table(name = "Empresas", catalog = "SYSCAFIL_DB", schema = "dbo")
+@Table(name = "Empresas", catalog = "SYSCAFIL_DB", schema = "dbo", uniqueConstraints = {
+    @UniqueConstraint(columnNames = {"emp_dni"})})
 @NamedQueries({
     @NamedQuery(name = "Empresa.findAll", query = "SELECT e FROM Empresa e"),
     @NamedQuery(name = "Empresa.findByEmpId", query = "SELECT e FROM Empresa e WHERE e.empId = :empId"),
