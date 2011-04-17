@@ -5,7 +5,7 @@
 
 package com.prebea.syscafil.model;
 
-import com.prebea.syscafil.model.entities.Dependiente;
+import com.prebea.syscafil.model.entities.Empresa;
 import java.util.List;
 import java.util.Map;
 import javax.persistence.EntityManager;
@@ -18,14 +18,14 @@ import javax.persistence.Query;
  *
  * @author Edwin Bratini <edwin.bratini@gmail.com>
  */
-public class DependienteEntityManager {
+public class EmpresaEntityManager {
     private EntityManagerFactory emf = Persistence.createEntityManagerFactory("SyscafilPU");
     private EntityManager em = emf.createEntityManager();
 
-    public DependienteEntityManager() {
+    public EmpresaEntityManager() {
     }
 
-    public DependienteEntityManager(Map properties) {
+    public EmpresaEntityManager(Map properties) {
         emf = Persistence.createEntityManagerFactory("SyscafilPU", properties);
         em = emf.createEntityManager();
     }
@@ -37,30 +37,30 @@ public class DependienteEntityManager {
         et.commit();
     }
 
-    public void create(Dependiente dependiente) {
+    public void create(Empresa empresa) {
         EntityTransaction et = em.getTransaction();
         et.begin();
-        em.persist(dependiente);
+        em.persist(empresa);
         et.commit();
     }
 
-    public List<Dependiente> retrieve() {
-        Query query = em.createNamedQuery("Dependiente.findAll");
-        return (List<Dependiente>) query.getResultList();
+    public List<Empresa> retrieve() {
+        Query query = em.createNamedQuery("Empresa.findAll");
+        return (List<Empresa>) query.getResultList();
     }
 
-    public Dependiente update(Dependiente dependiente) {
-        Dependiente dep = null;
+    public Empresa update(Empresa empresa) {
+        Empresa emp = null;
         EntityTransaction et = em.getTransaction();
         et.begin();
-        dep = em.merge(dependiente);
-        return dep;
+        emp = em.merge(empresa);
+        return emp;
     }
 
-    public void delete(Dependiente dependiente) {
+    public void delete(Empresa empresa) {
         EntityTransaction et = em.getTransaction();
         et.begin();
-        em.remove(dependiente);
+        em.remove(empresa);
         et.commit();
     }
 

@@ -5,7 +5,7 @@
 
 package com.prebea.syscafil.model;
 
-import com.prebea.syscafil.model.entities.Dependiente;
+import com.prebea.syscafil.model.entities.Permiso;
 import java.util.List;
 import java.util.Map;
 import javax.persistence.EntityManager;
@@ -18,14 +18,14 @@ import javax.persistence.Query;
  *
  * @author Edwin Bratini <edwin.bratini@gmail.com>
  */
-public class DependienteEntityManager {
+public class PermisoEntityManager {
     private EntityManagerFactory emf = Persistence.createEntityManagerFactory("SyscafilPU");
     private EntityManager em = emf.createEntityManager();
 
-    public DependienteEntityManager() {
+    public PermisoEntityManager() {
     }
 
-    public DependienteEntityManager(Map properties) {
+    public PermisoEntityManager(Map properties) {
         emf = Persistence.createEntityManagerFactory("SyscafilPU", properties);
         em = emf.createEntityManager();
     }
@@ -37,30 +37,28 @@ public class DependienteEntityManager {
         et.commit();
     }
 
-    public void create(Dependiente dependiente) {
+    public void create(Permiso permiso) {
         EntityTransaction et = em.getTransaction();
         et.begin();
-        em.persist(dependiente);
+        em.persist(permiso);
         et.commit();
     }
 
-    public List<Dependiente> retrieve() {
-        Query query = em.createNamedQuery("Dependiente.findAll");
-        return (List<Dependiente>) query.getResultList();
+    public List<Permiso> retrieve() {
+        Query query = em.createNamedQuery("Permiso.findAll");
+        return (List<Permiso>) query.getResultList();
     }
 
-    public Dependiente update(Dependiente dependiente) {
-        Dependiente dep = null;
+    public Permiso update(Permiso permiso) {
         EntityTransaction et = em.getTransaction();
         et.begin();
-        dep = em.merge(dependiente);
-        return dep;
+        return em.merge(permiso);
     }
 
-    public void delete(Dependiente dependiente) {
+    public void delete(Permiso permiso) {
         EntityTransaction et = em.getTransaction();
         et.begin();
-        em.remove(dependiente);
+        em.remove(permiso);
         et.commit();
     }
 

@@ -5,7 +5,7 @@
 
 package com.prebea.syscafil.model;
 
-import com.prebea.syscafil.model.entities.Dependiente;
+import com.prebea.syscafil.model.entities.Rol;
 import java.util.List;
 import java.util.Map;
 import javax.persistence.EntityManager;
@@ -18,14 +18,14 @@ import javax.persistence.Query;
  *
  * @author Edwin Bratini <edwin.bratini@gmail.com>
  */
-public class DependienteEntityManager {
+public class RolEntityManager {
     private EntityManagerFactory emf = Persistence.createEntityManagerFactory("SyscafilPU");
     private EntityManager em = emf.createEntityManager();
 
-    public DependienteEntityManager() {
+    public RolEntityManager() {
     }
 
-    public DependienteEntityManager(Map properties) {
+    public RolEntityManager(Map properties) {
         emf = Persistence.createEntityManagerFactory("SyscafilPU", properties);
         em = emf.createEntityManager();
     }
@@ -37,30 +37,28 @@ public class DependienteEntityManager {
         et.commit();
     }
 
-    public void create(Dependiente dependiente) {
+    public void create(Rol rol) {
         EntityTransaction et = em.getTransaction();
         et.begin();
-        em.persist(dependiente);
+        em.persist(rol);
         et.commit();
     }
 
-    public List<Dependiente> retrieve() {
-        Query query = em.createNamedQuery("Dependiente.findAll");
-        return (List<Dependiente>) query.getResultList();
+    public List<Rol> retrieve() {
+        Query query = em.createNamedQuery("Rol.findAll");
+        return (List<Rol>) query.getResultList();
     }
 
-    public Dependiente update(Dependiente dependiente) {
-        Dependiente dep = null;
+    public Rol update(Rol rol) {
         EntityTransaction et = em.getTransaction();
         et.begin();
-        dep = em.merge(dependiente);
-        return dep;
+        return em.merge(rol);
     }
 
-    public void delete(Dependiente dependiente) {
+    public void delete(Rol rol) {
         EntityTransaction et = em.getTransaction();
         et.begin();
-        em.remove(dependiente);
+        em.remove(rol);
         et.commit();
     }
 
