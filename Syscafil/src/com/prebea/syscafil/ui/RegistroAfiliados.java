@@ -4,7 +4,7 @@
  */
 
 /*
- * RegistroClientes.java
+ * RegistroAfiliados.java
  *
  * Created on 03/28/2011, 12:19:59 PM
  */
@@ -15,10 +15,10 @@ package com.prebea.syscafil.ui;
  *
  * @author Edwin Bratini
  */
-public class RegistroClientes extends javax.swing.JFrame {
+public class RegistroAfiliados extends javax.swing.JFrame {
 
-    /** Creates new form RegistroClientes */
-    public RegistroClientes() {
+    /** Creates new form RegistroAfiliados */
+    public RegistroAfiliados() {
         initComponents();
     }
 
@@ -53,7 +53,7 @@ public class RegistroClientes extends javax.swing.JFrame {
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new RegistroClientes().setVisible(true);
+                new RegistroAfiliados().setVisible(true);
             }
         });
     }

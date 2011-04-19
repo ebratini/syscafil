@@ -51,9 +51,4 @@ public class EmpresaManager {
 
         return afiliados;
     }
-
-    public List<Afiliado> getAfiliados(Integer empId) {
-        // TODO: Pending implementation
-        return null;
-    }
 }
