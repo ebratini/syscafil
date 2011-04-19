@@ -7,7 +7,6 @@ package com.prebea.syscafil.business;
 
 import com.prebea.syscafil.model.AfiliadoEntityManager;
 import com.prebea.syscafil.model.entities.Afiliado;
-import com.prebea.syscafil.model.entities.Dependiente;
 import java.util.List;
 import java.util.Map;
 
