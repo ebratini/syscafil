@@ -7,6 +7,7 @@ package com.prebea.syscafil.business;
 
 import com.prebea.syscafil.model.AfiliadoEntityManager;
 import com.prebea.syscafil.model.entities.Afiliado;
+import com.prebea.syscafil.model.entities.Dependiente;
 import java.util.List;
 import java.util.Map;
 
@@ -46,6 +47,10 @@ public class AfiliadoManager {
 
     public Afiliado getAfiliadoById(Integer id) {
         return aem.getAfiliadoById(id);
+    }
+
+    public Afiliado getAfiliadoByDNI(String dni) {
+        return aem.getAfiliadoByDNI(dni);
     }
 
     public List<Afiliado> getAfiliadoByNombre(String nombre) {
