@@ -3,11 +3,11 @@
  * and open the template in the editor.
  */
 
-package com.prebea.syscafil.business;
+package com.prebea.syscafil.ui;
 
 /**
  *
- * @author Edwin Bratini
+ * @author Edwin Bratini <edwin.bratini@gmail.com>
  */
 public class LookAndFeelSelector {
 
