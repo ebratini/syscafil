@@ -74,6 +74,13 @@ public class FacturaEntityManager {
         q.setParameter("afiliado", afiliado);
         return (List<Factura>) q.getResultList();
     }
+    
+    public List<Factura> getFacturasPendientes(Afiliado afiliado) {
+        Query q = em.createQuery("SELECT f FROM Factura f WHERE f.afiliado = :afiliado AND f.facStatusFactura = 'pp'");
+        q.setParameter("afiliado", afiliado);
+        List<Factura> facturasPendientes = (List<Factura>) q.getResultList();
+        return facturasPendientes;
+    }
 
     public void close() {
         em.close();

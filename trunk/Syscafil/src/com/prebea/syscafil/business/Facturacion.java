@@ -7,6 +7,8 @@ package com.prebea.syscafil.business;
 import com.prebea.syscafil.model.entities.Afiliado;
 import com.prebea.syscafil.model.entities.Factura;
 import com.prebea.syscafil.model.entities.Usuario;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -16,12 +18,13 @@ import java.util.Map;
  * @author Edwin Bratini <edwin.bratini@gmail.com>
  */
 public class Facturacion {
-    private Date fechaFacturacion;
-    private Date fechaLimitePago;
+    // toda esta informacion es guardarla en una tabla > Facturaciones y relacionarla con Facturas
+    private Date fechaFacturacion = new Date();
+    private Date fechaLimitePago = new Date();
 
     // para medir el tiempo transcurrido para hacer el proceso de facturacion
-    private Date fechaInicioProcesoFacturacion;
-    private Date fechaFinalProcesoFacturacion;
+    private Date fechaInicioProcesoFacturacion = new Date();
+    private Date fechaFinalProcesoFacturacion = new Date();;
 
     // otros datos
     private boolean terminarFacturacion = false;
@@ -30,36 +33,13 @@ public class Facturacion {
     private double totalFacturas;
     
     private FacturaManager fm = new FacturaManager();
+    private AfiliadoManager am = new AfiliadoManager();
 
     public Facturacion() {
     }
 
     public Facturacion(Map facManProps) {
         fm = new FacturaManager(facManProps);
-    }
-
-    public void iniciarProcesoFacturacion(Usuario usuario) {
-        // validar fecha de facturacion correcta
-        // validar usuario inicia proceso de facturacion
-        if (isUsuarioValido(usuario) != true) {
-            System.out.println("Permiso denegado para iniciar proceso de facturacion.");
-            return;
-        }
-        // conseguir los afiliados listos para facturacion
-        List<Afiliado> afiliados = getAfiliadosFacturar();
-
-        // crear factura por cada afiliado
-        while ((afiliados != null && afiliados.size() > 0) && terminarFacturacion != true) {
-            // iniciar facturacion
-            for (Afiliado afil : afiliados) {
-                fm.crearFactura(new Factura());
-            }
-            break;
-        }
-    }
-
-    public void terminarProcesoFacturacion() {
-        terminarFacturacion = true;
     }
 
     public int getContadorAfiliados() {
@@ -88,6 +68,53 @@ public class Facturacion {
         return false;
     }
 
+    private void setFechaLimitePago() {
+        // estableciendo la fecha limite de pago
+        Calendar c = Calendar.getInstance();
+        c.setTime(fechaFacturacion);
+        c.add(Calendar.DATE, 10);
+        fechaLimitePago = c.getTime();
+    }
+
+    public void iniciarProcesoFacturacion(Usuario usuario) {
+        // validar fecha de facturacion correcta
+        // validar usuario inicia proceso de facturacion
+        if (isUsuarioValido(usuario) != true) {
+            System.out.println("Permiso denegado para iniciar proceso de facturacion.");
+            return;
+        }
+        // conseguir los afiliados listos para facturacion
+        List<Afiliado> afiliados = getAfiliadosFacturar();
+        setFechaLimitePago();
+
+        // crear factura por cada afiliado
+        // si el afiliado con esta factura completa
+        // la 3ra fac vencida actualizaar status a suspendido
+        if (afiliados != null && afiliados.size() > 0) {
+            for (Afiliado afil : afiliados) {
+                if (terminarFacturacion != true) {
+                    Factura factura = new Factura();
+                    fm.crearFactura(factura);
+                    contadorFacturas++;
+                    contadorAfiliados++;
+                    totalFacturas += factura.getFacImporteTotal().doubleValue();
+                } else {
+                    System.out.println("Proceso de facturacion abortado.");
+                    break;
+                }
+            }
+        }
+        fechaFinalProcesoFacturacion = new Date();
+    }
+
+    public void terminarProcesoFacturacion() {
+        terminarFacturacion = true;
+    }
+
+    public Date getTiempoFacturacion() {
+        return new Date((fechaInicioProcesoFacturacion.getTime() - fechaFinalProcesoFacturacion.getTime()));
+    }
+
     public boolean isUsuarioValido(Usuario usuario) {
         boolean usrValido = false;
         if (usuario.getRol().getRolNombre().equalsIgnoreCase("admin")) {
@@ -98,8 +125,15 @@ public class Facturacion {
     }
 
     public List<Afiliado> getAfiliadosFacturar() {
-        // TODO: conseguir afiliados activos con menos de 3 facturas pendientes (depende de la logica
-        // de negocio seleccionada al final)
-        return null;
+        List<Afiliado> afiliados = new ArrayList<Afiliado>();
+        List<Factura> facturasPendientes = new ArrayList<Factura>();
+
+        for (Afiliado afil : am.getAfiliadosActivos()) {
+            facturasPendientes = fm.getFacturasPendientes(afil);
+            if (facturasPendientes == null || (facturasPendientes != null && facturasPendientes.size() < 3)) {
+                afiliados.add(afil);
+            }
+        }
+        return afiliados;
     }
 }
