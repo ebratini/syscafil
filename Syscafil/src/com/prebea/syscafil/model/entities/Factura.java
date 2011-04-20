@@ -140,6 +140,24 @@ public class Factura implements Serializable {
         this.facUpdateDate = facUpdateDate;
     }
 
+    public Factura(Date facFechaGeneracionFactura, Date facFechaLimitePago, BigDecimal facPrecioUnitario, BigDecimal facPrecioDependienteExtra, String facDescripcion, BigDecimal facDescuento, BigDecimal facImpuestos, BigDecimal facSubtotal, BigDecimal facImporteTotal, String facCargoA, String facMetodoPago, String facStatusFactura, String facRazonStatusFactura, String facUpdateBy, Date facUpdateDate) {
+        this.facFechaGeneracionFactura = facFechaGeneracionFactura;
+        this.facFechaLimitePago = facFechaLimitePago;
+        this.facPrecioUnitario = facPrecioUnitario;
+        this.facPrecioDependienteExtra = facPrecioDependienteExtra;
+        this.facDescripcion = facDescripcion;
+        this.facDescuento = facDescuento;
+        this.facImpuestos = facImpuestos;
+        this.facSubtotal = facSubtotal;
+        this.facImporteTotal = facImporteTotal;
+        this.facCargoA = facCargoA;
+        this.facMetodoPago = facMetodoPago;
+        this.facStatusFactura = facStatusFactura;
+        this.facRazonStatusFactura = facRazonStatusFactura;
+        this.facUpdateBy = facUpdateBy;
+        this.facUpdateDate = facUpdateDate;
+    }
+
     public Integer getFacNo() {
         return facNo;
     }

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Syscafil>
+    <Compania>
+        <RNC>12345678910</RNC>
+        <Nombre>PREBEA</Nombre>
+        <Slogan></Slogan>
+        <Direccion></Direccion>
+        <Telefono>8098505555</Telefono>
+    </Compania>
+    <Facturacion>
+        <DiaFacturacion>30</DiaFacturacion>
+        <SecuenciaFacturacion></SecuenciaFacturacion>
+    </Facturacion>
+</Syscafil>
