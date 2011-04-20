@@ -34,7 +34,7 @@ import javax.persistence.TemporalType;
     @NamedQuery(name = "Factura.findByFacNo", query = "SELECT f FROM Factura f WHERE f.facNo = :facNo"),
     @NamedQuery(name = "Factura.findByFacFechaGeneracionFactura", query = "SELECT f FROM Factura f WHERE f.facFechaGeneracionFactura = :facFechaGeneracionFactura"),
     @NamedQuery(name = "Factura.findByFacFechaLimitePago", query = "SELECT f FROM Factura f WHERE f.facFechaLimitePago = :facFechaLimitePago"),
-    @NamedQuery(name = "Factura.findByFacPrecioUnitario", query = "SELECT f FROM Factura f WHERE f.facPrecioUnitario = :facPrecioUnitario"),
+    @NamedQuery(name = "Factura.findByFacPrecioPlan", query = "SELECT f FROM Factura f WHERE f.facPrecioPlan = :facPrecioPlan"),
     @NamedQuery(name = "Factura.findByFacPrecioDependienteExtra", query = "SELECT f FROM Factura f WHERE f.facPrecioDependienteExtra = :facPrecioDependienteExtra"),
     @NamedQuery(name = "Factura.findByFacDescripcion", query = "SELECT f FROM Factura f WHERE f.facDescripcion = :facDescripcion"),
     @NamedQuery(name = "Factura.findByFacDescuento", query = "SELECT f FROM Factura f WHERE f.facDescuento = :facDescuento"),
@@ -63,8 +63,8 @@ public class Factura implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date facFechaLimitePago;
     @Basic(optional = false)
-    @Column(name = "fac_precio_unitario", nullable = false, precision = 10, scale = 2)
-    private BigDecimal facPrecioUnitario;
+    @Column(name = "fac_precio_plan", nullable = false, precision = 10, scale = 2)
+    private BigDecimal facPrecioPlan;
     @Basic(optional = false)
     @Column(name = "fac_precio_dependiente_extra", nullable = false, precision = 10, scale = 2)
     private BigDecimal facPrecioDependienteExtra;
@@ -121,11 +121,11 @@ public class Factura implements Serializable {
         this.facNo = facNo;
     }
 
-    public Factura(Integer facNo, Date facFechaGeneracionFactura, Date facFechaLimitePago, BigDecimal facPrecioUnitario, BigDecimal facPrecioDependienteExtra, String facDescripcion, BigDecimal facDescuento, BigDecimal facImpuestos, BigDecimal facSubtotal, BigDecimal facImporteTotal, String facCargoA, String facMetodoPago, String facStatusFactura, String facRazonStatusFactura, String facUpdateBy, Date facUpdateDate) {
+    public Factura(Integer facNo, Date facFechaGeneracionFactura, Date facFechaLimitePago, BigDecimal facPrecioPlan, BigDecimal facPrecioDependienteExtra, String facDescripcion, BigDecimal facDescuento, BigDecimal facImpuestos, BigDecimal facSubtotal, BigDecimal facImporteTotal, String facCargoA, String facMetodoPago, String facStatusFactura, String facRazonStatusFactura, String facUpdateBy, Date facUpdateDate) {
         this.facNo = facNo;
         this.facFechaGeneracionFactura = facFechaGeneracionFactura;
         this.facFechaLimitePago = facFechaLimitePago;
-        this.facPrecioUnitario = facPrecioUnitario;
+        this.facPrecioPlan = facPrecioPlan;
         this.facPrecioDependienteExtra = facPrecioDependienteExtra;
         this.facDescripcion = facDescripcion;
         this.facDescuento = facDescuento;
@@ -140,10 +140,10 @@ public class Factura implements Serializable {
         this.facUpdateDate = facUpdateDate;
     }
 
-    public Factura(Date facFechaGeneracionFactura, Date facFechaLimitePago, BigDecimal facPrecioUnitario, BigDecimal facPrecioDependienteExtra, String facDescripcion, BigDecimal facDescuento, BigDecimal facImpuestos, BigDecimal facSubtotal, BigDecimal facImporteTotal, String facCargoA, String facMetodoPago, String facStatusFactura, String facRazonStatusFactura, String facUpdateBy, Date facUpdateDate) {
+    public Factura(Date facFechaGeneracionFactura, Date facFechaLimitePago, BigDecimal facPrecioPlan, BigDecimal facPrecioDependienteExtra, String facDescripcion, BigDecimal facDescuento, BigDecimal facImpuestos, BigDecimal facSubtotal, BigDecimal facImporteTotal, String facCargoA, String facMetodoPago, String facStatusFactura, String facRazonStatusFactura, String facUpdateBy, Date facUpdateDate) {
         this.facFechaGeneracionFactura = facFechaGeneracionFactura;
         this.facFechaLimitePago = facFechaLimitePago;
-        this.facPrecioUnitario = facPrecioUnitario;
+        this.facPrecioPlan = facPrecioPlan;
         this.facPrecioDependienteExtra = facPrecioDependienteExtra;
         this.facDescripcion = facDescripcion;
         this.facDescuento = facDescuento;
@@ -182,12 +182,12 @@ public class Factura implements Serializable {
         this.facFechaLimitePago = facFechaLimitePago;
     }
 
-    public BigDecimal getFacPrecioUnitario() {
-        return facPrecioUnitario;
+    public BigDecimal getFacPrecioPlan() {
+        return facPrecioPlan;
     }
 
-    public void setFacPrecioUnitario(BigDecimal facPrecioUnitario) {
-        this.facPrecioUnitario = facPrecioUnitario;
+    public void setFacPrecioPlan(BigDecimal facPrecioPlan) {
+        this.facPrecioPlan = facPrecioPlan;
     }
 
     public BigDecimal getFacPrecioDependienteExtra() {

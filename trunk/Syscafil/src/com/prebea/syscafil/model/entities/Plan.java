@@ -34,7 +34,7 @@ import javax.persistence.TemporalType;
     @NamedQuery(name = "Plan.findByPlnId", query = "SELECT p FROM Plan p WHERE p.plnId = :plnId"),
     @NamedQuery(name = "Plan.findByPlnNombre", query = "SELECT p FROM Plan p WHERE p.plnNombre = :plnNombre"),
     @NamedQuery(name = "Plan.findByPlnDescripcion", query = "SELECT p FROM Plan p WHERE p.plnDescripcion = :plnDescripcion"),
-    @NamedQuery(name = "Plan.findByPlnPrecioUnitario", query = "SELECT p FROM Plan p WHERE p.plnPrecioUnitario = :plnPrecioUnitario"),
+    @NamedQuery(name = "Plan.findByPlnPrecio", query = "SELECT p FROM Plan p WHERE p.plnPrecio = :plnPrecio"),
     @NamedQuery(name = "Plan.findByPlnPrecioDependienteExtra", query = "SELECT p FROM Plan p WHERE p.plnPrecioDependienteExtra = :plnPrecioDependienteExtra"),
     @NamedQuery(name = "Plan.findByPlnStatus", query = "SELECT p FROM Plan p WHERE p.plnStatus = :plnStatus"),
     @NamedQuery(name = "Plan.findByPlnUpdateBy", query = "SELECT p FROM Plan p WHERE p.plnUpdateBy = :plnUpdateBy"),
@@ -52,8 +52,8 @@ public class Plan implements Serializable {
     @Column(name = "pln_descripcion", nullable = false, length = 40)
     private String plnDescripcion;
     @Basic(optional = false)
-    @Column(name = "pln_precio_unitario", nullable = false, precision = 10, scale = 2)
-    private BigDecimal plnPrecioUnitario;
+    @Column(name = "pln_precio", nullable = false, precision = 10, scale = 2)
+    private BigDecimal plnPrecio;
     @Basic(optional = false)
     @Column(name = "pln_precio_dependiente_extra", nullable = false, precision = 10, scale = 2)
     private BigDecimal plnPrecioDependienteExtra;
@@ -85,11 +85,11 @@ public class Plan implements Serializable {
         this.plnId = plnId;
     }
 
-    public Plan(Integer plnId, String plnNombre, String plnDescripcion, BigDecimal plnPrecioUnitario, BigDecimal plnPrecioDependienteExtra, char plnStatus, String plnUpdateBy, Date plnUpdateDate) {
+    public Plan(Integer plnId, String plnNombre, String plnDescripcion, BigDecimal plnPrecio, BigDecimal plnPrecioDependienteExtra, char plnStatus, String plnUpdateBy, Date plnUpdateDate) {
         this.plnId = plnId;
         this.plnNombre = plnNombre;
         this.plnDescripcion = plnDescripcion;
-        this.plnPrecioUnitario = plnPrecioUnitario;
+        this.plnPrecio = plnPrecio;
         this.plnPrecioDependienteExtra = plnPrecioDependienteExtra;
         this.plnStatus = plnStatus;
         this.plnUpdateBy = plnUpdateBy;
@@ -120,12 +120,12 @@ public class Plan implements Serializable {
         this.plnDescripcion = plnDescripcion;
     }
 
-    public BigDecimal getPlnPrecioUnitario() {
-        return plnPrecioUnitario;
+    public BigDecimal getPlnPrecio() {
+        return plnPrecio;
     }
 
-    public void setPlnPrecioUnitario(BigDecimal plnPrecioUnitario) {
-        this.plnPrecioUnitario = plnPrecioUnitario;
+    public void setPlnPrecio(BigDecimal plnPrecio) {
+        this.plnPrecio = plnPrecio;
     }
 
     public BigDecimal getPlnPrecioDependienteExtra() {
