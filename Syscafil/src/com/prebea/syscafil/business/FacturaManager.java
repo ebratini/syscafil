@@ -48,4 +48,8 @@ public class FacturaManager {
     public List<Factura> getFacturaByAfiliado(Afiliado afiliado) {
         return fem.getFacturaByAfiliado(afiliado);
     }
+
+    public List<Factura> getFacturasPendientes(Afiliado afiliado) {
+        return fem.getFacturasPendientes(afiliado);
+    }
 }
