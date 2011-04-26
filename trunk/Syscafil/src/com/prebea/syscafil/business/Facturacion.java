@@ -4,7 +4,6 @@
  */
 package com.prebea.syscafil.business;
 
-import com.prebea.syscafil.model.XMLFileManager;
 import com.prebea.syscafil.model.entities.Afiliado;
 import com.prebea.syscafil.model.entities.Factura;
 import com.prebea.syscafil.model.entities.Usuario;

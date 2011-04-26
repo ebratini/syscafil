@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package syscafil;
 
 import com.prebea.syscafil.model.XMLFileManager;
@@ -12,11 +11,33 @@ import com.prebea.syscafil.model.XMLFileManager;
  * @author Edwin Bratini <edwin.bratini@gmail.com>
  */
 public class Syscafil {
-    private static String DiaFacturacion;
-    private static enum PrecioPlanes {BasicoFamiliar, PremiumFamiliar, BasicoEmpresarial, PremiumEmpresarial};
-    private static enum PrecioPlanesDependientesExtreas {BasicoFamiliar, PremiumFamiliar, BasicoEmpresarial, PremiumEmpresarial};
 
-    //private void initCoreVariables() {}
+    private static String DiaFacturacion;
+
+    private static enum PrecioPlanes {
+        BasicoFamiliar,
+        PlusFamiliar,
+        OptimoFamiliar,
+        SupremoFamiliar,
+        PremiumFamiliar,
+        BasicoEmpresarial,
+        PlusEmpresarial,
+        EmpresarialEmpresarial,
+        PremiumEmpresarial
+    };
+
+    private static enum PrecioPlanesDependientesExtreas {
+        BasicoFamiliar,
+        PlusFamiliar,
+        OptimoFamiliar,
+        SupremoFamiliar,
+        PremiumFamiliar,
+        BasicoEmpresarial,
+        PlusEmpresarial,
+        EmpresarialEmpresarial,
+        PremiumEmpresarial
+    };
+    
     public static String getDiaFacturacion() {
         return DiaFacturacion;
     }
