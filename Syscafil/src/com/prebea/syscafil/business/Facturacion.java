@@ -4,9 +4,11 @@
  */
 package com.prebea.syscafil.business;
 
+import com.prebea.syscafil.model.XMLFileManager;
 import com.prebea.syscafil.model.entities.Afiliado;
 import com.prebea.syscafil.model.entities.Factura;
 import com.prebea.syscafil.model.entities.Usuario;
+import syscafil.Syscafil;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -19,19 +21,19 @@ import java.util.Map;
  */
 public class Facturacion {
     // toda esta informacion es guardarla en una tabla > Facturaciones y relacionarla con Facturas
+
     private Date fechaFacturacion = new Date();
     private Date fechaLimitePago = new Date();
-
     // para medir el tiempo transcurrido para hacer el proceso de facturacion
     private Date fechaInicioProcesoFacturacion = new Date();
-    private Date fechaFinalProcesoFacturacion = new Date();;
+    private Date fechaFinalProcesoFacturacion = new Date();
 
+    ;
     // otros datos
     private boolean terminarFacturacion = false;
     private int contadorFacturas;
     private int contadorAfiliados;
     private double totalFacturas;
-    
     private FacturaManager fm = new FacturaManager();
     private AfiliadoManager am = new AfiliadoManager();
 
@@ -62,10 +64,15 @@ public class Facturacion {
         return totalFacturas;
     }
 
-    // TODO: Este metodo creo que al final no tendra utilidad, por tanto no lo implementare
     public boolean isFechaFacturacionValida() {
-        // conseguir la conf inicial de la app de algun xml o Property class
-        return false;
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(fechaFacturacion);
+        //if (cal.get(Calendar.DAY_OF_MONTH) == Integer.parseInt(XMLFileManager.getElemento("META-INF/syscafil_conf.xml", "Syscafil/Facturacion/DiaFacturacion").getTextTrim())) {
+        if (cal.get(Calendar.DAY_OF_MONTH) == Integer.parseInt(Syscafil.getDiaFacturacion())) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     private void setFechaLimitePago() {
@@ -83,6 +90,12 @@ public class Facturacion {
             System.out.println("Permiso denegado para iniciar proceso de facturacion.");
             return;
         }
+
+        if (isFechaFacturacionValida() != true) {
+            System.out.println("La fecha de facturacion no es valida");
+            return;
+        }
+        
         // conseguir los afiliados listos para facturacion
         List<Afiliado> afiliados = getAfiliadosFacturar();
         setFechaLimitePago();
@@ -92,6 +105,7 @@ public class Facturacion {
         // la 3ra fac vencida actualizaar status a suspendido
         if (afiliados != null && afiliados.size() > 0) {
             for (Afiliado afil : afiliados) {
+                // conseguir los dependientes extras si existen
                 if (terminarFacturacion != true) {
                     Factura factura = new Factura();
                     fm.crearFactura(factura);
@@ -132,6 +146,10 @@ public class Facturacion {
             facturasPendientes = fm.getFacturasPendientes(afil);
             if (facturasPendientes == null || (facturasPendientes != null && facturasPendientes.size() < 3)) {
                 afiliados.add(afil);
+                if (facturasPendientes.size() == 2) {
+                    afil.setAflStatus('S');
+                    am.actualizarAfiliado(afil);
+                }
             }
         }
         return afiliados;

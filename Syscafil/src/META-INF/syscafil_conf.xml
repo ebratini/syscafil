@@ -3,12 +3,21 @@
     <Compania>
         <RNC>12345678910</RNC>
         <Nombre>PREBEA</Nombre>
-        <Slogan></Slogan>
-        <Direccion></Direccion>
-        <Telefono>8098505555</Telefono>
+        <Slogan>Abrele la Puerta a PREBEA</Slogan>
+        <Direccion>Av. Abraham Lincoln No. 62, Ens. La Julia, Santo Domingo, República Dominicana.</Direccion>
+        <Telefono>809.533.0900</Telefono>
+        <Email>info@prebea.com</Email>
     </Compania>
     <Facturacion>
-        <DiaFacturacion>30</DiaFacturacion>
+        <DiaFacturacion>13</DiaFacturacion>
         <SecuenciaFacturacion></SecuenciaFacturacion>
+        <PrecioPlanes>
+            <Familiar Basico="250.00" Plus = "350.00" Optimo = "450.00" Supremo = "550.00" Premium = "650.00"/>
+            <Empresarial Basico = "16.00" Plus = "30.00" Empresarial = "45.00" Premium = "65.00" />
+            <DependienteExtra>
+                <Familiar Basico="60.00" Plus = "70.00" Optimo = "80.00" Supremo = "90.00" Premium = "100.00" />
+                <Empresarial Basico = "05.00" Plus = "10.00" Empresarial = "15.00" Premium = "20.00" />
+            </DependienteExtra>
+        </PrecioPlanes>
     </Facturacion>
 </Syscafil>
