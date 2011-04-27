@@ -19,7 +19,7 @@ import org.jdom.xpath.XPath;
  *
  * @author Edwin Bratini <edwin.bratini@gmail.com>
  */
-public class XMLFileManager {
+public class XMLFileManager extends FileManager {
     public static Element getElemento(String rutaArchivoXML, String xpathElemento) {
         SAXBuilder xmlDocBuilder = new SAXBuilder();
         Element xmlElement = null;
