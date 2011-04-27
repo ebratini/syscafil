@@ -170,7 +170,7 @@ public class Facturacion {
             }
         }
         fechaFinalProcesoFacturacion = new Date();
-        
+        setUltimaFechaFacturacion();
     }
 
     public void terminarProcesoFacturacion() {
