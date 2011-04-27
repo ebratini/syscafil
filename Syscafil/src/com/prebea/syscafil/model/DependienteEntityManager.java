@@ -5,6 +5,7 @@
 
 package com.prebea.syscafil.model;
 
+import com.prebea.syscafil.model.entities.Afiliado;
 import com.prebea.syscafil.model.entities.Dependiente;
 import java.util.List;
 import java.util.Map;
@@ -89,6 +90,20 @@ public class DependienteEntityManager {
     public List<Dependiente> getDependienteByStatus(char status) {
         Query q = em.createNamedQuery("Dependiente.findByDepStatus");
         q.setParameter("depStatus", status);
+        return (List<Dependiente>) q.getResultList();
+    }
+
+    public List<Dependiente> getDependienteByAfiliado(Afiliado afiliado)  {
+        Query q = em.createQuery("SELECT d FROM Dependiente d WHERE d.afiliado = :afiliado");
+        q.setParameter("afiliado", afiliado);
+        return (List<Dependiente>) q.getResultList();
+    }
+
+    public List<Dependiente> getDependienteExtraActivoByAfiliado(Afiliado afiliado)  {
+        String qString = "SELECT d FROM Dependiente d WHERE d.afiliado = :afiliado AND d.depStatus = 'A'";
+        qString += " AND depExtra = 1";
+        Query q = em.createQuery(qString);
+        q.setParameter("afiliado", afiliado);
         return (List<Dependiente>) q.getResultList();
     }
 

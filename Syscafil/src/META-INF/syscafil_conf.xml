@@ -10,6 +10,7 @@
     </Compania>
     <Facturacion>
         <DiaFacturacion>13</DiaFacturacion>
+        <UltimaFechaFacturacion>13-01-2010</UltimaFechaFacturacion>
         <SecuenciaFacturacion></SecuenciaFacturacion>
         <PrecioPlanes>
             <Familiar Basico="250.00" Plus = "350.00" Optimo = "450.00" Supremo = "550.00" Premium = "650.00"/>

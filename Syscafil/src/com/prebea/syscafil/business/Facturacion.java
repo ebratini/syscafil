@@ -5,8 +5,13 @@
 package com.prebea.syscafil.business;
 
 import com.prebea.syscafil.model.entities.Afiliado;
+import com.prebea.syscafil.model.entities.Dependiente;
+import com.prebea.syscafil.model.entities.Empresa;
 import com.prebea.syscafil.model.entities.Factura;
 import com.prebea.syscafil.model.entities.Usuario;
+import java.math.BigDecimal;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import syscafil.Syscafil;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -35,6 +40,7 @@ public class Facturacion {
     private double totalFacturas;
     private FacturaManager fm = new FacturaManager();
     private AfiliadoManager am = new AfiliadoManager();
+    private DependienteManager dm = new DependienteManager();
 
     public Facturacion() {
     }
@@ -63,11 +69,20 @@ public class Facturacion {
         return totalFacturas;
     }
 
-    public boolean isFechaFacturacionValida() {
+    // validando fecha de facturacion con la fecha establecida para facturar
+    // validando fecha contra ultima fecha de facturacion
+    private boolean isFechaFacturacionValida() {
         Calendar cal = Calendar.getInstance();
         cal.setTime(fechaFacturacion);
-        //if (cal.get(Calendar.DAY_OF_MONTH) == Integer.parseInt(XMLFileManager.getElemento("META-INF/syscafil_conf.xml", "Syscafil/Facturacion/DiaFacturacion").getTextTrim())) {
-        if (cal.get(Calendar.DAY_OF_MONTH) == Integer.parseInt(Syscafil.getDiaFacturacion())) {
+        int diaFac = cal.get(Calendar.DAY_OF_MONTH);
+
+        Calendar cal2 = Calendar.getInstance();
+        cal2.setTime(cal.getTime());
+        cal2.add(Calendar.DAY_OF_MONTH, 30);
+
+        long diffDays = (cal.getTimeInMillis() - cal2.getTimeInMillis()) / (24 * 60 * 60 * 1000);
+
+        if (diaFac == Integer.parseInt(Syscafil.getDiaFacturacion()) && diffDays >= 30) {
             return true;
         } else {
             return false;
@@ -82,31 +97,68 @@ public class Facturacion {
         fechaLimitePago = c.getTime();
     }
 
-    public void iniciarProcesoFacturacion(Usuario usuario) {
+    public void iniciarProcesoFacturacion(Usuario usuario) throws ProcesoFacturacionException {
         // validar fecha de facturacion correcta
         // validar usuario inicia proceso de facturacion
         if (isUsuarioValido(usuario) != true) {
-            System.out.println("Permiso denegado para iniciar proceso de facturacion.");
-            return;
+            String mensajeExcepcion = "Permiso denegado para iniciar proceso de facturacion.";
+            throw new UsuarioNoValidoInvocaProcesoFacturacionException(mensajeExcepcion);
         }
 
         if (isFechaFacturacionValida() != true) {
-            System.out.println("La fecha de facturacion no es valida");
-            return;
+            String mensajeExcepcion = "La fecha de facturacion no es valida.";
+            throw new FechaNoValidaParaFacturacionException(mensajeExcepcion);
         }
-        
+
         // conseguir los afiliados listos para facturacion
         List<Afiliado> afiliados = getAfiliadosFacturar();
         setFechaLimitePago();
 
         // crear factura por cada afiliado
-        // si el afiliado con esta factura completa
-        // la 3ra fac vencida actualizaar status a suspendido
+
         if (afiliados != null && afiliados.size() > 0) {
             for (Afiliado afil : afiliados) {
-                // conseguir los dependientes extras si existen
+                // conseguir total de los dependientes extras si existen
+                String nombrePlan = afil.getPlan().getPlnNombre();
+                double precioPlan = Syscafil.PrecioPlanes.valueOf(nombrePlan.replaceAll(" ", "")).getPrecio();
+                double precioDepExtra = Syscafil.PrecioPlanesDependientesExtreas.valueOf(nombrePlan.replaceAll(" ", "")).getPrecio();
+                int cantDepExtra = 0;
+                double importeDepExtras = 0.0;
+                double desc = 0.0;
+                double impuestos = 0.0;
+                double subtotal = precioPlan + importeDepExtras;
+                double total = subtotal + impuestos - desc;
+                String metodoPago = "Efectivo";
+                String statusFac = "PP";
+                String razonStatusFac = "Pendiente Pago";
+                String updateBy = "Proceso Facturacion";
+
+                // conseguir cargoA
+                Empresa empresaAfil = null;
+                try {
+                    empresaAfil = am.getEmpresa(afil);
+                } catch (AfiliadoConMasDeUnaEmpresaException ex) {
+                    Logger.getLogger(Facturacion.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+                String cargoA = (empresaAfil != null ? String.format("[%d %s]", empresaAfil.getEmpId(), empresaAfil.getEmpRazonSocial()) : "");
+
+                // Descripcion
+                StringBuilder sbFacDescripcion = new StringBuilder();
+                sbFacDescripcion.append(String.format("Cantidad: %d Concepto: Renta Mensual %s Valor: %d\n", 1, nombrePlan, precioPlan));
+
+                List<Dependiente> depExtras = dm.getDependienteActivosExtrasByAfiliado(afil);
+                if (depExtras != null && depExtras.size() > 0) {
+                    cantDepExtra = depExtras.size();
+                    importeDepExtras = getTotalPorDepExtra(afil, precioDepExtra);
+                    sbFacDescripcion.append(String.format("Cantidad: %d Concepto: Renta Mensual por Dependientes Extras Valor: %d X %d = %d\n", cantDepExtra,
+                            cantDepExtra, precioDepExtra, (cantDepExtra * precioDepExtra)));
+                }
+
                 if (terminarFacturacion != true) {
-                    Factura factura = new Factura();
+                    Factura factura = new Factura(fechaFacturacion, fechaLimitePago, BigDecimal.valueOf(precioPlan), BigDecimal.valueOf(precioDepExtra),
+                            sbFacDescripcion.toString(), BigDecimal.valueOf(desc), BigDecimal.valueOf(impuestos), BigDecimal.valueOf(subtotal),
+                            BigDecimal.valueOf(total), cargoA, metodoPago, statusFac, razonStatusFac, updateBy, fechaFacturacion);
                     fm.crearFactura(factura);
                     contadorFacturas++;
                     contadorAfiliados++;
@@ -118,6 +170,7 @@ public class Facturacion {
             }
         }
         fechaFinalProcesoFacturacion = new Date();
+        
     }
 
     public void terminarProcesoFacturacion() {
@@ -128,7 +181,32 @@ public class Facturacion {
         return new Date((fechaInicioProcesoFacturacion.getTime() - fechaFinalProcesoFacturacion.getTime()));
     }
 
-    public boolean isUsuarioValido(Usuario usuario) {
+    private void setUltimaFechaFacturacion() {
+        Calendar c = Calendar.getInstance();
+        c.setTime(fechaFacturacion);
+        int iDia = c.get(Calendar.DAY_OF_MONTH);
+        int iMes = c.get(Calendar.MONTH);
+        int iAnio = c.get(Calendar.YEAR);
+
+        String dia = iDia < 9 ? String.format("0%d", iDia) : Integer.toString(iDia);
+        String mes = iMes < 9 ? String.format("0%d", iMes) : Integer.toString(iMes);
+        String anio = Integer.toString(iAnio);
+
+        Syscafil.setUltimaFechaFacturacion(String.format("%s-%s-%s", dia, mes, anio));
+    }
+
+    private double getTotalPorDepExtra(Afiliado afiliado, double precioDepExtra) {
+        List<Dependiente> dependientesExtras = dm.getDependienteActivosExtrasByAfiliado(afiliado);
+        double valorDepExtras = 0.0;
+
+        if (dependientesExtras != null && dependientesExtras.size() > 0) {
+            valorDepExtras = dependientesExtras.size() * precioDepExtra;
+        }
+
+        return valorDepExtras;
+    }
+
+    private boolean isUsuarioValido(Usuario usuario) {
         boolean usrValido = false;
         if (usuario.getRol().getRolNombre().equalsIgnoreCase("admin")) {
             usrValido = true;
@@ -145,6 +223,10 @@ public class Facturacion {
             facturasPendientes = fm.getFacturasPendientes(afil);
             if (facturasPendientes == null || (facturasPendientes != null && facturasPendientes.size() < 3)) {
                 afiliados.add(afil);
+
+                /* si el afiliado con esta factura completa
+                la 3ra fac vencida actualizaar status a suspendido
+                 */
                 if (facturasPendientes.size() == 2) {
                     afil.setAflStatus('S');
                     am.actualizarAfiliado(afil);

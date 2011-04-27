@@ -6,6 +6,7 @@
 package com.prebea.syscafil.business;
 
 import com.prebea.syscafil.model.DependienteEntityManager;
+import com.prebea.syscafil.model.entities.Afiliado;
 import com.prebea.syscafil.model.entities.Dependiente;
 import java.util.List;
 import java.util.Map;
@@ -58,6 +59,10 @@ public class DependienteManager {
 
     public List<Dependiente> getDependienteByApellido(String apellido) {
         return dem.getDependienteByApellido(apellido);
+    }
+
+    public List<Dependiente> getDependienteActivosExtrasByAfiliado(Afiliado afiliado) {
+        return dem.getDependienteExtraActivoByAfiliado(afiliado);
     }
 
     public void close() {
