@@ -8,6 +8,7 @@ import com.prebea.syscafil.model.entities.Afiliado;
 import com.prebea.syscafil.model.entities.Dependiente;
 import com.prebea.syscafil.model.entities.Empresa;
 import com.prebea.syscafil.model.entities.Factura;
+import com.prebea.syscafil.model.entities.Plan;
 import com.prebea.syscafil.model.entities.Usuario;
 import java.math.BigDecimal;
 import java.util.logging.Level;
@@ -23,38 +24,39 @@ import java.util.Map;
  *
  * @author Edwin Bratini <edwin.bratini@gmail.com>
  */
-public class Facturacion {
-    // toda esta informacion es guardarla en una tabla > Facturaciones y relacionarla con Facturas
+public class ProcesoFacturacion {
+    // TODO: Implementar / Utilizar clase BitLogger en clase
 
+    // TODO: Esta informacion es guardarla en una tabla > Facturaciones y relacionarla con Facturas
     private Date fechaFacturacion = new Date();
     private Date fechaLimitePago = new Date();
+    private StringBuilder statusFactura;
+    private int totalFacturas;
+    private int totalAfiliados;
+    private double totalImporteFacturas;
     // para medir el tiempo transcurrido para hacer el proceso de facturacion
     private Date fechaInicioProcesoFacturacion = new Date();
     private Date fechaFinalProcesoFacturacion = new Date();
-
-    ;
-    // otros datos
+    // para manejar proceso
     private boolean terminarFacturacion = false;
-    private int contadorFacturas;
-    private int contadorAfiliados;
-    private double totalFacturas;
+    // resources
     private FacturaManager fm = new FacturaManager();
     private AfiliadoManager am = new AfiliadoManager();
     private DependienteManager dm = new DependienteManager();
 
-    public Facturacion() {
+    public ProcesoFacturacion() {
     }
 
-    public Facturacion(Map facManProps) {
+    public ProcesoFacturacion(Map facManProps) {
         fm = new FacturaManager(facManProps);
     }
 
     public int getContadorAfiliados() {
-        return contadorAfiliados;
+        return totalAfiliados;
     }
 
     public int getContadorFacturas() {
-        return contadorFacturas;
+        return totalFacturas;
     }
 
     public Date getFechaFinalFacturacion() {
@@ -66,7 +68,7 @@ public class Facturacion {
     }
 
     public double getTotalFacturas() {
-        return totalFacturas;
+        return totalImporteFacturas;
     }
 
     // validando fecha de facturacion con la fecha establecida para facturar
@@ -82,7 +84,7 @@ public class Facturacion {
 
         long diffDays = (cal.getTimeInMillis() - cal2.getTimeInMillis()) / (24 * 60 * 60 * 1000);
 
-        if (diaFac == Integer.parseInt(Syscafil.getDiaFacturacion()) && diffDays >= 30) {
+        if (diaFac == Integer.parseInt(Syscafil.scm.getDiaFacturacion()) && diffDays >= 30) {
             return true;
         } else {
             return false;
@@ -93,7 +95,7 @@ public class Facturacion {
         // estableciendo la fecha limite de pago
         Calendar c = Calendar.getInstance();
         c.setTime(fechaFacturacion);
-        c.add(Calendar.DATE, 10);
+        c.add(Calendar.DATE, Syscafil.scm.getDiasLmtParaSaldar());
         fechaLimitePago = c.getTime();
     }
 
@@ -115,19 +117,17 @@ public class Facturacion {
         setFechaLimitePago();
 
         // crear factura por cada afiliado
-
         if (afiliados != null && afiliados.size() > 0) {
             for (Afiliado afil : afiliados) {
-                // conseguir total de los dependientes extras si existen
-                String nombrePlan = afil.getPlan().getPlnNombre();
-                double precioPlan = Syscafil.PrecioPlanes.valueOf(nombrePlan.replaceAll(" ", "")).getPrecio();
-                double precioDepExtra = Syscafil.PrecioPlanesDependientesExtreas.valueOf(nombrePlan.replaceAll(" ", "")).getPrecio();
+                Plan plan = afil.getPlan();
+                BigDecimal precioPlan = plan.getPlnPrecio();
+                BigDecimal precioDepExtra = plan.getPlnPrecioDependienteExtra();
                 int cantDepExtra = 0;
-                double importeDepExtras = 0.0;
-                double desc = 0.0;
-                double impuestos = 0.0;
-                double subtotal = precioPlan + importeDepExtras;
-                double total = subtotal + impuestos - desc;
+                BigDecimal importeDepExtras = new BigDecimal(0.0);
+                BigDecimal desc = new BigDecimal(0.0);
+                BigDecimal impuestos = new BigDecimal(0.0);
+                BigDecimal subtotal = precioPlan.add(importeDepExtras);
+                BigDecimal total = subtotal.add(impuestos).subtract(desc);
                 String metodoPago = "Efectivo";
                 String statusFac = "PP";
                 String razonStatusFac = "Pendiente Pago";
@@ -138,38 +138,42 @@ public class Facturacion {
                 try {
                     empresaAfil = am.getEmpresa(afil);
                 } catch (AfiliadoConMasDeUnaEmpresaException ex) {
-                    Logger.getLogger(Facturacion.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ProcesoFacturacion.class.getName()).log(Level.SEVERE, null, ex);
                 }
 
                 String cargoA = (empresaAfil != null ? String.format("[%d %s]", empresaAfil.getEmpId(), empresaAfil.getEmpRazonSocial()) : "");
 
                 // Descripcion
                 StringBuilder sbFacDescripcion = new StringBuilder();
-                sbFacDescripcion.append(String.format("Cantidad: %d Concepto: Renta Mensual %s Valor: %d\n", 1, nombrePlan, precioPlan));
+                sbFacDescripcion.append(String.format("Cantidad: %d Concepto: Renta Mensual %s Valor: %d\n", 1, plan.getPlnNombre(), precioPlan));
 
+                // conseguir total de los dependientes extras si existen
                 List<Dependiente> depExtras = dm.getDependienteActivosExtrasByAfiliado(afil);
                 if (depExtras != null && depExtras.size() > 0) {
                     cantDepExtra = depExtras.size();
-                    importeDepExtras = getTotalPorDepExtra(afil, precioDepExtra);
-                    sbFacDescripcion.append(String.format("Cantidad: %d Concepto: Renta Mensual por Dependientes Extras Valor: %d X %d = %d\n", cantDepExtra,
-                            cantDepExtra, precioDepExtra, (cantDepExtra * precioDepExtra)));
+                    importeDepExtras = BigDecimal.valueOf(getTotalPorDepExtra(afil));
+                    sbFacDescripcion.append(String.format("Cantidad: %1$d Concepto: Renta Mensual por Dependientes Extras Valor: %1d X %2$f = %3$f\n", cantDepExtra,
+                            precioDepExtra.doubleValue(), precioDepExtra.multiply(precioDepExtra).doubleValue()));
                 }
 
                 if (terminarFacturacion != true) {
-                    Factura factura = new Factura(fechaFacturacion, fechaLimitePago, BigDecimal.valueOf(precioPlan), BigDecimal.valueOf(precioDepExtra),
-                            sbFacDescripcion.toString(), BigDecimal.valueOf(desc), BigDecimal.valueOf(impuestos), BigDecimal.valueOf(subtotal),
-                            BigDecimal.valueOf(total), cargoA, metodoPago, statusFac, razonStatusFac, updateBy, fechaFacturacion);
+                    Factura factura = new Factura(fechaFacturacion, fechaLimitePago, precioPlan, precioDepExtra, sbFacDescripcion.toString(),
+                            desc, impuestos, subtotal, total, cargoA, metodoPago, statusFac, razonStatusFac, updateBy, fechaFacturacion);
                     fm.crearFactura(factura);
-                    contadorFacturas++;
-                    contadorAfiliados++;
-                    totalFacturas += factura.getFacImporteTotal().doubleValue();
+                    totalFacturas++;
+                    totalAfiliados++;
+                    totalImporteFacturas += factura.getFacImporteTotal().doubleValue();
                 } else {
+                    String msj = "Proceso de facturacion abortado.";
+                    statusFactura.append(msj).append("\n");
                     System.out.println("Proceso de facturacion abortado.");
                     break;
                 }
             }
         }
         fechaFinalProcesoFacturacion = new Date();
+
+        // TODO: no necesitare llamar este metodo, en lugar creare un registro de facturaciones
         setUltimaFechaFacturacion();
     }
 
@@ -181,26 +185,19 @@ public class Facturacion {
         return new Date((fechaInicioProcesoFacturacion.getTime() - fechaFinalProcesoFacturacion.getTime()));
     }
 
+    // TODO: cuando cree la tabla de Facturaciones, no necesitare este metodo
     private void setUltimaFechaFacturacion() {
         Calendar c = Calendar.getInstance();
         c.setTime(fechaFacturacion);
-        int iDia = c.get(Calendar.DAY_OF_MONTH);
-        int iMes = c.get(Calendar.MONTH);
-        int iAnio = c.get(Calendar.YEAR);
-
-        String dia = iDia < 9 ? String.format("0%d", iDia) : Integer.toString(iDia);
-        String mes = iMes < 9 ? String.format("0%d", iMes) : Integer.toString(iMes);
-        String anio = Integer.toString(iAnio);
-
-        Syscafil.setUltimaFechaFacturacion(String.format("%s-%s-%s", dia, mes, anio));
+        Syscafil.scm.setUltimaFechaFacturacion(String.format("%1$td-%1$tm-%1$tY", c));
     }
 
-    private double getTotalPorDepExtra(Afiliado afiliado, double precioDepExtra) {
+    private double getTotalPorDepExtra(Afiliado afiliado) {
         List<Dependiente> dependientesExtras = dm.getDependienteActivosExtrasByAfiliado(afiliado);
         double valorDepExtras = 0.0;
 
         if (dependientesExtras != null && dependientesExtras.size() > 0) {
-            valorDepExtras = dependientesExtras.size() * precioDepExtra;
+            valorDepExtras = dependientesExtras.size() * afiliado.getPlan().getPlnPrecioDependienteExtra().doubleValue();
         }
 
         return valorDepExtras;
