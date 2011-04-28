@@ -9,6 +9,6 @@ package com.prebea.syscafil.business;
  *
  * @author Edwin Bratini <edwin.bratini@gmail.com>
  */
-public class BitLogger {
-
+public class BitacoraManager {
+    // TODO: pending implementation
 }

@@ -30,10 +30,10 @@ public class ProcesoFacturacion {
     // TODO: Esta informacion es guardarla en una tabla > Facturaciones y relacionarla con Facturas
     private Date fechaFacturacion = new Date();
     private Date fechaLimitePago = new Date();
-    private StringBuilder statusFactura;
     private int totalFacturas;
     private int totalAfiliados;
     private double totalImporteFacturas;
+    private StringBuilder statusFacturacion;
     // para medir el tiempo transcurrido para hacer el proceso de facturacion
     private Date fechaInicioProcesoFacturacion = new Date();
     private Date fechaFinalProcesoFacturacion = new Date();
@@ -165,7 +165,7 @@ public class ProcesoFacturacion {
                     totalImporteFacturas += factura.getFacImporteTotal().doubleValue();
                 } else {
                     String msj = "Proceso de facturacion abortado.";
-                    statusFactura.append(msj).append("\n");
+                    statusFacturacion.append(msj).append("\n");
                     System.out.println("Proceso de facturacion abortado.");
                     break;
                 }

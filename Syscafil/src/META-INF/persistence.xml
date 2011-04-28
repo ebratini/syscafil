@@ -17,6 +17,7 @@
     <class>com.prebea.syscafil.model.entities.AbonoFactura</class>
     <class>com.prebea.syscafil.model.entities.Empleado</class>
     <class>com.prebea.syscafil.model.entities.Afiliado</class>
+    <class>com.prebea.syscafil.model.entities.Facturacion</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:sqlserver://localhost:1433;databaseName=SYSCAFIL_DB"/>
       <property name="javax.persistence.jdbc.password" value="Mssql88**"/>
