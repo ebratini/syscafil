@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.prebea.syscafil.model;
 
 import java.io.File;
@@ -20,6 +19,7 @@ import org.jdom.xpath.XPath;
  * @author Edwin Bratini <edwin.bratini@gmail.com>
  */
 public class XMLFileManager extends FileManager {
+
     public static Element getElemento(String rutaArchivoXML, String xpathElemento) {
         SAXBuilder xmlDocBuilder = new SAXBuilder();
         Element xmlElement = null;
