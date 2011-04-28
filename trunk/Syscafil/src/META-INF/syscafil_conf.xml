@@ -11,14 +11,7 @@
     <Facturacion>
         <DiaFacturacion>13</DiaFacturacion>
         <UltimaFechaFacturacion>13-01-2010</UltimaFechaFacturacion>
+        <DiasLmtParaSaldarFactura>10</DiasLmtParaSaldarFactura>
         <SecuenciaFacturacion></SecuenciaFacturacion>
-        <PrecioPlanes>
-            <Familiar Basico="250.00" Plus = "350.00" Optimo = "450.00" Supremo = "550.00" Premium = "650.00"/>
-            <Empresarial Basico = "16.00" Plus = "30.00" Empresarial = "45.00" Premium = "65.00" />
-            <DependienteExtra>
-                <Familiar Basico="60.00" Plus = "70.00" Optimo = "80.00" Supremo = "90.00" Premium = "100.00" />
-                <Empresarial Basico = "05.00" Plus = "10.00" Empresarial = "15.00" Premium = "20.00" />
-            </DependienteExtra>
-        </PrecioPlanes>
     </Facturacion>
 </Syscafil>
