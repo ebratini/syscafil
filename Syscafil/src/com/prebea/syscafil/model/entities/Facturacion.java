@@ -11,8 +11,6 @@ import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -27,7 +25,7 @@ import javax.persistence.TemporalType;
  * @author Edwin Bratini <edwin.bratini@gmail.com>
  */
 @Entity
-@Table(name = "facturaciones", catalog = "SYSCAFIL_DB", schema = "")
+@Table(name = "Facturaciones", catalog = "SYSCAFIL_DB", schema = "dbo")
 @NamedQueries({
     @NamedQuery(name = "Facturacion.findAll", query = "SELECT f FROM Facturacion f"),
     @NamedQuery(name = "Facturacion.findByFcnId", query = "SELECT f FROM Facturacion f WHERE f.fcnId = :fcnId"),
@@ -41,7 +39,6 @@ import javax.persistence.TemporalType;
 public class Facturacion implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "fcn_id", nullable = false)
     private Integer fcnId;

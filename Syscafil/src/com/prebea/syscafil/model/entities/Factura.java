@@ -13,8 +13,6 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -30,7 +28,7 @@ import javax.persistence.TemporalType;
  * @author Edwin Bratini <edwin.bratini@gmail.com>
  */
 @Entity
-@Table(name = "facturas", catalog = "SYSCAFIL_DB", schema = "")
+@Table(name = "Facturas", catalog = "SYSCAFIL_DB", schema = "dbo")
 @NamedQueries({
     @NamedQuery(name = "Factura.findAll", query = "SELECT f FROM Factura f"),
     @NamedQuery(name = "Factura.findByFacNo", query = "SELECT f FROM Factura f WHERE f.facNo = :facNo"),
@@ -53,7 +51,6 @@ import javax.persistence.TemporalType;
 public class Factura implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "fac_no", nullable = false)
     private Integer facNo;
@@ -108,14 +105,14 @@ public class Factura implements Serializable {
     @Column(name = "fac_update_date", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date facUpdateDate;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "factura")
-    private Collection<AbonoFactura> abonoFacturaCollection;
     @JoinColumn(name = "pln_id", referencedColumnName = "pln_id", nullable = false)
     @ManyToOne(optional = false)
     private Plan plan;
     @JoinColumn(name = "afl_id", referencedColumnName = "afl_id", nullable = false)
     @ManyToOne(optional = false)
     private Afiliado afiliado;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "factura")
+    private Collection<AbonoFactura> abonoFacturaCollection;
 
     public Factura() {
     }
@@ -297,14 +294,6 @@ public class Factura implements Serializable {
         this.facUpdateDate = facUpdateDate;
     }
 
-    public Collection<AbonoFactura> getAbonoFacturaCollection() {
-        return abonoFacturaCollection;
-    }
-
-    public void setAbonoFacturaCollection(Collection<AbonoFactura> abonoFacturaCollection) {
-        this.abonoFacturaCollection = abonoFacturaCollection;
-    }
-
     public Plan getPlan() {
         return plan;
     }
@@ -319,6 +308,14 @@ public class Factura implements Serializable {
 
     public void setAfiliado(Afiliado afiliado) {
         this.afiliado = afiliado;
+    }
+
+    public Collection<AbonoFactura> getAbonoFacturaCollection() {
+        return abonoFacturaCollection;
+    }
+
+    public void setAbonoFacturaCollection(Collection<AbonoFactura> abonoFacturaCollection) {
+        this.abonoFacturaCollection = abonoFacturaCollection;
     }
 
     @Override

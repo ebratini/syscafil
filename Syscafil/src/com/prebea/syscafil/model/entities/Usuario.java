@@ -12,13 +12,8 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -32,7 +27,7 @@ import javax.persistence.UniqueConstraint;
  * @author Edwin Bratini <edwin.bratini@gmail.com>
  */
 @Entity
-@Table(name = "usuarios", catalog = "SYSCAFIL_DB", schema = "", uniqueConstraints = {
+@Table(name = "Usuarios", catalog = "SYSCAFIL_DB", schema = "dbo", uniqueConstraints = {
     @UniqueConstraint(columnNames = {"usr_login"})})
 @NamedQueries({
     @NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u"),
@@ -40,14 +35,12 @@ import javax.persistence.UniqueConstraint;
     @NamedQuery(name = "Usuario.findByUsrLogin", query = "SELECT u FROM Usuario u WHERE u.usrLogin = :usrLogin"),
     @NamedQuery(name = "Usuario.findByUsrPassword", query = "SELECT u FROM Usuario u WHERE u.usrPassword = :usrPassword"),
     @NamedQuery(name = "Usuario.findByUsrFechaCreacion", query = "SELECT u FROM Usuario u WHERE u.usrFechaCreacion = :usrFechaCreacion"),
-    @NamedQuery(name = "Usuario.findByUsrPrivilegios", query = "SELECT u FROM Usuario u WHERE u.usrPrivilegios = :usrPrivilegios"),
     @NamedQuery(name = "Usuario.findByUsrVerificado", query = "SELECT u FROM Usuario u WHERE u.usrVerificado = :usrVerificado"),
     @NamedQuery(name = "Usuario.findByUsrUpdateBy", query = "SELECT u FROM Usuario u WHERE u.usrUpdateBy = :usrUpdateBy"),
     @NamedQuery(name = "Usuario.findByUsrUpdateDate", query = "SELECT u FROM Usuario u WHERE u.usrUpdateDate = :usrUpdateDate")})
 public class Usuario implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "usr_id", nullable = false)
     private Integer usrId;
@@ -62,11 +55,8 @@ public class Usuario implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date usrFechaCreacion;
     @Basic(optional = false)
-    @Column(name = "usr_privilegios", nullable = false, length = 40)
-    private String usrPrivilegios;
-    @Basic(optional = false)
     @Column(name = "usr_verificado", nullable = false)
-    private boolean usrVerificado;
+    private short usrVerificado;
     @Basic(optional = false)
     @Column(name = "usr_update_by", nullable = false, length = 10)
     private String usrUpdateBy;
@@ -74,16 +64,10 @@ public class Usuario implements Serializable {
     @Column(name = "usr_update_date", nullable = false)
     @Temporal(TemporalType.DATE)
     private Date usrUpdateDate;
-    @JoinTable(name = "usuarios_privilegios", joinColumns = {
-        @JoinColumn(name = "usr_id", referencedColumnName = "usr_id", nullable = false)}, inverseJoinColumns = {
-        @JoinColumn(name = "prv_id", referencedColumnName = "prv_id", nullable = false)})
-    @ManyToMany
-    private Collection<Privilegio> privilegioCollection;
+    @ManyToMany(mappedBy = "usuarioCollection")
+    private Collection<Rol> rolCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
     private Collection<Facturacion> facturacionCollection;
-    @JoinColumn(name = "rol_id", referencedColumnName = "rol_id", nullable = false)
-    @ManyToOne(optional = false)
-    private Rol rol;
 
     public Usuario() {
     }
@@ -92,12 +76,11 @@ public class Usuario implements Serializable {
         this.usrId = usrId;
     }
 
-    public Usuario(Integer usrId, String usrLogin, String usrPassword, Date usrFechaCreacion, String usrPrivilegios, boolean usrVerificado, String usrUpdateBy, Date usrUpdateDate) {
+    public Usuario(Integer usrId, String usrLogin, String usrPassword, Date usrFechaCreacion, short usrVerificado, String usrUpdateBy, Date usrUpdateDate) {
         this.usrId = usrId;
         this.usrLogin = usrLogin;
         this.usrPassword = usrPassword;
         this.usrFechaCreacion = usrFechaCreacion;
-        this.usrPrivilegios = usrPrivilegios;
         this.usrVerificado = usrVerificado;
         this.usrUpdateBy = usrUpdateBy;
         this.usrUpdateDate = usrUpdateDate;
@@ -135,19 +118,11 @@ public class Usuario implements Serializable {
         this.usrFechaCreacion = usrFechaCreacion;
     }
 
-    public String getUsrPrivilegios() {
-        return usrPrivilegios;
-    }
-
-    public void setUsrPrivilegios(String usrPrivilegios) {
-        this.usrPrivilegios = usrPrivilegios;
-    }
-
-    public boolean getUsrVerificado() {
+    public short getUsrVerificado() {
         return usrVerificado;
     }
 
-    public void setUsrVerificado(boolean usrVerificado) {
+    public void setUsrVerificado(short usrVerificado) {
         this.usrVerificado = usrVerificado;
     }
 
@@ -167,12 +142,12 @@ public class Usuario implements Serializable {
         this.usrUpdateDate = usrUpdateDate;
     }
 
-    public Collection<Privilegio> getPrivilegioCollection() {
-        return privilegioCollection;
+    public Collection<Rol> getRolCollection() {
+        return rolCollection;
     }
 
-    public void setPrivilegioCollection(Collection<Privilegio> privilegioCollection) {
-        this.privilegioCollection = privilegioCollection;
+    public void setRolCollection(Collection<Rol> rolCollection) {
+        this.rolCollection = rolCollection;
     }
 
     public Collection<Facturacion> getFacturacionCollection() {
@@ -181,14 +156,6 @@ public class Usuario implements Serializable {
 
     public void setFacturacionCollection(Collection<Facturacion> facturacionCollection) {
         this.facturacionCollection = facturacionCollection;
-    }
-
-    public Rol getRol() {
-        return rol;
-    }
-
-    public void setRol(Rol rol) {
-        this.rol = rol;
     }
 
     @Override

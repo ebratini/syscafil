@@ -13,8 +13,6 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -30,7 +28,7 @@ import javax.persistence.TemporalType;
  * @author Edwin Bratini <edwin.bratini@gmail.com>
  */
 @Entity
-@Table(name = "planes", catalog = "SYSCAFIL_DB", schema = "")
+@Table(name = "Planes", catalog = "SYSCAFIL_DB", schema = "dbo")
 @NamedQueries({
     @NamedQuery(name = "Plan.findAll", query = "SELECT p FROM Plan p"),
     @NamedQuery(name = "Plan.findByPlnId", query = "SELECT p FROM Plan p WHERE p.plnId = :plnId"),
@@ -44,7 +42,6 @@ import javax.persistence.TemporalType;
 public class Plan implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "pln_id", nullable = false)
     private Integer plnId;
@@ -70,16 +67,16 @@ public class Plan implements Serializable {
     @Column(name = "pln_update_date", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date plnUpdateDate;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "plan")
-    private Collection<Afiliado> afiliadoCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "plan")
-    private Collection<Factura> facturaCollection;
     @JoinColumn(name = "sup_id", referencedColumnName = "sup_id", nullable = false)
     @ManyToOne(optional = false)
     private SubcategoriaPlan subcategoriaPlan;
     @JoinColumn(name = "cap_id", referencedColumnName = "cap_id", nullable = false)
     @ManyToOne(optional = false)
     private CategoriaPlan categoriaPlan;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "plan")
+    private Collection<Afiliado> afiliadoCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "plan")
+    private Collection<Factura> facturaCollection;
 
     public Plan() {
     }
@@ -163,22 +160,6 @@ public class Plan implements Serializable {
         this.plnUpdateDate = plnUpdateDate;
     }
 
-    public Collection<Afiliado> getAfiliadoCollection() {
-        return afiliadoCollection;
-    }
-
-    public void setAfiliadoCollection(Collection<Afiliado> afiliadoCollection) {
-        this.afiliadoCollection = afiliadoCollection;
-    }
-
-    public Collection<Factura> getFacturaCollection() {
-        return facturaCollection;
-    }
-
-    public void setFacturaCollection(Collection<Factura> facturaCollection) {
-        this.facturaCollection = facturaCollection;
-    }
-
     public SubcategoriaPlan getSubcategoriaPlan() {
         return subcategoriaPlan;
     }
@@ -193,6 +174,22 @@ public class Plan implements Serializable {
 
     public void setCategoriaPlan(CategoriaPlan categoriaPlan) {
         this.categoriaPlan = categoriaPlan;
+    }
+
+    public Collection<Afiliado> getAfiliadoCollection() {
+        return afiliadoCollection;
+    }
+
+    public void setAfiliadoCollection(Collection<Afiliado> afiliadoCollection) {
+        this.afiliadoCollection = afiliadoCollection;
+    }
+
+    public Collection<Factura> getFacturaCollection() {
+        return facturaCollection;
+    }
+
+    public void setFacturaCollection(Collection<Factura> facturaCollection) {
+        this.facturaCollection = facturaCollection;
     }
 
     @Override
