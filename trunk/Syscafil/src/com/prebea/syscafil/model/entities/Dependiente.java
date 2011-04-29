@@ -10,6 +10,8 @@ import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -25,7 +27,7 @@ import javax.persistence.UniqueConstraint;
  * @author Edwin Bratini <edwin.bratini@gmail.com>
  */
 @Entity
-@Table(name = "Dependientes", catalog = "SYSCAFIL_DB", schema = "dbo", uniqueConstraints = {
+@Table(name = "dependientes", catalog = "SYSCAFIL_DB", schema = "", uniqueConstraints = {
     @UniqueConstraint(columnNames = {"dep_dni"})})
 @NamedQueries({
     @NamedQuery(name = "Dependiente.findAll", query = "SELECT d FROM Dependiente d"),
@@ -50,6 +52,7 @@ import javax.persistence.UniqueConstraint;
 public class Dependiente implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "dep_id", nullable = false)
     private Integer depId;
@@ -99,7 +102,7 @@ public class Dependiente implements Serializable {
     private String depEmail;
     @Basic(optional = false)
     @Column(name = "dep_extra", nullable = false)
-    private short depExtra;
+    private boolean depExtra;
     @Basic(optional = false)
     @Column(name = "dep_status", nullable = false)
     private char depStatus;
@@ -114,7 +117,7 @@ public class Dependiente implements Serializable {
         this.depId = depId;
     }
 
-    public Dependiente(Integer depId, String depDni, String depTipoDni, String depNombre, String depApellido, String depParentesco, Date depFechaIngreso, Date depFechaNacimiento, char depGenero, String depDireccion, String depCiudad, String depRegion, String depPais, short depExtra, char depStatus) {
+    public Dependiente(Integer depId, String depDni, String depTipoDni, String depNombre, String depApellido, String depParentesco, Date depFechaIngreso, Date depFechaNacimiento, char depGenero, String depDireccion, String depCiudad, String depRegion, String depPais, boolean depExtra, char depStatus) {
         this.depId = depId;
         this.depDni = depDni;
         this.depTipoDni = depTipoDni;
@@ -260,11 +263,11 @@ public class Dependiente implements Serializable {
         this.depEmail = depEmail;
     }
 
-    public short getDepExtra() {
+    public boolean getDepExtra() {
         return depExtra;
     }
 
-    public void setDepExtra(short depExtra) {
+    public void setDepExtra(boolean depExtra) {
         this.depExtra = depExtra;
     }
 

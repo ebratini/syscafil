@@ -11,6 +11,8 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -24,7 +26,7 @@ import javax.persistence.Table;
  * @author Edwin Bratini <edwin.bratini@gmail.com>
  */
 @Entity
-@Table(name = "Subcategoria_Planes", catalog = "SYSCAFIL_DB", schema = "dbo")
+@Table(name = "subcategoria_planes", catalog = "SYSCAFIL_DB", schema = "")
 @NamedQueries({
     @NamedQuery(name = "SubcategoriaPlan.findAll", query = "SELECT s FROM SubcategoriaPlan s"),
     @NamedQuery(name = "SubcategoriaPlan.findBySupId", query = "SELECT s FROM SubcategoriaPlan s WHERE s.supId = :supId"),
@@ -34,6 +36,7 @@ import javax.persistence.Table;
 public class SubcategoriaPlan implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "sup_id", nullable = false)
     private Integer supId;
@@ -46,11 +49,11 @@ public class SubcategoriaPlan implements Serializable {
     @Basic(optional = false)
     @Column(name = "sup_status", nullable = false)
     private char supStatus;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "subcategoriaPlan")
-    private Collection<Plan> planCollection;
     @JoinColumn(name = "cap_id", referencedColumnName = "cap_id", nullable = false)
     @ManyToOne(optional = false)
     private CategoriaPlan categoriaPlan;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "subcategoriaPlan")
+    private Collection<Plan> planCollection;
 
     public SubcategoriaPlan() {
     }
@@ -98,20 +101,20 @@ public class SubcategoriaPlan implements Serializable {
         this.supStatus = supStatus;
     }
 
-    public Collection<Plan> getPlanCollection() {
-        return planCollection;
-    }
-
-    public void setPlanCollection(Collection<Plan> planCollection) {
-        this.planCollection = planCollection;
-    }
-
     public CategoriaPlan getCategoriaPlan() {
         return categoriaPlan;
     }
 
     public void setCategoriaPlan(CategoriaPlan categoriaPlan) {
         this.categoriaPlan = categoriaPlan;
+    }
+
+    public Collection<Plan> getPlanCollection() {
+        return planCollection;
+    }
+
+    public void setPlanCollection(Collection<Plan> planCollection) {
+        this.planCollection = planCollection;
     }
 
     @Override

@@ -7,7 +7,6 @@ package com.prebea.syscafil.business;
 import com.prebea.syscafil.model.AfiliadoEntityManager;
 import com.prebea.syscafil.model.entities.Afiliado;
 import com.prebea.syscafil.model.entities.Empresa;
-import com.prebea.syscafil.model.entities.EmpresaAfiliado;
 import java.util.List;
 import java.util.Map;
 
@@ -62,17 +61,8 @@ public class AfiliadoManager {
         return aem.getAfiliadoByApellido(apellido);
     }
 
-    public Empresa getEmpresa(Afiliado afiliado) throws AfiliadoConMasDeUnaEmpresaException {
-        Empresa empresa = null;
-        List<EmpresaAfiliado> empresaAfiliado = (List<EmpresaAfiliado>) afiliado.getEmpresaAfiliadoCollection();
-        if (empresaAfiliado != null && empresaAfiliado.size() > 1) {
-            throw new AfiliadoConMasDeUnaEmpresaException(String.format("Afiliado: [%d %s,%s] tiene mas de una empresa asociada",
-                    afiliado.getAflId(), afiliado.getAflApellido(), afiliado.getAflNombre()));
-        } else {
-            empresa = empresaAfiliado.get(0).getEmpresa();
-        }
-
-        return empresa;
+    public Empresa getEmpresa(Afiliado afiliado) {
+        return afiliado.getEmpresa();
     }
 
     public void close() {

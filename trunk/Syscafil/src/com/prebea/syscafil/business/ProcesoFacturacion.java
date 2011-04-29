@@ -11,8 +11,6 @@ import com.prebea.syscafil.model.entities.Factura;
 import com.prebea.syscafil.model.entities.Plan;
 import com.prebea.syscafil.model.entities.Usuario;
 import java.math.BigDecimal;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import syscafil.Syscafil;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -134,14 +132,9 @@ public class ProcesoFacturacion {
                 String updateBy = "Proceso Facturacion";
 
                 // conseguir cargoA
-                Empresa empresaAfil = null;
-                try {
-                    empresaAfil = am.getEmpresa(afil);
-                } catch (AfiliadoConMasDeUnaEmpresaException ex) {
-                    Logger.getLogger(ProcesoFacturacion.class.getName()).log(Level.SEVERE, null, ex);
-                }
-
-                String cargoA = (empresaAfil != null ? String.format("[%d %s]", empresaAfil.getEmpId(), empresaAfil.getEmpRazonSocial()) : "");
+                Empresa empresaAfil = am.getEmpresa(afil);
+                String cargoA = (empresaAfil != null ? String.format("[%d %s]", empresaAfil.getEmpId(), empresaAfil.getEmpRazonSocial()) 
+                        : afil.getAflApellido() + ", "  + afil.getAflNombre());
 
                 // Descripcion
                 StringBuilder sbFacDescripcion = new StringBuilder();

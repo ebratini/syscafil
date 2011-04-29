@@ -12,8 +12,9 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -26,7 +27,7 @@ import javax.persistence.TemporalType;
  * @author Edwin Bratini <edwin.bratini@gmail.com>
  */
 @Entity
-@Table(name = "Roles", catalog = "SYSCAFIL_DB", schema = "dbo")
+@Table(name = "roles", catalog = "SYSCAFIL_DB", schema = "")
 @NamedQueries({
     @NamedQuery(name = "Rol.findAll", query = "SELECT r FROM Rol r"),
     @NamedQuery(name = "Rol.findByRolId", query = "SELECT r FROM Rol r WHERE r.rolId = :rolId"),
@@ -38,6 +39,7 @@ import javax.persistence.TemporalType;
 public class Rol implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "rol_id", nullable = false)
     private Integer rolId;
@@ -57,8 +59,6 @@ public class Rol implements Serializable {
     @Column(name = "rol_update_date", nullable = false)
     @Temporal(TemporalType.DATE)
     private Date rolUpdateDate;
-    @ManyToMany(mappedBy = "rolCollection")
-    private Collection<Permiso> permisoCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "rol")
     private Collection<Usuario> usuarioCollection;
 
@@ -124,14 +124,6 @@ public class Rol implements Serializable {
 
     public void setRolUpdateDate(Date rolUpdateDate) {
         this.rolUpdateDate = rolUpdateDate;
-    }
-
-    public Collection<Permiso> getPermisoCollection() {
-        return permisoCollection;
-    }
-
-    public void setPermisoCollection(Collection<Permiso> permisoCollection) {
-        this.permisoCollection = permisoCollection;
     }
 
     public Collection<Usuario> getUsuarioCollection() {

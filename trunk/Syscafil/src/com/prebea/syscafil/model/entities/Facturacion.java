@@ -11,7 +11,11 @@ import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -23,7 +27,7 @@ import javax.persistence.TemporalType;
  * @author Edwin Bratini <edwin.bratini@gmail.com>
  */
 @Entity
-@Table(name = "Facturaciones", catalog = "SYSCAFIL_DB", schema = "dbo")
+@Table(name = "facturaciones", catalog = "SYSCAFIL_DB", schema = "")
 @NamedQueries({
     @NamedQuery(name = "Facturacion.findAll", query = "SELECT f FROM Facturacion f"),
     @NamedQuery(name = "Facturacion.findByFcnId", query = "SELECT f FROM Facturacion f WHERE f.fcnId = :fcnId"),
@@ -37,6 +41,7 @@ import javax.persistence.TemporalType;
 public class Facturacion implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "fcn_id", nullable = false)
     private Integer fcnId;
@@ -63,6 +68,9 @@ public class Facturacion implements Serializable {
     @Basic(optional = false)
     @Column(name = "fcn_status_facturacion", nullable = false, length = 20)
     private String fcnStatusFacturacion;
+    @JoinColumn(name = "usr_id", referencedColumnName = "usr_id", nullable = false)
+    @ManyToOne(optional = false)
+    private Usuario usuario;
 
     public Facturacion() {
     }
@@ -73,16 +81,6 @@ public class Facturacion implements Serializable {
 
     public Facturacion(Integer fcnId, Date fcnFechaFacturacion, int fcnDiasLimiteSaldo, Date fcnFechaLimitePago, int fcnAfiliadosFacturados, int fcnFacturasGeneradas, BigDecimal fcnImporteFacturasGeneradas, String fcnStatusFacturacion) {
         this.fcnId = fcnId;
-        this.fcnFechaFacturacion = fcnFechaFacturacion;
-        this.fcnDiasLimiteSaldo = fcnDiasLimiteSaldo;
-        this.fcnFechaLimitePago = fcnFechaLimitePago;
-        this.fcnAfiliadosFacturados = fcnAfiliadosFacturados;
-        this.fcnFacturasGeneradas = fcnFacturasGeneradas;
-        this.fcnImporteFacturasGeneradas = fcnImporteFacturasGeneradas;
-        this.fcnStatusFacturacion = fcnStatusFacturacion;
-    }
-
-    public Facturacion(Date fcnFechaFacturacion, int fcnDiasLimiteSaldo, Date fcnFechaLimitePago, int fcnAfiliadosFacturados, int fcnFacturasGeneradas, BigDecimal fcnImporteFacturasGeneradas, String fcnStatusFacturacion) {
         this.fcnFechaFacturacion = fcnFechaFacturacion;
         this.fcnDiasLimiteSaldo = fcnDiasLimiteSaldo;
         this.fcnFechaLimitePago = fcnFechaLimitePago;
@@ -154,6 +152,14 @@ public class Facturacion implements Serializable {
 
     public void setFcnStatusFacturacion(String fcnStatusFacturacion) {
         this.fcnStatusFacturacion = fcnStatusFacturacion;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
     @Override
