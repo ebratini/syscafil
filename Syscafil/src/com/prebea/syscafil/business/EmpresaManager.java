@@ -6,9 +6,7 @@
 package com.prebea.syscafil.business;
 
 import com.prebea.syscafil.model.EmpresaEntityManager;
-import com.prebea.syscafil.model.entities.Afiliado;
 import com.prebea.syscafil.model.entities.Empresa;
-import com.prebea.syscafil.model.entities.EmpresaAfiliado;
 import java.util.List;
 import java.util.Map;
 
@@ -40,15 +38,5 @@ public class EmpresaManager {
 
     public void removerEmpresa(Empresa empresa) {
         eem.delete(empresa);
-    }
-
-    public List<Afiliado> getAfiliados(Empresa empresa) {
-        List<Afiliado> afiliados = null;
-
-        for (EmpresaAfiliado empresaAfil : empresa.getEmpresaAfiliadoCollection()) {
-            afiliados.add(empresaAfil.getAfiliado());
-        }
-
-        return afiliados;
     }
 }

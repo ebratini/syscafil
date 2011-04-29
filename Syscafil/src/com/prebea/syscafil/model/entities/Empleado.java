@@ -10,6 +10,8 @@ import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -23,7 +25,7 @@ import javax.persistence.UniqueConstraint;
  * @author Edwin Bratini <edwin.bratini@gmail.com>
  */
 @Entity
-@Table(name = "Empleados", catalog = "SYSCAFIL_DB", schema = "dbo", uniqueConstraints = {
+@Table(name = "empleados", catalog = "SYSCAFIL_DB", schema = "", uniqueConstraints = {
     @UniqueConstraint(columnNames = {"epd_dni"})})
 @NamedQueries({
     @NamedQuery(name = "Empleado.findAll", query = "SELECT e FROM Empleado e"),
@@ -47,6 +49,7 @@ import javax.persistence.UniqueConstraint;
 public class Empleado implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "epd_id", nullable = false)
     private Integer epdId;

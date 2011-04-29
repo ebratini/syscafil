@@ -8,9 +8,10 @@ package com.prebea.syscafil.model.entities;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -23,7 +24,7 @@ import javax.persistence.UniqueConstraint;
  * @author Edwin Bratini <edwin.bratini@gmail.com>
  */
 @Entity
-@Table(name = "Empresas", catalog = "SYSCAFIL_DB", schema = "dbo", uniqueConstraints = {
+@Table(name = "empresas", catalog = "SYSCAFIL_DB", schema = "", uniqueConstraints = {
     @UniqueConstraint(columnNames = {"emp_dni"})})
 @NamedQueries({
     @NamedQuery(name = "Empresa.findAll", query = "SELECT e FROM Empresa e"),
@@ -44,6 +45,7 @@ import javax.persistence.UniqueConstraint;
 public class Empresa implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "emp_id", nullable = false)
     private Integer empId;
@@ -83,8 +85,8 @@ public class Empresa implements Serializable {
     @Basic(optional = false)
     @Column(name = "emp_status", nullable = false)
     private char empStatus;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "empresa")
-    private Collection<EmpresaAfiliado> empresaAfiliadoCollection;
+    @OneToMany(mappedBy = "empresa")
+    private Collection<Afiliado> afiliadoCollection;
 
     public Empresa() {
     }
@@ -219,12 +221,12 @@ public class Empresa implements Serializable {
         this.empStatus = empStatus;
     }
 
-    public Collection<EmpresaAfiliado> getEmpresaAfiliadoCollection() {
-        return empresaAfiliadoCollection;
+    public Collection<Afiliado> getAfiliadoCollection() {
+        return afiliadoCollection;
     }
 
-    public void setEmpresaAfiliadoCollection(Collection<EmpresaAfiliado> empresaAfiliadoCollection) {
-        this.empresaAfiliadoCollection = empresaAfiliadoCollection;
+    public void setAfiliadoCollection(Collection<Afiliado> afiliadoCollection) {
+        this.afiliadoCollection = afiliadoCollection;
     }
 
     @Override
