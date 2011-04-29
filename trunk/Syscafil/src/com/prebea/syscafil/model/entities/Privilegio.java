@@ -11,9 +11,9 @@ import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -26,7 +26,7 @@ import javax.persistence.TemporalType;
  * @author Edwin Bratini <edwin.bratini@gmail.com>
  */
 @Entity
-@Table(name = "privilegios", catalog = "SYSCAFIL_DB", schema = "")
+@Table(name = "Privilegios", catalog = "SYSCAFIL_DB", schema = "dbo")
 @NamedQueries({
     @NamedQuery(name = "Privilegio.findAll", query = "SELECT p FROM Privilegio p"),
     @NamedQuery(name = "Privilegio.findByPrvId", query = "SELECT p FROM Privilegio p WHERE p.prvId = :prvId"),
@@ -38,7 +38,6 @@ import javax.persistence.TemporalType;
 public class Privilegio implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "prv_id", nullable = false)
     private Integer prvId;
@@ -58,8 +57,11 @@ public class Privilegio implements Serializable {
     @Column(name = "prv_update_date", nullable = false)
     @Temporal(TemporalType.DATE)
     private Date prvUpdateDate;
-    @ManyToMany(mappedBy = "privilegioCollection")
-    private Collection<Usuario> usuarioCollection;
+    @JoinTable(name = "Roles_Privilegios", joinColumns = {
+        @JoinColumn(name = "prv_id", referencedColumnName = "prv_id", nullable = false)}, inverseJoinColumns = {
+        @JoinColumn(name = "rol_id", referencedColumnName = "rol_id", nullable = false)})
+    @ManyToMany
+    private Collection<Rol> rolCollection;
 
     public Privilegio() {
     }
@@ -125,12 +127,12 @@ public class Privilegio implements Serializable {
         this.prvUpdateDate = prvUpdateDate;
     }
 
-    public Collection<Usuario> getUsuarioCollection() {
-        return usuarioCollection;
+    public Collection<Rol> getRolCollection() {
+        return rolCollection;
     }
 
-    public void setUsuarioCollection(Collection<Usuario> usuarioCollection) {
-        this.usuarioCollection = usuarioCollection;
+    public void setRolCollection(Collection<Rol> rolCollection) {
+        this.rolCollection = rolCollection;
     }
 
     @Override

@@ -10,8 +10,6 @@ import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -24,7 +22,7 @@ import javax.persistence.TemporalType;
  * @author Edwin Bratini <edwin.bratini@gmail.com>
  */
 @Entity
-@Table(name = "secuencias", catalog = "SYSCAFIL_DB", schema = "")
+@Table(name = "Secuencias", catalog = "SYSCAFIL_DB", schema = "dbo")
 @NamedQueries({
     @NamedQuery(name = "Secuencia.findAll", query = "SELECT s FROM Secuencia s"),
     @NamedQuery(name = "Secuencia.findBySecId", query = "SELECT s FROM Secuencia s WHERE s.secId = :secId"),
@@ -36,7 +34,6 @@ import javax.persistence.TemporalType;
 public class Secuencia implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "sec_id", nullable = false)
     private Integer secId;

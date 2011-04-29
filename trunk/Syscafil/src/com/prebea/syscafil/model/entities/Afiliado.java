@@ -12,8 +12,6 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -30,7 +28,7 @@ import javax.persistence.UniqueConstraint;
  * @author Edwin Bratini <edwin.bratini@gmail.com>
  */
 @Entity
-@Table(name = "afiliados", catalog = "SYSCAFIL_DB", schema = "", uniqueConstraints = {
+@Table(name = "Afiliados", catalog = "SYSCAFIL_DB", schema = "dbo", uniqueConstraints = {
     @UniqueConstraint(columnNames = {"afl_dni"})})
 @NamedQueries({
     @NamedQuery(name = "Afiliado.findAll", query = "SELECT a FROM Afiliado a"),
@@ -53,7 +51,6 @@ import javax.persistence.UniqueConstraint;
 public class Afiliado implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "afl_id", nullable = false)
     private Integer aflId;
@@ -101,16 +98,16 @@ public class Afiliado implements Serializable {
     @Basic(optional = false)
     @Column(name = "afl_status", nullable = false)
     private char aflStatus;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "afiliado")
-    private Collection<Dependiente> dependienteCollection;
-    @JoinColumn(name = "emp_id", referencedColumnName = "emp_id")
-    @ManyToOne
-    private Empresa empresa;
     @JoinColumn(name = "pln_id", referencedColumnName = "pln_id", nullable = false)
     @ManyToOne(optional = false)
     private Plan plan;
+    @JoinColumn(name = "emp_id", referencedColumnName = "emp_id")
+    @ManyToOne
+    private Empresa empresa;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "afiliado")
     private Collection<Factura> facturaCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "afiliado")
+    private Collection<Dependiente> dependienteCollection;
 
     public Afiliado() {
     }
@@ -263,12 +260,12 @@ public class Afiliado implements Serializable {
         this.aflStatus = aflStatus;
     }
 
-    public Collection<Dependiente> getDependienteCollection() {
-        return dependienteCollection;
+    public Plan getPlan() {
+        return plan;
     }
 
-    public void setDependienteCollection(Collection<Dependiente> dependienteCollection) {
-        this.dependienteCollection = dependienteCollection;
+    public void setPlan(Plan plan) {
+        this.plan = plan;
     }
 
     public Empresa getEmpresa() {
@@ -279,20 +276,20 @@ public class Afiliado implements Serializable {
         this.empresa = empresa;
     }
 
-    public Plan getPlan() {
-        return plan;
-    }
-
-    public void setPlan(Plan plan) {
-        this.plan = plan;
-    }
-
     public Collection<Factura> getFacturaCollection() {
         return facturaCollection;
     }
 
     public void setFacturaCollection(Collection<Factura> facturaCollection) {
         this.facturaCollection = facturaCollection;
+    }
+
+    public Collection<Dependiente> getDependienteCollection() {
+        return dependienteCollection;
+    }
+
+    public void setDependienteCollection(Collection<Dependiente> dependienteCollection) {
+        this.dependienteCollection = dependienteCollection;
     }
 
     @Override

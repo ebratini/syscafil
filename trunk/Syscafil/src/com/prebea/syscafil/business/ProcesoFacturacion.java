@@ -9,6 +9,8 @@ import com.prebea.syscafil.model.entities.Dependiente;
 import com.prebea.syscafil.model.entities.Empresa;
 import com.prebea.syscafil.model.entities.Factura;
 import com.prebea.syscafil.model.entities.Plan;
+import com.prebea.syscafil.model.entities.Privilegio;
+import com.prebea.syscafil.model.entities.Rol;
 import com.prebea.syscafil.model.entities.Usuario;
 import java.math.BigDecimal;
 import syscafil.Syscafil;
@@ -198,7 +200,13 @@ public class ProcesoFacturacion {
 
     private boolean isUsuarioValido(Usuario usuario) {
         boolean usrValido = false;
-        if (usuario.getRol().getRolNombre().equalsIgnoreCase("admin")) {
+        List<String> privilegios = new ArrayList<String>();
+        for (Rol rol : usuario.getRolCollection()) {
+            for (Privilegio priv : rol.getPrivilegioCollection()) {
+                privilegios.add(priv.getPrvNombre());
+            }
+        }
+        if (privilegios.contains("ipf")) {
             usrValido = true;
         }
 
