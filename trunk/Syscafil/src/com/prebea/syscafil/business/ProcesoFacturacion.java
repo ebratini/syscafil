@@ -200,6 +200,8 @@ public class ProcesoFacturacion {
 
     private boolean isUsuarioValido(Usuario usuario) {
         boolean usrValido = false;
+
+        // TODO: implementar esto en clase UsuarioJpaDao y sustituir
         List<String> privilegios = new ArrayList<String>();
         for (Rol rol : usuario.getRolCollection()) {
             for (Privilegio priv : rol.getPrivilegioCollection()) {
