@@ -4,15 +4,20 @@
  */
 package com.prebea.syscafil.model;
 
+import com.prebea.syscafil.model.entities.Afiliado;
 import java.util.List;
 
 /**
  *
  * @author Edwin Bratini <edwin.bratini@gmail.com>
  */
-public interface AfiliadoDao {
+public interface AfiliadoDao extends Dao {
 
-    public List findAfiliadoByApellido();
+    public Afiliado findAfiliadoByDNI(String dni);
 
-    public List findAfiliadoByNombre();
+    public List findAfiliadoByApellido(String apellido);
+
+    public List findAfiliadoByNombre(String nombre);
+
+    public List findAfiliadoByStatus(char status);
 }
