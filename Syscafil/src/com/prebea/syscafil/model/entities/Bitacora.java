@@ -70,6 +70,13 @@ public class Bitacora implements Serializable {
         this.bitDescripcion = bitDescripcion;
     }
 
+    public Bitacora(Date bitFecha, String bitFuente, String bitCategoria, String bitDescripcion) {
+        this.bitFecha = bitFecha;
+        this.bitFuente = bitFuente;
+        this.bitCategoria = bitCategoria;
+        this.bitDescripcion = bitDescripcion;
+    }
+
     public Integer getBitId() {
         return bitId;
     }

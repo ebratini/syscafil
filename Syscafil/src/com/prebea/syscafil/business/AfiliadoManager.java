@@ -25,7 +25,7 @@ public class AfiliadoManager {
         ad = new JpaAfiliadoDao(props);
     }
 
-    public void agregarAfiliado(Afiliado afiliado) {
+    public void crearAfiliado(Afiliado afiliado) {
         ad.persist(afiliado);
     }
 

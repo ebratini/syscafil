@@ -26,7 +26,7 @@ public class DependienteManager {
         dd = new JpaDependienteDao(props);
     }
 
-    public void agregarDependiente(Dependiente dependiente) {
+    public void crearDependiente(Dependiente dependiente) {
         dd.persist(dependiente);
     }
 

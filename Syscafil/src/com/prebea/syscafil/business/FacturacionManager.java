@@ -27,7 +27,7 @@ public class FacturacionManager {
         fd = new JpaFacturacionDao(props);
     }
 
-    public void agregarFacturacion(Facturacion facturacion) {
+    public void crearFacturacion(Facturacion facturacion) {
         fd.persist(facturacion);
     }
 

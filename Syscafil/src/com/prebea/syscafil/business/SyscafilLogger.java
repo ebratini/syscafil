@@ -4,9 +4,15 @@
  */
 package com.prebea.syscafil.business;
 
+import com.prebea.syscafil.model.FileManager;
 import com.prebea.syscafil.model.XMLFileManager;
+import com.prebea.syscafil.model.entities.Bitacora;
+import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import syscafil.Syscafil;
 import java.io.File;
+import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -15,6 +21,9 @@ import java.util.Date;
  * @author Edwin Bratini <edwin.bratini@gmail.com>
  */
 public class SyscafilLogger extends AppLogger {
+
+    private BitacoraManager bm = new BitacoraManager();
+    private UsuarioManager um = new UsuarioManager();
 
     public SyscafilLogger() {
         createAppFileDir();
@@ -32,7 +41,7 @@ public class SyscafilLogger extends AppLogger {
 
     public void logBitacora(String... bitFields) {
         if (bitFields.length > 0) {
-            String mensaje = String.format("%s|%s|%s|%s|%s", bitFields[0], bitFields[1], bitFields[2], bitFields[3], bitFields[4]);
+            String mensaje = String.format("%s|%s|%s|%s|%s%s", bitFields[0], bitFields[1], bitFields[2], bitFields[3], bitFields[4], System.getProperty("line.separator").toString());
             log(mensaje, true);
         }
     }
@@ -45,6 +54,20 @@ public class SyscafilLogger extends AppLogger {
     }
 
     public void flushToDataBase() {
-        // TODO: bitacora manager implementation
+        StringBuilder sbBits = FileManager.loadFile(getToFile());
+        String[] bits = sbBits.toString().split(System.getProperty("line.separator").toString());
+
+        for (String bitLine : bits) {
+            try {
+                String[] bitFields = bitLine.split("|");
+                Bitacora bit = new Bitacora(DateFormat.getDateInstance().parse(bitFields[0]), bitFields[2], bitFields[3], bitFields[4]);
+
+                // TODO: revisar / test lo de relaciones bidereccionales (si se agrega la bit a la coleccion del usuario)
+                bit.setUsuario(um.getUsuarioById(Integer.parseInt(bitFields[1])));
+                bm.crearBitacora(bit);
+            } catch (ParseException ex) {
+                Logger.getLogger(SyscafilLogger.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
 }
