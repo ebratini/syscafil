@@ -8,9 +8,8 @@ import com.prebea.syscafil.model.entities.Afiliado;
 import com.prebea.syscafil.model.entities.Dependiente;
 import com.prebea.syscafil.model.entities.Empresa;
 import com.prebea.syscafil.model.entities.Factura;
+import com.prebea.syscafil.model.entities.Facturacion;
 import com.prebea.syscafil.model.entities.Plan;
-import com.prebea.syscafil.model.entities.Privilegio;
-import com.prebea.syscafil.model.entities.Rol;
 import com.prebea.syscafil.model.entities.Usuario;
 import java.math.BigDecimal;
 import syscafil.Syscafil;
@@ -25,9 +24,7 @@ import java.util.Map;
  * @author Edwin Bratini <edwin.bratini@gmail.com>
  */
 public class ProcesoFacturacion {
-    // TODO: Implementar / Utilizar clase BitLogger en clase
-
-    // TODO: Esta informacion es guardarla en una tabla > Facturaciones y relacionarla con Facturas
+    
     private Date fechaFacturacion = new Date();
     private Date fechaLimitePago = new Date();
     private int totalFacturas;
@@ -40,6 +37,8 @@ public class ProcesoFacturacion {
     // para manejar proceso
     private boolean terminarFacturacion = false;
     // resources
+    private FacturacionManager fcnMan = new FacturacionManager();
+    private UsuarioManager um = new UsuarioManager();
     private FacturaManager fm = new FacturaManager();
     private AfiliadoManager am = new AfiliadoManager();
     private DependienteManager dm = new DependienteManager();
@@ -48,17 +47,13 @@ public class ProcesoFacturacion {
     }
 
     public ProcesoFacturacion(Map facManProps) {
+        fcnMan = new FacturacionManager(facManProps);
+        um = new UsuarioManager(facManProps);
         fm = new FacturaManager(facManProps);
+        am = new AfiliadoManager(facManProps);
+        dm = new DependienteManager(facManProps);
     }
-
-    public int getContadorAfiliados() {
-        return totalAfiliados;
-    }
-
-    public int getContadorFacturas() {
-        return totalFacturas;
-    }
-
+    
     public Date getFechaFinalFacturacion() {
         return fechaFinalProcesoFacturacion;
     }
@@ -67,9 +62,39 @@ public class ProcesoFacturacion {
         return fechaInicioProcesoFacturacion;
     }
 
-    public double getTotalFacturas() {
+    public int getTotalFacturas() {
+        return totalFacturas;
+    }
+
+    public Date getFechaFacturacion() {
+        return fechaFacturacion;
+    }
+
+    public Date getFechaFinalProcesoFacturacion() {
+        return fechaFinalProcesoFacturacion;
+    }
+
+    public Date getFechaInicioProcesoFacturacion() {
+        return fechaInicioProcesoFacturacion;
+    }
+
+    public Date getFechaLimitePago() {
+        return fechaLimitePago;
+    }
+
+    public StringBuilder getStatusFacturacion() {
+        return statusFacturacion;
+    }
+
+    public int getTotalAfiliados() {
+        return totalAfiliados;
+    }
+
+    public double getTotalImporteFacturas() {
         return totalImporteFacturas;
     }
+
+
 
     // validando fecha de facturacion con la fecha establecida para facturar
     // validando fecha contra ultima fecha de facturacion
@@ -82,7 +107,7 @@ public class ProcesoFacturacion {
         cal2.setTime(cal.getTime());
         cal2.add(Calendar.DAY_OF_MONTH, 30);
 
-        long diffDays = (cal.getTimeInMillis() - cal2.getTimeInMillis()) / (24 * 60 * 60 * 1000);
+        long diffDays = (cal2.getTimeInMillis() - cal.getTimeInMillis()) / (24 * 60 * 60 * 1000);
 
         if (diaFac == Integer.parseInt(Syscafil.scm.getDiaFacturacion()) && diffDays >= 30) {
             return true;
@@ -100,15 +125,18 @@ public class ProcesoFacturacion {
     }
 
     public void iniciarProcesoFacturacion(Usuario usuario) throws ProcesoFacturacionException {
+        Syscafil.sl.logBitacora(new Date(), usuario.getUsrId(), "ProcesoFacturacion", "Informacion", "Se ha iniciado el proceso de facturacion");
         // validar fecha de facturacion correcta
         // validar usuario inicia proceso de facturacion
         if (isUsuarioValido(usuario) != true) {
             String mensajeExcepcion = "Permiso denegado para iniciar proceso de facturacion.";
+            Syscafil.sl.logBitacora(new Date(), usuario.getUsrId(), "ProcesoFacturacion", "Excepcion", mensajeExcepcion);
             throw new UsuarioNoValidoInvocaProcesoFacturacionException(mensajeExcepcion);
         }
 
         if (isFechaFacturacionValida() != true) {
             String mensajeExcepcion = "La fecha de facturacion no es valida.";
+            Syscafil.sl.logBitacora(new Date(), usuario.getUsrId(), "ProcesoFacturacion", "Excepcion", mensajeExcepcion);
             throw new FechaNoValidaParaFacturacionException(mensajeExcepcion);
         }
 
@@ -134,9 +162,9 @@ public class ProcesoFacturacion {
                 String updateBy = "Proceso Facturacion";
 
                 // conseguir cargoA
-                Empresa empresaAfil = am.getEmpresa(afil);
-                String cargoA = (empresaAfil != null ? String.format("[%d %s]", empresaAfil.getEmpId(), empresaAfil.getEmpRazonSocial()) 
-                        : afil.getAflApellido() + ", "  + afil.getAflNombre());
+                Empresa empresaAfil = afil.getEmpresa();
+                String cargoA = (empresaAfil != null ? String.format("[%d %s]", empresaAfil.getEmpId(), empresaAfil.getEmpRazonSocial())
+                        : afil.getAflApellido() + ", " + afil.getAflNombre());
 
                 // Descripcion
                 StringBuilder sbFacDescripcion = new StringBuilder();
@@ -160,16 +188,16 @@ public class ProcesoFacturacion {
                     totalImporteFacturas += factura.getFacImporteTotal().doubleValue();
                 } else {
                     String msj = "Proceso de facturacion abortado.";
+                    Syscafil.sl.logBitacora(new Date(), usuario.getUsrId(), "ProcesoFacturacion", "Informacion", msj);
                     statusFacturacion.append(msj).append("\n");
-                    System.out.println("Proceso de facturacion abortado.");
                     break;
                 }
             }
         }
         fechaFinalProcesoFacturacion = new Date();
-
-        // TODO: no necesitare llamar este metodo, en lugar creare un registro de facturaciones
-        setUltimaFechaFacturacion();
+        fcnMan.agregarFacturacion(new Facturacion(fechaFacturacion, Syscafil.scm.getDiasLmtParaSaldar(), fechaLimitePago,
+                totalAfiliados, totalFacturas, BigDecimal.valueOf(totalImporteFacturas), statusFacturacion.toString()));
+        Syscafil.sl.logBitacora(new Date(), usuario.getUsrId(), "ProcesoFacturacion", "Informacion", "Proceso de facturacion completado");
     }
 
     public void terminarProcesoFacturacion() {
@@ -179,14 +207,7 @@ public class ProcesoFacturacion {
     public Date getTiempoFacturacion() {
         return new Date((fechaInicioProcesoFacturacion.getTime() - fechaFinalProcesoFacturacion.getTime()));
     }
-
-    // TODO: cuando cree la tabla de Facturaciones, no necesitare este metodo
-    private void setUltimaFechaFacturacion() {
-        Calendar c = Calendar.getInstance();
-        c.setTime(fechaFacturacion);
-        Syscafil.scm.setUltimaFechaFacturacion(String.format("%1$td-%1$tm-%1$tY", c));
-    }
-
+    
     private double getTotalPorDepExtra(Afiliado afiliado) {
         List<Dependiente> dependientesExtras = dm.getDependienteActivosExtrasByAfiliado(afiliado);
         double valorDepExtras = 0.0;
@@ -201,13 +222,7 @@ public class ProcesoFacturacion {
     private boolean isUsuarioValido(Usuario usuario) {
         boolean usrValido = false;
 
-        // TODO: implementar esto en clase UsuarioJpaDao y sustituir
-        List<String> privilegios = new ArrayList<String>();
-        for (Rol rol : usuario.getRolCollection()) {
-            for (Privilegio priv : rol.getPrivilegioCollection()) {
-                privilegios.add(priv.getPrvNombre());
-            }
-        }
+        List<String> privilegios = um.getPrivilegios(usuario);
         if (privilegios.contains("ipf")) {
             usrValido = true;
         }

@@ -11,11 +11,11 @@ import java.io.File;
  *
  * @author Edwin Bratini <edwin.bratini@gmail.com>
  */
-public class AppLogger {
+public abstract class AppLogger {
 
     private String baseAppURL;
-    private String toFilePath; // = String.format("%1$s%2$sapp_files%2$sbitlogger.syscafil", baseAppURL, System.getProperty("path.separator").toString());
-    private File toFile; // = new File(toFilePath);
+    private String toFilePath;
+    private File toFile;
 
     public AppLogger() {
     }

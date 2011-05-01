@@ -11,6 +11,8 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -27,7 +29,6 @@ import javax.persistence.TemporalType;
     @NamedQuery(name = "Bitacora.findAll", query = "SELECT b FROM Bitacora b"),
     @NamedQuery(name = "Bitacora.findByBitId", query = "SELECT b FROM Bitacora b WHERE b.bitId = :bitId"),
     @NamedQuery(name = "Bitacora.findByBitFecha", query = "SELECT b FROM Bitacora b WHERE b.bitFecha = :bitFecha"),
-    @NamedQuery(name = "Bitacora.findByBitUsuario", query = "SELECT b FROM Bitacora b WHERE b.bitUsuario = :bitUsuario"),
     @NamedQuery(name = "Bitacora.findByBitFuente", query = "SELECT b FROM Bitacora b WHERE b.bitFuente = :bitFuente"),
     @NamedQuery(name = "Bitacora.findByBitCategoria", query = "SELECT b FROM Bitacora b WHERE b.bitCategoria = :bitCategoria"),
     @NamedQuery(name = "Bitacora.findByBitDescripcion", query = "SELECT b FROM Bitacora b WHERE b.bitDescripcion = :bitDescripcion")})
@@ -42,9 +43,6 @@ public class Bitacora implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date bitFecha;
     @Basic(optional = false)
-    @Column(name = "bit_usuario", nullable = false, length = 10)
-    private String bitUsuario;
-    @Basic(optional = false)
     @Column(name = "bit_fuente", nullable = false, length = 20)
     private String bitFuente;
     @Basic(optional = false)
@@ -53,6 +51,9 @@ public class Bitacora implements Serializable {
     @Basic(optional = false)
     @Column(name = "bit_descripcion", nullable = false, length = 40)
     private String bitDescripcion;
+    @JoinColumn(name = "usr_id", referencedColumnName = "usr_id", nullable = false)
+    @ManyToOne(optional = false)
+    private Usuario usuario;
 
     public Bitacora() {
     }
@@ -61,10 +62,9 @@ public class Bitacora implements Serializable {
         this.bitId = bitId;
     }
 
-    public Bitacora(Integer bitId, Date bitFecha, String bitUsuario, String bitFuente, String bitCategoria, String bitDescripcion) {
+    public Bitacora(Integer bitId, Date bitFecha, String bitFuente, String bitCategoria, String bitDescripcion) {
         this.bitId = bitId;
         this.bitFecha = bitFecha;
-        this.bitUsuario = bitUsuario;
         this.bitFuente = bitFuente;
         this.bitCategoria = bitCategoria;
         this.bitDescripcion = bitDescripcion;
@@ -84,14 +84,6 @@ public class Bitacora implements Serializable {
 
     public void setBitFecha(Date bitFecha) {
         this.bitFecha = bitFecha;
-    }
-
-    public String getBitUsuario() {
-        return bitUsuario;
-    }
-
-    public void setBitUsuario(String bitUsuario) {
-        this.bitUsuario = bitUsuario;
     }
 
     public String getBitFuente() {
@@ -116,6 +108,14 @@ public class Bitacora implements Serializable {
 
     public void setBitDescripcion(String bitDescripcion) {
         this.bitDescripcion = bitDescripcion;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
     @Override

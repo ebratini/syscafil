@@ -7,28 +7,23 @@ package com.prebea.syscafil.model;
 
 import java.util.HashMap;
 import java.util.Map;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import javax.persistence.Query;
 
 /**
  *
  * @author Edwin Bratini <edwin.bratini@gmail.com>
  */
-public class SyscafilEntityManager {
-    private EntityManagerFactory emf = Persistence.createEntityManagerFactory("SyscafilPU");
-    private EntityManager em = emf.createEntityManager();
+public class JpaSyscafil extends JpaDao {
 
-    public SyscafilEntityManager() {
+    public JpaSyscafil() {
     }
 
-    public SyscafilEntityManager(Map props) {
-        em = emf.createEntityManager(props);
+    public JpaSyscafil(Map props) {
+        super(props);
     }
 
     public <T> T executeQuery(String query, HashMap<String, String> params) {
-        Query q = em.createQuery(query);
+        Query q = entityManager.createQuery(query);
 
         for (Map.Entry<String, String> entry : params.entrySet()) {
             q.setParameter(entry.getKey(), entry.getValue());
@@ -37,7 +32,7 @@ public class SyscafilEntityManager {
     }
 
     public void executeNonQuery(String query) {
-        Query q = em.createQuery(query);
+        Query q = entityManager.createQuery(query);
         q.executeUpdate();
     }
 }

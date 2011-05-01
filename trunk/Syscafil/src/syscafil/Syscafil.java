@@ -5,6 +5,7 @@
 package syscafil;
 
 import com.prebea.syscafil.business.SyscafilConfManager;
+import com.prebea.syscafil.business.SyscafilLogger;
 
 /**
  *
@@ -13,6 +14,7 @@ import com.prebea.syscafil.business.SyscafilConfManager;
 public class Syscafil {
 
     public static SyscafilConfManager scm = new SyscafilConfManager();
+    public static SyscafilLogger sl = new SyscafilLogger();
 
     /**
      * @param args the command line arguments

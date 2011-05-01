@@ -4,21 +4,16 @@
  */
 package com.prebea.syscafil.model;
 
+import com.prebea.syscafil.model.entities.Empresa;
 import java.util.List;
 
 /**
  *
  * @author Edwin Bratini <edwin.bratini@gmail.com>
  */
-public interface Dao {
+public interface EmpresaDao extends Dao {
 
-    public <E> void persist(E entity);
+    public Empresa findEmpresaByDNI(String dni);
 
-    public List retrieve();
-
-    public <E> E update(E entity);
-
-    public <E> void remove(E entity);
-
-    public <E, K> E findById(K id);
+    public List findEmpresaByRazonSocial(String razonSocial);
 }

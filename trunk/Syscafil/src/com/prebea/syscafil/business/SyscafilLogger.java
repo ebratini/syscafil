@@ -16,18 +16,15 @@ import java.util.Date;
  */
 public class SyscafilLogger extends AppLogger {
 
-    private String baseAppURL = XMLFileManager.getElemento(Syscafil.scm.getSyscafilConfFilePath(), "Syscafil").getAttribute("BaseAppURL").getValue();
-    private String toFilePath = String.format("%1$s%2$sapp_files%2$sbitlogger.syscafil", baseAppURL, System.getProperty("path.separator").toString());
-    private File toFile = new File(toFilePath);
-    private AppLogger al = new AppLogger(toFile);
-
     public SyscafilLogger() {
         createAppFileDir();
-        al.setBaseAppURL(baseAppURL);
+        setBaseAppURL(XMLFileManager.getElemento(Syscafil.scm.getSyscafilConfFilePath(), "Syscafil").getAttribute("BaseAppURL").getValue());
+        setToFilePath(String.format("%1$s%2$sapp_files%2$sbitlogger.syscafil", getBaseAppURL(), System.getProperty("path.separator").toString()));
+        setToFile(new File(getToFilePath()));
     }
 
     private void createAppFileDir() {
-        File appFileDir = new File(String.format("%1$s%2$sapp_files", baseAppURL, System.getProperty("path.separator").toString()));
+        File appFileDir = new File(String.format("%1$s%2$sapp_files", getBaseAppURL(), System.getProperty("path.separator").toString()));
         if (appFileDir.exists() != true) {
             appFileDir.mkdir();
         }
@@ -36,7 +33,7 @@ public class SyscafilLogger extends AppLogger {
     public void logBitacora(String... bitFields) {
         if (bitFields.length > 0) {
             String mensaje = String.format("%s|%s|%s|%s|%s", bitFields[0], bitFields[1], bitFields[2], bitFields[3], bitFields[4]);
-            al.log(mensaje, true);
+            log(mensaje, true);
         }
     }
 

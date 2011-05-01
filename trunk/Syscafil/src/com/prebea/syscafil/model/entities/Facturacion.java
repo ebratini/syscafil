@@ -87,6 +87,16 @@ public class Facturacion implements Serializable {
         this.fcnStatusFacturacion = fcnStatusFacturacion;
     }
 
+    public Facturacion(Date fcnFechaFacturacion, int fcnDiasLimiteSaldo, Date fcnFechaLimitePago, int fcnAfiliadosFacturados, int fcnFacturasGeneradas, BigDecimal fcnImporteFacturasGeneradas, String fcnStatusFacturacion) {
+        this.fcnFechaFacturacion = fcnFechaFacturacion;
+        this.fcnDiasLimiteSaldo = fcnDiasLimiteSaldo;
+        this.fcnFechaLimitePago = fcnFechaLimitePago;
+        this.fcnAfiliadosFacturados = fcnAfiliadosFacturados;
+        this.fcnFacturasGeneradas = fcnFacturasGeneradas;
+        this.fcnImporteFacturasGeneradas = fcnImporteFacturasGeneradas;
+        this.fcnStatusFacturacion = fcnStatusFacturacion;
+    }
+
     public Integer getFcnId() {
         return fcnId;
     }

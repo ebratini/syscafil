@@ -10,7 +10,6 @@
     </Compania>
     <Facturacion>
         <DiaFacturacion>13</DiaFacturacion>
-        <UltimaFechaFacturacion>13-01-2010</UltimaFechaFacturacion>
         <DiasLmtParaSaldarFactura>10</DiasLmtParaSaldarFactura>
         <SecuenciaFacturacion></SecuenciaFacturacion>
     </Facturacion>

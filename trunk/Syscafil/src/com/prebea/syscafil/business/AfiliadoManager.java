@@ -4,9 +4,9 @@
  */
 package com.prebea.syscafil.business;
 
-import com.prebea.syscafil.model.AfiliadoEntityManager;
+import com.prebea.syscafil.model.AfiliadoDao;
+import com.prebea.syscafil.model.JpaAfiliadoDao;
 import com.prebea.syscafil.model.entities.Afiliado;
-import com.prebea.syscafil.model.entities.Empresa;
 import java.util.List;
 import java.util.Map;
 
@@ -16,56 +16,52 @@ import java.util.Map;
  */
 public class AfiliadoManager {
 
-    private AfiliadoEntityManager aem = new AfiliadoEntityManager();
+    private AfiliadoDao ad = new JpaAfiliadoDao();
 
     public AfiliadoManager() {
     }
 
     public AfiliadoManager(Map props) {
-        aem = new AfiliadoEntityManager(props);
+        ad = new JpaAfiliadoDao(props);
     }
 
     public void agregarAfiliado(Afiliado afiliado) {
-        aem.create(afiliado);
+        ad.persist(afiliado);
     }
 
     public List<Afiliado> getAfiliados() {
-        return aem.retrieve();
+        return (List<Afiliado>) ad.retrieve();
     }
 
-    public void actualizarAfiliado(Afiliado afiliado) {
-        aem.update(afiliado);
+    public Afiliado actualizarAfiliado(Afiliado afiliado) {
+        return ad.update(afiliado);
     }
 
     public void removerAfiliado(Afiliado afiliado) {
-        aem.delete(afiliado);
-    }
-
-    public List<Afiliado> getAfiliadosActivos() {
-        return aem.getAfiliadoByStatus('A');
+        ad.remove(afiliado);
     }
 
     public Afiliado getAfiliadoById(Integer id) {
-        return aem.getAfiliadoById(id);
+        return ad.findById(id);
+    }
+
+    public List<Afiliado> getAfiliadosActivos() {
+        return (List<Afiliado>) ad.findAfiliadoByStatus('A');
     }
 
     public Afiliado getAfiliadoByDNI(String dni) {
-        return aem.getAfiliadoByDNI(dni);
+        return ad.findAfiliadoByDNI(dni);
     }
 
     public List<Afiliado> getAfiliadoByNombre(String nombre) {
-        return aem.getAfiliadoByNombre(nombre);
+        return (List<Afiliado>) ad.findAfiliadoByNombre(nombre);
     }
 
     public List<Afiliado> getAfiliadoByApellido(String apellido) {
-        return aem.getAfiliadoByApellido(apellido);
-    }
-
-    public Empresa getEmpresa(Afiliado afiliado) {
-        return afiliado.getEmpresa();
+        return (List<Afiliado>) ad.findAfiliadoByApellido(apellido);
     }
 
     public void close() {
-        aem.close();
+        ((JpaAfiliadoDao) ad).close();
     }
 }
