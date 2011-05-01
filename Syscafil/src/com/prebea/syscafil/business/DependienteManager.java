@@ -2,10 +2,10 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.prebea.syscafil.business;
 
-import com.prebea.syscafil.model.DependienteEntityManager;
+import com.prebea.syscafil.model.DependienteDao;
+import com.prebea.syscafil.model.JpaDependienteDao;
 import com.prebea.syscafil.model.entities.Afiliado;
 import com.prebea.syscafil.model.entities.Dependiente;
 import java.util.List;
@@ -16,56 +16,57 @@ import java.util.Map;
  * @author Edwin Bratini <edwin.bratini@gmail.com>
  */
 public class DependienteManager {
-    private DependienteEntityManager dem = new DependienteEntityManager();
+
+    private DependienteDao dd = new JpaDependienteDao();
 
     public DependienteManager() {
     }
 
     public DependienteManager(Map props) {
-        dem = new DependienteEntityManager(props);
+        dd = new JpaDependienteDao(props);
     }
 
     public void agregarDependiente(Dependiente dependiente) {
-        dem.create(dependiente);
+        dd.persist(dependiente);
     }
 
     public List<Dependiente> getDependientes() {
-        return dem.retrieve();
+        return (List<Dependiente>) dd.retrieve();
     }
 
-    public void actualizarDependiente(Dependiente dependiente) {
-        dem.update(dependiente);
+    public Dependiente actualizarDependiente(Dependiente dependiente) {
+        return dd.update(dependiente);
     }
 
     public void removerDependiente(Dependiente dependiente) {
-        dem.delete(dependiente);
-    }
-
-    public List<Dependiente> getDependientesActivos() {
-        return dem.getDependienteByStatus('A');
+        dd.remove(dependiente);
     }
 
     public Dependiente getDependienteById(Integer id) {
-        return dem.getDependienteById(id);
+        return dd.findById(id);
+    }
+
+    public List<Dependiente> getDependientesActivos() {
+        return (List<Dependiente>) dd.findDependienteByStatus('A');
     }
 
     public Dependiente getDependienteByDNI(String dni) {
-        return dem.getDependienteByDNI(dni);
+        return dd.findDependienteByDNI(dni);
     }
 
     public List<Dependiente> getDependienteByNombre(String nombre) {
-        return dem.getDependienteByNombre(nombre);
+        return (List<Dependiente>) dd.findDependienteByNombre(nombre);
     }
 
     public List<Dependiente> getDependienteByApellido(String apellido) {
-        return dem.getDependienteByApellido(apellido);
+        return (List<Dependiente>) dd.findDependienteByApellido(apellido);
     }
 
     public List<Dependiente> getDependienteActivosExtrasByAfiliado(Afiliado afiliado) {
-        return dem.getDependienteExtraActivoByAfiliado(afiliado);
+        return (List<Dependiente>) dd.findDependienteExtraActivoByAfiliado(afiliado);
     }
 
     public void close() {
-        dem.close();
+        ((JpaDependienteDao) dd).close();
     }
 }

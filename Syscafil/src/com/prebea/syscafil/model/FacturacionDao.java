@@ -13,7 +13,7 @@ import java.util.Date;
  */
 public interface FacturacionDao extends Dao {
 
-    public Date findUltimaFechaFacturacion();
-
     public Facturacion findFacturacionByFechaFacturacion(Date fechaFacturacion);
+
+    public Date findUltimaFechaFacturacionGenerada();
 }

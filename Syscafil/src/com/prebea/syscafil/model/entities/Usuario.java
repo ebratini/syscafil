@@ -68,6 +68,8 @@ public class Usuario implements Serializable {
     private Collection<Rol> rolCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
     private Collection<Facturacion> facturacionCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
+    private Collection<Bitacora> bitacoraCollection;
 
     public Usuario() {
     }
@@ -156,6 +158,14 @@ public class Usuario implements Serializable {
 
     public void setFacturacionCollection(Collection<Facturacion> facturacionCollection) {
         this.facturacionCollection = facturacionCollection;
+    }
+
+    public Collection<Bitacora> getBitacoraCollection() {
+        return bitacoraCollection;
+    }
+
+    public void setBitacoraCollection(Collection<Bitacora> bitacoraCollection) {
+        this.bitacoraCollection = bitacoraCollection;
     }
 
     @Override
