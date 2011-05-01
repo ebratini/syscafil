@@ -28,7 +28,7 @@ public class UsuarioManager {
         ud = new JpaUsuarioDao(props);
     }
 
-    public void agregarUsuario(Usuario usuario) {
+    public void crearUsuario(Usuario usuario) {
         ud.persist(usuario);
     }
 

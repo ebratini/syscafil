@@ -25,7 +25,7 @@ public class PlanManager {
         pd = new JpaPlanDao(props);
     }
 
-    public void agregarPlan(Plan plan) {
+    public void crearPlan(Plan plan) {
         pd.persist(plan);
     }
 

@@ -182,6 +182,10 @@ public class ProcesoFacturacion {
                 if (terminarFacturacion != true) {
                     Factura factura = new Factura(fechaFacturacion, fechaLimitePago, precioPlan, precioDepExtra, sbFacDescripcion.toString(),
                             desc, impuestos, subtotal, total, cargoA, metodoPago, statusFac, razonStatusFac, updateBy, fechaFacturacion);
+
+                    // TODO: revisar / test lo de relaciones bidereccionales (si se agrega la factura a la coleccion del afiliado)
+                    factura.setAfiliado(afil);
+                    factura.setPlan(plan);
                     fm.crearFactura(factura);
                     totalFacturas++;
                     totalAfiliados++;
@@ -195,8 +199,12 @@ public class ProcesoFacturacion {
             }
         }
         fechaFinalProcesoFacturacion = new Date();
-        fcnMan.agregarFacturacion(new Facturacion(fechaFacturacion, Syscafil.scm.getDiasLmtParaSaldar(), fechaLimitePago,
-                totalAfiliados, totalFacturas, BigDecimal.valueOf(totalImporteFacturas), statusFacturacion.toString()));
+        Facturacion facturacion = new Facturacion(fechaFacturacion, Syscafil.scm.getDiasLmtParaSaldar(), fechaLimitePago,
+                totalAfiliados, totalFacturas, BigDecimal.valueOf(totalImporteFacturas), statusFacturacion.toString());
+
+        // TODO: revisar / test lo de relaciones bidereccionales (si se agrega la facturacion a la coleccion del usuario)
+        facturacion.setUsuario(usuario);
+        fcnMan.crearFacturacion(facturacion);
         Syscafil.sl.logBitacora(new Date(), usuario.getUsrId(), "ProcesoFacturacion", "Informacion", "Proceso de facturacion completado");
     }
 

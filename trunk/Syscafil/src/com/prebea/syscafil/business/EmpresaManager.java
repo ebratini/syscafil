@@ -25,7 +25,7 @@ public class EmpresaManager {
         ed = new JpaEmpresaDao(props);
     }
 
-    public void agregarEmpresa(Empresa empresa) {
+    public void crearEmpresa(Empresa empresa) {
         ed.persist(empresa);
     }
 
