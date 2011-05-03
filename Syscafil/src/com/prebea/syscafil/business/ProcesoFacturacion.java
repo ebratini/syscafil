@@ -185,7 +185,10 @@ public class ProcesoFacturacion {
 
                     // TODO: revisar / test lo de relaciones bidereccionales (si se agrega la factura a la coleccion del afiliado)
                     factura.setAfiliado(afil);
+                    afil.getFacturaCollection().add(factura);
                     factura.setPlan(plan);
+                    plan.getFacturaCollection().add(factura);
+                    // .....
                     fm.crearFactura(factura);
                     totalFacturas++;
                     totalAfiliados++;
@@ -204,6 +207,8 @@ public class ProcesoFacturacion {
 
         // TODO: revisar / test lo de relaciones bidereccionales (si se agrega la facturacion a la coleccion del usuario)
         facturacion.setUsuario(usuario);
+        usuario.getFacturacionCollection().add(facturacion);
+        // .....
         fcnMan.crearFacturacion(facturacion);
         Syscafil.sl.logBitacora(new Date(), usuario.getUsrId(), "ProcesoFacturacion", "Informacion", "Proceso de facturacion completado");
     }
@@ -224,6 +229,8 @@ public class ProcesoFacturacion {
             valorDepExtras = dependientesExtras.size() * afiliado.getPlan().getPlnPrecioDependienteExtra().doubleValue();
         }
 
+        // TODO: probar el close de los manager: ?que sucede?
+        //dm.close();
         return valorDepExtras;
     }
 
