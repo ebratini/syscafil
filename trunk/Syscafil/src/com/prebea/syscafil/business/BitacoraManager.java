@@ -57,4 +57,8 @@ public class BitacoraManager {
     public List<Bitacora> getBitacoraByCategoria(String categoria) {
         return (List<Bitacora>) bd.findBitacoraByCategoria(categoria);
     }
+
+    public void close() {
+        ((JpaBitacoraDao) bd).close();
+    }
 }

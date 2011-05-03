@@ -7,6 +7,7 @@ package com.prebea.syscafil.business;
 import com.prebea.syscafil.model.FileManager;
 import com.prebea.syscafil.model.XMLFileManager;
 import com.prebea.syscafil.model.entities.Bitacora;
+import com.prebea.syscafil.model.entities.Usuario;
 import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -61,13 +62,19 @@ public class SyscafilLogger extends AppLogger {
             try {
                 String[] bitFields = bitLine.split("|");
                 Bitacora bit = new Bitacora(DateFormat.getDateInstance().parse(bitFields[0]), bitFields[2], bitFields[3], bitFields[4]);
+                Usuario usuario = um.getUsuarioById(Integer.parseInt(bitFields[1]));
 
                 // TODO: revisar / test lo de relaciones bidereccionales (si se agrega la bit a la coleccion del usuario)
-                bit.setUsuario(um.getUsuarioById(Integer.parseInt(bitFields[1])));
+                bit.setUsuario(usuario);
+                usuario.getBitacoraCollection().add(bit);
+                // ...
                 bm.crearBitacora(bit);
             } catch (ParseException ex) {
                 Logger.getLogger(SyscafilLogger.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            }/* finally {
+                um.close();
+                bm.close();
+            }*/ // TODO: probar el close de los manager: ?que sucede?
         }
     }
 }

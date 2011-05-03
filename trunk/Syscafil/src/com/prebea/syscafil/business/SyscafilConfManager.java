@@ -12,7 +12,7 @@ import com.prebea.syscafil.model.XMLFileManager;
  */
 public class SyscafilConfManager {
 
-    private String syscafilConfFilePath = "META-INF/syscafil_conf.xml";
+    private String syscafilConfFilePath = "META-INF\\syscafil_conf.xml";
     private String diaFacturacion;
     private int diasLmtParaSaldarFactura;
 
