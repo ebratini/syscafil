@@ -8,8 +8,11 @@
  *
  * Created on 03/28/2011, 12:23:31 PM
  */
-
 package com.prebea.syscafil.ui;
+
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTabbedPane;
 
 /**
  *
@@ -48,17 +51,25 @@ public class SyscafilDesktop extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     /**
-    * @param args the command line arguments
-    */
+     * @param args the command line arguments
+     */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
+
             public void run() {
                 new SyscafilDesktop().setVisible(true);
             }
         });
-    }
 
+        JTabbedPane jtp = new JTabbedPane();
+        JPanel bc = new BaseConsulta();
+        bc.setVisible(true);
+        jtp.add(bc);
+        jtp.addTab("Afiliado: Edwin Bratini", new JScrollPane(bc));
+        jtp.setVisible(true);
+        ButtonTabComponent btc = new ButtonTabComponent(jtp);
+        btc.setVisible(true);
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
-
 }

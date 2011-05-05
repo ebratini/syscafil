@@ -145,11 +145,11 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="rdbField2" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="rdbField3" max="32767" attributes="0"/>
+                              <Component id="rdbField3" pref="58" max="32767" attributes="0"/>
                           </Group>
                           <Component id="chkFiltro" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="7" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -157,7 +157,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="chkFiltro" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="5" max="32767" attributes="0"/>
+                      <EmptySpace pref="6" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="rdbField1" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="rdbField2" alignment="3" min="-2" max="-2" attributes="0"/>
