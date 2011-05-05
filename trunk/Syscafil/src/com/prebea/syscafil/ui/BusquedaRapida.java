@@ -1,7 +1,7 @@
 /*
  *  The MIT License
  * 
- *  Copyright 2011 Edwin Bratini <edwin.bratini@gmail.com>.
+ *  Copyright 2011 Edwin Bratini.
  * 
  *  Permission is hereby granted, free of charge, to any person obtaining a copy
  *  of this software and associated documentation files (the "Software"), to deal
@@ -25,14 +25,13 @@
 /*
  * BusquedaRapida.java
  *
- * Created on May 1, 2011, 9:53:56 PM
+ * Created on 05/04/2011, 11:03:01 AM
  */
 package com.prebea.syscafil.ui;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
-import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
@@ -42,9 +41,9 @@ import javax.swing.JTextField;
 
 /**
  *
- * @author Edwin Bratini <edwin.bratini@gmail.com>
+ * @author Edwin Bratini
  */
-public class BusquedaRapida extends JComponent {
+public class BusquedaRapida extends javax.swing.JFrame {
 
     /** Creates new form BusquedaRapida */
     public BusquedaRapida() {
@@ -61,6 +60,7 @@ public class BusquedaRapida extends JComponent {
     private void initComponents() {
 
         bgrOpBusqueda = new javax.swing.ButtonGroup();
+        jPanel1 = new javax.swing.JPanel();
         pnlOpBusqueda = new javax.swing.JPanel();
         chkFiltro = new javax.swing.JCheckBox();
         rdbField1 = new javax.swing.JRadioButton();
@@ -72,6 +72,18 @@ public class BusquedaRapida extends JComponent {
         btnLimpiar = new javax.swing.JButton();
         btnBuscar = new javax.swing.JButton();
         txtBusqueda = new javax.swing.JTextField();
+        btnSeleccionar = new javax.swing.JButton();
+        pnlNodeBar = new javax.swing.JPanel();
+        lblNodeMenu = new javax.swing.JLabel();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.white, java.awt.Color.lightGray));
 
         pnlOpBusqueda.setBorder(javax.swing.BorderFactory.createTitledBorder("Opciones de Busqueda"));
         pnlOpBusqueda.setName("pnlOpBusqueda"); // NOI18N
@@ -85,6 +97,7 @@ public class BusquedaRapida extends JComponent {
         });
 
         bgrOpBusqueda.add(rdbField1);
+        rdbField1.setSelected(true);
         rdbField1.setText("Field 1");
         rdbField1.setName("rdbField1"); // NOI18N
 
@@ -115,7 +128,7 @@ public class BusquedaRapida extends JComponent {
             pnlOpBusquedaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlOpBusquedaLayout.createSequentialGroup()
                 .addComponent(chkFiltro)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 5, Short.MAX_VALUE)
                 .addGroup(pnlOpBusquedaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(rdbField1)
                     .addComponent(rdbField2)
@@ -147,63 +160,99 @@ public class BusquedaRapida extends JComponent {
 
         txtBusqueda.setName("txtBusqueda"); // NOI18N
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+        btnSeleccionar.setText("Seleccionar");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(pnlOpBusqueda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtBusqueda, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
-                        .addGap(14, 14, 14)
-                        .addComponent(btnBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnLimpiar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(lblEntidades)
-                    .addComponent(scrEntidades))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(scrEntidades)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(pnlOpBusqueda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtBusqueda, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
+                                .addGap(14, 14, 14))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(lblEntidades)
+                                .addGap(340, 340, 340)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(btnBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnLimpiar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(btnSeleccionar, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(pnlOpBusqueda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(67, 67, 67)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnLimpiar)
                             .addComponent(btnBuscar))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblEntidades)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblEntidades)
+                    .addComponent(btnSeleccionar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(scrEntidades, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(scrEntidades, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
+                .addContainerGap())
         );
+
+        pnlNodeBar.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        lblNodeMenu.setText("Busqueda");
+
+        javax.swing.GroupLayout pnlNodeBarLayout = new javax.swing.GroupLayout(pnlNodeBar);
+        pnlNodeBar.setLayout(pnlNodeBarLayout);
+        pnlNodeBarLayout.setHorizontalGroup(
+            pnlNodeBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlNodeBarLayout.createSequentialGroup()
+                .addComponent(lblNodeMenu)
+                .addContainerGap(520, Short.MAX_VALUE))
+        );
+        pnlNodeBarLayout.setVerticalGroup(
+            pnlNodeBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(lblNodeMenu)
+        );
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(pnlNodeBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(pnlNodeBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void chkFiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkFiltroActionPerformed
+//GEN-FIRST:event_chkFiltroActionPerformed
+    private void chkFiltroActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
-}//GEN-LAST:event_chkFiltroActionPerformed
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.ButtonGroup bgrOpBusqueda;
-    private javax.swing.JButton btnBuscar;
-    private javax.swing.JButton btnLimpiar;
-    private javax.swing.JCheckBox chkFiltro;
-    private javax.swing.JTable jtbEntidades;
-    private javax.swing.JLabel lblEntidades;
-    private javax.swing.JPanel pnlOpBusqueda;
-    private javax.swing.JRadioButton rdbField1;
-    private javax.swing.JRadioButton rdbField2;
-    private javax.swing.JRadioButton rdbField3;
-    private javax.swing.JScrollPane scrEntidades;
-    private javax.swing.JTextField txtBusqueda;
-    // End of variables declaration//GEN-END:variables
+    }
 
     public ButtonGroup getBgrOpBusqueda() {
         return bgrOpBusqueda;
@@ -221,12 +270,24 @@ public class BusquedaRapida extends JComponent {
         return chkFiltro;
     }
 
+    public JPanel getjPanel1() {
+        return jPanel1;
+    }
+
     public JTable getJtbEntidades() {
         return jtbEntidades;
     }
 
     public JLabel getLblEntidades() {
         return lblEntidades;
+    }
+
+    public JLabel getLblNodeMenu() {
+        return lblNodeMenu;
+    }
+
+    public JPanel getPnlNodeBar() {
+        return pnlNodeBar;
     }
 
     public JPanel getPnlOpBusqueda() {
@@ -252,4 +313,43 @@ public class BusquedaRapida extends JComponent {
     public JTextField getTxtBusqueda() {
         return txtBusqueda;
     }
+
+    public JButton getBtnSeleccionar() {
+        return btnSeleccionar;
+    }
+
+//GEN-LAST:event_chkFiltroActionPerformed
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+        btnSeleccionar.setVisible(false);
+    }//GEN-LAST:event_formWindowOpened
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        java.awt.EventQueue.invokeLater(new Runnable() {
+
+            public void run() {
+                new BusquedaRapida().setVisible(true);
+            }
+        });
+    }
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup bgrOpBusqueda;
+    private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnLimpiar;
+    private javax.swing.JButton btnSeleccionar;
+    private javax.swing.JCheckBox chkFiltro;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JTable jtbEntidades;
+    private javax.swing.JLabel lblEntidades;
+    private javax.swing.JLabel lblNodeMenu;
+    private javax.swing.JPanel pnlNodeBar;
+    private javax.swing.JPanel pnlOpBusqueda;
+    private javax.swing.JRadioButton rdbField1;
+    private javax.swing.JRadioButton rdbField2;
+    private javax.swing.JRadioButton rdbField3;
+    private javax.swing.JScrollPane scrEntidades;
+    private javax.swing.JTextField txtBusqueda;
+    // End of variables declaration//GEN-END:variables
 }
