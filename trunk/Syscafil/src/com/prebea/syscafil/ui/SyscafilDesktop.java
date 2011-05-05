@@ -60,15 +60,6 @@ public class SyscafilDesktop extends javax.swing.JFrame {
                 new SyscafilDesktop().setVisible(true);
             }
         });
-
-        JTabbedPane jtp = new JTabbedPane();
-        JPanel bc = new BaseConsulta();
-        bc.setVisible(true);
-        jtp.add(bc);
-        jtp.addTab("Afiliado: Edwin Bratini", new JScrollPane(bc));
-        jtp.setVisible(true);
-        ButtonTabComponent btc = new ButtonTabComponent(jtp);
-        btc.setVisible(true);
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
