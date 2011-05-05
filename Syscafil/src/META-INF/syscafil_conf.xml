@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Syscafil BaseAppURL = "c:\\program files\\syscafil">
     <Compania>
-        <RNC>12345678910</RNC>
+        <DNI TipoDNI = "RNC">12345678910</DNI>
         <Nombre>PREBEA</Nombre>
         <Slogan>Abrele la Puerta a PREBEA</Slogan>
-        <Direccion>Av. Abraham Lincoln No. 62, Ens. La Julia, Santo Domingo, República Dominicana.</Direccion>
         <Telefono>809.533.0900</Telefono>
+        <Fax>809.513.0210</Fax>
+        <Direccion>Av. Abraham Lincoln No. 62, Ens. La Julia, Santo Domingo, República Dominicana.</Direccion>
         <Email>info@prebea.com</Email>
+        <Web>http://www.prebea.com</Web>
     </Compania>
     <Facturacion>
         <DiaFacturacion>13</DiaFacturacion>
