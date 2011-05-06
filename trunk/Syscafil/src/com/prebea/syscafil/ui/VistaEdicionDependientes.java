@@ -62,7 +62,6 @@ public class VistaEdicionDependientes extends javax.swing.JPanel {
         txtIdDependiente = new javax.swing.JTextField();
         txtNombre = new javax.swing.JTextField();
         txtDni = new javax.swing.JTextField();
-        txtTipoDni = new javax.swing.JTextField();
         txtFechaIngreso = new javax.swing.JTextField();
         lblEmail = new javax.swing.JLabel();
         lblTelefono = new javax.swing.JLabel();
@@ -78,7 +77,6 @@ public class VistaEdicionDependientes extends javax.swing.JPanel {
         lblPais = new javax.swing.JLabel();
         txtPais = new javax.swing.JTextField();
         lblEstatus = new javax.swing.JLabel();
-        txtEstatus = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         txaDireccion = new javax.swing.JTextArea();
         lblApellido = new javax.swing.JLabel();
@@ -92,10 +90,12 @@ public class VistaEdicionDependientes extends javax.swing.JPanel {
         lblNacionalidad = new javax.swing.JLabel();
         txtNacionalidad = new javax.swing.JTextField();
         lblGenero = new javax.swing.JLabel();
-        txtGenero = new javax.swing.JTextField();
         lblEstadoCivil = new javax.swing.JLabel();
-        txtEstadoCivil = new javax.swing.JTextField();
         jCheckBox1 = new javax.swing.JCheckBox();
+        cmbEstatus = new javax.swing.JComboBox();
+        cmbGenero = new javax.swing.JComboBox();
+        cmbTipoDni = new javax.swing.JComboBox();
+        cmbEstadoCivil = new javax.swing.JComboBox();
 
         scrResultados.setName("scrResultados"); // NOI18N
 
@@ -121,7 +121,7 @@ public class VistaEdicionDependientes extends javax.swing.JPanel {
         jtbResultados.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         scrResultados.setViewportView(jtbResultados);
 
-        lblResultados.setText("Afiliados");
+        lblResultados.setText("Afiliado");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Resumen"));
 
@@ -140,15 +140,13 @@ public class VistaEdicionDependientes extends javax.swing.JPanel {
         lblIdDependiente.setForeground(new java.awt.Color(0, 102, 102));
         lblIdDependiente.setText("Id Dependiente");
 
-        txtIdDependiente.setEditable(false);
+        txtIdDependiente.setEnabled(false);
 
-        txtNombre.setEditable(false);
+        txtNombre.setEnabled(false);
 
-        txtDni.setEditable(false);
+        txtDni.setEnabled(false);
 
-        txtTipoDni.setEditable(false);
-
-        txtFechaIngreso.setEditable(false);
+        txtFechaIngreso.setEnabled(false);
 
         lblEmail.setForeground(new java.awt.Color(0, 102, 102));
         lblEmail.setText("Email");
@@ -159,38 +157,36 @@ public class VistaEdicionDependientes extends javax.swing.JPanel {
         lblNombre.setForeground(new java.awt.Color(0, 102, 102));
         lblNombre.setText("Nombre");
 
-        txtParentesco.setEditable(false);
+        txtParentesco.setEnabled(false);
 
-        txtTelefono.setEditable(false);
+        txtTelefono.setEnabled(false);
 
-        txtEmail.setEditable(false);
+        txtEmail.setEnabled(false);
 
         lblDireccion.setText("Direccion");
 
         lblCiudad.setText("Ciudad");
 
-        txtCiudad.setEditable(false);
+        txtCiudad.setEnabled(false);
 
         lblRegion.setText("Region");
 
-        txtRegion.setEditable(false);
+        txtRegion.setEnabled(false);
 
         lblPais.setText("Pais");
 
-        txtPais.setEditable(false);
+        txtPais.setEnabled(false);
 
         lblEstatus.setText("Etatus");
 
-        txtEstatus.setEditable(false);
-
         txaDireccion.setColumns(20);
-        txaDireccion.setEditable(false);
         txaDireccion.setRows(5);
+        txaDireccion.setEnabled(false);
         jScrollPane1.setViewportView(txaDireccion);
 
         lblApellido.setText("Apellido");
 
-        txtApellido.setEditable(false);
+        txtApellido.setEnabled(false);
         txtApellido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtApellidoActionPerformed(evt);
@@ -199,13 +195,13 @@ public class VistaEdicionDependientes extends javax.swing.JPanel {
 
         lblFechaIngreso.setText("Fecha Ingreso");
 
-        txtAfiliado.setEditable(false);
+        txtAfiliado.setEnabled(false);
 
         lblFechaNacimiento.setText("Fecha Nacimiento");
 
-        txtFechaNacimiento.setEditable(false);
+        txtFechaNacimiento.setEnabled(false);
 
-        txtLugarNacimiento.setEditable(false);
+        txtLugarNacimiento.setEnabled(false);
 
         lblLugarNacimiento.setText("Lugar de Nacimiento");
 
@@ -217,14 +213,25 @@ public class VistaEdicionDependientes extends javax.swing.JPanel {
         lblGenero.setForeground(new java.awt.Color(0, 102, 102));
         lblGenero.setText("Genero");
 
-        txtGenero.setEditable(false);
-
         lblEstadoCivil.setForeground(new java.awt.Color(0, 102, 102));
         lblEstadoCivil.setText("Estado Civil");
 
-        txtEstadoCivil.setEditable(false);
-
         jCheckBox1.setText("Extra");
+        jCheckBox1.setEnabled(false);
+
+        cmbEstatus.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "A", "I" }));
+        cmbEstatus.setEnabled(false);
+
+        cmbGenero.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "F", "M" }));
+        cmbGenero.setEnabled(false);
+
+        cmbTipoDni.setEditable(true);
+        cmbTipoDni.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Cedula", "Pasaporte", "Seguro Social" }));
+        cmbTipoDni.setEnabled(false);
+
+        cmbEstadoCivil.setEditable(true);
+        cmbEstadoCivil.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Casado(a)", "Soltero(a)", "Divorciado(a)", "Viudo(a)" }));
+        cmbEstadoCivil.setEnabled(false);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -243,15 +250,19 @@ public class VistaEdicionDependientes extends javax.swing.JPanel {
                     .addComponent(lblParentesco))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtParentesco, javax.swing.GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE)
-                    .addComponent(txtAfiliado, javax.swing.GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE)
-                    .addComponent(txtFechaIngreso, javax.swing.GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE)
-                    .addComponent(txtTipoDni, javax.swing.GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE)
-                    .addComponent(txtDni, javax.swing.GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE)
-                    .addComponent(txtApellido, javax.swing.GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE)
-                    .addComponent(txtNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE)
-                    .addComponent(txtIdDependiente, javax.swing.GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE))
-                .addGap(56, 56, 56)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtParentesco, javax.swing.GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE)
+                            .addComponent(txtAfiliado, javax.swing.GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE)
+                            .addComponent(txtFechaIngreso, javax.swing.GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE)
+                            .addComponent(txtDni, javax.swing.GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE)
+                            .addComponent(txtApellido, javax.swing.GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE)
+                            .addComponent(txtNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE)
+                            .addComponent(txtIdDependiente, javax.swing.GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE))
+                        .addGap(56, 56, 56))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(cmbTipoDni, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 167, Short.MAX_VALUE)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblFechaNacimiento)
                     .addComponent(lblLugarNacimiento)
@@ -262,14 +273,20 @@ public class VistaEdicionDependientes extends javax.swing.JPanel {
                     .addComponent(lblDireccion))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE)
-                    .addComponent(txtTelefono, javax.swing.GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE)
-                    .addComponent(txtEstadoCivil, javax.swing.GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE)
-                    .addComponent(txtNacionalidad, javax.swing.GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE)
-                    .addComponent(txtLugarNacimiento, javax.swing.GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE)
-                    .addComponent(txtFechaNacimiento, javax.swing.GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE)
-                    .addComponent(txtGenero, javax.swing.GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE))
-                .addGap(66, 66, 66)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(cmbEstadoCivil, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 203, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE)
+                            .addComponent(txtTelefono, javax.swing.GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE)
+                            .addComponent(txtNacionalidad, javax.swing.GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE)
+                            .addComponent(txtLugarNacimiento, javax.swing.GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE)
+                            .addComponent(txtFechaNacimiento, javax.swing.GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE))
+                        .addGap(66, 66, 66))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(cmbGenero, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 245, Short.MAX_VALUE)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblCiudad)
                     .addComponent(lblRegion)
@@ -279,16 +296,19 @@ public class VistaEdicionDependientes extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtRegion, javax.swing.GroupLayout.DEFAULT_SIZE, 302, Short.MAX_VALUE)
-                            .addComponent(txtEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 302, Short.MAX_VALUE)
-                            .addComponent(txtEstatus, javax.swing.GroupLayout.DEFAULT_SIZE, 302, Short.MAX_VALUE)
-                            .addComponent(txtPais, javax.swing.GroupLayout.DEFAULT_SIZE, 302, Short.MAX_VALUE)
-                            .addComponent(txtCiudad, javax.swing.GroupLayout.DEFAULT_SIZE, 302, Short.MAX_VALUE))
-                        .addGap(138, 138, 138))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jCheckBox1)
-                        .addContainerGap())))
+                        .addContainerGap())
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtRegion, javax.swing.GroupLayout.DEFAULT_SIZE, 302, Short.MAX_VALUE)
+                                .addComponent(txtEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 302, Short.MAX_VALUE)
+                                .addComponent(txtPais, javax.swing.GroupLayout.DEFAULT_SIZE, 302, Short.MAX_VALUE)
+                                .addComponent(txtCiudad, javax.swing.GroupLayout.DEFAULT_SIZE, 302, Short.MAX_VALUE))
+                            .addGap(138, 138, 138))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(cmbEstatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addContainerGap(408, Short.MAX_VALUE)))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -297,8 +317,8 @@ public class VistaEdicionDependientes extends javax.swing.JPanel {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(105, 105, 105)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtTipoDni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblTipoDni))
+                            .addComponent(lblTipoDni)
+                            .addComponent(cmbTipoDni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblFechaIngreso)
@@ -341,12 +361,12 @@ public class VistaEdicionDependientes extends javax.swing.JPanel {
                             .addComponent(lblNacionalidad))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtGenero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblGenero))
+                            .addComponent(lblGenero)
+                            .addComponent(cmbGenero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtEstadoCivil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblEstadoCivil))
+                            .addComponent(lblEstadoCivil)
+                            .addComponent(cmbEstadoCivil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -374,7 +394,7 @@ public class VistaEdicionDependientes extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblEstatus)
-                            .addComponent(txtEstatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(cmbEstatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jCheckBox1)))
                 .addContainerGap())
@@ -397,11 +417,11 @@ public class VistaEdicionDependientes extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(24, 24, 24)
                 .addComponent(lblResultados)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(scrResultados, javax.swing.GroupLayout.DEFAULT_SIZE, 611, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(scrResultados, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(547, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -411,6 +431,10 @@ public class VistaEdicionDependientes extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox cmbEstadoCivil;
+    private javax.swing.JComboBox cmbEstatus;
+    private javax.swing.JComboBox cmbGenero;
+    private javax.swing.JComboBox cmbTipoDni;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
@@ -443,11 +467,8 @@ public class VistaEdicionDependientes extends javax.swing.JPanel {
     private javax.swing.JTextField txtCiudad;
     private javax.swing.JTextField txtDni;
     private javax.swing.JTextField txtEmail;
-    private javax.swing.JTextField txtEstadoCivil;
-    private javax.swing.JTextField txtEstatus;
     private javax.swing.JTextField txtFechaIngreso;
     private javax.swing.JTextField txtFechaNacimiento;
-    private javax.swing.JTextField txtGenero;
     private javax.swing.JTextField txtIdDependiente;
     private javax.swing.JTextField txtLugarNacimiento;
     private javax.swing.JTextField txtNacionalidad;
@@ -456,7 +477,6 @@ public class VistaEdicionDependientes extends javax.swing.JPanel {
     private javax.swing.JTextField txtParentesco;
     private javax.swing.JTextField txtRegion;
     private javax.swing.JTextField txtTelefono;
-    private javax.swing.JTextField txtTipoDni;
     // End of variables declaration//GEN-END:variables
 
 }
