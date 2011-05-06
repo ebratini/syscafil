@@ -72,9 +72,9 @@ public class BaseConsulta extends javax.swing.JPanel {
         txtBusqueda = new javax.swing.JTextField();
         btnBuscar = new javax.swing.JButton();
         pnlBotonesEdicion = new javax.swing.JPanel();
+        btnDetalles = new javax.swing.JButton();
         btnEditar = new javax.swing.JButton();
         btnBorrar = new javax.swing.JButton();
-        btnVerDetalles = new javax.swing.JButton();
 
         lblResultados.setText("Resultados");
 
@@ -99,7 +99,7 @@ public class BaseConsulta extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jtbResultados.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jtbResultados.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         scrResultados.setViewportView(jtbResultados);
 
         pnlConsultaHeader.setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.white, java.awt.Color.lightGray));
@@ -176,7 +176,7 @@ public class BaseConsulta extends javax.swing.JPanel {
         pnlConsultaHeaderLayout.setVerticalGroup(
             pnlConsultaHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlConsultaHeaderLayout.createSequentialGroup()
-                .addContainerGap(62, Short.MAX_VALUE)
+                .addContainerGap(65, Short.MAX_VALUE)
                 .addGroup(pnlConsultaHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnBuscar))
@@ -193,34 +193,38 @@ public class BaseConsulta extends javax.swing.JPanel {
             }
         });
 
-        btnEditar.setText("E");
-        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+        btnDetalles.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/detalles.png"))); // NOI18N
+        btnDetalles.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditarActionPerformed(evt);
+                btnDetallesActionPerformed(evt);
             }
         });
 
-        btnBorrar.setText("B");
+        btnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/editar.png"))); // NOI18N
 
-        btnVerDetalles.setText("D");
+        btnBorrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/Borrar.png"))); // NOI18N
 
         javax.swing.GroupLayout pnlBotonesEdicionLayout = new javax.swing.GroupLayout(pnlBotonesEdicion);
         pnlBotonesEdicion.setLayout(pnlBotonesEdicionLayout);
         pnlBotonesEdicionLayout.setHorizontalGroup(
             pnlBotonesEdicionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlBotonesEdicionLayout.createSequentialGroup()
-                .addComponent(btnEditar)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlBotonesEdicionLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnDetalles, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnBorrar)
+                .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnVerDetalles))
+                .addComponent(btnBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         pnlBotonesEdicionLayout.setVerticalGroup(
             pnlBotonesEdicionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlBotonesEdicionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(btnEditar)
-                .addComponent(btnBorrar)
-                .addComponent(btnVerDetalles))
+            .addGroup(pnlBotonesEdicionLayout.createSequentialGroup()
+                .addGroup(pnlBotonesEdicionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnDetalles, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -234,7 +238,7 @@ public class BaseConsulta extends javax.swing.JPanel {
                     .addComponent(pnlConsultaHeader, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(lblResultados)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 704, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 745, Short.MAX_VALUE)
                         .addComponent(pnlBotonesEdicion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -243,12 +247,12 @@ public class BaseConsulta extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(pnlConsultaHeader, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(14, 14, 14)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(lblResultados)
-                    .addComponent(pnlBotonesEdicion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(pnlBotonesEdicion, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(scrResultados, javax.swing.GroupLayout.DEFAULT_SIZE, 349, Short.MAX_VALUE)
+                .addComponent(scrResultados, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -257,9 +261,9 @@ public class BaseConsulta extends javax.swing.JPanel {
         // TODO add your handling code here:
 }//GEN-LAST:event_chkFiltroActionPerformed
 
-    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+    private void btnDetallesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDetallesActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnEditarActionPerformed
+    }//GEN-LAST:event_btnDetallesActionPerformed
 
     private void pnlBotonesEdicionComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_pnlBotonesEdicionComponentShown
         // TODO add your handling code here:
@@ -315,15 +319,15 @@ public class BaseConsulta extends javax.swing.JPanel {
     }
 
     public JButton getBtnBorrar() {
-        return btnBorrar;
-    }
-
-    public JButton getBtnEditar() {
         return btnEditar;
     }
 
+    public JButton getBtnEditar() {
+        return btnDetalles;
+    }
+
     public JButton getBtnVerDetalles() {
-        return btnVerDetalles;
+        return btnBorrar;
     }
 
     public JPanel getPnlBotonesEdicion() {
@@ -333,8 +337,8 @@ public class BaseConsulta extends javax.swing.JPanel {
     private javax.swing.ButtonGroup bgrOpBusqueda;
     private javax.swing.JButton btnBorrar;
     private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnDetalles;
     private javax.swing.JButton btnEditar;
-    private javax.swing.JButton btnVerDetalles;
     private javax.swing.JCheckBox chkFiltro;
     private javax.swing.JTable jtbResultados;
     private javax.swing.JLabel lblResultados;

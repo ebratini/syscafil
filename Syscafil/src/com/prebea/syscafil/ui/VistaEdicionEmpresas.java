@@ -62,7 +62,6 @@ public class VistaEdicionEmpresas extends javax.swing.JPanel {
         txtIdEmpresa = new javax.swing.JTextField();
         txtRazonSocial = new javax.swing.JTextField();
         txtDni = new javax.swing.JTextField();
-        txtTipDni = new javax.swing.JTextField();
         txtContacto = new javax.swing.JTextField();
         lblWeb = new javax.swing.JLabel();
         lblEmail = new javax.swing.JLabel();
@@ -85,6 +84,7 @@ public class VistaEdicionEmpresas extends javax.swing.JPanel {
         txtEstatus = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         txaDireccion = new javax.swing.JTextArea();
+        cmbTipoDni = new javax.swing.JComboBox();
 
         scrResultados.setName("scrResultados"); // NOI18N
 
@@ -134,8 +134,6 @@ public class VistaEdicionEmpresas extends javax.swing.JPanel {
         txtRazonSocial.setEditable(false);
 
         txtDni.setEditable(false);
-
-        txtTipDni.setEditable(false);
 
         txtContacto.setEditable(false);
 
@@ -187,6 +185,8 @@ public class VistaEdicionEmpresas extends javax.swing.JPanel {
         txaDireccion.setRows(5);
         jScrollPane1.setViewportView(txaDireccion);
 
+        cmbTipoDni.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "RNC" }));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -206,13 +206,17 @@ public class VistaEdicionEmpresas extends javax.swing.JPanel {
                         .addComponent(lblPosContacto)
                         .addGap(18, 18, 18)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtPosContacto, javax.swing.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE)
-                    .addComponent(txtContacto, javax.swing.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE)
-                    .addComponent(txtRazonSocial, javax.swing.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE)
-                    .addComponent(txtDni, javax.swing.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE)
-                    .addComponent(txtTipDni, javax.swing.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE)
-                    .addComponent(txtIdEmpresa, javax.swing.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE))
-                .addGap(39, 39, 39)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtPosContacto, javax.swing.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE)
+                            .addComponent(txtContacto, javax.swing.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE)
+                            .addComponent(txtRazonSocial, javax.swing.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE)
+                            .addComponent(txtDni, javax.swing.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE)
+                            .addComponent(txtIdEmpresa, javax.swing.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE))
+                        .addGap(39, 39, 39))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(cmbTipoDni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -262,8 +266,8 @@ public class VistaEdicionEmpresas extends javax.swing.JPanel {
                             .addComponent(lblDni))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtTipDni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblTipoDni))
+                            .addComponent(lblTipoDni)
+                            .addComponent(cmbTipoDni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtContacto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -338,6 +342,7 @@ public class VistaEdicionEmpresas extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox cmbTipoDni;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jtbResultados;
@@ -371,7 +376,6 @@ public class VistaEdicionEmpresas extends javax.swing.JPanel {
     private javax.swing.JTextField txtRazonSocial;
     private javax.swing.JTextField txtRegion;
     private javax.swing.JTextField txtTelefono;
-    private javax.swing.JTextField txtTipDni;
     private javax.swing.JTextField txtWeb;
     // End of variables declaration//GEN-END:variables
 

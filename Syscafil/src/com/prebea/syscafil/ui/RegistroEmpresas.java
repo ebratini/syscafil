@@ -103,7 +103,7 @@ public class RegistroEmpresas extends javax.swing.JFrame {
             pnlNodeBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlNodeBarLayout.createSequentialGroup()
                 .addComponent(lblNodeMenu)
-                .addContainerGap(364, Short.MAX_VALUE))
+                .addContainerGap(368, Short.MAX_VALUE))
         );
         pnlNodeBarLayout.setVerticalGroup(
             pnlNodeBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -114,7 +114,7 @@ public class RegistroEmpresas extends javax.swing.JFrame {
 
         lblRazonSocial.setText("Razon Social");
 
-        cmbTipoDni.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccion", "Cedula", "Pasaporte", "Seguro Social" }));
+        cmbTipoDni.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccion", "RNC" }));
 
         lblTipoDni.setText("Tipo DNI");
 
@@ -181,11 +181,11 @@ public class RegistroEmpresas extends javax.swing.JFrame {
         statusPanel.setLayout(statusPanelLayout);
         statusPanelLayout.setHorizontalGroup(
             statusPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(statusPanelSeparator, javax.swing.GroupLayout.DEFAULT_SIZE, 414, Short.MAX_VALUE)
+            .addComponent(statusPanelSeparator, javax.swing.GroupLayout.DEFAULT_SIZE, 418, Short.MAX_VALUE)
             .addGroup(statusPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(statusMessageLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 394, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 398, Short.MAX_VALUE)
                 .addComponent(statusAnimationLabel)
                 .addContainerGap())
         );
@@ -328,10 +328,10 @@ public class RegistroEmpresas extends javax.swing.JFrame {
                         .addComponent(btnLimpiar)
                         .addGap(18, 18, 18)
                         .addComponent(lblMensajeInsercion, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                         .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(pnlEntidad, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pnlInfoContacto, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 394, Short.MAX_VALUE))
+                    .addComponent(pnlInfoContacto, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 398, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(

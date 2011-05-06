@@ -20,8 +20,10 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
                   <Component id="scrResultados" alignment="0" pref="1263" max="32767" attributes="1"/>
+                  <Component id="scrResultados1" alignment="0" pref="1263" max="32767" attributes="1"/>
                   <Component id="jPanel1" alignment="0" max="32767" attributes="2"/>
                   <Component id="lblResultados" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblResultados1" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -32,10 +34,14 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
               <Component id="lblResultados" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="scrResultados" pref="611" max="32767" attributes="0"/>
+              <Component id="scrResultados" min="-2" pref="241" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="lblResultados1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="scrResultados1" pref="308" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -68,7 +74,7 @@
     </Container>
     <Component class="javax.swing.JLabel" name="lblResultados">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Afiliados"/>
+        <Property name="text" type="java.lang.String" value="Dependientes"/>
       </Properties>
     </Component>
     <Container class="javax.swing.JPanel" name="jPanel1">
@@ -86,47 +92,66 @@
               <Group type="102" attributes="0">
                   <EmptySpace min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblFechaIngreso" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="lblTipoDni" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="lblDni" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="lblApellido" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="lblRazonSocial" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblNombre" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="lblIdAfiliado" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="lblContacto" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="lblPosContacto" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblPlan" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblEmpresa" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="txtPosContacto" pref="220" max="32767" attributes="2"/>
-                      <Component id="txtContacto1" alignment="0" pref="220" max="32767" attributes="2"/>
-                      <Component id="txtContacto" alignment="0" pref="220" max="32767" attributes="2"/>
-                      <Component id="txtTipDni" alignment="0" pref="220" max="32767" attributes="2"/>
-                      <Component id="txtDni" alignment="0" pref="220" max="32767" attributes="2"/>
-                      <Component id="txtApellido" alignment="0" pref="220" max="32767" attributes="2"/>
-                      <Component id="txtRazonSocial" alignment="0" pref="220" max="32767" attributes="2"/>
-                      <Component id="txtIdEmpresa" alignment="0" pref="220" max="32767" attributes="2"/>
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="txtEmpresa" pref="220" max="32767" attributes="2"/>
+                              <Component id="txtPlan" alignment="0" pref="220" max="32767" attributes="2"/>
+                              <Component id="txtFechaIngreso" alignment="0" pref="220" max="32767" attributes="2"/>
+                              <Component id="txtDni" alignment="0" pref="220" max="32767" attributes="2"/>
+                              <Component id="txtApellido" alignment="0" pref="220" max="32767" attributes="2"/>
+                              <Component id="txtNombre" alignment="0" pref="220" max="32767" attributes="2"/>
+                              <Component id="txtIdAfiliado" alignment="0" pref="220" max="32767" attributes="2"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" attributes="0">
+                          <Component id="cmbTipoDni" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                      </Group>
                   </Group>
-                  <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblFechaNacimiento" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="lblLugarNacimiento" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="lblTelefono1" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="lblTelefono2" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="lblTelefono3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblNacionalidad" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblGenero" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblEstadoCivil" min="-2" max="-2" attributes="0"/>
                       <Component id="lblTelefono" min="-2" max="-2" attributes="0"/>
                       <Component id="lblDireccion" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jScrollPane1" pref="227" max="32767" attributes="2"/>
-                      <Component id="txtTelefono" pref="227" max="32767" attributes="2"/>
-                      <Component id="txtTelefono3" pref="227" max="32767" attributes="2"/>
-                      <Component id="txtTelefono1" alignment="0" pref="227" max="32767" attributes="2"/>
-                      <Component id="txtLugarNacimiento" alignment="0" pref="227" max="32767" attributes="2"/>
-                      <Component id="txtContacto2" alignment="0" pref="227" max="32767" attributes="2"/>
-                      <Component id="txtTelefono2" alignment="0" pref="227" max="32767" attributes="2"/>
+                      <Group type="102" attributes="0">
+                          <Component id="cmbEstadoCivil" min="-2" pref="89" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="103" alignment="0" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="jScrollPane1" alignment="0" pref="227" max="32767" attributes="2"/>
+                                  <Component id="txtTelefono" alignment="0" pref="227" max="32767" attributes="2"/>
+                                  <Component id="txtNacionalidad" alignment="0" pref="227" max="32767" attributes="2"/>
+                                  <Component id="txtLugarNacimiento" alignment="0" pref="227" max="32767" attributes="2"/>
+                                  <Component id="txtFechaNacimiento" alignment="0" pref="227" max="32767" attributes="2"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Component id="cmbGenero" min="-2" pref="47" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
                   </Group>
-                  <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="lblCiudad" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="lblRegion" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -134,15 +159,22 @@
                       <Component id="lblEmail" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="lblEstatus" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="txtRegion" alignment="0" pref="305" max="32767" attributes="2"/>
-                      <Component id="txtEmail" alignment="0" pref="305" max="32767" attributes="2"/>
-                      <Component id="txtEstatus" alignment="0" pref="305" max="32767" attributes="2"/>
-                      <Component id="txtPais" alignment="0" pref="305" max="32767" attributes="2"/>
-                      <Component id="txtCiudad" alignment="0" pref="305" max="32767" attributes="2"/>
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="txtRegion" alignment="0" pref="305" max="32767" attributes="2"/>
+                              <Component id="txtEmail" alignment="0" pref="305" max="32767" attributes="2"/>
+                              <Component id="txtPais" alignment="0" pref="305" max="32767" attributes="2"/>
+                              <Component id="txtCiudad" alignment="0" pref="305" max="32767" attributes="2"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="138" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="cmbEstatus" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                      </Group>
                   </Group>
-                  <EmptySpace min="-2" pref="138" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -153,34 +185,34 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="105" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="txtTipDni" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="lblTipoDni" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="cmbTipoDni" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="txtContacto" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblFechaIngreso" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtFechaIngreso" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="txtContacto1" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblContacto" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtPlan" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblPlan" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="txtPosContacto" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblPosContacto" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtEmpresa" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblEmpresa" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="txtIdEmpresa" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtIdAfiliado" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="lblIdAfiliado" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="txtRazonSocial" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblRazonSocial" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtNombre" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblNombre" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
@@ -195,8 +227,8 @@
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="txtContacto2" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblFechaNacimiento" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtFechaNacimiento" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
@@ -205,18 +237,18 @@
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="txtTelefono1" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblTelefono1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtNacionalidad" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblNacionalidad" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="txtTelefono2" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblTelefono2" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblGenero" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="cmbGenero" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="txtTelefono3" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblTelefono3" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblEstadoCivil" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="cmbEstadoCivil" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
@@ -225,12 +257,12 @@
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jScrollPane1" pref="47" max="32767" attributes="1"/>
+                              <Component id="jScrollPane1" pref="65" max="32767" attributes="1"/>
                               <Component id="lblDireccion" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
               <Group type="102" alignment="0" attributes="0">
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -255,15 +287,15 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lblEstatus" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtEstatus" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="cmbEstatus" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="108" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="lblPosContacto">
+        <Component class="javax.swing.JLabel" name="lblEmpresa">
           <Properties>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="66" green="66" red="0" type="rgb"/>
@@ -271,7 +303,7 @@
             <Property name="text" type="java.lang.String" value="Empresa"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="lblContacto">
+        <Component class="javax.swing.JLabel" name="lblPlan">
           <Properties>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="66" green="66" red="0" type="rgb"/>
@@ -303,29 +335,28 @@
             <Property name="text" type="java.lang.String" value="Id Afiliado"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtIdEmpresa">
+        <Component class="javax.swing.JTextField" name="txtIdAfiliado">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtRazonSocial">
+        <Component class="javax.swing.JTextField" name="txtNombre">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtDni">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtTipDni">
+        <Component class="javax.swing.JTextField" name="txtFechaIngreso">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="txtContacto">
-          <Properties>
-            <Property name="editable" type="boolean" value="false"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblEmail">
@@ -344,7 +375,7 @@
             <Property name="text" type="java.lang.String" value="Telefono"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="lblRazonSocial">
+        <Component class="javax.swing.JLabel" name="lblNombre">
           <Properties>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="66" green="66" red="0" type="rgb"/>
@@ -352,19 +383,22 @@
             <Property name="text" type="java.lang.String" value="Nombre"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtPosContacto">
+        <Component class="javax.swing.JTextField" name="txtEmpresa">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtTelefono">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtEmail">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblDireccion">
@@ -380,6 +414,7 @@
         <Component class="javax.swing.JTextField" name="txtCiudad">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblRegion">
@@ -390,6 +425,7 @@
         <Component class="javax.swing.JTextField" name="txtRegion">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblPais">
@@ -400,16 +436,12 @@
         <Component class="javax.swing.JTextField" name="txtPais">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblEstatus">
           <Properties>
             <Property name="text" type="java.lang.String" value="Etatus"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="txtEstatus">
-          <Properties>
-            <Property name="editable" type="boolean" value="false"/>
           </Properties>
         </Component>
         <Container class="javax.swing.JScrollPane" name="jScrollPane1">
@@ -422,8 +454,8 @@
             <Component class="javax.swing.JTextArea" name="txaDireccion">
               <Properties>
                 <Property name="columns" type="int" value="20"/>
-                <Property name="editable" type="boolean" value="false"/>
                 <Property name="rows" type="int" value="5"/>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
             </Component>
           </SubComponents>
@@ -436,34 +468,38 @@
         <Component class="javax.swing.JTextField" name="txtApellido">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtApellidoActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel1">
+        <Component class="javax.swing.JLabel" name="lblFechaIngreso">
           <Properties>
             <Property name="text" type="java.lang.String" value="Fecha Ingreso"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtContacto1">
+        <Component class="javax.swing.JTextField" name="txtPlan">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel2">
+        <Component class="javax.swing.JLabel" name="lblFechaNacimiento">
           <Properties>
             <Property name="text" type="java.lang.String" value="Fecha Nacimiento"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtContacto2">
+        <Component class="javax.swing.JTextField" name="txtFechaNacimiento">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtLugarNacimiento">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblLugarNacimiento">
@@ -471,7 +507,7 @@
             <Property name="text" type="java.lang.String" value="Lugar de Nacimiento"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="lblTelefono1">
+        <Component class="javax.swing.JLabel" name="lblNacionalidad">
           <Properties>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="66" green="66" red="0" type="rgb"/>
@@ -479,12 +515,13 @@
             <Property name="text" type="java.lang.String" value="Nacionalidad"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtTelefono1">
+        <Component class="javax.swing.JTextField" name="txtNacionalidad">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="lblTelefono2">
+        <Component class="javax.swing.JLabel" name="lblGenero">
           <Properties>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="66" green="66" red="0" type="rgb"/>
@@ -492,12 +529,7 @@
             <Property name="text" type="java.lang.String" value="Genero"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtTelefono2">
-          <Properties>
-            <Property name="editable" type="boolean" value="false"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="lblTelefono3">
+        <Component class="javax.swing.JLabel" name="lblEstadoCivil">
           <Properties>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="66" green="66" red="0" type="rgb"/>
@@ -505,12 +537,85 @@
             <Property name="text" type="java.lang.String" value="Estado Civil"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtTelefono3">
+        <Component class="javax.swing.JComboBox" name="cmbTipoDni">
           <Properties>
-            <Property name="editable" type="boolean" value="false"/>
+            <Property name="editable" type="boolean" value="true"/>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="3">
+                <StringItem index="0" value="Cedula"/>
+                <StringItem index="1" value="Pasaporte"/>
+                <StringItem index="2" value="Seguro Social"/>
+              </StringArray>
+            </Property>
+            <Property name="enabled" type="boolean" value="false"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="cmbGenero">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="2">
+                <StringItem index="0" value="F"/>
+                <StringItem index="1" value="M"/>
+              </StringArray>
+            </Property>
+            <Property name="enabled" type="boolean" value="false"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="cmbEstadoCivil">
+          <Properties>
+            <Property name="editable" type="boolean" value="true"/>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="4">
+                <StringItem index="0" value="Casado(a)"/>
+                <StringItem index="1" value="Soltero(a)"/>
+                <StringItem index="2" value="Divorciado(a)"/>
+                <StringItem index="3" value="Viudo(a)"/>
+              </StringArray>
+            </Property>
+            <Property name="enabled" type="boolean" value="false"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="cmbEstatus">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="2">
+                <StringItem index="0" value="A"/>
+                <StringItem index="1" value="I"/>
+              </StringArray>
+            </Property>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
       </SubComponents>
     </Container>
+    <Container class="javax.swing.JScrollPane" name="scrResultados1">
+      <Properties>
+        <Property name="name" type="java.lang.String" value="scrResultados" noResource="true"/>
+      </Properties>
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+      <SubComponents>
+        <Component class="javax.swing.JTable" name="jtbResultados1">
+          <Properties>
+            <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+              <Table columnCount="4" rowCount="4">
+                <Column editable="false" title="Title 1" type="java.lang.Object"/>
+                <Column editable="false" title="Title 2" type="java.lang.Object"/>
+                <Column editable="false" title="Title 3" type="java.lang.Object"/>
+                <Column editable="false" title="Title 4" type="java.lang.Object"/>
+              </Table>
+            </Property>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Cursor predeterminado"/>
+            </Property>
+          </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
+    <Component class="javax.swing.JLabel" name="lblResultados1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Facturas"/>
+      </Properties>
+    </Component>
   </SubComponents>
 </Form>
