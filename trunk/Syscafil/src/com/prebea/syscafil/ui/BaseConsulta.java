@@ -99,7 +99,7 @@ public class BaseConsulta extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jtbResultados.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jtbResultados.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         scrResultados.setViewportView(jtbResultados);
 
         pnlConsultaHeader.setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.white, java.awt.Color.lightGray));
@@ -176,7 +176,7 @@ public class BaseConsulta extends javax.swing.JPanel {
         pnlConsultaHeaderLayout.setVerticalGroup(
             pnlConsultaHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlConsultaHeaderLayout.createSequentialGroup()
-                .addContainerGap(65, Short.MAX_VALUE)
+                .addContainerGap(62, Short.MAX_VALUE)
                 .addGroup(pnlConsultaHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnBuscar))
