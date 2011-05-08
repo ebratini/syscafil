@@ -66,7 +66,7 @@
               </Table>
             </Property>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-              <Color id="Cursor predeterminado"/>
+              <Color id="Default Cursor"/>
             </Property>
           </Properties>
         </Component>
@@ -105,13 +105,13 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="txtEmpresa" pref="220" max="32767" attributes="2"/>
-                              <Component id="txtPlan" alignment="0" pref="220" max="32767" attributes="2"/>
-                              <Component id="txtFechaIngreso" alignment="0" pref="220" max="32767" attributes="2"/>
-                              <Component id="txtDni" alignment="0" pref="220" max="32767" attributes="2"/>
-                              <Component id="txtApellido" alignment="0" pref="220" max="32767" attributes="2"/>
-                              <Component id="txtNombre" alignment="0" pref="220" max="32767" attributes="2"/>
-                              <Component id="txtIdAfiliado" alignment="0" pref="220" max="32767" attributes="2"/>
+                              <Component id="txtEmpresa" pref="222" max="32767" attributes="2"/>
+                              <Component id="txtPlan" alignment="0" pref="222" max="32767" attributes="2"/>
+                              <Component id="txtFechaIngreso" alignment="0" pref="222" max="32767" attributes="2"/>
+                              <Component id="txtDni" alignment="0" pref="222" max="32767" attributes="2"/>
+                              <Component id="txtApellido" alignment="0" pref="222" max="32767" attributes="2"/>
+                              <Component id="txtNombre" alignment="0" pref="222" max="32767" attributes="2"/>
+                              <Component id="txtIdAfiliado" alignment="0" pref="222" max="32767" attributes="2"/>
                           </Group>
                           <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
                       </Group>
@@ -138,11 +138,11 @@
                       <Group type="103" alignment="0" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="jScrollPane1" alignment="0" pref="227" max="32767" attributes="2"/>
-                                  <Component id="txtTelefono" alignment="0" pref="227" max="32767" attributes="2"/>
-                                  <Component id="txtNacionalidad" alignment="0" pref="227" max="32767" attributes="2"/>
-                                  <Component id="txtLugarNacimiento" alignment="0" pref="227" max="32767" attributes="2"/>
-                                  <Component id="txtFechaNacimiento" alignment="0" pref="227" max="32767" attributes="2"/>
+                                  <Component id="jScrollPane1" alignment="0" pref="228" max="32767" attributes="2"/>
+                                  <Component id="txtTelefono" alignment="0" pref="228" max="32767" attributes="2"/>
+                                  <Component id="txtNacionalidad" alignment="0" pref="228" max="32767" attributes="2"/>
+                                  <Component id="txtLugarNacimiento" alignment="0" pref="228" max="32767" attributes="2"/>
+                                  <Component id="txtFechaNacimiento" alignment="0" pref="228" max="32767" attributes="2"/>
                               </Group>
                               <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
                           </Group>
@@ -163,10 +163,10 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="txtRegion" alignment="0" pref="305" max="32767" attributes="2"/>
-                              <Component id="txtEmail" alignment="0" pref="305" max="32767" attributes="2"/>
-                              <Component id="txtPais" alignment="0" pref="305" max="32767" attributes="2"/>
-                              <Component id="txtCiudad" alignment="0" pref="305" max="32767" attributes="2"/>
+                              <Component id="txtRegion" alignment="0" pref="306" max="32767" attributes="2"/>
+                              <Component id="txtEmail" alignment="0" pref="306" max="32767" attributes="2"/>
+                              <Component id="txtPais" alignment="0" pref="306" max="32767" attributes="2"/>
+                              <Component id="txtCiudad" alignment="0" pref="306" max="32767" attributes="2"/>
                           </Group>
                           <EmptySpace min="-2" pref="138" max="-2" attributes="0"/>
                       </Group>
@@ -606,7 +606,7 @@
               </Table>
             </Property>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-              <Color id="Cursor predeterminado"/>
+              <Color id="Default Cursor"/>
             </Property>
           </Properties>
         </Component>

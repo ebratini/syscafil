@@ -156,6 +156,11 @@ public class BaseConsulta extends javax.swing.JPanel {
         );
 
         txtBusqueda.setName("txtBusqueda"); // NOI18N
+        txtBusqueda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtBusquedaActionPerformed(evt);
+            }
+        });
 
         btnBuscar.setText("Buscar");
         btnBuscar.setName("btnBuscar"); // NOI18N
@@ -184,7 +189,7 @@ public class BaseConsulta extends javax.swing.JPanel {
             .addGroup(pnlConsultaHeaderLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(pnlOpBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         pnlBotonesEdicion.addComponentListener(new java.awt.event.ComponentAdapter() {
@@ -269,6 +274,10 @@ public class BaseConsulta extends javax.swing.JPanel {
         // TODO add your handling code here:
         pnlBotonesEdicion.setVisible(false);
     }//GEN-LAST:event_pnlBotonesEdicionComponentShown
+
+    private void txtBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBusquedaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtBusquedaActionPerformed
 
     public ButtonGroup getBgrOpBusqueda() {
         return bgrOpBusqueda;

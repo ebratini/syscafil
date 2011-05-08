@@ -32,20 +32,16 @@
           <Component id="pnlNodeBar" alignment="0" max="32767" attributes="0"/>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jPanel1" alignment="0" min="-2" max="-2" attributes="1"/>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="btnAceptar" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="btnLimpiar" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="lblMensajeInsercion" min="-2" pref="496" max="-2" attributes="0"/>
-                      <EmptySpace pref="34" max="32767" attributes="0"/>
-                      <Component id="btnSalir" min="-2" pref="64" max="-2" attributes="0"/>
-                  </Group>
-              </Group>
+              <Component id="btnAceptar" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="btnLimpiar" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="lblMensajeInsercion" min="-2" pref="496" max="-2" attributes="0"/>
+              <EmptySpace pref="34" max="32767" attributes="0"/>
+              <Component id="btnSalir" min="-2" pref="64" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
+          <Component id="jPanel1" alignment="0" max="32767" attributes="1"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -148,15 +144,15 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="pnlInfoServicio" alignment="0" max="32767" attributes="1"/>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="pnlInfoPersonal" min="-2" max="-2" attributes="1"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="pnlInfoContacto" min="-2" max="-2" attributes="1"/>
+                          <Component id="pnlInfoContacto" max="32767" attributes="1"/>
                       </Group>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -164,9 +160,9 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="103" groupAlignment="1" attributes="0">
                       <Component id="pnlInfoPersonal" max="32767" attributes="1"/>
-                      <Component id="pnlInfoContacto" alignment="1" min="-2" max="-2" attributes="1"/>
+                      <Component id="pnlInfoContacto" min="-2" max="-2" attributes="1"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="pnlInfoServicio" min="-2" max="-2" attributes="0"/>
@@ -386,7 +382,7 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="lblTelefono" alignment="1" min="-2" max="-2" attributes="0"/>
                           <Component id="lblEmail" alignment="1" min="-2" max="-2" attributes="0"/>
@@ -517,29 +513,33 @@
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="ftfFechaIngreso" min="-2" pref="123" max="-2" attributes="1"/>
-                          <Component id="cmbPlan" min="-2" pref="149" max="-2" attributes="1"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
-                      <Component id="lblEmpresa" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="chkProvEmpresa" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
+                              <Component id="cmbPlan" min="-2" pref="149" max="-2" attributes="1"/>
+                              <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                              <Component id="lblEmpresa" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="txtEmpresa" min="-2" pref="243" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="btnBuscar" min="-2" pref="26" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="127" max="32767" attributes="0"/>
+                      <EmptySpace pref="151" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="btnBuscar" alignment="0" max="32767" attributes="1"/>
+                              <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                                  <Component id="txtEmpresa" alignment="3" max="32767" attributes="1"/>
+                                  <Component id="lblEmpresa" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="lblFechaIngreso" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="ftfFechaIngreso" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -548,17 +548,6 @@
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="cmbPlan" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="lblPlan" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <Component id="chkProvEmpresa" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="btnBuscar" alignment="0" max="32767" attributes="1"/>
-                                  <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                                      <Component id="txtEmpresa" alignment="3" max="32767" attributes="1"/>
-                                      <Component id="lblEmpresa" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  </Group>
                               </Group>
                           </Group>
                       </Group>
@@ -606,15 +595,6 @@
               <Properties>
                 <Property name="editable" type="boolean" value="false"/>
               </Properties>
-            </Component>
-            <Component class="javax.swing.JCheckBox" name="chkProvEmpresa">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Proviene de Empressa"/>
-              </Properties>
-              <Events>
-                <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="chkProvEmpresaStateChanged"/>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="chkProvEmpresaActionPerformed"/>
-              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnBuscar">
               <Properties>

@@ -100,7 +100,6 @@ public class RegistroAfiliados extends javax.swing.JFrame {
         cmbPlan = new javax.swing.JComboBox();
         lblEmpresa = new javax.swing.JLabel();
         txtEmpresa = new javax.swing.JTextField();
-        chkProvEmpresa = new javax.swing.JCheckBox();
         btnBuscar = new javax.swing.JButton();
         pnlNodeBar = new javax.swing.JPanel();
         lblNodeMenu = new javax.swing.JLabel();
@@ -274,7 +273,7 @@ public class RegistroAfiliados extends javax.swing.JFrame {
         pnlInfoContactoLayout.setHorizontalGroup(
             pnlInfoContactoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlInfoContactoLayout.createSequentialGroup()
-                .addGap(10, 10, 10)
+                .addGap(38, 38, 38)
                 .addGroup(pnlInfoContactoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblTelefono, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(lblEmail, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -337,18 +336,6 @@ public class RegistroAfiliados extends javax.swing.JFrame {
 
         txtEmpresa.setEditable(false);
 
-        chkProvEmpresa.setText("Proviene de Empressa");
-        chkProvEmpresa.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                chkProvEmpresaStateChanged(evt);
-            }
-        });
-        chkProvEmpresa.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                chkProvEmpresaActionPerformed(evt);
-            }
-        });
-
         btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/searchglass_vflip.gif"))); // NOI18N
         btnBuscar.setBorder(null);
         btnBuscar.setEnabled(false);
@@ -371,23 +358,26 @@ public class RegistroAfiliados extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(pnlInfoServicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(ftfFechaIngreso, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cmbPlan, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(35, 35, 35)
-                .addComponent(lblEmpresa)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(pnlInfoServicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(chkProvEmpresa)
                     .addGroup(pnlInfoServicioLayout.createSequentialGroup()
+                        .addComponent(cmbPlan, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(35, 35, 35)
+                        .addComponent(lblEmpresa)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(127, Short.MAX_VALUE))
+                .addContainerGap(151, Short.MAX_VALUE))
         );
         pnlInfoServicioLayout.setVerticalGroup(
             pnlInfoServicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlInfoServicioLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pnlInfoServicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(9, 9, 9)
+                .addGroup(pnlInfoServicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlInfoServicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(btnBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(pnlInfoServicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtEmpresa)
+                            .addComponent(lblEmpresa)))
                     .addGroup(pnlInfoServicioLayout.createSequentialGroup()
                         .addGroup(pnlInfoServicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblFechaIngreso)
@@ -395,15 +385,7 @@ public class RegistroAfiliados extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(pnlInfoServicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(cmbPlan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblPlan)))
-                    .addGroup(pnlInfoServicioLayout.createSequentialGroup()
-                        .addComponent(chkProvEmpresa)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(pnlInfoServicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(pnlInfoServicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(txtEmpresa)
-                                .addComponent(lblEmpresa)))))
+                            .addComponent(lblPlan))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -413,21 +395,21 @@ public class RegistroAfiliados extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(pnlInfoServicio, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pnlInfoServicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(pnlInfoPersonal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(pnlInfoContacto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(pnlInfoContacto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(pnlInfoPersonal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pnlInfoContacto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(pnlInfoContacto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(pnlInfoServicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -462,17 +444,15 @@ public class RegistroAfiliados extends javax.swing.JFrame {
             .addComponent(pnlNodeBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnAceptar)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnLimpiar)
-                        .addGap(18, 18, 18)
-                        .addComponent(lblMensajeInsercion, javax.swing.GroupLayout.PREFERRED_SIZE, 496, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
-                        .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addComponent(btnAceptar)
+                .addGap(18, 18, 18)
+                .addComponent(btnLimpiar)
+                .addGap(18, 18, 18)
+                .addComponent(lblMensajeInsercion, javax.swing.GroupLayout.PREFERRED_SIZE, 496, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -515,19 +495,6 @@ public class RegistroAfiliados extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_formWindowOpened
 
-    private void chkProvEmpresaStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_chkProvEmpresaStateChanged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_chkProvEmpresaStateChanged
-
-    private void chkProvEmpresaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkProvEmpresaActionPerformed
-        // TODO add your handling code here:
-        if (chkProvEmpresa.isSelected()) {
-            btnBuscar.setEnabled(true);
-        } else {
-            btnBuscar.setEnabled(false);
-        }
-    }//GEN-LAST:event_chkProvEmpresaActionPerformed
-
     /**
     * @param args the command line arguments
     */
@@ -544,7 +511,6 @@ public class RegistroAfiliados extends javax.swing.JFrame {
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnSalir;
-    private javax.swing.JCheckBox chkProvEmpresa;
     private javax.swing.JComboBox cmbEstadoCivil;
     private javax.swing.JComboBox cmbGenero;
     private javax.swing.JComboBox cmbPlan;

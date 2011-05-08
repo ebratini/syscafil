@@ -27,14 +27,20 @@
  *
  * Created on 05/04/2011, 04:55:05 PM
  */
-
 package com.prebea.syscafil.ui;
+
+import com.prebea.syscafil.business.UsuarioManager;
+import com.prebea.syscafil.model.entities.Usuario;
+import java.util.Arrays;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author Edwin Bratini
  */
 public class Login extends javax.swing.JDialog {
+
+    private Usuario usuario;
 
     /** Creates new form Login */
     public Login(java.awt.Frame parent, boolean modal) {
@@ -57,7 +63,7 @@ public class Login extends javax.swing.JDialog {
         psfContrasenia = new javax.swing.JPasswordField();
         btnOk = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        lblPrebeaLogo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Syscafil - Log In");
@@ -75,6 +81,11 @@ public class Login extends javax.swing.JDialog {
         lblContrasenia.setText("Contraseña");
 
         btnOk.setText("Ok");
+        btnOk.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOkActionPerformed(evt);
+            }
+        });
 
         btnCancelar.setText("Cancelar");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -83,7 +94,7 @@ public class Login extends javax.swing.JDialog {
             }
         });
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/prebea_logo.PNG"))); // NOI18N
+        lblPrebeaLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/imagenes/prebea_logo.PNG"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -91,7 +102,7 @@ public class Login extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addComponent(lblPrebeaLogo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblContrasenia)
@@ -101,9 +112,9 @@ public class Login extends javax.swing.JDialog {
                     .addComponent(psfContrasenia)
                     .addComponent(txtlNombreUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnOk, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnCancelar))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnOk, javax.swing.GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE)
+                    .addComponent(btnCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -111,7 +122,7 @@ public class Login extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel1)
+                    .addComponent(lblPrebeaLogo)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lbllNombreUsuario)
@@ -141,14 +152,25 @@ public class Login extends javax.swing.JDialog {
         this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
+    private void btnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOkActionPerformed
+        // TODO add your handling code here:
+        if (esUsuarioValido(txtlNombreUsuario.getText())) {
+            setUsuario(new UsuarioManager().getUsuarioByLogin(txtlNombreUsuario.getText()));
+        } else {
+            JOptionPane.showMessageDialog(this, "Usuario Invalido", "Validacion de Usuario", JOptionPane.ERROR_MESSAGE);
+        }
+}//GEN-LAST:event_btnOkActionPerformed
+
     /**
-    * @param args the command line arguments
-    */
+     * @param args the command line arguments
+     */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
+
             public void run() {
                 Login dialog = new Login(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+
                     public void windowClosing(java.awt.event.WindowEvent e) {
                         System.exit(0);
                     }
@@ -158,14 +180,51 @@ public class Login extends javax.swing.JDialog {
         });
     }
 
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    private void clearArray(char[] array) {
+        for (int i = 0; i < array.length; i++) {
+            array[i] = 0;
+        }
+    }
+
+    private boolean esUsuarioValido(String nombreUsuario) {
+        UsuarioManager um = new UsuarioManager();
+        Usuario user = um.getUsuarioByLogin(nombreUsuario);
+        boolean usuarioValido = false;
+
+        if (user != null) {
+            char[] usrPass = user.getUsrPassword().toCharArray();
+            char[] passToComp = psfContrasenia.getPassword();
+
+            if (Arrays.equals(usrPass, passToComp)) {
+                usuarioValido = true;
+                clearArray(usrPass);
+            } else {
+                usuarioValido = false;
+            }
+
+            clearArray(usrPass);
+            clearArray(passToComp);
+        } else {
+            usuarioValido = false;
+        }
+        um.close();
+        return usuarioValido;
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnOk;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblContrasenia;
+    private javax.swing.JLabel lblPrebeaLogo;
     private javax.swing.JLabel lbllNombreUsuario;
     private javax.swing.JPasswordField psfContrasenia;
     private javax.swing.JTextField txtlNombreUsuario;
     // End of variables declaration//GEN-END:variables
-
 }

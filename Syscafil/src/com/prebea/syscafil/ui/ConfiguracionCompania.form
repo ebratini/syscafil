@@ -26,26 +26,21 @@
           <Component id="statusPanel" alignment="0" max="32767" attributes="1"/>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                  <Group type="102" alignment="0" attributes="1">
-                      <Component id="btnAceptar" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
-                      <Component id="btnLimpiar" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
-                      <Component id="lblMensajeInsercion" min="-2" pref="121" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="btnSalir" min="-2" pref="64" max="-2" attributes="0"/>
-                  </Group>
-                  <Component id="jPanel1" alignment="0" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace pref="14" max="32767" attributes="0"/>
+              <Component id="btnAceptar" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+              <Component id="btnLimpiar" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
+              <Component id="lblMensajeInsercion" min="-2" pref="121" max="-2" attributes="0"/>
+              <EmptySpace pref="71" max="32767" attributes="0"/>
+              <Component id="btnSalir" min="-2" pref="64" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
+          <Component id="jPanel1" alignment="1" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -54,7 +49,7 @@
                   <Component id="lblMensajeInsercion" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnSalir" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace pref="17" max="32767" attributes="0"/>
               <Component id="statusPanel" min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -150,11 +145,11 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                      <Component id="pnlInfoFacturacion" alignment="0" max="32767" attributes="1"/>
-                      <Component id="pnlInfoCompania" alignment="0" max="32767" attributes="1"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="pnlInfoCompania" alignment="1" max="32767" attributes="1"/>
+                      <Component id="pnlInfoFacturacion" alignment="1" max="32767" attributes="1"/>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -165,7 +160,7 @@
                   <Component id="pnlInfoCompania" min="-2" pref="295" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="pnlInfoFacturacion" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="22" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -207,7 +202,7 @@
                                   <Component id="txtNombre" alignment="0" min="-2" pref="191" max="-2" attributes="0"/>
                                   <Component id="cmbTipoDni" alignment="0" min="-2" max="-2" attributes="1"/>
                                   <Component id="txtDni" alignment="0" min="-2" pref="145" max="-2" attributes="1"/>
-                                  <Component id="txtSlogan" alignment="0" pref="363" max="32767" attributes="0"/>
+                                  <Component id="txtSlogan" alignment="0" pref="321" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
@@ -223,10 +218,9 @@
                                   <Component id="txtWeb" alignment="0" max="32767" attributes="1"/>
                                   <Component id="txtEmail" alignment="0" pref="219" max="32767" attributes="1"/>
                               </Group>
-                              <EmptySpace pref="144" max="32767" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -390,7 +384,7 @@
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="txtDiasLmtesSaldar" min="-2" pref="40" max="-2" attributes="1"/>
-                      <EmptySpace pref="101" max="32767" attributes="0"/>
+                      <EmptySpace pref="125" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
