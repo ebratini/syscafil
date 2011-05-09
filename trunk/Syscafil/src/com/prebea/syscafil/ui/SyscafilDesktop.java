@@ -24,6 +24,8 @@
 package com.prebea.syscafil.ui;
 
 import com.prebea.syscafil.model.entities.Usuario;
+import java.awt.event.WindowEvent;
+import syscafil.Syscafil;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
@@ -35,6 +37,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EtchedBorder;
 import org.pushingpixels.flamingo.api.common.JCommandButton;
+import org.pushingpixels.flamingo.api.common.RichTooltip;
 import org.pushingpixels.flamingo.api.common.icon.ImageWrapperResizableIcon;
 import org.pushingpixels.flamingo.api.common.icon.ResizableIcon;
 import org.pushingpixels.flamingo.api.ribbon.JRibbon;
@@ -45,6 +48,7 @@ import org.pushingpixels.flamingo.api.ribbon.RibbonElementPriority;
 import org.pushingpixels.flamingo.api.ribbon.RibbonTask;
 import org.pushingpixels.flamingo.api.ribbon.resize.CoreRibbonResizePolicies;
 import org.pushingpixels.flamingo.api.ribbon.resize.IconRibbonBandResizePolicy;
+import org.pushingpixels.flamingo.api.ribbon.resize.RibbonBandResizePolicy;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 /**
@@ -55,28 +59,30 @@ public class SyscafilDesktop extends JRibbonFrame {
 
     // user logged
     private Usuario usuario;
-
+    // button action handler
+    private ButtonActionHandler buttonActHandler = new ButtonActionHandler();
     // body content
     private JPanel pnlBody;
-    
     // for the status bar
     private JPanel pnlStatusBar;
     private JLabel statusMessageLabel = new JLabel();
     private JLabel windowLabel = new JLabel();
 
     public SyscafilDesktop() {
-        initJRibbon();
-        //addGap(0, 10);
-        initBodyContent();
-        initStatusBar();
+        super("Syscafil");
+        addWindowListener(new ExitHandler() {
+
+            @Override
+            public void windowClosing(WindowEvent e) {
+                //super.windowClosing(e);
+                ((JCommandButton) getRibbon().getTask(0).getBand(0).getControlPanel().getComponent(1)).doActionClick();
+            }
+        });
+        initComponents();
     }
 
     public static void main(String[] args) {
         SyscafilDesktop sd = new SyscafilDesktop();
-        sd.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        sd.setPreferredSize(new Dimension(800, 400));
-        sd.setLocationByPlatform(true);
-        sd.pack();
         sd.setVisible(true);
     }
 
@@ -107,28 +113,47 @@ public class SyscafilDesktop extends JRibbonFrame {
         add(pnlStatusBar, BorderLayout.SOUTH);
     }
 
+    private JCommandButton createJCommandButton(String title, ResizableIcon icon, String name, RichTooltip rToolTip) {
+        return createJCommandButton(title, icon, name, rToolTip);
+    }
+
+    private JCommandButton createJCommandButton(String title, ResizableIcon icon, String name, RichTooltip rToolTip, ActionListener aListener) {
+        JCommandButton commandButton = new JCommandButton(title, icon);
+        commandButton.setName(name);
+        commandButton.setActionRichTooltip(rToolTip);
+        commandButton.addActionListener(aListener);
+        return commandButton;
+    }
+
+    private List<RibbonBandResizePolicy> getRibbonBandResizePolicy(JRibbonBand jRibbonBand) {
+        return (List) Arrays.asList(
+               //new CoreRibbonResizePolicies.None(jrbAfiliadosBand.getControlPanel()),
+                new CoreRibbonResizePolicies.Mirror(jRibbonBand.getControlPanel()),
+                new CoreRibbonResizePolicies.High2Mid(jRibbonBand.getControlPanel()),
+                new CoreRibbonResizePolicies.Mid2Low(jRibbonBand.getControlPanel())
+                //new CoreRibbonResizePolicies.High2Low(jrbAfiliadosBand.getControlPanel()),
+                /*new IconRibbonBandResizePolicy(jrbAfiliadosBand.getControlPanel())*/);
+    }
+
     private RibbonTask getHomeTask() {
         // on home task
         // creando los botones
-        ButtonActionHandler buttonActionHandler = new ButtonActionHandler();
-        JCommandButton jcbLogin = new JCommandButton("Log In", getResizableIconFromResource("/resources/imagenes/login.png"));
-        jcbLogin.setName("jcbLogin");
-        jcbLogin.addActionListener(buttonActionHandler);
 
-        JCommandButton jcbLogout = new JCommandButton("Log Out", getResizableIconFromResource("/resources/imagenes/login.png"));
-        jcbLogout.setName("jcbLogout");
-        jcbLogout.addActionListener(buttonActionHandler);
+        JCommandButton jcbLogInOut, jcbSalir;
+        jcbLogInOut = createJCommandButton("Log In", getResizableIconFromResource("/resources/imagenes/login.png"), "jcbLogIn",
+                new RichTooltip("Login/Logout", "Click aqui para abrir/cerrar sesion de usuario"), buttonActHandler);
+
+        jcbSalir = createJCommandButton("Salir", getResizableIconFromResource("/resources/imagenes/application-exit.png"), "jcbSalir",
+                new RichTooltip("Salir", "Click aqui para salir de la aplicacion"), buttonActHandler);
 
         // creando la banda "Acceso"
         JRibbonBand jrbAccesoBand = new JRibbonBand("Acceso", getResizableIconFromResource("/resources/imagenes/login.png"));
-        jrbAccesoBand.addCommandButton(jcbLogin, RibbonElementPriority.TOP);
-        jrbAccesoBand.addCommandButton(jcbLogout, RibbonElementPriority.TOP);
+        jrbAccesoBand.addCommandButton(jcbLogInOut, RibbonElementPriority.TOP);
+        jrbAccesoBand.addCommandButton(jcbSalir, RibbonElementPriority.TOP);
 
         jrbAccesoBand.setResizePolicies((List) Arrays.asList(
-                /*new CoreRibbonResizePolicies.None(jrbAccesoBand.getControlPanel()),*/
                 new CoreRibbonResizePolicies.Mirror(jrbAccesoBand.getControlPanel()),
                 new CoreRibbonResizePolicies.Mid2Low(jrbAccesoBand.getControlPanel()),
-                /*new CoreRibbonResizePolicies.High2Low(jrbAccesoBand.getControlPanel()),*/
                 new IconRibbonBandResizePolicy(jrbAccesoBand.getControlPanel())));
 
         RibbonTask rtHomeTask = new RibbonTask("Home", jrbAccesoBand);
@@ -137,10 +162,118 @@ public class SyscafilDesktop extends JRibbonFrame {
     }
 
     private RibbonTask getMantenimientoTask() {
-        throw new NotImplementedException();
+        // on Empresas band
+
+        JCommandButton jcbVerEmpresas, jcbCrearEmpresa, jcbEditarEmpresa, jcbEliminarEmpresa;
+
+        jcbVerEmpresas = createJCommandButton("Ver", getResizableIconFromResource("/resources/imagenes/empresas4.png"),
+                "jcbVerEmpresas", new RichTooltip("Ver", "Click aqui para ver las empresas"), buttonActHandler);
+
+        jcbCrearEmpresa = createJCommandButton("Nuevo", getResizableIconFromResource("/resources/imagenes/add2.png"),
+                "jcbCrearEmpresa", new RichTooltip("Nuevo", "Click aqui para crear empresa"), buttonActHandler);
+
+        jcbEditarEmpresa = createJCommandButton("Editar", getResizableIconFromResource("/resources/imagenes/editar3.png"),
+                "jcbEditarEmpreasa", new RichTooltip("Editar", "Click aqui para editar empresa"), buttonActHandler);
+
+        jcbEliminarEmpresa = createJCommandButton("Eliminar", getResizableIconFromResource("/resources/imagenes/delete.png"),
+                "jcbEliminarEmpresa", new RichTooltip("Eliminar", "Click aqui para eliminar empresa"), buttonActHandler);
+
+        JRibbonBand jrbEmpresasBand = new JRibbonBand("Empresas", getResizableIconFromResource("/resources/imagenes/empresas4.png"));
+        jrbEmpresasBand.addCommandButton(jcbVerEmpresas, RibbonElementPriority.TOP);
+        jrbEmpresasBand.addCommandButton(jcbCrearEmpresa, RibbonElementPriority.MEDIUM);
+        jrbEmpresasBand.addCommandButton(jcbEditarEmpresa, RibbonElementPriority.MEDIUM);
+        jrbEmpresasBand.addCommandButton(jcbEliminarEmpresa, RibbonElementPriority.MEDIUM);
+
+        jrbEmpresasBand.setResizePolicies(getRibbonBandResizePolicy(jrbEmpresasBand));
+        
+        // on afiliados band
+
+        JCommandButton jcbVerAfiliados, jcbCrearAfiliado, jcbEditarAfiliado, jcbEliminarAfiliado;
+
+        jcbVerAfiliados = createJCommandButton("Ver", getResizableIconFromResource("/resources/imagenes/afiliados.png"),
+                "jcbVerAfiliados", new RichTooltip("Ver", "Click aqui para ver los afiliados"), buttonActHandler);
+
+        jcbCrearAfiliado = createJCommandButton("Nuevo", getResizableIconFromResource("/resources/imagenes/add2.png"),
+                "jcbCrearAfiliado", new RichTooltip("Nuevo", "Click aqui para crear afiliado"), buttonActHandler);
+
+        jcbEditarAfiliado = createJCommandButton("Editar", getResizableIconFromResource("/resources/imagenes/editar3.png"),
+                "jcbEditarAfiliado", new RichTooltip("Editar", "Click aqui para editar afiliado"), buttonActHandler);
+
+        jcbEliminarAfiliado = createJCommandButton("Eliminar", getResizableIconFromResource("/resources/imagenes/delete.png"),
+                "jcbEliminarAfiliado", new RichTooltip("Eliminar", "Click aqui para eliminar afiliado"), buttonActHandler);
+
+        // creando la banda
+        JRibbonBand jrbAfiliadosBand = new JRibbonBand("Afiliados", getResizableIconFromResource("/resources/imagenes/afiliados.png"));
+        jrbAfiliadosBand.addCommandButton(jcbVerAfiliados, RibbonElementPriority.TOP);
+        jrbAfiliadosBand.addCommandButton(jcbCrearAfiliado, RibbonElementPriority.MEDIUM);
+        jrbAfiliadosBand.addCommandButton(jcbEditarAfiliado, RibbonElementPriority.MEDIUM);
+        jrbAfiliadosBand.addCommandButton(jcbEliminarAfiliado, RibbonElementPriority.MEDIUM);
+
+        jrbAfiliadosBand.setResizePolicies(getRibbonBandResizePolicy(jrbAfiliadosBand));
+
+        // on afiliados band
+
+        JCommandButton jcbVerDependientes, jcbCrearDependiente, jcbEditarDependiente, jcbEliminarDependiente;
+
+        jcbVerDependientes = createJCommandButton("Ver", getResizableIconFromResource("/resources/imagenes/dependientes2.png"),
+                "jcbVerDependientes", new RichTooltip("Ver", "Click aqui para ver los dependientes"), buttonActHandler);
+
+        jcbCrearDependiente = createJCommandButton("Nuevo", getResizableIconFromResource("/resources/imagenes/add2.png"),
+                "jcbCrearDependiente", new RichTooltip("Nuevo", "Click aqui para crear dependiente"), buttonActHandler);
+
+        jcbEditarDependiente = createJCommandButton("Editar", getResizableIconFromResource("/resources/imagenes/editar3.png"),
+                "jcbEditarDependiente", new RichTooltip("Editar", "Click aqui para editar dependiente"), buttonActHandler);
+
+        jcbEliminarDependiente = createJCommandButton("Eliminar", getResizableIconFromResource("/resources/imagenes/delete.png"),
+                "jcbEliminarDependiente", new RichTooltip("Eliminar", "Click aqui para eliminar dependiente"), buttonActHandler);
+
+        // creando la banda
+        JRibbonBand jrbDependientesBand = new JRibbonBand("Dependientes", getResizableIconFromResource("/resources/imagenes/dependientes2.png"));
+        jrbDependientesBand.addCommandButton(jcbVerDependientes, RibbonElementPriority.TOP);
+        jrbDependientesBand.addCommandButton(jcbCrearDependiente, RibbonElementPriority.MEDIUM);
+        jrbDependientesBand.addCommandButton(jcbEditarDependiente, RibbonElementPriority.MEDIUM);
+        jrbDependientesBand.addCommandButton(jcbEliminarDependiente, RibbonElementPriority.MEDIUM);
+
+        jrbDependientesBand.setResizePolicies(getRibbonBandResizePolicy(jrbDependientesBand));
+
+
+        // on afiliados band
+
+        JCommandButton jcbVerPlanes, jcbCrearPlan, jcbEditarPlan, jcbEliminarPlan;
+
+        jcbVerPlanes = createJCommandButton("Ver", getResizableIconFromResource("/resources/imagenes/paloma3.png"),
+                "jcbVerPlanes", new RichTooltip("Ver", "Click aqui para ver los planes"), buttonActHandler);
+
+        jcbCrearPlan = createJCommandButton("Nuevo", getResizableIconFromResource("/resources/imagenes/add2.png"),
+                "jcbCrearPlan", new RichTooltip("Nuevo", "Click aqui para crear plan"), buttonActHandler);
+
+        jcbEditarPlan = createJCommandButton("Editar", getResizableIconFromResource("/resources/imagenes/editar3.png"),
+                "jcbEditarPlan", new RichTooltip("Editar", "Click aqui para editar plan"), buttonActHandler);
+
+        jcbEliminarPlan = createJCommandButton("Eliminar", getResizableIconFromResource("/resources/imagenes/delete.png"),
+                "jcbEliminarPlan", new RichTooltip("Eliminar", "Click aqui para eliminar plan"), buttonActHandler);
+
+        // creando la banda
+        JRibbonBand jrbPlanesBand = new JRibbonBand("Planes", getResizableIconFromResource("/resources/imagenes/plan.png"));
+        jrbPlanesBand.addCommandButton(jcbVerPlanes, RibbonElementPriority.TOP);
+        jrbPlanesBand.addCommandButton(jcbCrearPlan, RibbonElementPriority.MEDIUM);
+        jrbPlanesBand.addCommandButton(jcbEditarPlan, RibbonElementPriority.MEDIUM);
+        jrbPlanesBand.addCommandButton(jcbEliminarPlan, RibbonElementPriority.MEDIUM);
+
+        jrbPlanesBand.setResizePolicies(getRibbonBandResizePolicy(jrbPlanesBand));
+
+        // creando el la task
+        RibbonTask rtMantenimientoTask = new RibbonTask("Mantenimiento", jrbEmpresasBand, jrbAfiliadosBand,
+                jrbDependientesBand, jrbPlanesBand);
+
+        return rtMantenimientoTask;
     }
 
     private RibbonTask getConsultasTask() {
+        throw new NotImplementedException();
+    }
+
+    private RibbonTask getReportesTask() {
         throw new NotImplementedException();
     }
 
@@ -161,7 +294,50 @@ public class SyscafilDesktop extends JRibbonFrame {
         RibbonApplicationMenu ram = new RibbonApplicationMenu();
         JRibbon jr = getRibbon();
         jr.addTask(getHomeTask());
+        jr.addTask(getMantenimientoTask());
         jr.setApplicationMenu(ram);
+    }
+
+    private void initComponents() {
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setApplicationIcon(getResizableIconFromResource("/resources/imagenes/prebea_logo.PNG"));
+        setPreferredSize(new Dimension(800, 400));
+        setLocationByPlatform(true);
+        initJRibbon();
+        //addGap(0, 10);
+        initBodyContent();
+        initStatusBar();
+        pack();
+    }
+
+    private void doLogin(JCommandButton logInOutButton) {
+        Login login = new Login(SyscafilDesktop.this, true);
+        login.setLocationRelativeTo(SyscafilDesktop.this);
+        login.setVisible(true);
+        usuario = login.getUsuario();
+        if (usuario != null) {
+            statusMessageLabel.setText(String.format("Usuario: %s ", usuario.getUsrLogin()));
+            logInOutButton.setName("jcbLogOut");
+            logInOutButton.setIcon(getResizableIconFromResource("/resources/imagenes/th_logout.png"));
+            logInOutButton.setText("Log Out");
+        }
+    }
+
+    private void doLogout(JCommandButton logInOutButton) {
+        usuario = null;
+        statusMessageLabel.setText("");
+        logInOutButton.setName("jcbLogIn");
+        logInOutButton.setIcon(getResizableIconFromResource("/resources/imagenes/login.png"));
+        logInOutButton.setText("Log In");
+        // TODO: flush log to db and may be close the managers
+        //Syscafil.sl.flushToDataBase();
+    }
+
+    private void doExit(JCommandButton logInOutButton) {
+        if (usuario != null) {
+            doLogout(logInOutButton);
+        }
+        System.exit(0);
     }
 
     private class ButtonActionHandler implements ActionListener {
@@ -169,14 +345,13 @@ public class SyscafilDesktop extends JRibbonFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
             JCommandButton buttonClicked = ((JCommandButton) e.getSource());
-            if (buttonClicked.getName().equalsIgnoreCase("jcbLogin")) {
-                Login login = new Login(SyscafilDesktop.this, true);
-                login.setLocationRelativeTo(SyscafilDesktop.this);
-                login.setVisible(true);
-            } else if (buttonClicked.getName().equalsIgnoreCase("jcbLogout")) {
-                System.out.println("Logout Button Clicked");
-                usuario = null;
-                // flush log to db and may be close the managers
+            String buttonName = buttonClicked.getName();
+            if (buttonName.equalsIgnoreCase("jcbLogIn")) {
+                doLogin(buttonClicked);
+            } else if (buttonName.equalsIgnoreCase("jcbLogOut")) {
+                doLogout(buttonClicked);
+            } else if (buttonName.equalsIgnoreCase("jcbSalir")) {
+                doExit(buttonClicked);
             }
         }
     }

@@ -12,6 +12,7 @@ import com.prebea.syscafil.model.entities.Usuario;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import javax.persistence.NoResultException;
 
 /**
  *
@@ -49,7 +50,14 @@ public class UsuarioManager {
     }
 
     public Usuario getUsuarioByLogin(String login) {
-        return ud.findByLogin(login);
+        Usuario usuario = null;
+        try {
+            usuario = ud.findByLogin(login);
+        } catch (NoResultException nre) {
+            System.out.println("No Result Exception");
+        }
+
+        return usuario;
     }
 
     public List<String> getPrivilegios(Usuario usuario) {

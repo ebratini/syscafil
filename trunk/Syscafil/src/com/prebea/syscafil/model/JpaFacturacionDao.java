@@ -16,10 +16,11 @@ import javax.persistence.Query;
 public class JpaFacturacionDao extends JpaDao implements FacturacionDao {
 
     public JpaFacturacionDao() {
+        super(Facturacion.class);
     }
 
     public JpaFacturacionDao(Map props) {
-        super(props);
+        super(Facturacion.class, props);
     }
 
     @Override

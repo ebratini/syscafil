@@ -18,9 +18,9 @@ public class JpaSyscafil extends JpaDao {
     public JpaSyscafil() {
     }
 
-    public JpaSyscafil(Map props) {
+    /*public JpaSyscafil(Map props) {
         super(props);
-    }
+    }*/
 
     public <T> T executeQuery(String query, HashMap<String, String> params) {
         Query q = entityManager.createQuery(query);

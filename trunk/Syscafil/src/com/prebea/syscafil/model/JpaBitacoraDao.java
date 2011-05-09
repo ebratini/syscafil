@@ -4,6 +4,7 @@
  */
 package com.prebea.syscafil.model;
 
+import com.prebea.syscafil.model.entities.Bitacora;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -16,10 +17,11 @@ import javax.persistence.Query;
 public class JpaBitacoraDao extends JpaDao implements BitacoraDao {
 
     public JpaBitacoraDao() {
+        super(Bitacora.class);
     }
 
     public JpaBitacoraDao(Map props) {
-        super(props);
+        super(Bitacora.class, props);
     }
 
     @Override

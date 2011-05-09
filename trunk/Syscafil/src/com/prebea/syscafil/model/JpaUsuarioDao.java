@@ -15,10 +15,11 @@ import javax.persistence.Query;
 public class JpaUsuarioDao extends JpaDao implements UsuarioDao {
 
     public JpaUsuarioDao() {
+        super(Usuario.class);
     }
 
     public JpaUsuarioDao(Map props) {
-        super(props);
+        super(Usuario.class, props);
     }
 
     @Override
