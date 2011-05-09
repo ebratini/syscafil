@@ -9,6 +9,7 @@ import com.prebea.syscafil.model.JpaEmpresaDao;
 import com.prebea.syscafil.model.entities.Empresa;
 import java.util.List;
 import java.util.Map;
+import javax.persistence.NoResultException;
 
 /**
  *
@@ -42,15 +43,36 @@ public class EmpresaManager {
     }
 
     public Empresa getEmpresaById(Integer id) {
-        return ed.findById(id);
+       Empresa empresa = null;
+
+        try {
+            empresa = ed.findById(id);
+        } catch (NoResultException nre) {
+            System.out.println("No Result Exception");
+        }
+        return empresa;
     }
 
     public Empresa getEmpresaByDNI(String dni) {
-        return ed.findEmpresaByDNI(dni);
+        Empresa empresa = null;
+
+        try {
+            empresa = ed.findEmpresaByDNI(dni);
+        } catch (NoResultException nre) {
+            System.out.println("No Result Exception");
+        }
+        return empresa;
     }
 
     public List<Empresa> getEmpresaByRazonSocial(String razonSocial) {
-        return ed.findEmpresaByRazonSocial(razonSocial);
+        List<Empresa> empresas = null;
+
+        try {
+            empresas = ed.findEmpresaByRazonSocial(razonSocial);
+        } catch (NoResultException nre) {
+            System.out.println("No Result Exception");
+        }
+        return empresas;
     }
 
     public void close() {

@@ -38,6 +38,7 @@ public abstract class JpaDao implements Dao{
         this.entityClass = entityClass;
     }
 
+    @Override
     public <Serializable> void persist(Serializable entity) {
         EntityTransaction et = entityManager.getTransaction();
         et.begin();
@@ -45,11 +46,13 @@ public abstract class JpaDao implements Dao{
         et.commit();
     }
     
+    @Override
     public List retrieve(){
         Query q = entityManager.createQuery(String.format("SELECT e FROM %s e", entityClass.getSimpleName()));
         return q.getResultList();
     }
 
+    @Override
     public <Serializable> Serializable update(Serializable entity) {
         Serializable updated = null;
         EntityTransaction et = entityManager.getTransaction();
@@ -59,6 +62,7 @@ public abstract class JpaDao implements Dao{
         return updated;
     }
 
+    @Override
     public <Serializable> void remove(Serializable entity) {
         EntityTransaction et = entityManager.getTransaction();
         et.begin();
@@ -66,6 +70,7 @@ public abstract class JpaDao implements Dao{
         et.commit();
     }
 
+    @Override
     public <Serializable, Object> Serializable findById(Object id) {
         return (Serializable) entityManager.find(entityClass, id);
     }
