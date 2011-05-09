@@ -1,6 +1,25 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ *  The MIT License
+ * 
+ *  Copyright 2011 Edwin Bratini.
+ * 
+ *  Permission is hereby granted, free of charge, to any person obtaining a copy
+ *  of this software and associated documentation files (the "Software"), to deal
+ *  in the Software without restriction, including without limitation the rights
+ *  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ *  copies of the Software, and to permit persons to whom the Software is
+ *  furnished to do so, subject to the following conditions:
+ * 
+ *  The above copyright notice and this permission notice shall be included in
+ *  all copies or substantial portions of the Software.
+ * 
+ *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ *  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ *  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ *  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ *  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ *  THE SOFTWARE.
  */
 
 package com.prebea.syscafil.model.entities;
@@ -10,6 +29,8 @@ import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -31,6 +52,7 @@ import javax.persistence.UniqueConstraint;
     @NamedQuery(name = "Empresa.findByEmpDni", query = "SELECT e FROM Empresa e WHERE e.empDni = :empDni"),
     @NamedQuery(name = "Empresa.findByEmpTipoDni", query = "SELECT e FROM Empresa e WHERE e.empTipoDni = :empTipoDni"),
     @NamedQuery(name = "Empresa.findByEmpContacto", query = "SELECT e FROM Empresa e WHERE e.empContacto = :empContacto"),
+    @NamedQuery(name = "Empresa.findByEmpPosicionContacto", query = "SELECT e FROM Empresa e WHERE e.empPosicionContacto = :empPosicionContacto"),
     @NamedQuery(name = "Empresa.findByEmpTelefono", query = "SELECT e FROM Empresa e WHERE e.empTelefono = :empTelefono"),
     @NamedQuery(name = "Empresa.findByEmpFax", query = "SELECT e FROM Empresa e WHERE e.empFax = :empFax"),
     @NamedQuery(name = "Empresa.findByEmpDireccion", query = "SELECT e FROM Empresa e WHERE e.empDireccion = :empDireccion"),
@@ -43,6 +65,7 @@ import javax.persistence.UniqueConstraint;
 public class Empresa implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "emp_id", nullable = false)
     private Integer empId;
@@ -50,7 +73,7 @@ public class Empresa implements Serializable {
     @Column(name = "emp_razon_social", nullable = false, length = 40)
     private String empRazonSocial;
     @Basic(optional = false)
-    @Column(name = "emp_dni", nullable = false, length = 10)
+    @Column(name = "emp_dni", nullable = false, length = 20)
     private String empDni;
     @Basic(optional = false)
     @Column(name = "emp_tipo_dni", nullable = false, length = 20)
@@ -59,12 +82,15 @@ public class Empresa implements Serializable {
     @Column(name = "emp_contacto", nullable = false, length = 40)
     private String empContacto;
     @Basic(optional = false)
-    @Column(name = "emp_telefono", nullable = false, length = 10)
+    @Column(name = "emp_posicion_contacto", nullable = false, length = 40)
+    private String empPosicionContacto;
+    @Basic(optional = false)
+    @Column(name = "emp_telefono", nullable = false, length = 20)
     private String empTelefono;
-    @Column(name = "emp_fax", length = 10)
+    @Column(name = "emp_fax", length = 20)
     private String empFax;
     @Basic(optional = false)
-    @Column(name = "emp_direccion", nullable = false, length = 40)
+    @Column(name = "emp_direccion", nullable = false, length = 80)
     private String empDireccion;
     @Basic(optional = false)
     @Column(name = "emp_ciudad", nullable = false, length = 40)
@@ -75,9 +101,9 @@ public class Empresa implements Serializable {
     @Basic(optional = false)
     @Column(name = "emp_pais", nullable = false, length = 40)
     private String empPais;
-    @Column(name = "emp_email", length = 20)
+    @Column(name = "emp_email", length = 40)
     private String empEmail;
-    @Column(name = "emp_web", length = 20)
+    @Column(name = "emp_web", length = 40)
     private String empWeb;
     @Basic(optional = false)
     @Column(name = "emp_status", nullable = false)
@@ -92,12 +118,27 @@ public class Empresa implements Serializable {
         this.empId = empId;
     }
 
-    public Empresa(Integer empId, String empRazonSocial, String empDni, String empTipoDni, String empContacto, String empTelefono, String empDireccion, String empCiudad, String empRegion, String empPais, char empStatus) {
+    public Empresa(Integer empId, String empRazonSocial, String empDni, String empTipoDni, String empContacto, String empPosicionContacto, String empTelefono, String empDireccion, String empCiudad, String empRegion, String empPais, char empStatus) {
         this.empId = empId;
         this.empRazonSocial = empRazonSocial;
         this.empDni = empDni;
         this.empTipoDni = empTipoDni;
         this.empContacto = empContacto;
+        this.empPosicionContacto = empPosicionContacto;
+        this.empTelefono = empTelefono;
+        this.empDireccion = empDireccion;
+        this.empCiudad = empCiudad;
+        this.empRegion = empRegion;
+        this.empPais = empPais;
+        this.empStatus = empStatus;
+    }
+
+    public Empresa(String empRazonSocial, String empDni, String empTipoDni, String empContacto, String empPosicionContacto, String empTelefono, String empDireccion, String empCiudad, String empRegion, String empPais, char empStatus) {
+        this.empRazonSocial = empRazonSocial;
+        this.empDni = empDni;
+        this.empTipoDni = empTipoDni;
+        this.empContacto = empContacto;
+        this.empPosicionContacto = empPosicionContacto;
         this.empTelefono = empTelefono;
         this.empDireccion = empDireccion;
         this.empCiudad = empCiudad;
@@ -144,6 +185,14 @@ public class Empresa implements Serializable {
 
     public void setEmpContacto(String empContacto) {
         this.empContacto = empContacto;
+    }
+
+    public String getEmpPosicionContacto() {
+        return empPosicionContacto;
+    }
+
+    public void setEmpPosicionContacto(String empPosicionContacto) {
+        this.empPosicionContacto = empPosicionContacto;
     }
 
     public String getEmpTelefono() {

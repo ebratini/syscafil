@@ -30,6 +30,7 @@
 package com.prebea.syscafil.ui;
 
 import com.prebea.syscafil.business.UsuarioManager;
+import com.prebea.syscafil.business.ValidadorCampos;
 import com.prebea.syscafil.model.entities.Usuario;
 import java.util.Arrays;
 import javax.swing.JOptionPane;
@@ -163,6 +164,12 @@ public class Login extends javax.swing.JDialog {
 
     private void btnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOkActionPerformed
         // TODO add your handling code here:
+        if (!ValidadorCampos.validarCampoVacio(txtlNombreUsuario, null) || !ValidadorCampos.validarCampoVacio(txtlNombreUsuario, null)) {
+            JOptionPane.showMessageDialog(this, "Los campos nombre usuario y contraseña son obligatorios",
+                    "Validacion de Usuario", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
         if (esUsuarioValido(txtlNombreUsuario.getText())) {
             setUsuario(new UsuarioManager().getUsuarioByLogin(txtlNombreUsuario.getText()));
             JOptionPane.showMessageDialog(this, "Bienvenido, " + txtlNombreUsuario.getText(), "Validacion de Usuario", JOptionPane.INFORMATION_MESSAGE);

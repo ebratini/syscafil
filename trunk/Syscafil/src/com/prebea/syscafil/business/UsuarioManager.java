@@ -46,7 +46,13 @@ public class UsuarioManager {
     }
 
     public Usuario getUsuarioById(Integer id) {
-        return ud.findById(id);
+        Usuario usuario = null;
+        try {
+            usuario = ud.findById(id);
+        } catch (NoResultException nre) {
+            System.out.println("No Result Exception");
+        }
+        return usuario;
     }
 
     public Usuario getUsuarioByLogin(String login) {
@@ -56,7 +62,6 @@ public class UsuarioManager {
         } catch (NoResultException nre) {
             System.out.println("No Result Exception");
         }
-
         return usuario;
     }
 

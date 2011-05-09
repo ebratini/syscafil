@@ -1,6 +1,25 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ *  The MIT License
+ * 
+ *  Copyright 2011 Edwin Bratini.
+ * 
+ *  Permission is hereby granted, free of charge, to any person obtaining a copy
+ *  of this software and associated documentation files (the "Software"), to deal
+ *  in the Software without restriction, including without limitation the rights
+ *  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ *  copies of the Software, and to permit persons to whom the Software is
+ *  furnished to do so, subject to the following conditions:
+ * 
+ *  The above copyright notice and this permission notice shall be included in
+ *  all copies or substantial portions of the Software.
+ * 
+ *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ *  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ *  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ *  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ *  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ *  THE SOFTWARE.
  */
 
 package com.prebea.syscafil.model.entities;
@@ -42,6 +61,7 @@ import javax.persistence.UniqueConstraint;
     @NamedQuery(name = "Afiliado.findByAflNacionalidad", query = "SELECT a FROM Afiliado a WHERE a.aflNacionalidad = :aflNacionalidad"),
     @NamedQuery(name = "Afiliado.findByAflGenero", query = "SELECT a FROM Afiliado a WHERE a.aflGenero = :aflGenero"),
     @NamedQuery(name = "Afiliado.findByAflEstadoCivil", query = "SELECT a FROM Afiliado a WHERE a.aflEstadoCivil = :aflEstadoCivil"),
+    @NamedQuery(name = "Afiliado.findByAflTelefono", query = "SELECT a FROM Afiliado a WHERE a.aflTelefono = :aflTelefono"),
     @NamedQuery(name = "Afiliado.findByAflDireccion", query = "SELECT a FROM Afiliado a WHERE a.aflDireccion = :aflDireccion"),
     @NamedQuery(name = "Afiliado.findByAflCiudad", query = "SELECT a FROM Afiliado a WHERE a.aflCiudad = :aflCiudad"),
     @NamedQuery(name = "Afiliado.findByAflRegion", query = "SELECT a FROM Afiliado a WHERE a.aflRegion = :aflRegion"),
@@ -55,7 +75,7 @@ public class Afiliado implements Serializable {
     @Column(name = "afl_id", nullable = false)
     private Integer aflId;
     @Basic(optional = false)
-    @Column(name = "afl_dni", nullable = false, length = 11)
+    @Column(name = "afl_dni", nullable = false, length = 20)
     private String aflDni;
     @Basic(optional = false)
     @Column(name = "afl_tipo_dni", nullable = false, length = 20)
@@ -79,10 +99,13 @@ public class Afiliado implements Serializable {
     @Basic(optional = false)
     @Column(name = "afl_genero", nullable = false)
     private char aflGenero;
-    @Column(name = "afl_estado_civil", length = 10)
+    @Column(name = "afl_estado_civil", length = 20)
     private String aflEstadoCivil;
     @Basic(optional = false)
-    @Column(name = "afl_direccion", nullable = false, length = 40)
+    @Column(name = "afl_telefono", nullable = false, length = 20)
+    private String aflTelefono;
+    @Basic(optional = false)
+    @Column(name = "afl_direccion", nullable = false, length = 80)
     private String aflDireccion;
     @Basic(optional = false)
     @Column(name = "afl_ciudad", nullable = false, length = 40)
@@ -116,7 +139,7 @@ public class Afiliado implements Serializable {
         this.aflId = aflId;
     }
 
-    public Afiliado(Integer aflId, String aflDni, String aflTipoDni, String aflNombre, String aflApellido, Date aflFechaIngreso, Date aflFechaNacimiento, char aflGenero, String aflDireccion, String aflCiudad, String aflRegion, String aflPais, char aflStatus) {
+    public Afiliado(Integer aflId, String aflDni, String aflTipoDni, String aflNombre, String aflApellido, Date aflFechaIngreso, Date aflFechaNacimiento, char aflGenero, String aflTelefono, String aflDireccion, String aflCiudad, String aflRegion, String aflPais, char aflStatus) {
         this.aflId = aflId;
         this.aflDni = aflDni;
         this.aflTipoDni = aflTipoDni;
@@ -125,6 +148,7 @@ public class Afiliado implements Serializable {
         this.aflFechaIngreso = aflFechaIngreso;
         this.aflFechaNacimiento = aflFechaNacimiento;
         this.aflGenero = aflGenero;
+        this.aflTelefono = aflTelefono;
         this.aflDireccion = aflDireccion;
         this.aflCiudad = aflCiudad;
         this.aflRegion = aflRegion;
@@ -210,6 +234,14 @@ public class Afiliado implements Serializable {
 
     public void setAflEstadoCivil(String aflEstadoCivil) {
         this.aflEstadoCivil = aflEstadoCivil;
+    }
+
+    public String getAflTelefono() {
+        return aflTelefono;
+    }
+
+    public void setAflTelefono(String aflTelefono) {
+        this.aflTelefono = aflTelefono;
     }
 
     public String getAflDireccion() {

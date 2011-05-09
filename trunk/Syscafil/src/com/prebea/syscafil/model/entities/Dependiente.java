@@ -1,6 +1,25 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ *  The MIT License
+ * 
+ *  Copyright 2011 Edwin Bratini.
+ * 
+ *  Permission is hereby granted, free of charge, to any person obtaining a copy
+ *  of this software and associated documentation files (the "Software"), to deal
+ *  in the Software without restriction, including without limitation the rights
+ *  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ *  copies of the Software, and to permit persons to whom the Software is
+ *  furnished to do so, subject to the following conditions:
+ * 
+ *  The above copyright notice and this permission notice shall be included in
+ *  all copies or substantial portions of the Software.
+ * 
+ *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ *  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ *  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ *  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ *  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ *  THE SOFTWARE.
  */
 
 package com.prebea.syscafil.model.entities;
@@ -40,6 +59,7 @@ import javax.persistence.UniqueConstraint;
     @NamedQuery(name = "Dependiente.findByDepNacionalidad", query = "SELECT d FROM Dependiente d WHERE d.depNacionalidad = :depNacionalidad"),
     @NamedQuery(name = "Dependiente.findByDepGenero", query = "SELECT d FROM Dependiente d WHERE d.depGenero = :depGenero"),
     @NamedQuery(name = "Dependiente.findByDepEstadoCivil", query = "SELECT d FROM Dependiente d WHERE d.depEstadoCivil = :depEstadoCivil"),
+    @NamedQuery(name = "Dependiente.findByDepTelefono", query = "SELECT d FROM Dependiente d WHERE d.depTelefono = :depTelefono"),
     @NamedQuery(name = "Dependiente.findByDepDireccion", query = "SELECT d FROM Dependiente d WHERE d.depDireccion = :depDireccion"),
     @NamedQuery(name = "Dependiente.findByDepCiudad", query = "SELECT d FROM Dependiente d WHERE d.depCiudad = :depCiudad"),
     @NamedQuery(name = "Dependiente.findByDepRegion", query = "SELECT d FROM Dependiente d WHERE d.depRegion = :depRegion"),
@@ -54,7 +74,7 @@ public class Dependiente implements Serializable {
     @Column(name = "dep_id", nullable = false)
     private Integer depId;
     @Basic(optional = false)
-    @Column(name = "dep_dni", nullable = false, length = 11)
+    @Column(name = "dep_dni", nullable = false, length = 20)
     private String depDni;
     @Basic(optional = false)
     @Column(name = "dep_tipo_dni", nullable = false, length = 10)
@@ -84,7 +104,10 @@ public class Dependiente implements Serializable {
     @Column(name = "dep_estado_civil", length = 10)
     private String depEstadoCivil;
     @Basic(optional = false)
-    @Column(name = "dep_direccion", nullable = false, length = 40)
+    @Column(name = "dep_telefono", nullable = false, length = 20)
+    private String depTelefono;
+    @Basic(optional = false)
+    @Column(name = "dep_direccion", nullable = false, length = 80)
     private String depDireccion;
     @Basic(optional = false)
     @Column(name = "dep_ciudad", nullable = false, length = 40)
@@ -114,7 +137,7 @@ public class Dependiente implements Serializable {
         this.depId = depId;
     }
 
-    public Dependiente(Integer depId, String depDni, String depTipoDni, String depNombre, String depApellido, String depParentesco, Date depFechaIngreso, Date depFechaNacimiento, char depGenero, String depDireccion, String depCiudad, String depRegion, String depPais, short depExtra, char depStatus) {
+    public Dependiente(Integer depId, String depDni, String depTipoDni, String depNombre, String depApellido, String depParentesco, Date depFechaIngreso, Date depFechaNacimiento, char depGenero, String depTelefono, String depDireccion, String depCiudad, String depRegion, String depPais, short depExtra, char depStatus) {
         this.depId = depId;
         this.depDni = depDni;
         this.depTipoDni = depTipoDni;
@@ -124,6 +147,7 @@ public class Dependiente implements Serializable {
         this.depFechaIngreso = depFechaIngreso;
         this.depFechaNacimiento = depFechaNacimiento;
         this.depGenero = depGenero;
+        this.depTelefono = depTelefono;
         this.depDireccion = depDireccion;
         this.depCiudad = depCiudad;
         this.depRegion = depRegion;
@@ -218,6 +242,14 @@ public class Dependiente implements Serializable {
 
     public void setDepEstadoCivil(String depEstadoCivil) {
         this.depEstadoCivil = depEstadoCivil;
+    }
+
+    public String getDepTelefono() {
+        return depTelefono;
+    }
+
+    public void setDepTelefono(String depTelefono) {
+        this.depTelefono = depTelefono;
     }
 
     public String getDepDireccion() {

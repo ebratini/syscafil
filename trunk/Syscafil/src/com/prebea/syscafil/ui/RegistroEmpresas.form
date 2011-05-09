@@ -1,16 +1,20 @@
 <?xml version="1.1" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.7" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+<Form version="1.5" maxVersion="1.7" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="2"/>
     <Property name="title" type="java.lang.String" value="Registro de Empresas"/>
     <Property name="iconImage" type="java.awt.Image" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
       <Connection code="Toolkit.getDefaultToolkit().getImage(getClass().getResource(&quot;/resources/imagenes/prebea_logo.png&quot;))" type="code"/>
     </Property>
+    <Property name="resizable" type="boolean" value="false"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
   </SyntheticProperties>
+  <Events>
+    <EventHandler event="windowOpened" listener="java.awt.event.WindowListener" parameters="java.awt.event.WindowEvent" handler="formWindowOpened"/>
+  </Events>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
@@ -27,20 +31,23 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Component id="pnlNodeBar" alignment="0" max="32767" attributes="0"/>
-          <Component id="statusPanel" alignment="0" max="32767" attributes="1"/>
-          <Component id="pnlEntidad" alignment="1" max="32767" attributes="1"/>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="btnAceptar" min="-2" pref="99" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="btnLimpiar" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="lblMensajeInsercion" min="-2" pref="121" max="-2" attributes="0"/>
-              <EmptySpace pref="78" max="32767" attributes="0"/>
-              <Component id="btnSalir" min="-2" pref="50" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="btnAceptar" min="-2" pref="99" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="btnLimpiar" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="lblMensajeInsercion" pref="212" max="32767" attributes="0"/>
+              </Group>
+              <EmptySpace pref="101" max="32767" attributes="0"/>
+              <Component id="btnSalir" min="-2" pref="41" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
-          <Component id="pnlInfoContacto" alignment="1" max="32767" attributes="1"/>
+          <Component id="pnlInfoContacto" alignment="0" max="32767" attributes="1"/>
+          <Component id="pnlEntidad" alignment="0" max="32767" attributes="1"/>
+          <Component id="statusPanel" alignment="0" max="32767" attributes="1"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -52,13 +59,18 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="pnlInfoContacto" min="-2" pref="278" max="-2" attributes="1"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="btnAceptar" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
-                  <Component id="btnLimpiar" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
-                  <Component id="lblMensajeInsercion" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnSalir" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="btnAceptar" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
+                          <Component id="btnLimpiar" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="lblMensajeInsercion" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="btnSalir" min="-2" pref="39" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace pref="20" max="32767" attributes="0"/>
               <Component id="statusPanel" min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -79,7 +91,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <Component id="lblNodeMenu" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="449" max="32767" attributes="0"/>
+                  <EmptySpace pref="324" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -123,10 +135,18 @@
                       <Component id="txtRazonSocial" alignment="0" min="-2" pref="197" max="-2" attributes="0"/>
                       <Component id="txtDni" alignment="0" min="-2" pref="145" max="-2" attributes="1"/>
                       <Component id="cmbTipoDni" alignment="0" min="-2" max="-2" attributes="1"/>
-                      <Component id="txtContacto" alignment="0" pref="197" max="32767" attributes="1"/>
-                      <Component id="txtPosContacto" alignment="0" pref="197" max="32767" attributes="0"/>
+                      <Component id="txtContacto" alignment="0" pref="225" max="32767" attributes="1"/>
+                      <Component id="txtPosContacto" alignment="0" pref="225" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="191" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="lblAsterVal1" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblAsterVal2" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblAsterVal3" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblAsterVal4" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblAsterVal5" alignment="1" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -136,26 +156,33 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lblRazonSocial" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="txtRazonSocial" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblAsterVal1" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="txtDni" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="lblDni" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblAsterVal2" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lblTipoDni" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="cmbTipoDni" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblAsterVal3" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lblContacto" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="txtContacto" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblAsterVal4" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
                       <Component id="lblPosContacto" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtPosContacto" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="txtPosContacto" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblAsterVal5" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                   <EmptySpace pref="13" max="32767" attributes="0"/>
               </Group>
@@ -169,8 +196,14 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtRazonSocial">
+          <Properties>
+            <Property name="name" type="java.lang.String" value="txtRazonSocial" noResource="true"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtDni">
+          <Properties>
+            <Property name="name" type="java.lang.String" value="txtDni" noResource="true"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JComboBox" name="cmbTipoDni">
           <Properties>
@@ -180,6 +213,7 @@
                 <StringItem index="1" value="RNC"/>
               </StringArray>
             </Property>
+            <Property name="name" type="java.lang.String" value="cmbTipoDni" noResource="true"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblTipoDni">
@@ -198,6 +232,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtContacto">
+          <Properties>
+            <Property name="name" type="java.lang.String" value="txtContacto" noResource="true"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblPosContacto">
           <Properties>
@@ -205,6 +242,64 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtPosContacto">
+          <Properties>
+            <Property name="name" type="java.lang.String" value="txtPosContacto" noResource="true"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblAsterVal1">
+          <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="33" green="33" red="ff" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="*"/>
+          </Properties>
+          <BindingProperties>
+            <BindingProperty name="labelFor" source="txtRazonSocial" target="lblAsterVal1" targetPath="labelFor" updateStrategy="0" immediately="false"/>
+          </BindingProperties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblAsterVal2">
+          <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="33" green="33" red="ff" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="*"/>
+          </Properties>
+          <BindingProperties>
+            <BindingProperty name="labelFor" source="txtDni" target="lblAsterVal2" targetPath="labelFor" updateStrategy="0" immediately="false"/>
+          </BindingProperties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblAsterVal3">
+          <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="33" green="33" red="ff" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="*"/>
+          </Properties>
+          <BindingProperties>
+            <BindingProperty name="labelFor" source="cmbTipoDni" target="lblAsterVal3" targetPath="labelFor" updateStrategy="0" immediately="false"/>
+          </BindingProperties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblAsterVal4">
+          <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="33" green="33" red="ff" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="*"/>
+          </Properties>
+          <BindingProperties>
+            <BindingProperty name="labelFor" source="txtContacto" target="lblAsterVal4" targetPath="labelFor" updateStrategy="0" immediately="false"/>
+          </BindingProperties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblAsterVal5">
+          <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="33" green="33" red="ff" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="*"/>
+          </Properties>
+          <BindingProperties>
+            <BindingProperty name="labelFor" source="txtPosContacto" target="lblAsterVal5" targetPath="labelFor" updateStrategy="0" immediately="false"/>
+          </BindingProperties>
         </Component>
       </SubComponents>
     </Container>
@@ -213,11 +308,11 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="statusPanelSeparator" alignment="0" pref="499" max="32767" attributes="0"/>
+              <Component id="statusPanelSeparator" alignment="0" pref="374" max="32767" attributes="0"/>
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="statusMessageLabel" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="479" max="32767" attributes="0"/>
+                  <EmptySpace pref="354" max="32767" attributes="0"/>
                   <Component id="statusAnimationLabel" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -269,14 +364,13 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="0" green="66" red="0" type="rgb"/>
         </Property>
-        <Property name="horizontalAlignment" type="int" value="0"/>
-        <Property name="text" type="java.lang.String" value="Mensaje Insercion"/>
+        <Property name="horizontalAlignment" type="int" value="2"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="btnSalir">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/resources/imagenes/salir.png"/>
+          <Image iconType="3" name="/resources/imagenes/salir_25x25.png"/>
         </Property>
       </Properties>
       <Events>
@@ -290,6 +384,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Aceptar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAceptarActionPerformed"/>
+      </Events>
     </Component>
     <Container class="javax.swing.JPanel" name="pnlInfoContacto">
       <Properties>
@@ -304,7 +401,7 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
-                  <EmptySpace min="-2" pref="85" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="lblFax" alignment="1" min="-2" max="-2" attributes="0"/>
                       <Component id="lblEmail" alignment="1" min="-2" max="-2" attributes="0"/>
@@ -317,30 +414,34 @@
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="txtPais" alignment="0" pref="298" max="32767" attributes="1"/>
-                              <Component id="txtDireccion2" alignment="0" pref="298" max="32767" attributes="1"/>
-                              <Component id="txtDireccion" alignment="0" pref="298" max="32767" attributes="1"/>
-                              <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="txtEmail" alignment="0" max="32767" attributes="1"/>
-                                  <Component id="txtWeb" alignment="0" pref="207" max="32767" attributes="1"/>
-                              </Group>
-                              <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="txtCiudad" alignment="0" max="32767" attributes="1"/>
-                                  <Component id="txtRegion" alignment="0" pref="163" max="32767" attributes="1"/>
-                              </Group>
-                          </Group>
-                          <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                          <Component id="txtEmail" alignment="0" max="32767" attributes="1"/>
+                          <Component id="txtWeb" alignment="0" min="-2" pref="207" max="-2" attributes="1"/>
                       </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="ftfFax" alignment="0" max="32767" attributes="1"/>
-                              <Component id="ftfTelefono" alignment="0" pref="135" max="32767" attributes="1"/>
-                          </Group>
-                          <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                          <Component id="txtCiudad" alignment="0" max="32767" attributes="1"/>
+                          <Component id="txtRegion" alignment="0" pref="163" max="32767" attributes="1"/>
+                      </Group>
+                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                          <Component id="txtDireccion" alignment="0" max="32767" attributes="1"/>
+                          <Component id="txtDireccion2" alignment="0" max="32767" attributes="1"/>
+                          <Component id="txtPais" alignment="0" pref="243" max="32767" attributes="1"/>
+                      </Group>
+                      <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                          <Component id="ftfFax" alignment="0" max="32767" attributes="1"/>
+                          <Component id="ftfTelefono" alignment="0" pref="119" max="32767" attributes="1"/>
                       </Group>
                   </Group>
+                  <EmptySpace pref="42" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="lblAsterVal6" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblAsterVal10" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblAsterVal11" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblAsterVal12" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblAsterVal13" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblAsterVal14" alignment="1" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -351,6 +452,7 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lblTelefono" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="ftfTelefono" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblAsterVal6" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -371,23 +473,30 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lblDireccion" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="txtDireccion" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblAsterVal10" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="txtDireccion2" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="txtDireccion2" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblAsterVal11" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lblCiudad" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="txtCiudad" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblAsterVal12" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lblRegion" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="txtRegion" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblAsterVal13" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lblPais" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="txtPais" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblAsterVal14" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
               </Group>
@@ -401,8 +510,14 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtDireccion">
+          <Properties>
+            <Property name="name" type="java.lang.String" value="txtDireccion" noResource="true"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtDireccion2">
+          <Properties>
+            <Property name="name" type="java.lang.String" value="txtDireccion2" noResource="true"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblCiudad">
           <Properties>
@@ -410,6 +525,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtCiudad">
+          <Properties>
+            <Property name="name" type="java.lang.String" value="txtCiudad" noResource="true"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblRegion">
           <Properties>
@@ -417,6 +535,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtRegion">
+          <Properties>
+            <Property name="name" type="java.lang.String" value="txtRegion" noResource="true"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblPais">
           <Properties>
@@ -424,6 +545,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtPais">
+          <Properties>
+            <Property name="name" type="java.lang.String" value="txtPais" noResource="true"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblTelefono">
           <Properties>
@@ -431,6 +555,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JFormattedTextField" name="ftfTelefono">
+          <Properties>
+            <Property name="name" type="java.lang.String" value="ftfTelefono" noResource="true"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblEmail">
           <Properties>
@@ -438,6 +565,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtEmail">
+          <Properties>
+            <Property name="name" type="java.lang.String" value="txtEmail" noResource="true"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblWeb">
           <Properties>
@@ -445,6 +575,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtWeb">
+          <Properties>
+            <Property name="name" type="java.lang.String" value="txtWeb" noResource="true"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblFax">
           <Properties>
@@ -452,6 +585,75 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JFormattedTextField" name="ftfFax">
+          <Properties>
+            <Property name="name" type="java.lang.String" value="ftfFax" noResource="true"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblAsterVal6">
+          <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="33" green="33" red="ff" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="*"/>
+          </Properties>
+          <BindingProperties>
+            <BindingProperty name="labelFor" source="ftfTelefono" target="lblAsterVal6" targetPath="labelFor" updateStrategy="0" immediately="false"/>
+          </BindingProperties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblAsterVal10">
+          <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="33" green="33" red="ff" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="*"/>
+          </Properties>
+          <BindingProperties>
+            <BindingProperty name="labelFor" source="txtDireccion" target="lblAsterVal10" targetPath="labelFor" updateStrategy="0" immediately="false"/>
+          </BindingProperties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblAsterVal11">
+          <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="33" green="33" red="ff" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="*"/>
+          </Properties>
+          <BindingProperties>
+            <BindingProperty name="labelFor" source="txtDireccion2" target="lblAsterVal11" targetPath="labelFor" updateStrategy="0" immediately="false"/>
+          </BindingProperties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblAsterVal12">
+          <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="33" green="33" red="ff" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="*"/>
+          </Properties>
+          <BindingProperties>
+            <BindingProperty name="labelFor" source="txtCiudad" target="lblAsterVal12" targetPath="labelFor" updateStrategy="0" immediately="false"/>
+          </BindingProperties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblAsterVal13">
+          <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="33" green="33" red="ff" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="*"/>
+          </Properties>
+          <BindingProperties>
+            <BindingProperty name="labelFor" source="txtRegion" target="lblAsterVal13" targetPath="labelFor" updateStrategy="0" immediately="false"/>
+          </BindingProperties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblAsterVal14">
+          <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="33" green="33" red="ff" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="*"/>
+          </Properties>
+          <BindingProperties>
+            <BindingProperty name="labelFor" source="txtPais" target="lblAsterVal14" targetPath="labelFor" updateStrategy="0" immediately="false"/>
+          </BindingProperties>
         </Component>
       </SubComponents>
     </Container>

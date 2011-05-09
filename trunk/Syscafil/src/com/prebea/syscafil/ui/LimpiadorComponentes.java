@@ -24,10 +24,10 @@
 package com.prebea.syscafil.ui;
 
 import java.awt.Component;
-import java.awt.Container;
-import java.awt.Frame;
 import javax.swing.JComboBox;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.text.JTextComponent;
 
@@ -42,6 +42,14 @@ public class LimpiadorComponentes {
             ((JTextComponent) comp).setText("");
         } else if (comp instanceof JComboBox) {
             ((JComboBox) comp).setSelectedIndex(0);
+        } else if (comp instanceof JLabel && ((JLabel) comp).getText().equalsIgnoreCase("*")) {
+            comp.setVisible(false);
+        }
+    }
+
+    public static void limpiar(JLabel[] labels) {
+        for (JLabel label : labels) {
+            label.setText("");
         }
     }
 

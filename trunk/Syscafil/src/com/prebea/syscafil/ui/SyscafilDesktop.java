@@ -25,10 +25,8 @@ package com.prebea.syscafil.ui;
 
 import com.prebea.syscafil.model.entities.Usuario;
 import java.awt.event.WindowEvent;
-import syscafil.Syscafil;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Arrays;
@@ -37,7 +35,12 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.border.Border;
 import javax.swing.border.EtchedBorder;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+import javax.swing.plaf.basic.BasicMenuUI.ChangeHandler;
 import org.pushingpixels.flamingo.api.common.JCommandButton;
 import org.pushingpixels.flamingo.api.common.RichTooltip;
 import org.pushingpixels.flamingo.api.common.icon.ImageWrapperResizableIcon;
@@ -68,8 +71,9 @@ public class SyscafilDesktop extends JRibbonFrame {
     private JLabel backGroundImagePnlBody = new JLabel();
     // for the status bar
     private JPanel pnlStatusBar;
-    private JLabel statusMessageLabel = new JLabel();
-    private JLabel windowLabel = new JLabel();
+    private JLabel statusMessageLabel = new JLabel("Ready");
+    private JLabel usuarioLogeado = new JLabel("Usuario no logeado");
+    private JLabel taskSelectedLabel = new JLabel();
 
     public SyscafilDesktop() {
         super("Syscafil");
@@ -97,7 +101,6 @@ public class SyscafilDesktop extends JRibbonFrame {
     }
 
     private ResizableIcon getResizableIconFromResource(String resource) {
-
         return ImageWrapperResizableIcon.getIcon(getClass().getResource(resource), new Dimension(48, 48));
     }
 
@@ -113,8 +116,17 @@ public class SyscafilDesktop extends JRibbonFrame {
     private void initStatusBar() {
         pnlStatusBar = new JPanel(new BorderLayout());
         pnlStatusBar.setPreferredSize(new Dimension(400, 25));
-        pnlStatusBar.add(windowLabel, BorderLayout.WEST);
-        pnlStatusBar.add(statusMessageLabel, BorderLayout.EAST);
+        pnlStatusBar.add(statusMessageLabel, BorderLayout.WEST);
+
+        usuarioLogeado.setBorder(new EtchedBorder(EtchedBorder.RAISED));
+        taskSelectedLabel.setBorder(new EtchedBorder(EtchedBorder.RAISED));
+
+        JPanel pnl = new JPanel(new BorderLayout(2, 0));
+        pnl.add(taskSelectedLabel, BorderLayout.WEST);
+        pnl.add(usuarioLogeado, BorderLayout.EAST);
+
+        pnlStatusBar.add(pnl, BorderLayout.EAST);
+
         pnlStatusBar.setBorder(new EtchedBorder());
         add(pnlStatusBar, BorderLayout.SOUTH);
     }
@@ -133,11 +145,10 @@ public class SyscafilDesktop extends JRibbonFrame {
 
     private List<RibbonBandResizePolicy> getRibbonBandResizePolicy(JRibbonBand jRibbonBand) {
         return (List) Arrays.asList(
-               //new CoreRibbonResizePolicies.None(jrbAfiliadosBand.getControlPanel()),
+                //new CoreRibbonResizePolicies.None(jrbAfiliadosBand.getControlPanel()),
                 new CoreRibbonResizePolicies.Mirror(jRibbonBand.getControlPanel()),
                 new CoreRibbonResizePolicies.High2Mid(jRibbonBand.getControlPanel()),
-                new CoreRibbonResizePolicies.Mid2Low(jRibbonBand.getControlPanel())
-                //new CoreRibbonResizePolicies.High2Low(jrbAfiliadosBand.getControlPanel()),
+                new CoreRibbonResizePolicies.Mid2Low(jRibbonBand.getControlPanel()) //new CoreRibbonResizePolicies.High2Low(jrbAfiliadosBand.getControlPanel()),
                 /*new IconRibbonBandResizePolicy(jrbAfiliadosBand.getControlPanel())*/);
     }
 
@@ -191,7 +202,7 @@ public class SyscafilDesktop extends JRibbonFrame {
         jrbEmpresasBand.addCommandButton(jcbEliminarEmpresa, RibbonElementPriority.MEDIUM);
 
         jrbEmpresasBand.setResizePolicies(getRibbonBandResizePolicy(jrbEmpresasBand));
-        
+
         // on afiliados band
 
         JCommandButton jcbVerAfiliados, jcbCrearAfiliado, jcbEditarAfiliado, jcbEliminarAfiliado;
@@ -301,6 +312,16 @@ public class SyscafilDesktop extends JRibbonFrame {
         JRibbon jr = getRibbon();
         jr.addTask(getHomeTask());
         jr.addTask(getMantenimientoTask());
+
+        jr.addChangeListener(new ChangeListener() {
+
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                taskSelectedLabel.setText(getRibbon().getSelectedTask().getTitle());
+                JOptionPane.showMessageDialog(rootPane, "No Implementado Todavia");
+            }
+        });
+
         jr.setApplicationMenu(ram);
     }
 
@@ -323,7 +344,7 @@ public class SyscafilDesktop extends JRibbonFrame {
         login.setVisible(true);
         usuario = login.getUsuario();
         if (usuario != null) {
-            statusMessageLabel.setText(String.format("Usuario: %s ", usuario.getUsrLogin()));
+            usuarioLogeado.setText(usuario.getUsrLogin());
             logInOutButton.setName("jcbLogOut");
             logInOutButton.setIcon(getResizableIconFromResource("/resources/imagenes/th_logout.png"));
             logInOutButton.setText("Log Out");
@@ -332,7 +353,7 @@ public class SyscafilDesktop extends JRibbonFrame {
 
     private void doLogout(JCommandButton logInOutButton) {
         usuario = null;
-        statusMessageLabel.setText("");
+        usuarioLogeado.setText("Usuario no logeado");
         logInOutButton.setName("jcbLogIn");
         logInOutButton.setIcon(getResizableIconFromResource("/resources/imagenes/login.png"));
         logInOutButton.setText("Log In");
@@ -345,6 +366,10 @@ public class SyscafilDesktop extends JRibbonFrame {
             doLogout(logInOutButton);
         }
         System.exit(0);
+    }
+
+    private void throwNoImplMsj() {
+        JOptionPane.showMessageDialog(rootPane, "No Implementado Todavia");
     }
 
     private class ButtonActionHandler implements ActionListener {
@@ -360,45 +385,45 @@ public class SyscafilDesktop extends JRibbonFrame {
             } else if (buttonName.equalsIgnoreCase("jcbSalir")) {
                 doExit(buttonClicked);
             } else if (buttonName.equalsIgnoreCase("jcbVerEmpresas")) {
-                JOptionPane.showMessageDialog(rootPane, "No Implementado Todavia");
+                throwNoImplMsj();
             } else if (buttonName.equalsIgnoreCase("jcbCrearEmpresa")) {
                 RegistroEmpresas regEmpresas = new RegistroEmpresas();
                 regEmpresas.setLocationRelativeTo(SyscafilDesktop.this);
                 regEmpresas.setVisible(true);
             } else if (buttonName.equalsIgnoreCase("jcbEditarEmpresa")) {
-                JOptionPane.showMessageDialog(rootPane, "No Implementado Todavia");
+                throwNoImplMsj();
             } else if (buttonName.equalsIgnoreCase("jcbEliminarEmpresa")) {
-                JOptionPane.showMessageDialog(rootPane, "No Implementado Todavia");
+                throwNoImplMsj();
             } else if (buttonName.equalsIgnoreCase("jcbVerAfiliados")) {
-                JOptionPane.showMessageDialog(rootPane, "No Implementado Todavia");
+                throwNoImplMsj();
             } else if (buttonName.equalsIgnoreCase("jcbCrearAfiliado")) {
                 RegistroAfiliados regAfiliados = new RegistroAfiliados();
                 regAfiliados.setLocationRelativeTo(SyscafilDesktop.this);
                 regAfiliados.setVisible(true);
             } else if (buttonName.equalsIgnoreCase("jcbEditarAfiliado")) {
-                JOptionPane.showMessageDialog(rootPane, "No Implementado Todavia");
+                throwNoImplMsj();
             } else if (buttonName.equalsIgnoreCase("jcbEliminarAfiliado")) {
-                JOptionPane.showMessageDialog(rootPane, "No Implementado Todavia");
+                throwNoImplMsj();
             } else if (buttonName.equalsIgnoreCase("jcbVerDependientes")) {
-                JOptionPane.showMessageDialog(rootPane, "No Implementado Todavia");
+                throwNoImplMsj();
             } else if (buttonName.equalsIgnoreCase("jcbCrearDependiente")) {
                 RegistroDependientes regDependientes = new RegistroDependientes();
                 regDependientes.setLocationRelativeTo(SyscafilDesktop.this);
                 regDependientes.setVisible(true);
             } else if (buttonName.equalsIgnoreCase("jcbEditarDependiente")) {
-                JOptionPane.showMessageDialog(rootPane, "No Implementado Todavia");
+                throwNoImplMsj();
             } else if (buttonName.equalsIgnoreCase("jcbEliminarDependiente")) {
-                JOptionPane.showMessageDialog(rootPane, "No Implementado Todavia");
+                throwNoImplMsj();
             } else if (buttonName.equalsIgnoreCase("jcbVerPlanes")) {
-                JOptionPane.showMessageDialog(rootPane, "No Implementado Todavia");
+                throwNoImplMsj();
             } else if (buttonName.equalsIgnoreCase("jcbCrearPlan")) {
                 RegistroPlanes regPlanes = new RegistroPlanes();
                 regPlanes.setLocationRelativeTo(SyscafilDesktop.this);
                 regPlanes.setVisible(true);
             } else if (buttonName.equalsIgnoreCase("jcbEditarPlan")) {
-                JOptionPane.showMessageDialog(rootPane, "No Implementado Todavia");
+                throwNoImplMsj();
             } else if (buttonName.equalsIgnoreCase("jcbEliminarPlan")) {
-                JOptionPane.showMessageDialog(rootPane, "No Implementado Todavia");
+                throwNoImplMsj();
             }
         }
     }
