@@ -28,12 +28,14 @@ import java.awt.event.WindowEvent;
 import syscafil.Syscafil;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Arrays;
 import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EtchedBorder;
 import org.pushingpixels.flamingo.api.common.JCommandButton;
@@ -63,6 +65,7 @@ public class SyscafilDesktop extends JRibbonFrame {
     private ButtonActionHandler buttonActHandler = new ButtonActionHandler();
     // body content
     private JPanel pnlBody;
+    private JLabel backGroundImagePnlBody = new JLabel();
     // for the status bar
     private JPanel pnlStatusBar;
     private JLabel statusMessageLabel = new JLabel();
@@ -101,6 +104,9 @@ public class SyscafilDesktop extends JRibbonFrame {
     private void initBodyContent() {
         pnlBody = new JPanel();
         pnlBody.setBorder(new EtchedBorder());
+        backGroundImagePnlBody.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/imagenes/prebea_banner.PNG")));
+        backGroundImagePnlBody.setBounds(pnlBody.getBounds());
+        pnlBody.add(backGroundImagePnlBody);
         add(pnlBody, BorderLayout.CENTER);
     }
 
@@ -173,7 +179,7 @@ public class SyscafilDesktop extends JRibbonFrame {
                 "jcbCrearEmpresa", new RichTooltip("Nuevo", "Click aqui para crear empresa"), buttonActHandler);
 
         jcbEditarEmpresa = createJCommandButton("Editar", getResizableIconFromResource("/resources/imagenes/editar3.png"),
-                "jcbEditarEmpreasa", new RichTooltip("Editar", "Click aqui para editar empresa"), buttonActHandler);
+                "jcbEditarEmpresa", new RichTooltip("Editar", "Click aqui para editar empresa"), buttonActHandler);
 
         jcbEliminarEmpresa = createJCommandButton("Eliminar", getResizableIconFromResource("/resources/imagenes/delete.png"),
                 "jcbEliminarEmpresa", new RichTooltip("Eliminar", "Click aqui para eliminar empresa"), buttonActHandler);
@@ -299,9 +305,10 @@ public class SyscafilDesktop extends JRibbonFrame {
     }
 
     private void initComponents() {
+        LookAndFeelSelector.setLookAndFeel(LookAndFeelSelector.LAF.WINDOWS);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setApplicationIcon(getResizableIconFromResource("/resources/imagenes/prebea_logo.PNG"));
-        setPreferredSize(new Dimension(800, 400));
+        setPreferredSize(new Dimension(1100, 600));
         setLocationByPlatform(true);
         initJRibbon();
         //addGap(0, 10);
@@ -352,6 +359,46 @@ public class SyscafilDesktop extends JRibbonFrame {
                 doLogout(buttonClicked);
             } else if (buttonName.equalsIgnoreCase("jcbSalir")) {
                 doExit(buttonClicked);
+            } else if (buttonName.equalsIgnoreCase("jcbVerEmpresas")) {
+                JOptionPane.showMessageDialog(rootPane, "No Implementado Todavia");
+            } else if (buttonName.equalsIgnoreCase("jcbCrearEmpresa")) {
+                RegistroEmpresas regEmpresas = new RegistroEmpresas();
+                regEmpresas.setLocationRelativeTo(SyscafilDesktop.this);
+                regEmpresas.setVisible(true);
+            } else if (buttonName.equalsIgnoreCase("jcbEditarEmpresa")) {
+                JOptionPane.showMessageDialog(rootPane, "No Implementado Todavia");
+            } else if (buttonName.equalsIgnoreCase("jcbEliminarEmpresa")) {
+                JOptionPane.showMessageDialog(rootPane, "No Implementado Todavia");
+            } else if (buttonName.equalsIgnoreCase("jcbVerAfiliados")) {
+                JOptionPane.showMessageDialog(rootPane, "No Implementado Todavia");
+            } else if (buttonName.equalsIgnoreCase("jcbCrearAfiliado")) {
+                RegistroAfiliados regAfiliados = new RegistroAfiliados();
+                regAfiliados.setLocationRelativeTo(SyscafilDesktop.this);
+                regAfiliados.setVisible(true);
+            } else if (buttonName.equalsIgnoreCase("jcbEditarAfiliado")) {
+                JOptionPane.showMessageDialog(rootPane, "No Implementado Todavia");
+            } else if (buttonName.equalsIgnoreCase("jcbEliminarAfiliado")) {
+                JOptionPane.showMessageDialog(rootPane, "No Implementado Todavia");
+            } else if (buttonName.equalsIgnoreCase("jcbVerDependientes")) {
+                JOptionPane.showMessageDialog(rootPane, "No Implementado Todavia");
+            } else if (buttonName.equalsIgnoreCase("jcbCrearDependiente")) {
+                RegistroDependientes regDependientes = new RegistroDependientes();
+                regDependientes.setLocationRelativeTo(SyscafilDesktop.this);
+                regDependientes.setVisible(true);
+            } else if (buttonName.equalsIgnoreCase("jcbEditarDependiente")) {
+                JOptionPane.showMessageDialog(rootPane, "No Implementado Todavia");
+            } else if (buttonName.equalsIgnoreCase("jcbEliminarDependiente")) {
+                JOptionPane.showMessageDialog(rootPane, "No Implementado Todavia");
+            } else if (buttonName.equalsIgnoreCase("jcbVerPlanes")) {
+                JOptionPane.showMessageDialog(rootPane, "No Implementado Todavia");
+            } else if (buttonName.equalsIgnoreCase("jcbCrearPlan")) {
+                RegistroPlanes regPlanes = new RegistroPlanes();
+                regPlanes.setLocationRelativeTo(SyscafilDesktop.this);
+                regPlanes.setVisible(true);
+            } else if (buttonName.equalsIgnoreCase("jcbEditarPlan")) {
+                JOptionPane.showMessageDialog(rootPane, "No Implementado Todavia");
+            } else if (buttonName.equalsIgnoreCase("jcbEliminarPlan")) {
+                JOptionPane.showMessageDialog(rootPane, "No Implementado Todavia");
             }
         }
     }

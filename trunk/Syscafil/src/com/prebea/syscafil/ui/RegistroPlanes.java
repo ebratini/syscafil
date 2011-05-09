@@ -30,6 +30,7 @@
 
 package com.prebea.syscafil.ui;
 
+import java.awt.Toolkit;
 import javax.swing.JFrame;
 
 /**
@@ -79,7 +80,7 @@ public class RegistroPlanes extends javax.swing.JFrame {
         lblMensajeInsercion = new javax.swing.JLabel();
         btnSalir = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Registro de Planes");
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
@@ -142,18 +143,18 @@ public class RegistroPlanes extends javax.swing.JFrame {
 
         lblPrecioDepExtra.setText("Precio Dep. Extra");
 
-        btnNuevaCatPlan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/MBAdd.active.png"))); // NOI18N
+        btnNuevaCatPlan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/imagenes/MBAdd.active.png"))); // NOI18N
         btnNuevaCatPlan.setBorderPainted(false);
-        btnNuevaCatPlan.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/MBAdd.mousedown.png"))); // NOI18N
+        btnNuevaCatPlan.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/imagenes/MBAdd.mousedown.png"))); // NOI18N
         btnNuevaCatPlan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNuevaCatPlanActionPerformed(evt);
             }
         });
 
-        btnNuevaSubcatPlan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/MBAdd.active.png"))); // NOI18N
+        btnNuevaSubcatPlan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/imagenes/MBAdd.active.png"))); // NOI18N
         btnNuevaSubcatPlan.setBorderPainted(false);
-        btnNuevaSubcatPlan.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/MBAdd.mousedown.png"))); // NOI18N
+        btnNuevaSubcatPlan.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/imagenes/MBAdd.mousedown.png"))); // NOI18N
         btnNuevaSubcatPlan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNuevaSubcatPlanActionPerformed(evt);
@@ -209,13 +210,13 @@ public class RegistroPlanes extends javax.swing.JFrame {
                     .addComponent(lblDescripcionPlan)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnlInfoPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(pnlInfoPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlInfoPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(lblCategoriaPlan)
                         .addComponent(cmbCategoriaPlan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(btnNuevaCatPlan, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnlInfoPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(pnlInfoPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlInfoPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(lblSubcategoria)
                         .addComponent(cmbSubcategoriaPlan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
