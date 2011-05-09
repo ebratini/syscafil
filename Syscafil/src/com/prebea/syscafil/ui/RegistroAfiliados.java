@@ -30,6 +30,7 @@
 
 package com.prebea.syscafil.ui;
 
+import java.awt.Toolkit;
 import javax.swing.JFrame;
 
 /**
@@ -106,7 +107,8 @@ public class RegistroAfiliados extends javax.swing.JFrame {
         lblMensajeInsercion = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Registro Afiliados");
+        setTitle("Registro de Afiliados");
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/resources/imagenes/prebea_logo.png")));
         setName("frmRegistroAfiliado"); // NOI18N
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -143,6 +145,11 @@ public class RegistroAfiliados extends javax.swing.JFrame {
         btnAceptar.setText("Aceptar");
 
         btnLimpiar.setText("Limpiar");
+        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarActionPerformed(evt);
+            }
+        });
 
         btnSalir.setText("Salir");
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -331,15 +338,19 @@ public class RegistroAfiliados extends javax.swing.JFrame {
         lblPlan.setText("Plan");
 
         cmbPlan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccion", "Basico Familiar", "Optimo Familiar", "Supremo Familiar", "Premium Familiar", "Basico Empresarial", "Optimo Empresarial", "Empresarial Empresarial", "Premium Empresarial" }));
+        cmbPlan.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmbPlanItemStateChanged(evt);
+            }
+        });
 
         lblEmpresa.setText("Empresa");
 
         txtEmpresa.setEditable(false);
 
-        btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/searchglass_vflip.gif"))); // NOI18N
+        btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/imagenes/searchglass_vflip.gif"))); // NOI18N
         btnBuscar.setBorder(null);
         btnBuscar.setEnabled(false);
-        btnBuscar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/searchglass.gif"))); // NOI18N
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscarActionPerformed(evt);
@@ -494,6 +505,20 @@ public class RegistroAfiliados extends javax.swing.JFrame {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
     }//GEN-LAST:event_formWindowOpened
+
+    private void cmbPlanItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbPlanItemStateChanged
+        // TODO add your handling code here:
+        if (cmbPlan.getSelectedItem().toString().toLowerCase().contains("empresarial")) {
+            btnBuscar.setEnabled(true);
+        } else {
+            btnBuscar.setEnabled(false);
+        }
+    }//GEN-LAST:event_cmbPlanItemStateChanged
+
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+        // TODO add your handling code here:
+        LimpiadorComponentes.limpiarComponentes(this);
+    }//GEN-LAST:event_btnLimpiarActionPerformed
 
     /**
     * @param args the command line arguments
