@@ -4,6 +4,7 @@
  */
 package com.prebea.syscafil.model;
 
+import com.prebea.syscafil.model.entities.Plan;
 import java.util.List;
 import java.util.Map;
 import javax.persistence.Query;
@@ -15,10 +16,11 @@ import javax.persistence.Query;
 public class JpaPlanDao extends JpaDao implements PlanDao {
 
     public JpaPlanDao() {
+        super(Plan.class);
     }
 
     public JpaPlanDao(Map props) {
-        super(props);
+        super(Plan.class, props);
     }
 
     @Override

@@ -16,10 +16,11 @@ import javax.persistence.Query;
 public class JpaEmpresaDao extends JpaDao implements EmpresaDao {
 
     public JpaEmpresaDao() {
+        super(Empresa.class);
     }
 
     public JpaEmpresaDao(Map props) {
-        super(props);
+        super(Empresa.class, props);
     }
 
     @Override

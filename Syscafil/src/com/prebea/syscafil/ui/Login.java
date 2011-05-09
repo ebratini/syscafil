@@ -68,6 +68,9 @@ public class Login extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Syscafil - Log In");
         addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
             public void windowIconified(java.awt.event.WindowEvent evt) {
                 formWindowIconified(evt);
             }
@@ -78,9 +81,14 @@ public class Login extends javax.swing.JDialog {
 
         lbllNombreUsuario.setText("Nombre Usuario");
 
+        txtlNombreUsuario.setNextFocusableComponent(psfContrasenia);
+
         lblContrasenia.setText("Contraseña");
 
+        psfContrasenia.setNextFocusableComponent(btnOk);
+
         btnOk.setText("Ok");
+        btnOk.setNextFocusableComponent(btnCancelar);
         btnOk.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnOkActionPerformed(evt);
@@ -88,6 +96,7 @@ public class Login extends javax.swing.JDialog {
         });
 
         btnCancelar.setText("Cancelar");
+        btnCancelar.setDefaultCapable(false);
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCancelarActionPerformed(evt);
@@ -156,10 +165,16 @@ public class Login extends javax.swing.JDialog {
         // TODO add your handling code here:
         if (esUsuarioValido(txtlNombreUsuario.getText())) {
             setUsuario(new UsuarioManager().getUsuarioByLogin(txtlNombreUsuario.getText()));
+            JOptionPane.showMessageDialog(this, "Bienvenido, " + txtlNombreUsuario.getText(), "Validacion de Usuario", JOptionPane.INFORMATION_MESSAGE);
+            this.dispose();
         } else {
-            JOptionPane.showMessageDialog(this, "Usuario Invalido", "Validacion de Usuario", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Usuario / Contraseña Invalido", "Validacion de Usuario", JOptionPane.ERROR_MESSAGE);
         }
 }//GEN-LAST:event_btnOkActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments
@@ -215,7 +230,7 @@ public class Login extends javax.swing.JDialog {
         } else {
             usuarioValido = false;
         }
-        um.close();
+        //um.close();
         return usuarioValido;
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables

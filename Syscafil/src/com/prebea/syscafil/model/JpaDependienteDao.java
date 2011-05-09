@@ -17,10 +17,11 @@ import javax.persistence.Query;
 public class JpaDependienteDao extends JpaDao implements DependienteDao {
 
     public JpaDependienteDao() {
+        super(Dependiente.class);
     }
 
     public JpaDependienteDao(Map props) {
-        super(props);
+        super(Dependiente.class, props);
     }
 
     @Override

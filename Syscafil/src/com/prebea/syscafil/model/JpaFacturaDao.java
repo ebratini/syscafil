@@ -18,10 +18,11 @@ import javax.persistence.Query;
 public class JpaFacturaDao extends JpaDao implements FacturaDao {
 
     public JpaFacturaDao() {
+        super(Factura.class);
     }
 
     public JpaFacturaDao(Map props) {
-        super(props);
+        super(Factura.class, props);
     }
 
     @Override

@@ -16,10 +16,11 @@ import javax.persistence.Query;
 public class JpaAfiliadoDao extends JpaDao implements AfiliadoDao {
 
     public JpaAfiliadoDao() {
+        super(Afiliado.class);
     }
 
     public JpaAfiliadoDao(Map props) {
-        super(props);
+        super(Afiliado.class, props);
     }
 
     public List findAfiliadoByApellido(String apellido) {
