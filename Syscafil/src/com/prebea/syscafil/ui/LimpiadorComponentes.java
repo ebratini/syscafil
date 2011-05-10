@@ -25,7 +25,6 @@ package com.prebea.syscafil.ui;
 
 import java.awt.Component;
 import javax.swing.JComboBox;
-import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -36,6 +35,19 @@ import javax.swing.text.JTextComponent;
  * @author Edwin Bratini <edwin.bratini@gmail.com>
  */
 public class LimpiadorComponentes {
+
+    public static void hideValidationLabels(JFrame frame) {
+        for (Component comp : frame.getContentPane().getComponents()) {
+            if (comp instanceof JPanel) {
+                for (Component pnlComp : ((JPanel) comp).getComponents()) {
+                    if (pnlComp instanceof JLabel && ((JLabel) pnlComp).getText().equalsIgnoreCase("*")) {
+                        pnlComp.setVisible(false);
+                    }
+                }
+            }
+        }
+
+    }
 
     public static void limpiar(Component comp) {
         if (comp instanceof JTextComponent) {

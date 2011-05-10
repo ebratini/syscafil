@@ -520,15 +520,7 @@ public class RegistroEmpresas extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
-        for (Component comp : this.getContentPane().getComponents()) {
-            if (comp instanceof JPanel) {
-                for (Component pnlComp : ((JPanel) comp).getComponents()) {
-                    if (pnlComp instanceof JLabel && ((JLabel) pnlComp).getText().equalsIgnoreCase("*")) {
-                        pnlComp.setVisible(false);
-                    }
-                }
-            }
-        }
+        LimpiadorComponentes.hideValidationLabels(this);
     }//GEN-LAST:event_formWindowOpened
 
     private JLabel getLabelAtached(HashMap<JComponent, JLabel> componentes, JComponent comp) {

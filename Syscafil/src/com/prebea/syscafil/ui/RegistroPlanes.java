@@ -30,9 +30,6 @@
 
 package com.prebea.syscafil.ui;
 
-import java.awt.Toolkit;
-import javax.swing.JFrame;
-
 /**
  *
  * @author Edwin Bratini
@@ -125,7 +122,7 @@ public class RegistroPlanes extends javax.swing.JFrame {
 
         lblSubcategoria.setText("Subcategoria");
 
-        cmbSubcategoriaPlan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbSubcategoriaPlan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccion", "Item 1", "Item 2", "Item 3", "Item 4" }));
         cmbSubcategoriaPlan.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 cmbSubcategoriaPlanFocusGained(evt);
@@ -382,6 +379,7 @@ public class RegistroPlanes extends javax.swing.JFrame {
         // TODO add your handling code here:
         btnNuevaCatPlan.setVisible(false);
         btnNuevaSubcatPlan.setVisible(false);
+        LimpiadorComponentes.hideValidationLabels(this);
     }//GEN-LAST:event_formWindowOpened
 
     private void cmbCategoriaPlanFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cmbCategoriaPlanFocusGained
