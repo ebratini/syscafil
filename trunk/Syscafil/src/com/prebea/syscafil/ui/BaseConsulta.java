@@ -198,16 +198,16 @@ public class BaseConsulta extends javax.swing.JPanel {
             }
         });
 
-        btnDetalles.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/detalles.png"))); // NOI18N
+        btnDetalles.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/imagenes/detalles.png"))); // NOI18N
         btnDetalles.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDetallesActionPerformed(evt);
             }
         });
 
-        btnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/editar.png"))); // NOI18N
+        btnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/imagenes/editar.png"))); // NOI18N
 
-        btnBorrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/Borrar.png"))); // NOI18N
+        btnBorrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/imagenes/Borrar.png"))); // NOI18N
 
         javax.swing.GroupLayout pnlBotonesEdicionLayout = new javax.swing.GroupLayout(pnlBotonesEdicion);
         pnlBotonesEdicion.setLayout(pnlBotonesEdicionLayout);
