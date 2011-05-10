@@ -38,13 +38,73 @@ import javax.swing.text.JTextComponent;
  */
 public class ValidadorCampos {
 
-    private static void turnLabel(JLabel outLabel) {
+    private static void turnValidationMarker(JLabel outLabel, boolean onOff) {
         if (outLabel != null) {
-            outLabel.setText("*");
-            outLabel.setForeground(Color.red);
-            outLabel.setVisible(true);
+            if (onOff) {
+                outLabel.setText("*");
+                outLabel.setForeground(Color.red);
+                outLabel.setVisible(true);
+            } else {
+                outLabel.setText("");
+            }
         }
     }
+
+    public static boolean performValidation(FieldValidator fieldValidator, JTextComponent textComponent, JLabel validationMarker) {
+        boolean valid = true;
+        if (!fieldValidator.validate(textComponent.getText())) {
+            valid = false;
+            turnValidationMarker(validationMarker, true);
+        } else {
+            turnValidationMarker(validationMarker, false);
+        }
+
+        return valid;
+    }
+
+    public static boolean performValidation(FieldValidator fieldValidator, JComboBox comboBox, JLabel validationMarker) {
+        boolean valid = true;
+        if (!fieldValidator.validate(comboBox.getSelectedItem().toString())) {
+            valid = false;
+            turnValidationMarker(validationMarker, true);
+        } else {
+            turnValidationMarker(validationMarker, false);
+        }
+
+        return valid;
+    }
+
+
+    public static boolean performValidation(FieldValidator[] fieldValidators, JComboBox comboBox, JLabel validationMarker) {
+        boolean valid = true;
+        for (FieldValidator fv : fieldValidators) {
+            valid &= fv.validate(comboBox.getSelectedItem().toString());
+        }
+
+        if (!valid) {
+            turnValidationMarker(validationMarker, true);
+        } else {
+            turnValidationMarker(validationMarker, false);
+        }
+        
+        return valid;
+    }
+
+    public static boolean performValidation(FieldValidator[] fieldValidators, JTextComponent textComponent, JLabel validationMarker) {
+        boolean valid = true;
+        for (FieldValidator fv : fieldValidators) {
+            valid &= fv.validate(textComponent.getText());
+        }
+
+        if (!valid) {
+            turnValidationMarker(validationMarker, true);
+        } else {
+            turnValidationMarker(validationMarker, false);
+        }
+        
+        return valid;
+    }
+
 
     public static boolean dateCompliesPattern(String matcher, String pattern) {
         // YYYY-MM-DD -> \d\d\d\d-\d\d-\d\d
@@ -75,12 +135,12 @@ public class ValidadorCampos {
         if (campo instanceof JTextComponent && ((JTextComponent) campo).getText().isEmpty()) {
             valido = false;
             if (outLabel != null) {
-                turnLabel(outLabel);
+                turnValidationMarker(outLabel, true);
             }
         } else if (campo instanceof JComboBox && ((JComboBox) campo).getSelectedItem().toString().equalsIgnoreCase("seleccion")) {
             valido = false;
             if (outLabel != null) {
-                turnLabel(outLabel);
+                turnValidationMarker(outLabel, true);
             }
         }
         return valido;
@@ -94,7 +154,7 @@ public class ValidadorCampos {
                     && !phoneCompliesPattern(((JTextComponent) campo).getText(), "\\d\\d\\d-\\d\\d\\d-\\d\\d\\d\\d")) {
                 valido = false;
                 if (outLabel != null) {
-                    turnLabel(outLabel);
+                    turnValidationMarker(outLabel, true);
                 }
             }
         }
@@ -109,7 +169,7 @@ public class ValidadorCampos {
                     && !dateCompliesPattern(((JTextComponent) campo).getText(), "\\d\\d\\d\\d-\\d\\d-\\d\\d")) {
                 valido = false;
                 if (outLabel != null) {
-                    turnLabel(outLabel);
+                    turnValidationMarker(outLabel, true);
                 }
             }
         }

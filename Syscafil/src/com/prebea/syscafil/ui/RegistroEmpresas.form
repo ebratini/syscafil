@@ -34,14 +34,10 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="btnAceptar" min="-2" pref="99" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="btnLimpiar" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Component id="lblMensajeInsercion" pref="212" max="32767" attributes="0"/>
+                  <Component id="btnAceptar" alignment="0" min="-2" pref="99" max="-2" attributes="0"/>
+                  <Component id="lblMensajeInsercion" pref="214" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace pref="101" max="32767" attributes="0"/>
+              <EmptySpace pref="104" max="32767" attributes="0"/>
               <Component id="btnSalir" min="-2" pref="41" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -57,20 +53,17 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="pnlEntidad" min="-2" max="-2" attributes="1"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="pnlInfoContacto" min="-2" pref="278" max="-2" attributes="1"/>
+              <Component id="pnlInfoContacto" min="-2" max="-2" attributes="1"/>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="btnAceptar" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
-                          <Component id="btnLimpiar" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="btnAceptar" min="-2" pref="38" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="lblMensajeInsercion" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Component id="btnSalir" min="-2" pref="39" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="20" max="32767" attributes="0"/>
+              <EmptySpace pref="21" max="32767" attributes="0"/>
               <Component id="statusPanel" min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -91,7 +84,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <Component id="lblNodeMenu" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="324" max="32767" attributes="0"/>
+                  <EmptySpace pref="329" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -135,16 +128,16 @@
                       <Component id="txtRazonSocial" alignment="0" min="-2" pref="197" max="-2" attributes="0"/>
                       <Component id="txtDni" alignment="0" min="-2" pref="145" max="-2" attributes="1"/>
                       <Component id="cmbTipoDni" alignment="0" min="-2" max="-2" attributes="1"/>
-                      <Component id="txtContacto" alignment="0" pref="229" max="32767" attributes="1"/>
-                      <Component id="txtPosContacto" alignment="0" pref="229" max="32767" attributes="0"/>
+                      <Component id="txtContacto" alignment="0" pref="230" max="32767" attributes="1"/>
+                      <Component id="txtPosContacto" alignment="0" pref="230" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="lblAsterVal1" alignment="1" min="-2" max="-2" attributes="0"/>
-                      <Component id="lblAsterVal2" alignment="1" min="-2" max="-2" attributes="0"/>
-                      <Component id="lblAsterVal3" alignment="1" min="-2" max="-2" attributes="0"/>
-                      <Component id="lblAsterVal4" alignment="1" min="-2" max="-2" attributes="0"/>
-                      <Component id="lblAsterVal5" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblRSValMarker" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblDNIValMarker" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblTipoDniValMarker" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblContactoValMarker" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblPosContactoValMarker" alignment="1" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -156,32 +149,32 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lblRazonSocial" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="txtRazonSocial" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="lblAsterVal1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblRSValMarker" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="txtDni" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="lblDni" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="lblAsterVal2" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblDNIValMarker" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lblTipoDni" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="cmbTipoDni" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="lblAsterVal3" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblTipoDniValMarker" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lblContacto" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="txtContacto" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="lblAsterVal4" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblContactoValMarker" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
                       <Component id="lblPosContacto" min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="txtPosContacto" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblAsterVal5" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblPosContactoValMarker" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace pref="13" max="32767" attributes="0"/>
@@ -246,7 +239,7 @@
             <Property name="name" type="java.lang.String" value="txtPosContacto" noResource="true"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="lblAsterVal1">
+        <Component class="javax.swing.JLabel" name="lblRSValMarker">
           <Properties>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="33" green="33" red="ff" type="rgb"/>
@@ -254,10 +247,10 @@
             <Property name="text" type="java.lang.String" value="*"/>
           </Properties>
           <BindingProperties>
-            <BindingProperty name="labelFor" source="txtRazonSocial" target="lblAsterVal1" targetPath="labelFor" updateStrategy="0" immediately="false"/>
+            <BindingProperty name="labelFor" source="txtRazonSocial" target="lblRSValMarker" targetPath="labelFor" updateStrategy="0" immediately="false"/>
           </BindingProperties>
         </Component>
-        <Component class="javax.swing.JLabel" name="lblAsterVal2">
+        <Component class="javax.swing.JLabel" name="lblDNIValMarker">
           <Properties>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="33" green="33" red="ff" type="rgb"/>
@@ -265,10 +258,10 @@
             <Property name="text" type="java.lang.String" value="*"/>
           </Properties>
           <BindingProperties>
-            <BindingProperty name="labelFor" source="txtDni" target="lblAsterVal2" targetPath="labelFor" updateStrategy="0" immediately="false"/>
+            <BindingProperty name="labelFor" source="txtDni" target="lblDNIValMarker" targetPath="labelFor" updateStrategy="0" immediately="false"/>
           </BindingProperties>
         </Component>
-        <Component class="javax.swing.JLabel" name="lblAsterVal3">
+        <Component class="javax.swing.JLabel" name="lblTipoDniValMarker">
           <Properties>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="33" green="33" red="ff" type="rgb"/>
@@ -276,10 +269,10 @@
             <Property name="text" type="java.lang.String" value="*"/>
           </Properties>
           <BindingProperties>
-            <BindingProperty name="labelFor" source="cmbTipoDni" target="lblAsterVal3" targetPath="labelFor" updateStrategy="0" immediately="false"/>
+            <BindingProperty name="labelFor" source="cmbTipoDni" target="lblTipoDniValMarker" targetPath="labelFor" updateStrategy="0" immediately="false"/>
           </BindingProperties>
         </Component>
-        <Component class="javax.swing.JLabel" name="lblAsterVal4">
+        <Component class="javax.swing.JLabel" name="lblContactoValMarker">
           <Properties>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="33" green="33" red="ff" type="rgb"/>
@@ -287,10 +280,10 @@
             <Property name="text" type="java.lang.String" value="*"/>
           </Properties>
           <BindingProperties>
-            <BindingProperty name="labelFor" source="txtContacto" target="lblAsterVal4" targetPath="labelFor" updateStrategy="0" immediately="false"/>
+            <BindingProperty name="labelFor" source="txtContacto" target="lblContactoValMarker" targetPath="labelFor" updateStrategy="0" immediately="false"/>
           </BindingProperties>
         </Component>
-        <Component class="javax.swing.JLabel" name="lblAsterVal5">
+        <Component class="javax.swing.JLabel" name="lblPosContactoValMarker">
           <Properties>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="33" green="33" red="ff" type="rgb"/>
@@ -298,7 +291,7 @@
             <Property name="text" type="java.lang.String" value="*"/>
           </Properties>
           <BindingProperties>
-            <BindingProperty name="labelFor" source="txtPosContacto" target="lblAsterVal5" targetPath="labelFor" updateStrategy="0" immediately="false"/>
+            <BindingProperty name="labelFor" source="txtPosContacto" target="lblPosContactoValMarker" targetPath="labelFor" updateStrategy="0" immediately="false"/>
           </BindingProperties>
         </Component>
       </SubComponents>
@@ -308,11 +301,11 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="statusPanelSeparator" alignment="0" pref="374" max="32767" attributes="0"/>
+              <Component id="statusPanelSeparator" alignment="0" pref="379" max="32767" attributes="0"/>
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="statusMessageLabel" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="354" max="32767" attributes="0"/>
+                  <EmptySpace pref="359" max="32767" attributes="0"/>
                   <Component id="statusAnimationLabel" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -348,17 +341,6 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="btnLimpiar">
-      <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/resources/imagenes/escoba_25x25.png"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Limpiar"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLimpiarActionPerformed"/>
-      </Events>
-    </Component>
     <Component class="javax.swing.JLabel" name="lblMensajeInsercion">
       <Properties>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -432,14 +414,17 @@
                           <Component id="ftfTelefono" alignment="0" pref="119" max="32767" attributes="1"/>
                       </Group>
                   </Group>
-                  <EmptySpace pref="46" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="lblAsterVal6" alignment="1" min="-2" max="-2" attributes="0"/>
-                      <Component id="lblAsterVal10" alignment="1" min="-2" max="-2" attributes="0"/>
-                      <Component id="lblAsterVal11" alignment="1" min="-2" max="-2" attributes="0"/>
-                      <Component id="lblAsterVal12" alignment="1" min="-2" max="-2" attributes="0"/>
-                      <Component id="lblAsterVal13" alignment="1" min="-2" max="-2" attributes="0"/>
-                      <Component id="lblAsterVal14" alignment="1" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="47" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Component id="lblTelValMarker" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblDirValMarker" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblDirValMarker2" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblCiudadValMarker" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblRegionValMarker" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblPaisValMarker" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblFaxValMarker" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblWebValMarker" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblEmailValMarker" alignment="1" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -452,51 +437,54 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lblTelefono" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="ftfTelefono" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="lblAsterVal6" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblTelValMarker" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lblFax" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="ftfFax" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblFaxValMarker" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lblEmail" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="txtEmail" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblEmailValMarker" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lblWeb" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="txtWeb" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblWebValMarker" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lblDireccion" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="txtDireccion" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="lblAsterVal10" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblDirValMarker" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="txtDireccion2" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="lblAsterVal11" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblDirValMarker2" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lblCiudad" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="txtCiudad" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="lblAsterVal12" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblCiudadValMarker" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lblRegion" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="txtRegion" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="lblAsterVal13" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblRegionValMarker" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lblPais" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="txtPais" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="lblAsterVal14" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblPaisValMarker" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
               </Group>
@@ -589,7 +577,7 @@
             <Property name="name" type="java.lang.String" value="ftfFax" noResource="true"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="lblAsterVal6">
+        <Component class="javax.swing.JLabel" name="lblTelValMarker">
           <Properties>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="33" green="33" red="ff" type="rgb"/>
@@ -597,10 +585,10 @@
             <Property name="text" type="java.lang.String" value="*"/>
           </Properties>
           <BindingProperties>
-            <BindingProperty name="labelFor" source="ftfTelefono" target="lblAsterVal6" targetPath="labelFor" updateStrategy="0" immediately="false"/>
+            <BindingProperty name="labelFor" source="ftfTelefono" target="lblTelValMarker" targetPath="labelFor" updateStrategy="0" immediately="false"/>
           </BindingProperties>
         </Component>
-        <Component class="javax.swing.JLabel" name="lblAsterVal10">
+        <Component class="javax.swing.JLabel" name="lblDirValMarker">
           <Properties>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="33" green="33" red="ff" type="rgb"/>
@@ -608,10 +596,10 @@
             <Property name="text" type="java.lang.String" value="*"/>
           </Properties>
           <BindingProperties>
-            <BindingProperty name="labelFor" source="txtDireccion" target="lblAsterVal10" targetPath="labelFor" updateStrategy="0" immediately="false"/>
+            <BindingProperty name="labelFor" source="txtDireccion" target="lblDirValMarker" targetPath="labelFor" updateStrategy="0" immediately="false"/>
           </BindingProperties>
         </Component>
-        <Component class="javax.swing.JLabel" name="lblAsterVal11">
+        <Component class="javax.swing.JLabel" name="lblDirValMarker2">
           <Properties>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="33" green="33" red="ff" type="rgb"/>
@@ -619,10 +607,10 @@
             <Property name="text" type="java.lang.String" value="*"/>
           </Properties>
           <BindingProperties>
-            <BindingProperty name="labelFor" source="txtDireccion2" target="lblAsterVal11" targetPath="labelFor" updateStrategy="0" immediately="false"/>
+            <BindingProperty name="labelFor" source="txtDireccion2" target="lblDirValMarker2" targetPath="labelFor" updateStrategy="0" immediately="false"/>
           </BindingProperties>
         </Component>
-        <Component class="javax.swing.JLabel" name="lblAsterVal12">
+        <Component class="javax.swing.JLabel" name="lblCiudadValMarker">
           <Properties>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="33" green="33" red="ff" type="rgb"/>
@@ -630,10 +618,10 @@
             <Property name="text" type="java.lang.String" value="*"/>
           </Properties>
           <BindingProperties>
-            <BindingProperty name="labelFor" source="txtCiudad" target="lblAsterVal12" targetPath="labelFor" updateStrategy="0" immediately="false"/>
+            <BindingProperty name="labelFor" source="txtCiudad" target="lblCiudadValMarker" targetPath="labelFor" updateStrategy="0" immediately="false"/>
           </BindingProperties>
         </Component>
-        <Component class="javax.swing.JLabel" name="lblAsterVal13">
+        <Component class="javax.swing.JLabel" name="lblRegionValMarker">
           <Properties>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="33" green="33" red="ff" type="rgb"/>
@@ -641,10 +629,10 @@
             <Property name="text" type="java.lang.String" value="*"/>
           </Properties>
           <BindingProperties>
-            <BindingProperty name="labelFor" source="txtRegion" target="lblAsterVal13" targetPath="labelFor" updateStrategy="0" immediately="false"/>
+            <BindingProperty name="labelFor" source="txtRegion" target="lblRegionValMarker" targetPath="labelFor" updateStrategy="0" immediately="false"/>
           </BindingProperties>
         </Component>
-        <Component class="javax.swing.JLabel" name="lblAsterVal14">
+        <Component class="javax.swing.JLabel" name="lblPaisValMarker">
           <Properties>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="33" green="33" red="ff" type="rgb"/>
@@ -652,8 +640,32 @@
             <Property name="text" type="java.lang.String" value="*"/>
           </Properties>
           <BindingProperties>
-            <BindingProperty name="labelFor" source="txtPais" target="lblAsterVal14" targetPath="labelFor" updateStrategy="0" immediately="false"/>
+            <BindingProperty name="labelFor" source="txtPais" target="lblPaisValMarker" targetPath="labelFor" updateStrategy="0" immediately="false"/>
           </BindingProperties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblFaxValMarker">
+          <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="33" green="33" red="ff" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="*"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblWebValMarker">
+          <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="33" green="33" red="ff" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="*"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblEmailValMarker">
+          <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="33" green="33" red="ff" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="*"/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>
