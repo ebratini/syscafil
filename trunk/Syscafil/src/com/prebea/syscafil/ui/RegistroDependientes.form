@@ -43,7 +43,7 @@
                   <Group type="102" attributes="0">
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="lblMensajeInsercion" min="-2" pref="406" max="-2" attributes="0"/>
-                      <EmptySpace pref="168" max="32767" attributes="0"/>
+                      <EmptySpace pref="162" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
@@ -52,10 +52,7 @@
                   </Group>
               </Group>
           </Group>
-          <Group type="102" alignment="0" attributes="0">
-              <Component id="jPanel1" min="-2" max="-2" attributes="1"/>
-              <EmptySpace max="32767" attributes="0"/>
-          </Group>
+          <Component id="jPanel1" alignment="0" max="32767" attributes="1"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -85,11 +82,11 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="statusPanelSeparator" alignment="0" pref="814" max="32767" attributes="0"/>
+              <Component id="statusPanelSeparator" alignment="0" pref="808" max="32767" attributes="0"/>
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="statusMessageLabel" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="794" max="32767" attributes="0"/>
+                  <EmptySpace pref="788" max="32767" attributes="0"/>
                   <Component id="statusAnimationLabel" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -262,7 +259,7 @@
                           </Group>
                           <Group type="102" attributes="0">
                               <Component id="cmbEstadoCivil" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="146" max="32767" attributes="0"/>
+                              <EmptySpace pref="148" max="32767" attributes="0"/>
                               <Component id="lblAsterVal6" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -405,8 +402,8 @@
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="3">
                     <StringItem index="0" value="Seleccion"/>
-                    <StringItem index="1" value="F"/>
-                    <StringItem index="2" value="M"/>
+                    <StringItem index="1" value="Femenino"/>
+                    <StringItem index="2" value="Masculino"/>
                   </StringArray>
                 </Property>
               </Properties>
@@ -540,18 +537,9 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="lblAsterVal14" min="-2" max="-2" attributes="0"/>
                               <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <Component id="lblAsterVal17" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <Component id="lblAsterVal16" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <Component id="lblAsterVal15" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                  </Group>
+                                  <Component id="lblAsterVal17" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblAsterVal16" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblAsterVal15" alignment="1" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Component id="lblAsterVal13" min="-2" max="-2" attributes="0"/>
                               <Component id="lblAsterVal12" min="-2" max="-2" attributes="0"/>
@@ -751,7 +739,7 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="txtParentesco" min="-2" pref="173" max="-2" attributes="0"/>
-                              <EmptySpace pref="106" max="32767" attributes="0"/>
+                              <EmptySpace pref="114" max="32767" attributes="0"/>
                               <Component id="lblAsterVal19" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Component id="chkDepExtra" min="-2" max="-2" attributes="0"/>
@@ -873,7 +861,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <Component id="lblNodeMenu" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="749" max="32767" attributes="0"/>
+                  <EmptySpace pref="743" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>

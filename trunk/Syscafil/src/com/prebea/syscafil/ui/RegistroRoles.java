@@ -78,6 +78,11 @@ public class RegistroRoles extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Registro Roles");
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         pnlNodeBar.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -277,6 +282,11 @@ public class RegistroRoles extends javax.swing.JFrame {
         br.getRdbField3().setText("Razon Social");
         br.setVisible(true);
 }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+        LimpiadorComponentes.hideValidationLabels(this);
+    }//GEN-LAST:event_formWindowOpened
 
     /**
     * @param args the command line arguments

@@ -82,6 +82,11 @@ public class RegistroUsuarios extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Registro Usuarios");
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         btnAceptar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/imagenes/add_25x25.png"))); // NOI18N
         btnAceptar.setText("Aceptar");
@@ -304,6 +309,11 @@ public class RegistroUsuarios extends javax.swing.JFrame {
         br.getRdbField3().setText("Razon Social");
         br.setVisible(true);
 }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+        LimpiadorComponentes.hideValidationLabels(this);
+    }//GEN-LAST:event_formWindowOpened
 
     /**
     * @param args the command line arguments
