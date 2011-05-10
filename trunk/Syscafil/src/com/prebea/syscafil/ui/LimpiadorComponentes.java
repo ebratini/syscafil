@@ -74,4 +74,14 @@ public class LimpiadorComponentes {
             }
         }
     }
+
+    public static void limpiarComponentes(Component[] componentes) {
+        for (Component comp : componentes) {
+            if (comp instanceof JPanel) {
+                for (Component pnlComp : ((JPanel) comp).getComponents()) {
+                    limpiar(pnlComp);
+                }
+            }
+        }
+    }
 }
