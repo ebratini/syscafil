@@ -596,6 +596,7 @@ public class RegistroEmpresas extends javax.swing.JFrame {
             lblMensajeInsercion.setForeground(Color.GREEN);
             //lblMensajeInsercion.setVisible(true);
             LimpiadorComponentes.limpiarComponentes(this);
+            txtRazonSocial.requestFocusInWindow();
         }
     }//GEN-LAST:event_btnAceptarActionPerformed
 
