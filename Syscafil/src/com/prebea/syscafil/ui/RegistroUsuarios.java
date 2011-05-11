@@ -52,6 +52,7 @@ public class RegistroUsuarios extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
         btnAceptar = new javax.swing.JButton();
         lblMensajeInsercion = new javax.swing.JLabel();
@@ -72,10 +73,10 @@ public class RegistroUsuarios extends javax.swing.JFrame {
         lstRoles = new javax.swing.JList();
         lblRoles = new javax.swing.JLabel();
         btnBuscar = new javax.swing.JButton();
-        lblAsterVal11 = new javax.swing.JLabel();
-        lblAsterVal12 = new javax.swing.JLabel();
-        lblAsterVal14 = new javax.swing.JLabel();
-        lblAsterVal13 = new javax.swing.JLabel();
+        lblContraseniaValMarker = new javax.swing.JLabel();
+        lblFechaCreacionValMarker = new javax.swing.JLabel();
+        lblRolesValMarker = new javax.swing.JLabel();
+        lblNombreUsuarioValMarker = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Registro Usuarios");
@@ -156,17 +157,25 @@ public class RegistroUsuarios extends javax.swing.JFrame {
             }
         });
 
-        lblAsterVal11.setForeground(new java.awt.Color(255, 51, 51));
-        lblAsterVal11.setText("*");
+        lblContraseniaValMarker.setForeground(new java.awt.Color(255, 51, 51));
 
-        lblAsterVal12.setForeground(new java.awt.Color(255, 51, 51));
-        lblAsterVal12.setText("*");
+        org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, txtContrasenia, org.jdesktop.beansbinding.ObjectProperty.create(), lblContraseniaValMarker, org.jdesktop.beansbinding.BeanProperty.create("labelFor"));
+        bindingGroup.addBinding(binding);
 
-        lblAsterVal14.setForeground(new java.awt.Color(255, 51, 51));
-        lblAsterVal14.setText("*");
+        lblFechaCreacionValMarker.setForeground(new java.awt.Color(255, 51, 51));
 
-        lblAsterVal13.setForeground(new java.awt.Color(255, 51, 51));
-        lblAsterVal13.setText("*");
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, ftfFechaCreacion, org.jdesktop.beansbinding.ObjectProperty.create(), lblFechaCreacionValMarker, org.jdesktop.beansbinding.BeanProperty.create("labelFor"));
+        bindingGroup.addBinding(binding);
+
+        lblRolesValMarker.setForeground(new java.awt.Color(255, 51, 51));
+
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, lstRoles, org.jdesktop.beansbinding.ObjectProperty.create(), lblRolesValMarker, org.jdesktop.beansbinding.BeanProperty.create("icon"));
+        bindingGroup.addBinding(binding);
+
+        lblNombreUsuarioValMarker.setForeground(new java.awt.Color(255, 51, 51));
+
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, txtNombreUsuario, org.jdesktop.beansbinding.ObjectProperty.create(), lblNombreUsuarioValMarker, org.jdesktop.beansbinding.BeanProperty.create("labelFor"));
+        bindingGroup.addBinding(binding);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -184,7 +193,7 @@ public class RegistroUsuarios extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(chkUsuarioVerificado)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)
                             .addComponent(ftfFechaCreacion, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(100, 100, 100)
@@ -193,10 +202,10 @@ public class RegistroUsuarios extends javax.swing.JFrame {
                             .addComponent(txtNombreUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE))))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblAsterVal11)
-                    .addComponent(lblAsterVal12)
-                    .addComponent(lblAsterVal14)
-                    .addComponent(lblAsterVal13))
+                    .addComponent(lblContraseniaValMarker)
+                    .addComponent(lblFechaCreacionValMarker)
+                    .addComponent(lblRolesValMarker)
+                    .addComponent(lblNombreUsuarioValMarker))
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(265, 265, 265)
@@ -210,23 +219,23 @@ public class RegistroUsuarios extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtNombreUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblNombreUsuario)
-                    .addComponent(lblAsterVal13))
+                    .addComponent(lblNombreUsuarioValMarker))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblContrasenia)
                     .addComponent(txtContrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblAsterVal11))
+                    .addComponent(lblContraseniaValMarker))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblFechaCreacion)
                     .addComponent(ftfFechaCreacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblAsterVal12))
+                    .addComponent(lblFechaCreacionValMarker))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(btnBuscar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblAsterVal14))
+                        .addComponent(lblRolesValMarker))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblRoles)
@@ -263,6 +272,8 @@ public class RegistroUsuarios extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(statusPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
+
+        bindingGroup.bind();
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -309,21 +320,22 @@ public class RegistroUsuarios extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField ftfFechaCreacion;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lblAsterVal11;
-    private javax.swing.JLabel lblAsterVal12;
-    private javax.swing.JLabel lblAsterVal13;
-    private javax.swing.JLabel lblAsterVal14;
     private javax.swing.JLabel lblContrasenia;
+    private javax.swing.JLabel lblContraseniaValMarker;
     private javax.swing.JLabel lblFechaCreacion;
+    private javax.swing.JLabel lblFechaCreacionValMarker;
     private javax.swing.JLabel lblMensajeInsercion;
     private javax.swing.JLabel lblNombreUsuario;
+    private javax.swing.JLabel lblNombreUsuarioValMarker;
     private javax.swing.JLabel lblRoles;
+    private javax.swing.JLabel lblRolesValMarker;
     private javax.swing.JList lstRoles;
     private javax.swing.JLabel statusAnimationLabel;
     private javax.swing.JLabel statusMessageLabel;
     private javax.swing.JPanel statusPanel;
     private javax.swing.JTextField txtContrasenia;
     private javax.swing.JTextField txtNombreUsuario;
+    private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
 
 }

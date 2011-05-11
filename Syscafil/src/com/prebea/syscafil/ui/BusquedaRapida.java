@@ -29,6 +29,10 @@
  */
 package com.prebea.syscafil.ui;
 
+import com.prebea.syscafil.model.entities.Afiliado;
+import com.prebea.syscafil.model.entities.Dependiente;
+import com.prebea.syscafil.model.entities.Empresa;
+import com.prebea.syscafil.model.entities.Plan;
 import java.awt.Toolkit;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -45,6 +49,11 @@ import javax.swing.JTextField;
  * @author Edwin Bratini
  */
 public class BusquedaRapida extends javax.swing.JFrame {
+
+    private Empresa empresa;
+    private Afiliado afiliado;
+    private Dependiente dependiente;
+    private Plan plan;
 
     /** Creates new form BusquedaRapida */
     public BusquedaRapida() {
@@ -221,6 +230,38 @@ public class BusquedaRapida extends javax.swing.JFrame {
         // TODO add your handling code here:
     }
 
+    public Afiliado getAfiliado() {
+        return afiliado;
+    }
+
+    public void setAfiliado(Afiliado afiliado) {
+        this.afiliado = afiliado;
+    }
+
+    public Dependiente getDependiente() {
+        return dependiente;
+    }
+
+    public void setDependiente(Dependiente dependiente) {
+        this.dependiente = dependiente;
+    }
+
+    public Empresa getEmpresa() {
+        return empresa;
+    }
+
+    public void setEmpresa(Empresa empresa) {
+        this.empresa = empresa;
+    }
+
+    public Plan getPlan() {
+        return plan;
+    }
+
+    public void setPlan(Plan plan) {
+        this.plan = plan;
+    }
+
     public ButtonGroup getBgrOpBusqueda() {
         return bgrOpBusqueda;
     }
@@ -228,7 +269,7 @@ public class BusquedaRapida extends javax.swing.JFrame {
     public JButton getBtnBuscar() {
         return btnBuscar;
     }
-    
+
     public JCheckBox getChkFiltro() {
         return chkFiltro;
     }

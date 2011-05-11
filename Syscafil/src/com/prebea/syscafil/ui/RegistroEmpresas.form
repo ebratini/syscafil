@@ -413,7 +413,7 @@
                   <Group type="103" groupAlignment="1" attributes="0">
                       <Component id="lblTelValMarker" alignment="1" min="-2" max="-2" attributes="0"/>
                       <Component id="lblDirValMarker" alignment="1" min="-2" max="-2" attributes="0"/>
-                      <Component id="lblDirValMarker2" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblDir2ValMarker" alignment="1" min="-2" max="-2" attributes="0"/>
                       <Component id="lblCiudadValMarker" alignment="1" min="-2" max="-2" attributes="0"/>
                       <Component id="lblRegionValMarker" alignment="1" min="-2" max="-2" attributes="0"/>
                       <Component id="lblPaisValMarker" alignment="1" min="-2" max="-2" attributes="0"/>
@@ -461,7 +461,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="txtDireccion2" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="lblDirValMarker2" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblDir2ValMarker" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -595,7 +595,7 @@
             <BindingProperty name="labelFor" source="txtDireccion" target="lblDirValMarker" targetPath="labelFor" updateStrategy="0" immediately="false"/>
           </BindingProperties>
         </Component>
-        <Component class="javax.swing.JLabel" name="lblDirValMarker2">
+        <Component class="javax.swing.JLabel" name="lblDir2ValMarker">
           <Properties>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="33" green="33" red="ff" type="rgb"/>
@@ -605,7 +605,7 @@
             </Property>
           </Properties>
           <BindingProperties>
-            <BindingProperty name="labelFor" source="txtDireccion2" target="lblDirValMarker2" targetPath="labelFor" updateStrategy="0" immediately="false"/>
+            <BindingProperty name="labelFor" source="txtDireccion2" target="lblDir2ValMarker" targetPath="labelFor" updateStrategy="0" immediately="false"/>
           </BindingProperties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblCiudadValMarker">
@@ -652,30 +652,30 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="33" green="33" red="ff" type="rgb"/>
             </Property>
-            <Property name="labelFor" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
-              <ComponentRef name="null"/>
-            </Property>
           </Properties>
+          <BindingProperties>
+            <BindingProperty name="labelFor" source="ftfFax" target="lblFaxValMarker" targetPath="labelFor" updateStrategy="0" immediately="false"/>
+          </BindingProperties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblWebValMarker">
           <Properties>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="33" green="33" red="ff" type="rgb"/>
             </Property>
-            <Property name="labelFor" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
-              <ComponentRef name="null"/>
-            </Property>
           </Properties>
+          <BindingProperties>
+            <BindingProperty name="labelFor" source="txtWeb" target="lblWebValMarker" targetPath="labelFor" updateStrategy="0" immediately="false"/>
+          </BindingProperties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblEmailValMarker">
           <Properties>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="33" green="33" red="ff" type="rgb"/>
             </Property>
-            <Property name="labelFor" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
-              <ComponentRef name="null"/>
-            </Property>
           </Properties>
+          <BindingProperties>
+            <BindingProperty name="labelFor" source="txtEmail" target="lblEmailValMarker" targetPath="labelFor" updateStrategy="0" immediately="false"/>
+          </BindingProperties>
         </Component>
       </SubComponents>
     </Container>

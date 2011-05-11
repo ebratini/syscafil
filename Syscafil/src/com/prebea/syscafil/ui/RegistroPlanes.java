@@ -51,6 +51,7 @@ public class RegistroPlanes extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
         pnlInfoPlan = new javax.swing.JPanel();
         lblCategoriaPlan = new javax.swing.JLabel();
@@ -61,19 +62,19 @@ public class RegistroPlanes extends javax.swing.JFrame {
         txtNombrePlan = new javax.swing.JTextField();
         lblDescripcionPlan = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        jtaDescripcion = new javax.swing.JTextArea();
         lblPrecioPlan = new javax.swing.JLabel();
         ftfPrecioPlan = new javax.swing.JFormattedTextField();
         lblPrecioDepExtra = new javax.swing.JLabel();
         ftfPrecioDepExtra = new javax.swing.JFormattedTextField();
         btnNuevaCatPlan = new javax.swing.JButton();
         btnNuevaSubcatPlan = new javax.swing.JButton();
-        lblAsterVal11 = new javax.swing.JLabel();
-        lblAsterVal12 = new javax.swing.JLabel();
-        lblAsterVal14 = new javax.swing.JLabel();
-        lblAsterVal15 = new javax.swing.JLabel();
-        lblAsterVal16 = new javax.swing.JLabel();
-        lblAsterVal17 = new javax.swing.JLabel();
+        lblNombreValMarker = new javax.swing.JLabel();
+        lblDescripcionValMarker = new javax.swing.JLabel();
+        lblCatPlanValMarker = new javax.swing.JLabel();
+        lblSubcatPlanValMarker = new javax.swing.JLabel();
+        lblPrecioValMarker = new javax.swing.JLabel();
+        lblPrecioDepExtraValMarker = new javax.swing.JLabel();
         statusPanel = new javax.swing.JPanel();
         javax.swing.JSeparator statusPanelSeparator = new javax.swing.JSeparator();
         statusMessageLabel = new javax.swing.JLabel();
@@ -116,9 +117,9 @@ public class RegistroPlanes extends javax.swing.JFrame {
 
         lblDescripcionPlan.setText("Descripcion");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(3);
-        jScrollPane1.setViewportView(jTextArea1);
+        jtaDescripcion.setColumns(20);
+        jtaDescripcion.setRows(3);
+        jScrollPane1.setViewportView(jtaDescripcion);
 
         lblPrecioPlan.setText("Precio");
 
@@ -148,17 +149,35 @@ public class RegistroPlanes extends javax.swing.JFrame {
             }
         });
 
-        lblAsterVal11.setForeground(new java.awt.Color(255, 51, 51));
+        lblNombreValMarker.setForeground(new java.awt.Color(255, 51, 51));
 
-        lblAsterVal12.setForeground(new java.awt.Color(255, 51, 51));
+        org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, txtNombrePlan, org.jdesktop.beansbinding.ObjectProperty.create(), lblNombreValMarker, org.jdesktop.beansbinding.BeanProperty.create("labelFor"));
+        bindingGroup.addBinding(binding);
 
-        lblAsterVal14.setForeground(new java.awt.Color(255, 51, 51));
+        lblDescripcionValMarker.setForeground(new java.awt.Color(255, 51, 51));
 
-        lblAsterVal15.setForeground(new java.awt.Color(255, 51, 51));
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, jtaDescripcion, org.jdesktop.beansbinding.ObjectProperty.create(), lblDescripcionValMarker, org.jdesktop.beansbinding.BeanProperty.create("labelFor"));
+        bindingGroup.addBinding(binding);
 
-        lblAsterVal16.setForeground(new java.awt.Color(255, 51, 51));
+        lblCatPlanValMarker.setForeground(new java.awt.Color(255, 51, 51));
 
-        lblAsterVal17.setForeground(new java.awt.Color(255, 51, 51));
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, cmbCategoriaPlan, org.jdesktop.beansbinding.ObjectProperty.create(), lblCatPlanValMarker, org.jdesktop.beansbinding.BeanProperty.create("labelFor"));
+        bindingGroup.addBinding(binding);
+
+        lblSubcatPlanValMarker.setForeground(new java.awt.Color(255, 51, 51));
+
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, cmbSubcategoriaPlan, org.jdesktop.beansbinding.ObjectProperty.create(), lblSubcatPlanValMarker, org.jdesktop.beansbinding.BeanProperty.create("labelFor"));
+        bindingGroup.addBinding(binding);
+
+        lblPrecioValMarker.setForeground(new java.awt.Color(255, 51, 51));
+
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, ftfPrecioPlan, org.jdesktop.beansbinding.ObjectProperty.create(), lblPrecioValMarker, org.jdesktop.beansbinding.BeanProperty.create("labelFor"));
+        bindingGroup.addBinding(binding);
+
+        lblPrecioDepExtraValMarker.setForeground(new java.awt.Color(255, 51, 51));
+
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, ftfPrecioDepExtra, org.jdesktop.beansbinding.ObjectProperty.create(), lblPrecioDepExtraValMarker, org.jdesktop.beansbinding.BeanProperty.create("labelFor"));
+        bindingGroup.addBinding(binding);
 
         javax.swing.GroupLayout pnlInfoPlanLayout = new javax.swing.GroupLayout(pnlInfoPlan);
         pnlInfoPlan.setLayout(pnlInfoPlanLayout);
@@ -197,12 +216,12 @@ public class RegistroPlanes extends javax.swing.JFrame {
                         .addGap(94, 94, 94)))
                 .addGap(18, 18, 18)
                 .addGroup(pnlInfoPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblAsterVal11)
-                    .addComponent(lblAsterVal12)
-                    .addComponent(lblAsterVal14)
-                    .addComponent(lblAsterVal15)
-                    .addComponent(lblAsterVal16)
-                    .addComponent(lblAsterVal17))
+                    .addComponent(lblNombreValMarker)
+                    .addComponent(lblDescripcionValMarker)
+                    .addComponent(lblCatPlanValMarker)
+                    .addComponent(lblSubcatPlanValMarker)
+                    .addComponent(lblPrecioValMarker)
+                    .addComponent(lblPrecioDepExtraValMarker))
                 .addContainerGap())
         );
         pnlInfoPlanLayout.setVerticalGroup(
@@ -214,11 +233,11 @@ public class RegistroPlanes extends javax.swing.JFrame {
                         .addGroup(pnlInfoPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblNombrePlan)
                             .addComponent(txtNombrePlan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblAsterVal11))
+                            .addComponent(lblNombreValMarker))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(pnlInfoPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblDescripcionPlan)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(pnlInfoPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(pnlInfoPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -228,27 +247,27 @@ public class RegistroPlanes extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                     .addGroup(pnlInfoPlanLayout.createSequentialGroup()
                         .addGap(32, 32, 32)
-                        .addComponent(lblAsterVal12)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, Short.MAX_VALUE)
-                        .addComponent(lblAsterVal14)
+                        .addComponent(lblDescripcionValMarker)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 130, Short.MAX_VALUE)
+                        .addComponent(lblCatPlanValMarker)
                         .addGap(8, 8, 8)))
                 .addGroup(pnlInfoPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlInfoPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(lblSubcategoria)
                         .addComponent(cmbSubcategoriaPlan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(pnlInfoPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(lblAsterVal15)
+                        .addComponent(lblSubcatPlanValMarker)
                         .addComponent(btnNuevaSubcatPlan, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlInfoPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblPrecioPlan)
                     .addComponent(ftfPrecioPlan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblAsterVal16))
+                    .addComponent(lblPrecioValMarker))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlInfoPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblPrecioDepExtra)
                     .addComponent(ftfPrecioDepExtra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblAsterVal17))
+                    .addComponent(lblPrecioDepExtraValMarker))
                 .addContainerGap())
         );
 
@@ -319,6 +338,8 @@ public class RegistroPlanes extends javax.swing.JFrame {
                 .addComponent(statusPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
+        bindingGroup.bind();
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -384,25 +405,26 @@ public class RegistroPlanes extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField ftfPrecioDepExtra;
     private javax.swing.JFormattedTextField ftfPrecioPlan;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JLabel lblAsterVal11;
-    private javax.swing.JLabel lblAsterVal12;
-    private javax.swing.JLabel lblAsterVal14;
-    private javax.swing.JLabel lblAsterVal15;
-    private javax.swing.JLabel lblAsterVal16;
-    private javax.swing.JLabel lblAsterVal17;
+    private javax.swing.JTextArea jtaDescripcion;
+    private javax.swing.JLabel lblCatPlanValMarker;
     private javax.swing.JLabel lblCategoriaPlan;
     private javax.swing.JLabel lblDescripcionPlan;
+    private javax.swing.JLabel lblDescripcionValMarker;
     private javax.swing.JLabel lblMensajeInsercion;
     private javax.swing.JLabel lblNombrePlan;
+    private javax.swing.JLabel lblNombreValMarker;
     private javax.swing.JLabel lblPrecioDepExtra;
+    private javax.swing.JLabel lblPrecioDepExtraValMarker;
     private javax.swing.JLabel lblPrecioPlan;
+    private javax.swing.JLabel lblPrecioValMarker;
+    private javax.swing.JLabel lblSubcatPlanValMarker;
     private javax.swing.JLabel lblSubcategoria;
     private javax.swing.JPanel pnlInfoPlan;
     private javax.swing.JLabel statusAnimationLabel;
     private javax.swing.JLabel statusMessageLabel;
     private javax.swing.JPanel statusPanel;
     private javax.swing.JTextField txtNombrePlan;
+    private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
 
 }

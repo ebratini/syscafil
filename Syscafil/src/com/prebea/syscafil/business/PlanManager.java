@@ -9,6 +9,7 @@ import com.prebea.syscafil.model.PlanDao;
 import com.prebea.syscafil.model.entities.Plan;
 import java.util.List;
 import java.util.Map;
+import javax.persistence.NoResultException;
 
 /**
  *
@@ -42,7 +43,23 @@ public class PlanManager {
     }
 
     public Plan getPlanById(Integer id) {
-        return pd.findById(id);
+        Plan plan = null;
+
+        try {
+            plan = pd.findById(id);
+        } catch (NoResultException nre) {
+        }
+        return plan;
+    }
+
+    public Plan getPlanByNombre(String nombre) {
+        Plan plan = null;
+
+        try {
+            plan = pd.findPlanByNombre(nombre);
+        } catch (NoResultException nre) {
+        }
+        return plan;
     }
 
     public List<Plan> getPlanByStatus(char status) {

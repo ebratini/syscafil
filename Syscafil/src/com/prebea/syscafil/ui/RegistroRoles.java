@@ -52,6 +52,7 @@ public class RegistroRoles extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
         btnAceptar = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
@@ -69,9 +70,9 @@ public class RegistroRoles extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         lstPrivilegios = new javax.swing.JList();
         btnBuscar = new javax.swing.JButton();
-        lblAsterVal11 = new javax.swing.JLabel();
-        lblAsterVal12 = new javax.swing.JLabel();
-        lblAsterVal14 = new javax.swing.JLabel();
+        lblNombreRolValMarker = new javax.swing.JLabel();
+        lblDescripcionValMarker = new javax.swing.JLabel();
+        lblPrivilegiosValMarker = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Registro Roles");
@@ -146,14 +147,20 @@ public class RegistroRoles extends javax.swing.JFrame {
             }
         });
 
-        lblAsterVal11.setForeground(new java.awt.Color(255, 51, 51));
-        lblAsterVal11.setText("*");
+        lblNombreRolValMarker.setForeground(new java.awt.Color(255, 51, 51));
 
-        lblAsterVal12.setForeground(new java.awt.Color(255, 51, 51));
-        lblAsterVal12.setText("*");
+        org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, txtNombreRol, org.jdesktop.beansbinding.ObjectProperty.create(), lblNombreRolValMarker, org.jdesktop.beansbinding.BeanProperty.create("labelFor"));
+        bindingGroup.addBinding(binding);
 
-        lblAsterVal14.setForeground(new java.awt.Color(255, 51, 51));
-        lblAsterVal14.setText("*");
+        lblDescripcionValMarker.setForeground(new java.awt.Color(255, 51, 51));
+
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, txtDescripcion, org.jdesktop.beansbinding.ObjectProperty.create(), lblDescripcionValMarker, org.jdesktop.beansbinding.BeanProperty.create("labelFor"));
+        bindingGroup.addBinding(binding);
+
+        lblPrivilegiosValMarker.setForeground(new java.awt.Color(255, 51, 51));
+
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, lstPrivilegios, org.jdesktop.beansbinding.ObjectProperty.create(), lblPrivilegiosValMarker, org.jdesktop.beansbinding.BeanProperty.create("labelFor"));
+        bindingGroup.addBinding(binding);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -172,12 +179,12 @@ public class RegistroRoles extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(txtNombreRol, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtDescripcion, javax.swing.GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE))
+                    .addComponent(txtDescripcion, javax.swing.GroupLayout.DEFAULT_SIZE, 336, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblAsterVal11)
-                    .addComponent(lblAsterVal12)
-                    .addComponent(lblAsterVal14))
+                    .addComponent(lblNombreRolValMarker)
+                    .addComponent(lblDescripcionValMarker)
+                    .addComponent(lblPrivilegiosValMarker))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -187,18 +194,18 @@ public class RegistroRoles extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblNombreRol)
                     .addComponent(txtNombreRol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblAsterVal11))
+                    .addComponent(lblNombreRolValMarker))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblDescripcion)
                     .addComponent(txtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblAsterVal12))
+                    .addComponent(lblDescripcionValMarker))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblPrivilegios)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(lblAsterVal14)
+                        .addComponent(lblPrivilegiosValMarker)
                         .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -231,6 +238,8 @@ public class RegistroRoles extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(statusPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
+
+        bindingGroup.bind();
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -275,19 +284,20 @@ public class RegistroRoles extends javax.swing.JFrame {
     private javax.swing.JButton btnSalir;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lblAsterVal11;
-    private javax.swing.JLabel lblAsterVal12;
-    private javax.swing.JLabel lblAsterVal14;
     private javax.swing.JLabel lblDescripcion;
+    private javax.swing.JLabel lblDescripcionValMarker;
     private javax.swing.JLabel lblMensajeInsercion;
     private javax.swing.JLabel lblNombreRol;
+    private javax.swing.JLabel lblNombreRolValMarker;
     private javax.swing.JLabel lblPrivilegios;
+    private javax.swing.JLabel lblPrivilegiosValMarker;
     private javax.swing.JList lstPrivilegios;
     private javax.swing.JLabel statusAnimationLabel;
     private javax.swing.JLabel statusMessageLabel;
     private javax.swing.JPanel statusPanel;
     private javax.swing.JTextField txtDescripcion;
     private javax.swing.JTextField txtNombreRol;
+    private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
 
 }

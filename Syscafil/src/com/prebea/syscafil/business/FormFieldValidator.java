@@ -24,6 +24,9 @@
 package com.prebea.syscafil.business;
 
 import java.awt.Color;
+import java.awt.Component;
+import java.util.HashMap;
+import java.util.Map;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.text.JTextComponent;
@@ -32,7 +35,7 @@ import javax.swing.text.JTextComponent;
  *
  * @author Edwin Bratini <edwin.bratini@gmail.com>
  */
-public abstract class ValidadorCampos {
+public abstract class FormFieldValidator {
 
     private static void turnValidationMarker(JLabel outLabel, boolean onOff) {
         if (outLabel != null) {
@@ -46,9 +49,26 @@ public abstract class ValidadorCampos {
         }
     }
 
-    public static boolean performValidation(FieldValidator fieldValidator, JTextComponent textComponent, JLabel validationMarker) {
+    public static boolean performValidation(FieldValidator[] fieldValidators, Component componente, JLabel validationMarker) {
         boolean valid = true;
-        if (!fieldValidator.validate(textComponent.getText())) {
+        for (FieldValidator fv : fieldValidators) {
+            valid &= performValidation(fv, componente, validationMarker);
+        }
+
+        return valid;
+    }
+
+    public static boolean performValidation(FieldValidator fieldValidator, Component componente, JLabel validationMarker) {
+        boolean valid = true;
+        String strToValidate = "";
+
+        if (componente instanceof JTextComponent) {
+            strToValidate = ((JTextComponent) componente).getText();
+        } else if (componente instanceof JComboBox) {
+            strToValidate = ((JComboBox) componente).getSelectedItem().toString();
+        }
+
+        if (!fieldValidator.validate(strToValidate)) {
             valid = false;
             turnValidationMarker(validationMarker, true);
         } else {
@@ -58,45 +78,22 @@ public abstract class ValidadorCampos {
         return valid;
     }
 
-    public static boolean performValidation(FieldValidator fieldValidator, JComboBox comboBox, JLabel validationMarker) {
-        boolean valid = true;
-        if (!fieldValidator.validate(comboBox.getSelectedItem().toString())) {
-            valid = false;
-            turnValidationMarker(validationMarker, true);
-        } else {
-            turnValidationMarker(validationMarker, false);
+    public static boolean verifyFormFields(HashMap<JLabel, FieldValidator[]> campos) {
+        boolean validFields = true;
+        boolean[] bFields = new boolean[campos.size()];
+
+        int i = 0;
+        for (Map.Entry entry : campos.entrySet()) {
+            JLabel label = (JLabel) entry.getKey();
+            Component comp = label.getLabelFor();
+            bFields[i] = FormFieldValidator.performValidation(((FieldValidator[]) entry.getValue()), comp, label);
+            i++;
         }
 
-        return valid;
-    }
-
-    public static boolean performValidation(FieldValidator[] fieldValidators, JComboBox comboBox, JLabel validationMarker) {
-        boolean valid = true;
-        for (FieldValidator fv : fieldValidators) {
-            valid &= fv.validate(comboBox.getSelectedItem().toString());
+        for (boolean b : bFields) {
+            validFields &= b;
         }
 
-        if (!valid) {
-            turnValidationMarker(validationMarker, true);
-        } else {
-            turnValidationMarker(validationMarker, false);
-        }
-
-        return valid;
-    }
-
-    public static boolean performValidation(FieldValidator[] fieldValidators, JTextComponent textComponent, JLabel validationMarker) {
-        boolean valid = true;
-        for (FieldValidator fv : fieldValidators) {
-            valid &= fv.validate(textComponent.getText());
-        }
-
-        if (!valid) {
-            turnValidationMarker(validationMarker, true);
-        } else {
-            turnValidationMarker(validationMarker, false);
-        }
-
-        return valid;
+        return validFields;
     }
 }

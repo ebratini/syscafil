@@ -29,4 +29,11 @@ public class JpaPlanDao extends JpaDao implements PlanDao {
         q.setParameter("plnStatus", status);
         return q.getResultList();
     }
+
+    @Override
+    public Plan findPlanByNombre(String nombrePlan) {
+        Query q = entityManager.createNamedQuery("Plan.findByPlnNombre");
+        q.setParameter("plnNombre", nombrePlan);
+        return (Plan) q.getSingleResult();
+    }
 }
