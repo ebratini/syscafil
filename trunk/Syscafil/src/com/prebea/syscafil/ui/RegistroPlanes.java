@@ -79,7 +79,6 @@ public class RegistroPlanes extends javax.swing.JFrame {
         statusMessageLabel = new javax.swing.JLabel();
         statusAnimationLabel = new javax.swing.JLabel();
         btnAceptar = new javax.swing.JButton();
-        btnLimpiar = new javax.swing.JButton();
         lblMensajeInsercion = new javax.swing.JLabel();
         btnSalir = new javax.swing.JButton();
 
@@ -220,13 +219,12 @@ public class RegistroPlanes extends javax.swing.JFrame {
                         .addGap(94, 94, 94)))
                 .addGap(18, 18, 18)
                 .addGroup(pnlInfoPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlInfoPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(lblAsterVal17)
-                        .addComponent(lblAsterVal16)
-                        .addComponent(lblAsterVal15)
-                        .addComponent(lblAsterVal14))
+                    .addComponent(lblAsterVal11)
                     .addComponent(lblAsterVal12)
-                    .addComponent(lblAsterVal11))
+                    .addComponent(lblAsterVal14)
+                    .addComponent(lblAsterVal15)
+                    .addComponent(lblAsterVal16)
+                    .addComponent(lblAsterVal17))
                 .addContainerGap())
         );
         pnlInfoPlanLayout.setVerticalGroup(
@@ -304,9 +302,6 @@ public class RegistroPlanes extends javax.swing.JFrame {
         btnAceptar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/imagenes/add_25x25.png"))); // NOI18N
         btnAceptar.setText("Aceptar");
 
-        btnLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/imagenes/escoba_25x25.png"))); // NOI18N
-        btnLimpiar.setText("Limpiar");
-
         lblMensajeInsercion.setForeground(new java.awt.Color(204, 204, 204));
         lblMensajeInsercion.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
@@ -323,18 +318,15 @@ public class RegistroPlanes extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(pnlNodeBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(statusPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(pnlInfoPlan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnAceptar)
-                .addGap(18, 18, 18)
-                .addComponent(btnLimpiar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 133, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblMensajeInsercion, javax.swing.GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
-            .addComponent(pnlInfoPlan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(lblMensajeInsercion, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(225, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -342,15 +334,13 @@ public class RegistroPlanes extends javax.swing.JFrame {
                 .addComponent(pnlNodeBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pnlInfoPlan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(lblMensajeInsercion))
                     .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblMensajeInsercion)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(statusPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -379,7 +369,8 @@ public class RegistroPlanes extends javax.swing.JFrame {
         // TODO add your handling code here:
         btnNuevaCatPlan.setVisible(false);
         btnNuevaSubcatPlan.setVisible(false);
-        LimpiadorComponentes.hideValidationLabelMarkers(this);
+        LimpiadorComponentes.limpiarComponentes(this);
+        LimpiadorComponentes.limpiarValidationMarkers(this);
     }//GEN-LAST:event_formWindowOpened
 
     private void cmbCategoriaPlanFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cmbCategoriaPlanFocusGained
@@ -410,7 +401,6 @@ public class RegistroPlanes extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptar;
-    private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnNuevaCatPlan;
     private javax.swing.JButton btnNuevaSubcatPlan;
     private javax.swing.JButton btnSalir;

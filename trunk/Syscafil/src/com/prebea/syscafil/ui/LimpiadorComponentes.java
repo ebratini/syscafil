@@ -24,62 +24,41 @@
 package com.prebea.syscafil.ui;
 
 import java.awt.Component;
+import java.awt.Container;
 import javax.swing.JComboBox;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.text.JTextComponent;
 
 /**
  *
  * @author Edwin Bratini <edwin.bratini@gmail.com>
  */
-public class LimpiadorComponentes {
-
-    public static void hideValidationLabelMarkers(JFrame frame) {
-        for (Component comp : frame.getContentPane().getComponents()) {
-            if (comp instanceof JPanel) {
-                for (Component pnlComp : ((JPanel) comp).getComponents()) {
-                    if (pnlComp instanceof JLabel && ((JLabel) pnlComp).getText().equalsIgnoreCase("*")) {
-                        pnlComp.setVisible(false);
-                    }
-                }
-            }
-        }
-    }
+public abstract class LimpiadorComponentes {
 
     public static void limpiar(Component comp) {
         if (comp instanceof JTextComponent) {
             ((JTextComponent) comp).setText("");
-        } else if (comp instanceof JComboBox) {
+        } else if (comp instanceof JComboBox && ((JComboBox) comp).getItemCount() >= 1) {
             ((JComboBox) comp).setSelectedIndex(0);
-        } else if (comp instanceof JLabel && ((JLabel) comp).getText().equalsIgnoreCase("*")) {
-            comp.setVisible(false);
         }
     }
 
-    public static void limpiar(JLabel[] labels) {
-        for (JLabel label : labels) {
-            label.setText("");
-        }
-    }
-
-    public static void limpiarComponentes(JFrame frame) {
-        for (Component comp : frame.getContentPane().getComponents()) {
-            if (comp instanceof JPanel) {
-                for (Component pnlComp : ((JPanel) comp).getComponents()) {
-                    limpiar(pnlComp);
-                }
+    public static void limpiarComponentes(Container container) {
+        for (Component comp : container.getComponents()) {
+            if (comp instanceof JTextComponent || comp instanceof JComboBox) {
+                limpiar(comp);
+            } else if (comp instanceof Container) {
+                limpiarComponentes((Container) comp);
             }
         }
     }
 
-    public static void limpiarComponentes(Component[] componentes) {
-        for (Component comp : componentes) {
-            if (comp instanceof JPanel) {
-                for (Component pnlComp : ((JPanel) comp).getComponents()) {
-                    limpiar(pnlComp);
-                }
+    public static void limpiarValidationMarkers(Container container) {
+        for (Component comp : container.getComponents()) {
+            if (comp instanceof JLabel && ((JLabel) comp).getText().equalsIgnoreCase("*")) {
+                ((JLabel) comp).setText("");
+            } else if (comp instanceof Container) {
+                limpiarValidationMarkers((Container) comp);
             }
         }
     }

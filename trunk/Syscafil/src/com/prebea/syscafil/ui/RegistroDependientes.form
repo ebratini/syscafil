@@ -17,6 +17,9 @@
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
   </SyntheticProperties>
+  <Events>
+    <EventHandler event="windowOpened" listener="java.awt.event.WindowListener" parameters="java.awt.event.WindowEvent" handler="formWindowOpened"/>
+  </Events>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
@@ -34,25 +37,16 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Component id="statusPanel" alignment="0" max="32767" attributes="1"/>
           <Component id="pnlNodeBar" alignment="0" max="32767" attributes="0"/>
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="btnAceptar" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="btnLimpiar" min="-2" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="lblMensajeInsercion" min="-2" pref="406" max="-2" attributes="0"/>
-                      <EmptySpace pref="162" max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="btnSalir" min="-2" pref="38" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                  </Group>
-              </Group>
-          </Group>
           <Component id="jPanel1" alignment="0" max="32767" attributes="1"/>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="btnAceptar" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="189" max="-2" attributes="0"/>
+              <Component id="lblMensajeInsercion" min="-2" pref="406" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
+              <Component id="btnSalir" min="-2" pref="38" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -61,16 +55,15 @@
               <Component id="pnlNodeBar" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
-                  <Group type="103" groupAlignment="3" attributes="0">
+                  <Group type="103" alignment="1" groupAlignment="3" attributes="0">
                       <Component id="btnAceptar" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
-                      <Component id="btnLimpiar" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
                       <Component id="lblMensajeInsercion" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Component id="btnSalir" min="-2" pref="39" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="18" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
               <Component id="statusPanel" min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -130,17 +123,6 @@
         <Property name="text" type="java.lang.String" value="Aceptar"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="btnLimpiar">
-      <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/resources/imagenes/escoba_25x25.png"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Limpiar"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLimpiarActionPerformed"/>
-      </Events>
-    </Component>
     <Component class="javax.swing.JButton" name="btnSalir">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
@@ -166,15 +148,15 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
+              <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                      <Component id="pnlInfoServicio" alignment="0" max="32767" attributes="1"/>
-                      <Group type="102" alignment="0" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
                           <Component id="pnlInfoPersonal" min="-2" max="-2" attributes="1"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="pnlInfoContacto" min="-2" max="-2" attributes="1"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="pnlInfoContacto" max="32767" attributes="1"/>
                       </Group>
+                      <Component id="pnlInfoServicio" alignment="0" min="-2" max="-2" attributes="1"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -184,11 +166,11 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="pnlInfoPersonal" min="-2" max="-2" attributes="1"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="pnlInfoContacto" max="32767" attributes="1"/>
+                      <Component id="pnlInfoPersonal" alignment="0" max="32767" attributes="1"/>
                   </Group>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace pref="18" max="32767" attributes="0"/>
                   <Component id="pnlInfoServicio" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -223,45 +205,31 @@
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="txtApellido" alignment="0" min="-2" pref="217" max="-2" attributes="0"/>
-                                  <Component id="txtNombre" alignment="0" min="-2" pref="167" max="-2" attributes="0"/>
-                                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                      <Component id="ftfFechaNacimiento" alignment="0" max="32767" attributes="1"/>
-                                      <Component id="cmbTipoDni" alignment="0" min="-2" max="-2" attributes="1"/>
-                                  </Group>
-                                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                      <Component id="txtNacionalidad" alignment="0" max="32767" attributes="1"/>
-                                      <Component id="txtLugarNacimiento" alignment="0" max="32767" attributes="1"/>
-                                      <Component id="txtDni" alignment="0" min="-2" pref="145" max="-2" attributes="1"/>
-                                  </Group>
-                              </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="lblAsterVal3" min="-2" max="-2" attributes="0"/>
-                                      <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                                          <Component id="lblAsterVal8" alignment="1" min="-2" max="-2" attributes="0"/>
-                                          <Component id="lblAsterVal9" alignment="1" min="-2" max="-2" attributes="0"/>
-                                          <Component id="lblAsterVal10" alignment="1" min="-2" max="-2" attributes="0"/>
-                                          <Component id="lblAsterVal5" alignment="1" min="-2" max="-2" attributes="0"/>
-                                          <Component id="lblAsterVal4" alignment="1" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <Component id="lblAsterVal2" alignment="1" min="-2" max="-2" attributes="0"/>
-                              </Group>
+                          <Component id="txtApellido" alignment="0" min="-2" pref="217" max="-2" attributes="0"/>
+                          <Component id="txtNombre" alignment="0" min="-2" pref="167" max="-2" attributes="0"/>
+                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                              <Component id="ftfFechaNacimiento" alignment="0" max="32767" attributes="1"/>
+                              <Component id="cmbTipoDni" alignment="0" min="-2" max="-2" attributes="1"/>
                           </Group>
-                          <Group type="102" attributes="0">
-                              <Component id="cmbGenero" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="166" max="32767" attributes="0"/>
-                              <Component id="lblAsterVal7" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                              <Component id="txtNacionalidad" alignment="0" max="32767" attributes="1"/>
+                              <Component id="txtLugarNacimiento" alignment="0" max="32767" attributes="1"/>
+                              <Component id="txtDni" alignment="0" min="-2" pref="145" max="-2" attributes="1"/>
                           </Group>
-                          <Group type="102" attributes="0">
-                              <Component id="cmbEstadoCivil" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="148" max="32767" attributes="0"/>
-                              <Component id="lblAsterVal6" min="-2" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="cmbGenero" min="-2" max="-2" attributes="0"/>
+                          <Component id="cmbEstadoCivil" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="lblAsterVal2" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblAsterVal3" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblAsterVal4" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblAsterVal5" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblAsterVal10" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblAsterVal9" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblAsterVal8" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblAsterVal6" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblAsterVal7" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
@@ -513,7 +481,7 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="lblTelefono" alignment="1" min="-2" max="-2" attributes="0"/>
                           <Component id="lblEmail" alignment="1" min="-2" max="-2" attributes="0"/>
@@ -525,26 +493,22 @@
                       <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="ftfTelefono" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
-                          <Component id="txtEmail" alignment="0" pref="275" max="32767" attributes="1"/>
-                          <Component id="txtDireccion" alignment="0" pref="275" max="32767" attributes="1"/>
-                          <Component id="txtDireccion2" alignment="0" pref="275" max="32767" attributes="1"/>
+                          <Component id="txtEmail" alignment="0" pref="289" max="32767" attributes="1"/>
+                          <Component id="txtDireccion" alignment="0" pref="289" max="32767" attributes="1"/>
+                          <Component id="txtDireccion2" alignment="0" pref="289" max="32767" attributes="1"/>
                           <Component id="txtCiudad" alignment="0" min="-2" pref="112" max="-2" attributes="1"/>
                           <Component id="txtRegion" alignment="0" min="-2" pref="175" max="-2" attributes="1"/>
                           <Component id="txtPais" alignment="0" min="-2" pref="201" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="lblAsterVal14" min="-2" max="-2" attributes="0"/>
-                              <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                                  <Component id="lblAsterVal17" alignment="1" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblAsterVal16" alignment="1" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblAsterVal15" alignment="1" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Component id="lblAsterVal13" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblAsterVal12" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Component id="lblAsterVal11" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="lblAsterVal11" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblAsterVal12" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblAsterVal13" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblAsterVal14" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblAsterVal15" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblAsterVal16" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblAsterVal17" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -733,13 +697,13 @@
                               <Component id="lblAsterVal18" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace min="-2" pref="99" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
                       <Component id="lblParentesco" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="txtParentesco" min="-2" pref="173" max="-2" attributes="0"/>
-                              <EmptySpace pref="114" max="32767" attributes="0"/>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="txtParentesco" min="-2" pref="293" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="lblAsterVal19" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Component id="chkDepExtra" min="-2" max="-2" attributes="0"/>
@@ -772,8 +736,8 @@
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="txtParentesco" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblParentesco" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="lblAsterVal19" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblParentesco" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="chkDepExtra" min="-2" max="-2" attributes="0"/>
