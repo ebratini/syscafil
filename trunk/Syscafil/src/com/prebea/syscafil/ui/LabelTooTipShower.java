@@ -23,44 +23,55 @@
  */
 package com.prebea.syscafil.ui;
 
-import java.awt.Component;
-import java.awt.Container;
-import javax.swing.JComboBox;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JLabel;
-import javax.swing.text.JTextComponent;
 
 /**
  *
  * @author Edwin Bratini <edwin.bratini@gmail.com>
  */
-public abstract class LimpiadorComponentes {
+public class LabelTooTipShower implements Runnable {
 
-    public static void limpiar(Component comp) {
-        if (comp instanceof JTextComponent) {
-            ((JTextComponent) comp).setText("");
-        } else if (comp instanceof JComboBox && ((JComboBox) comp).getItemCount() >= 1) {
-            ((JComboBox) comp).setSelectedIndex(0);
-        }
+    private JLabel label;
+    private long time = 1500;
+
+    public LabelTooTipShower() {
     }
 
-    public static void limpiarComponentes(Container container) {
-        for (Component comp : container.getComponents()) {
-            if (comp instanceof JTextComponent || comp instanceof JComboBox) {
-                limpiar(comp);
-            } else if (comp instanceof Container) {
-                limpiarComponentes((Container) comp);
-            }
-        }
+    public LabelTooTipShower(JLabel label) {
+        this.label = label;
     }
 
-    public static void limpiarValidationMarkers(Container container) {
-        for (Component comp : container.getComponents()) {
-            if (comp instanceof JLabel && ((JLabel) comp).getText().equalsIgnoreCase("*")) {
-                //((JLabel) comp).setText("");
-                ((JLabel) comp).setVisible(false);
-            } else if (comp instanceof Container) {
-                limpiarValidationMarkers((Container) comp);
-            }
+    public LabelTooTipShower(JLabel label, long time) {
+        this.label = label;
+        this.time = time;
+    }
+
+    public JLabel getLabel() {
+        return label;
+    }
+
+    public void setLabel(JLabel label) {
+        this.label = label;
+    }
+
+    public long getTime() {
+        return time;
+    }
+
+    public void setTime(long time) {
+        this.time = time;
+    }
+
+    @Override
+    public void run() {
+        try {
+            label.setVisible(true);
+            Thread.sleep(time);
+            label.setVisible(false);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(LabelTooTipShower.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

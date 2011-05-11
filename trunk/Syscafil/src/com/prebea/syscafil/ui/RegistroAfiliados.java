@@ -119,8 +119,6 @@ public class RegistroAfiliados extends javax.swing.JFrame {
         btnBuscar = new javax.swing.JButton();
         lblAsterVal18 = new javax.swing.JLabel();
         lblAsterVal19 = new javax.swing.JLabel();
-        pnlNodeBar = new javax.swing.JPanel();
-        lblNodeMenu = new javax.swing.JLabel();
         lblMensajeInsercion = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -140,11 +138,11 @@ public class RegistroAfiliados extends javax.swing.JFrame {
         statusPanel.setLayout(statusPanelLayout);
         statusPanelLayout.setHorizontalGroup(
             statusPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(statusPanelSeparator, javax.swing.GroupLayout.DEFAULT_SIZE, 830, Short.MAX_VALUE)
+            .addComponent(statusPanelSeparator, javax.swing.GroupLayout.DEFAULT_SIZE, 838, Short.MAX_VALUE)
             .addGroup(statusPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(statusMessageLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 810, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 818, Short.MAX_VALUE)
                 .addComponent(statusAnimationLabel)
                 .addContainerGap())
         );
@@ -198,31 +196,22 @@ public class RegistroAfiliados extends javax.swing.JFrame {
         cmbEstadoCivil.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccion", "Casado(a)", "Soltero(a)", "Divorciado(a)", "Viudo(a)" }));
 
         lblAsterVal2.setForeground(new java.awt.Color(255, 51, 51));
-        lblAsterVal2.setText("*");
 
         lblAsterVal3.setForeground(new java.awt.Color(255, 51, 51));
-        lblAsterVal3.setText("*");
 
         lblAsterVal4.setForeground(new java.awt.Color(255, 51, 51));
-        lblAsterVal4.setText("*");
 
         lblAsterVal5.setForeground(new java.awt.Color(255, 51, 51));
-        lblAsterVal5.setText("*");
 
         lblAsterVal6.setForeground(new java.awt.Color(255, 51, 51));
-        lblAsterVal6.setText("*");
 
         lblAsterVal7.setForeground(new java.awt.Color(255, 51, 51));
-        lblAsterVal7.setText("*");
 
         lblAsterVal8.setForeground(new java.awt.Color(255, 51, 51));
-        lblAsterVal8.setText("*");
 
         lblAsterVal9.setForeground(new java.awt.Color(255, 51, 51));
-        lblAsterVal9.setText("*");
 
         lblAsterVal10.setForeground(new java.awt.Color(255, 51, 51));
-        lblAsterVal10.setText("*");
 
         javax.swing.GroupLayout pnlInfoPersonalLayout = new javax.swing.GroupLayout(pnlInfoPersonal);
         pnlInfoPersonal.setLayout(pnlInfoPersonalLayout);
@@ -334,25 +323,18 @@ public class RegistroAfiliados extends javax.swing.JFrame {
         lblEmail.setText("Email");
 
         lblAsterVal12.setForeground(new java.awt.Color(255, 51, 51));
-        lblAsterVal12.setText("*");
 
         lblAsterVal16.setForeground(new java.awt.Color(255, 51, 51));
-        lblAsterVal16.setText("*");
 
         lblAsterVal13.setForeground(new java.awt.Color(255, 51, 51));
-        lblAsterVal13.setText("*");
 
         lblAsterVal17.setForeground(new java.awt.Color(255, 51, 51));
-        lblAsterVal17.setText("*");
 
         lblAsterVal14.setForeground(new java.awt.Color(255, 51, 51));
-        lblAsterVal14.setText("*");
 
         lblAsterVal11.setForeground(new java.awt.Color(255, 51, 51));
-        lblAsterVal11.setText("*");
 
         lblAsterVal15.setForeground(new java.awt.Color(255, 51, 51));
-        lblAsterVal15.setText("*");
 
         javax.swing.GroupLayout pnlInfoContactoLayout = new javax.swing.GroupLayout(pnlInfoContacto);
         pnlInfoContacto.setLayout(pnlInfoContactoLayout);
@@ -371,12 +353,12 @@ public class RegistroAfiliados extends javax.swing.JFrame {
                 .addGap(10, 10, 10)
                 .addGroup(pnlInfoContactoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE)
-                    .addComponent(txtDireccion2, javax.swing.GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE)
+                    .addComponent(txtEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 311, Short.MAX_VALUE)
+                    .addComponent(txtDireccion2, javax.swing.GroupLayout.DEFAULT_SIZE, 311, Short.MAX_VALUE)
                     .addComponent(txtCiudad, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtRegion, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtPais, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtDireccion, javax.swing.GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE))
+                    .addComponent(txtDireccion, javax.swing.GroupLayout.DEFAULT_SIZE, 311, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(pnlInfoContactoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblAsterVal17)
@@ -455,10 +437,8 @@ public class RegistroAfiliados extends javax.swing.JFrame {
         });
 
         lblAsterVal18.setForeground(new java.awt.Color(255, 51, 51));
-        lblAsterVal18.setText("*");
 
         lblAsterVal19.setForeground(new java.awt.Color(255, 51, 51));
-        lblAsterVal19.setText("*");
 
         javax.swing.GroupLayout pnlInfoServicioLayout = new javax.swing.GroupLayout(pnlInfoServicio);
         pnlInfoServicio.setLayout(pnlInfoServicioLayout);
@@ -477,7 +457,7 @@ public class RegistroAfiliados extends javax.swing.JFrame {
                 .addGroup(pnlInfoServicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlInfoServicioLayout.createSequentialGroup()
                         .addComponent(lblAsterVal18)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 147, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 157, Short.MAX_VALUE)
                         .addComponent(lblEmpresa)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -516,7 +496,7 @@ public class RegistroAfiliados extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(pnlInfoPersonal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(pnlInfoContacto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -530,26 +510,9 @@ public class RegistroAfiliados extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(pnlInfoContacto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(pnlInfoPersonal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
                 .addComponent(pnlInfoServicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        pnlNodeBar.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
-        lblNodeMenu.setText("Afiliados");
-
-        javax.swing.GroupLayout pnlNodeBarLayout = new javax.swing.GroupLayout(pnlNodeBar);
-        pnlNodeBar.setLayout(pnlNodeBarLayout);
-        pnlNodeBarLayout.setHorizontalGroup(
-            pnlNodeBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlNodeBarLayout.createSequentialGroup()
-                .addComponent(lblNodeMenu)
-                .addContainerGap(786, Short.MAX_VALUE))
-        );
-        pnlNodeBarLayout.setVerticalGroup(
-            pnlNodeBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblNodeMenu)
+                .addContainerGap())
         );
 
         lblMensajeInsercion.setForeground(new java.awt.Color(204, 204, 204));
@@ -560,22 +523,19 @@ public class RegistroAfiliados extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(statusPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(pnlNodeBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnAceptar)
                 .addGap(69, 69, 69)
                 .addComponent(lblMensajeInsercion, javax.swing.GroupLayout.PREFERRED_SIZE, 496, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 107, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 115, Short.MAX_VALUE)
                 .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(pnlNodeBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -597,7 +557,6 @@ public class RegistroAfiliados extends javax.swing.JFrame {
         br.setLocationRelativeTo(this);
         br.setTitle("Buscar Empresa");
         br.getLblEntidades().setText("Empresas");
-        br.getLblNodeMenu().setText("Empresas");
         br.getRdbField1().setText("Id");
         br.getRdbField2().setText("DNI");
         br.getRdbField3().setText("Razon Social");
@@ -678,7 +637,6 @@ public class RegistroAfiliados extends javax.swing.JFrame {
     private javax.swing.JLabel lblLugarNacimiento;
     private javax.swing.JLabel lblMensajeInsercion;
     private javax.swing.JLabel lblNacionalidad;
-    private javax.swing.JLabel lblNodeMenu;
     private javax.swing.JLabel lblNombre;
     private javax.swing.JLabel lblPais;
     private javax.swing.JLabel lblPlan;
@@ -688,7 +646,6 @@ public class RegistroAfiliados extends javax.swing.JFrame {
     private javax.swing.JPanel pnlInfoContacto;
     private javax.swing.JPanel pnlInfoPersonal;
     private javax.swing.JPanel pnlInfoServicio;
-    private javax.swing.JPanel pnlNodeBar;
     private javax.swing.JLabel statusAnimationLabel;
     private javax.swing.JLabel statusMessageLabel;
     private javax.swing.JPanel statusPanel;

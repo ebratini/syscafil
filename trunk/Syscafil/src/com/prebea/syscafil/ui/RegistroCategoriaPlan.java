@@ -30,6 +30,8 @@
 
 package com.prebea.syscafil.ui;
 
+import java.awt.Toolkit;
+
 /**
  *
  * @author Edwin Bratini
@@ -64,6 +66,7 @@ public class RegistroCategoriaPlan extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Registro Categoria Plan");
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/resources/imagenes/prebea_logo.png")));
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {

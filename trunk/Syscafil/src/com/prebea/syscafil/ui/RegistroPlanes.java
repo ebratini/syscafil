@@ -30,6 +30,8 @@
 
 package com.prebea.syscafil.ui;
 
+import java.awt.Toolkit;
+
 /**
  *
  * @author Edwin Bratini
@@ -50,8 +52,6 @@ public class RegistroPlanes extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        pnlNodeBar = new javax.swing.JPanel();
-        lblNodeMenu = new javax.swing.JLabel();
         pnlInfoPlan = new javax.swing.JPanel();
         lblCategoriaPlan = new javax.swing.JLabel();
         cmbCategoriaPlan = new javax.swing.JComboBox();
@@ -84,29 +84,13 @@ public class RegistroPlanes extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Registro de Planes");
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/resources/imagenes/prebea_logo.png")));
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
             }
         });
-
-        pnlNodeBar.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
-        lblNodeMenu.setText("Planes");
-
-        javax.swing.GroupLayout pnlNodeBarLayout = new javax.swing.GroupLayout(pnlNodeBar);
-        pnlNodeBar.setLayout(pnlNodeBarLayout);
-        pnlNodeBarLayout.setHorizontalGroup(
-            pnlNodeBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlNodeBarLayout.createSequentialGroup()
-                .addComponent(lblNodeMenu)
-                .addContainerGap(364, Short.MAX_VALUE))
-        );
-        pnlNodeBarLayout.setVerticalGroup(
-            pnlNodeBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblNodeMenu)
-        );
 
         pnlInfoPlan.setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.white, java.awt.Color.lightGray));
 
@@ -165,22 +149,16 @@ public class RegistroPlanes extends javax.swing.JFrame {
         });
 
         lblAsterVal11.setForeground(new java.awt.Color(255, 51, 51));
-        lblAsterVal11.setText("*");
 
         lblAsterVal12.setForeground(new java.awt.Color(255, 51, 51));
-        lblAsterVal12.setText("*");
 
         lblAsterVal14.setForeground(new java.awt.Color(255, 51, 51));
-        lblAsterVal14.setText("*");
 
         lblAsterVal15.setForeground(new java.awt.Color(255, 51, 51));
-        lblAsterVal15.setText("*");
 
         lblAsterVal16.setForeground(new java.awt.Color(255, 51, 51));
-        lblAsterVal16.setText("*");
 
         lblAsterVal17.setForeground(new java.awt.Color(255, 51, 51));
-        lblAsterVal17.setText("*");
 
         javax.swing.GroupLayout pnlInfoPlanLayout = new javax.swing.GroupLayout(pnlInfoPlan);
         pnlInfoPlan.setLayout(pnlInfoPlanLayout);
@@ -206,13 +184,13 @@ public class RegistroPlanes extends javax.swing.JFrame {
                             .addComponent(lblPrecioDepExtra, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(pnlInfoPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(ftfPrecioPlan, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)
-                            .addComponent(ftfPrecioDepExtra, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)
+                            .addComponent(ftfPrecioPlan, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)
+                            .addComponent(ftfPrecioDepExtra, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlInfoPlanLayout.createSequentialGroup()
                                 .addGroup(pnlInfoPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(cmbCategoriaPlan, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(cmbSubcategoriaPlan, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                                 .addGroup(pnlInfoPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(btnNuevaCatPlan, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(btnNuevaSubcatPlan, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -251,7 +229,7 @@ public class RegistroPlanes extends javax.swing.JFrame {
                     .addGroup(pnlInfoPlanLayout.createSequentialGroup()
                         .addGap(32, 32, 32)
                         .addComponent(lblAsterVal12)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, Short.MAX_VALUE)
                         .addComponent(lblAsterVal14)
                         .addGap(8, 8, 8)))
                 .addGroup(pnlInfoPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -271,7 +249,7 @@ public class RegistroPlanes extends javax.swing.JFrame {
                     .addComponent(lblPrecioDepExtra)
                     .addComponent(ftfPrecioDepExtra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblAsterVal17))
-                .addGap(31, 31, 31))
+                .addContainerGap())
         );
 
         statusAnimationLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -316,10 +294,9 @@ public class RegistroPlanes extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlNodeBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(statusPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(pnlInfoPlan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnAceptar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -331,8 +308,6 @@ public class RegistroPlanes extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(pnlNodeBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pnlInfoPlan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -419,13 +394,11 @@ public class RegistroPlanes extends javax.swing.JFrame {
     private javax.swing.JLabel lblCategoriaPlan;
     private javax.swing.JLabel lblDescripcionPlan;
     private javax.swing.JLabel lblMensajeInsercion;
-    private javax.swing.JLabel lblNodeMenu;
     private javax.swing.JLabel lblNombrePlan;
     private javax.swing.JLabel lblPrecioDepExtra;
     private javax.swing.JLabel lblPrecioPlan;
     private javax.swing.JLabel lblSubcategoria;
     private javax.swing.JPanel pnlInfoPlan;
-    private javax.swing.JPanel pnlNodeBar;
     private javax.swing.JLabel statusAnimationLabel;
     private javax.swing.JLabel statusMessageLabel;
     private javax.swing.JPanel statusPanel;

@@ -30,6 +30,7 @@
 
 package com.prebea.syscafil.ui;
 
+import java.awt.Toolkit;
 import javax.swing.JFrame;
 
 /**
@@ -52,8 +53,6 @@ public class RegistroRoles extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        pnlNodeBar = new javax.swing.JPanel();
-        lblNodeMenu = new javax.swing.JLabel();
         btnAceptar = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
         lblMensajeInsercion = new javax.swing.JLabel();
@@ -76,29 +75,13 @@ public class RegistroRoles extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Registro Roles");
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/resources/imagenes/prebea_logo.png")));
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
             }
         });
-
-        pnlNodeBar.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
-        lblNodeMenu.setText("Roles");
-
-        javax.swing.GroupLayout pnlNodeBarLayout = new javax.swing.GroupLayout(pnlNodeBar);
-        pnlNodeBar.setLayout(pnlNodeBarLayout);
-        pnlNodeBarLayout.setHorizontalGroup(
-            pnlNodeBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlNodeBarLayout.createSequentialGroup()
-                .addComponent(lblNodeMenu)
-                .addContainerGap(407, Short.MAX_VALUE))
-        );
-        pnlNodeBarLayout.setVerticalGroup(
-            pnlNodeBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblNodeMenu)
-        );
 
         btnAceptar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/imagenes/add_25x25.png"))); // NOI18N
         btnAceptar.setText("Aceptar");
@@ -224,23 +207,20 @@ public class RegistroRoles extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlNodeBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(statusPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnAceptar)
-                .addGap(18, 18, 18)
-                .addComponent(lblMensajeInsercion, javax.swing.GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
+                .addGap(38, 38, 38)
+                .addComponent(lblMensajeInsercion, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
                 .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(pnlNodeBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -266,7 +246,6 @@ public class RegistroRoles extends javax.swing.JFrame {
         br.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         br.setTitle("Buscar Empresa");
         br.getLblEntidades().setText("Empresas");
-        br.getLblNodeMenu().setText("Empresas");
         br.getRdbField1().setText("Id");
         br.getRdbField2().setText("DNI");
         br.getRdbField3().setText("Razon Social");
@@ -301,11 +280,9 @@ public class RegistroRoles extends javax.swing.JFrame {
     private javax.swing.JLabel lblAsterVal14;
     private javax.swing.JLabel lblDescripcion;
     private javax.swing.JLabel lblMensajeInsercion;
-    private javax.swing.JLabel lblNodeMenu;
     private javax.swing.JLabel lblNombreRol;
     private javax.swing.JLabel lblPrivilegios;
     private javax.swing.JList lstPrivilegios;
-    private javax.swing.JPanel pnlNodeBar;
     private javax.swing.JLabel statusAnimationLabel;
     private javax.swing.JLabel statusMessageLabel;
     private javax.swing.JPanel statusPanel;

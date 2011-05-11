@@ -36,7 +36,6 @@ import com.prebea.syscafil.business.ValidatorsHolder;
 import com.prebea.syscafil.model.entities.Empresa;
 import java.awt.Color;
 import java.awt.Toolkit;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -132,7 +131,7 @@ public class RegistroEmpresas extends javax.swing.JFrame {
             pnlNodeBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlNodeBarLayout.createSequentialGroup()
                 .addComponent(lblNodeMenu)
-                .addContainerGap(329, Short.MAX_VALUE))
+                .addContainerGap(333, Short.MAX_VALUE))
         );
         pnlNodeBarLayout.setVerticalGroup(
             pnlNodeBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -163,31 +162,26 @@ public class RegistroEmpresas extends javax.swing.JFrame {
         txtPosContacto.setName("txtPosContacto"); // NOI18N
 
         lblRSValMarker.setForeground(new java.awt.Color(255, 51, 51));
-        lblRSValMarker.setText("*");
 
         org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, txtRazonSocial, org.jdesktop.beansbinding.ObjectProperty.create(), lblRSValMarker, org.jdesktop.beansbinding.BeanProperty.create("labelFor"));
         bindingGroup.addBinding(binding);
 
         lblDNIValMarker.setForeground(new java.awt.Color(255, 51, 51));
-        lblDNIValMarker.setText("*");
 
         binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, txtDni, org.jdesktop.beansbinding.ObjectProperty.create(), lblDNIValMarker, org.jdesktop.beansbinding.BeanProperty.create("labelFor"));
         bindingGroup.addBinding(binding);
 
         lblTipoDniValMarker.setForeground(new java.awt.Color(255, 51, 51));
-        lblTipoDniValMarker.setText("*");
 
         binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, cmbTipoDni, org.jdesktop.beansbinding.ObjectProperty.create(), lblTipoDniValMarker, org.jdesktop.beansbinding.BeanProperty.create("labelFor"));
         bindingGroup.addBinding(binding);
 
         lblContactoValMarker.setForeground(new java.awt.Color(255, 51, 51));
-        lblContactoValMarker.setText("*");
 
         binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, txtContacto, org.jdesktop.beansbinding.ObjectProperty.create(), lblContactoValMarker, org.jdesktop.beansbinding.BeanProperty.create("labelFor"));
         bindingGroup.addBinding(binding);
 
         lblPosContactoValMarker.setForeground(new java.awt.Color(255, 51, 51));
-        lblPosContactoValMarker.setText("*");
 
         binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, txtPosContacto, org.jdesktop.beansbinding.ObjectProperty.create(), lblPosContactoValMarker, org.jdesktop.beansbinding.BeanProperty.create("labelFor"));
         bindingGroup.addBinding(binding);
@@ -209,8 +203,8 @@ public class RegistroEmpresas extends javax.swing.JFrame {
                     .addComponent(txtRazonSocial, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtDni, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cmbTipoDni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtContacto, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)
-                    .addComponent(txtPosContacto, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE))
+                    .addComponent(txtContacto, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
+                    .addComponent(txtPosContacto, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(pnlEntidadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblRSValMarker, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -257,11 +251,11 @@ public class RegistroEmpresas extends javax.swing.JFrame {
         statusPanel.setLayout(statusPanelLayout);
         statusPanelLayout.setHorizontalGroup(
             statusPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(statusPanelSeparator, javax.swing.GroupLayout.DEFAULT_SIZE, 379, Short.MAX_VALUE)
+            .addComponent(statusPanelSeparator, javax.swing.GroupLayout.DEFAULT_SIZE, 383, Short.MAX_VALUE)
             .addGroup(statusPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(statusMessageLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 359, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 363, Short.MAX_VALUE)
                 .addComponent(statusAnimationLabel)
                 .addContainerGap())
         );
@@ -278,7 +272,6 @@ public class RegistroEmpresas extends javax.swing.JFrame {
 
         lblMensajeInsercion.setForeground(new java.awt.Color(0, 102, 0));
         lblMensajeInsercion.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblMensajeInsercion.setText("*");
 
         btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/imagenes/salir_25x25.png"))); // NOI18N
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -332,49 +325,40 @@ public class RegistroEmpresas extends javax.swing.JFrame {
         ftfFax.setName("ftfFax"); // NOI18N
 
         lblTelValMarker.setForeground(new java.awt.Color(255, 51, 51));
-        lblTelValMarker.setText("*");
 
         binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, ftfTelefono, org.jdesktop.beansbinding.ObjectProperty.create(), lblTelValMarker, org.jdesktop.beansbinding.BeanProperty.create("labelFor"));
         bindingGroup.addBinding(binding);
 
         lblDirValMarker.setForeground(new java.awt.Color(255, 51, 51));
-        lblDirValMarker.setText("*");
 
         binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, txtDireccion, org.jdesktop.beansbinding.ObjectProperty.create(), lblDirValMarker, org.jdesktop.beansbinding.BeanProperty.create("labelFor"));
         bindingGroup.addBinding(binding);
 
         lblDirValMarker2.setForeground(new java.awt.Color(255, 51, 51));
-        lblDirValMarker2.setText("*");
 
         binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, txtDireccion2, org.jdesktop.beansbinding.ObjectProperty.create(), lblDirValMarker2, org.jdesktop.beansbinding.BeanProperty.create("labelFor"));
         bindingGroup.addBinding(binding);
 
         lblCiudadValMarker.setForeground(new java.awt.Color(255, 51, 51));
-        lblCiudadValMarker.setText("*");
 
         binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, txtCiudad, org.jdesktop.beansbinding.ObjectProperty.create(), lblCiudadValMarker, org.jdesktop.beansbinding.BeanProperty.create("labelFor"));
         bindingGroup.addBinding(binding);
 
         lblRegionValMarker.setForeground(new java.awt.Color(255, 51, 51));
-        lblRegionValMarker.setText("*");
 
         binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, txtRegion, org.jdesktop.beansbinding.ObjectProperty.create(), lblRegionValMarker, org.jdesktop.beansbinding.BeanProperty.create("labelFor"));
         bindingGroup.addBinding(binding);
 
         lblPaisValMarker.setForeground(new java.awt.Color(255, 51, 51));
-        lblPaisValMarker.setText("*");
 
         binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, txtPais, org.jdesktop.beansbinding.ObjectProperty.create(), lblPaisValMarker, org.jdesktop.beansbinding.BeanProperty.create("labelFor"));
         bindingGroup.addBinding(binding);
 
         lblFaxValMarker.setForeground(new java.awt.Color(255, 51, 51));
-        lblFaxValMarker.setText("*");
 
         lblWebValMarker.setForeground(new java.awt.Color(255, 51, 51));
-        lblWebValMarker.setText("*");
 
         lblEmailValMarker.setForeground(new java.awt.Color(255, 51, 51));
-        lblEmailValMarker.setText("*");
 
         javax.swing.GroupLayout pnlInfoContactoLayout = new javax.swing.GroupLayout(pnlInfoContacto);
         pnlInfoContacto.setLayout(pnlInfoContactoLayout);
@@ -406,7 +390,7 @@ public class RegistroEmpresas extends javax.swing.JFrame {
                     .addGroup(pnlInfoContactoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(ftfFax, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(ftfTelefono, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
                 .addGroup(pnlInfoContactoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(lblTelValMarker)
                     .addComponent(lblDirValMarker)
@@ -480,11 +464,13 @@ public class RegistroEmpresas extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblMensajeInsercion, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 223, Short.MAX_VALUE)
                 .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblMensajeInsercion, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
+                .addGap(186, 186, 186))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -496,11 +482,11 @@ public class RegistroEmpresas extends javax.swing.JFrame {
                 .addComponent(pnlInfoContacto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lblMensajeInsercion))
+                    .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblMensajeInsercion)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                 .addComponent(statusPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -567,7 +553,7 @@ public class RegistroEmpresas extends javax.swing.JFrame {
         if (!checkValidationFields()) {
             lblMensajeInsercion.setText("Por favor corriga los campos marcados");
             lblMensajeInsercion.setForeground(Color.red);
-            //lblMensajeInsercion.setVisible(true);
+            lblMensajeInsercion.setVisible(true);
             return;
         } else {
             lblMensajeInsercion.setText("");
@@ -576,10 +562,10 @@ public class RegistroEmpresas extends javax.swing.JFrame {
 
             if (em.getEmpresaByDNI(txtDni.getText()) != null) {
                 lblDNIValMarker.setText("*");
-                //lblDNIValMarker.setVisible(true);
+                lblDNIValMarker.setVisible(true);
                 lblMensajeInsercion.setText("Ya existe una empresa con DNI digitado");
                 lblMensajeInsercion.setForeground(Color.red);
-                //lblMensajeInsercion.setVisible(true);
+                lblMensajeInsercion.setVisible(true);
                 return;
             }
 
@@ -594,7 +580,8 @@ public class RegistroEmpresas extends javax.swing.JFrame {
 
             lblMensajeInsercion.setText("Empresa creada exitosamente");
             lblMensajeInsercion.setForeground(Color.GREEN);
-            //lblMensajeInsercion.setVisible(true);
+            lblMensajeInsercion.setVisible(true);
+            new Thread(new LabelTooTipShower(lblMensajeInsercion)).start();
             LimpiadorComponentes.limpiarComponentes(this);
             txtRazonSocial.requestFocusInWindow();
         }

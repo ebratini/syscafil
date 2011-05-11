@@ -29,6 +29,7 @@
  */
 package com.prebea.syscafil.ui;
 
+import java.awt.Toolkit;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -72,10 +73,9 @@ public class BusquedaRapida extends javax.swing.JFrame {
         btnBuscar = new javax.swing.JButton();
         txtBusqueda = new javax.swing.JTextField();
         btnSeleccionar = new javax.swing.JButton();
-        pnlNodeBar = new javax.swing.JPanel();
-        lblNodeMenu = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/resources/imagenes/prebea_logo.png")));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
@@ -127,7 +127,7 @@ public class BusquedaRapida extends javax.swing.JFrame {
             pnlOpBusquedaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlOpBusquedaLayout.createSequentialGroup()
                 .addComponent(chkFiltro)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 6, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addGroup(pnlOpBusquedaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(rdbField1)
                     .addComponent(rdbField2)
@@ -165,7 +165,7 @@ public class BusquedaRapida extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(scrEntidades, javax.swing.GroupLayout.DEFAULT_SIZE, 546, Short.MAX_VALUE)
+                    .addComponent(scrEntidades, javax.swing.GroupLayout.DEFAULT_SIZE, 550, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -196,39 +196,19 @@ public class BusquedaRapida extends javax.swing.JFrame {
                             .addComponent(txtBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnBuscar))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(scrEntidades, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)
+                .addComponent(scrEntidades, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
                 .addContainerGap())
-        );
-
-        pnlNodeBar.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
-        lblNodeMenu.setText("Busqueda");
-
-        javax.swing.GroupLayout pnlNodeBarLayout = new javax.swing.GroupLayout(pnlNodeBar);
-        pnlNodeBar.setLayout(pnlNodeBarLayout);
-        pnlNodeBarLayout.setHorizontalGroup(
-            pnlNodeBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlNodeBarLayout.createSequentialGroup()
-                .addComponent(lblNodeMenu)
-                .addContainerGap(519, Short.MAX_VALUE))
-        );
-        pnlNodeBarLayout.setVerticalGroup(
-            pnlNodeBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblNodeMenu)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlNodeBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(pnlNodeBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
@@ -263,14 +243,6 @@ public class BusquedaRapida extends javax.swing.JFrame {
 
     public JLabel getLblEntidades() {
         return lblEntidades;
-    }
-
-    public JLabel getLblNodeMenu() {
-        return lblNodeMenu;
-    }
-
-    public JPanel getPnlNodeBar() {
-        return pnlNodeBar;
     }
 
     public JPanel getPnlOpBusqueda() {
@@ -325,8 +297,6 @@ public class BusquedaRapida extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTable jtbEntidades;
     private javax.swing.JLabel lblEntidades;
-    private javax.swing.JLabel lblNodeMenu;
-    private javax.swing.JPanel pnlNodeBar;
     private javax.swing.JPanel pnlOpBusqueda;
     private javax.swing.JRadioButton rdbField1;
     private javax.swing.JRadioButton rdbField2;

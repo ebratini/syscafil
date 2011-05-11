@@ -37,11 +37,14 @@
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Component id="btnAceptar" min="-2" pref="99" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="lblMensajeInsercion" pref="199" max="32767" attributes="0"/>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <EmptySpace pref="223" max="32767" attributes="0"/>
               <Component id="btnSalir" min="-2" pref="41" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="lblMensajeInsercion" pref="187" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="186" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -55,13 +58,12 @@
               <Component id="pnlInfoContacto" min="-2" max="-2" attributes="1"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                      <Component id="btnAceptar" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
-                      <Component id="lblMensajeInsercion" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="btnAceptar" alignment="0" min="-2" pref="38" max="-2" attributes="0"/>
                   <Component id="btnSalir" min="-2" pref="39" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="lblMensajeInsercion" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="20" max="32767" attributes="0"/>
               <Component id="statusPanel" min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -82,7 +84,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <Component id="lblNodeMenu" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="329" max="32767" attributes="0"/>
+                  <EmptySpace pref="333" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -126,8 +128,8 @@
                       <Component id="txtRazonSocial" alignment="0" min="-2" pref="197" max="-2" attributes="0"/>
                       <Component id="txtDni" alignment="0" min="-2" pref="145" max="-2" attributes="1"/>
                       <Component id="cmbTipoDni" alignment="0" min="-2" max="-2" attributes="1"/>
-                      <Component id="txtContacto" alignment="0" pref="234" max="32767" attributes="1"/>
-                      <Component id="txtPosContacto" alignment="0" pref="234" max="32767" attributes="0"/>
+                      <Component id="txtContacto" alignment="0" pref="240" max="32767" attributes="1"/>
+                      <Component id="txtPosContacto" alignment="0" pref="240" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
@@ -242,7 +244,6 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="33" green="33" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="*"/>
           </Properties>
           <BindingProperties>
             <BindingProperty name="labelFor" source="txtRazonSocial" target="lblRSValMarker" targetPath="labelFor" updateStrategy="0" immediately="false"/>
@@ -253,7 +254,6 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="33" green="33" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="*"/>
           </Properties>
           <BindingProperties>
             <BindingProperty name="labelFor" source="txtDni" target="lblDNIValMarker" targetPath="labelFor" updateStrategy="0" immediately="false"/>
@@ -264,7 +264,6 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="33" green="33" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="*"/>
           </Properties>
           <BindingProperties>
             <BindingProperty name="labelFor" source="cmbTipoDni" target="lblTipoDniValMarker" targetPath="labelFor" updateStrategy="0" immediately="false"/>
@@ -275,7 +274,6 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="33" green="33" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="*"/>
           </Properties>
           <BindingProperties>
             <BindingProperty name="labelFor" source="txtContacto" target="lblContactoValMarker" targetPath="labelFor" updateStrategy="0" immediately="false"/>
@@ -286,7 +284,6 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="33" green="33" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="*"/>
           </Properties>
           <BindingProperties>
             <BindingProperty name="labelFor" source="txtPosContacto" target="lblPosContactoValMarker" targetPath="labelFor" updateStrategy="0" immediately="false"/>
@@ -299,11 +296,11 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="statusPanelSeparator" alignment="0" pref="379" max="32767" attributes="0"/>
+              <Component id="statusPanelSeparator" alignment="0" pref="383" max="32767" attributes="0"/>
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="statusMessageLabel" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="359" max="32767" attributes="0"/>
+                  <EmptySpace pref="363" max="32767" attributes="0"/>
                   <Component id="statusAnimationLabel" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -345,7 +342,6 @@
           <Color blue="0" green="66" red="0" type="rgb"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="2"/>
-        <Property name="text" type="java.lang.String" value="*"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="btnSalir">
@@ -413,7 +409,7 @@
                           <Component id="ftfTelefono" alignment="0" pref="119" max="32767" attributes="1"/>
                       </Group>
                   </Group>
-                  <EmptySpace pref="51" max="32767" attributes="0"/>
+                  <EmptySpace pref="57" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
                       <Component id="lblTelValMarker" alignment="1" min="-2" max="-2" attributes="0"/>
                       <Component id="lblDirValMarker" alignment="1" min="-2" max="-2" attributes="0"/>
@@ -581,7 +577,6 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="33" green="33" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="*"/>
           </Properties>
           <BindingProperties>
             <BindingProperty name="labelFor" source="ftfTelefono" target="lblTelValMarker" targetPath="labelFor" updateStrategy="0" immediately="false"/>
@@ -592,7 +587,9 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="33" green="33" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="*"/>
+            <Property name="labelFor" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+              <ComponentRef name="null"/>
+            </Property>
           </Properties>
           <BindingProperties>
             <BindingProperty name="labelFor" source="txtDireccion" target="lblDirValMarker" targetPath="labelFor" updateStrategy="0" immediately="false"/>
@@ -603,7 +600,9 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="33" green="33" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="*"/>
+            <Property name="labelFor" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+              <ComponentRef name="null"/>
+            </Property>
           </Properties>
           <BindingProperties>
             <BindingProperty name="labelFor" source="txtDireccion2" target="lblDirValMarker2" targetPath="labelFor" updateStrategy="0" immediately="false"/>
@@ -614,7 +613,9 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="33" green="33" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="*"/>
+            <Property name="labelFor" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+              <ComponentRef name="null"/>
+            </Property>
           </Properties>
           <BindingProperties>
             <BindingProperty name="labelFor" source="txtCiudad" target="lblCiudadValMarker" targetPath="labelFor" updateStrategy="0" immediately="false"/>
@@ -625,7 +626,9 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="33" green="33" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="*"/>
+            <Property name="labelFor" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+              <ComponentRef name="null"/>
+            </Property>
           </Properties>
           <BindingProperties>
             <BindingProperty name="labelFor" source="txtRegion" target="lblRegionValMarker" targetPath="labelFor" updateStrategy="0" immediately="false"/>
@@ -636,7 +639,9 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="33" green="33" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="*"/>
+            <Property name="labelFor" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+              <ComponentRef name="null"/>
+            </Property>
           </Properties>
           <BindingProperties>
             <BindingProperty name="labelFor" source="txtPais" target="lblPaisValMarker" targetPath="labelFor" updateStrategy="0" immediately="false"/>
@@ -647,7 +652,9 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="33" green="33" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="*"/>
+            <Property name="labelFor" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+              <ComponentRef name="null"/>
+            </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblWebValMarker">
@@ -655,7 +662,9 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="33" green="33" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="*"/>
+            <Property name="labelFor" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+              <ComponentRef name="null"/>
+            </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblEmailValMarker">
@@ -663,7 +672,9 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="33" green="33" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="*"/>
+            <Property name="labelFor" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+              <ComponentRef name="null"/>
+            </Property>
           </Properties>
         </Component>
       </SubComponents>
