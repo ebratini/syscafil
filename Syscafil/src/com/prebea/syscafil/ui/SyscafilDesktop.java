@@ -27,10 +27,13 @@ import com.prebea.syscafil.model.entities.Usuario;
 import java.awt.event.WindowEvent;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Arrays;
 import java.util.List;
+import javax.swing.GroupLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -51,6 +54,7 @@ import org.pushingpixels.flamingo.api.ribbon.RibbonTask;
 import org.pushingpixels.flamingo.api.ribbon.resize.CoreRibbonResizePolicies;
 import org.pushingpixels.flamingo.api.ribbon.resize.IconRibbonBandResizePolicy;
 import org.pushingpixels.flamingo.api.ribbon.resize.RibbonBandResizePolicy;
+import org.pushingpixels.flamingo.internal.ui.common.JRichTooltipPanel;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 /**
@@ -342,6 +346,11 @@ public class SyscafilDesktop extends JRibbonFrame {
         usuario = login.getUsuario();
         if (usuario != null) {
             usuarioLogeado.setText(usuario.getUsrLogin());
+
+            JRichTooltipPanel rtp = new JRichTooltipPanel(new RichTooltip("Login", "Bienvenido, " + usuario.getUsrLogin()));
+            pnlBody.add(rtp);
+            new Thread(new ToolTipShower(rtp)).start();
+
             logInOutButton.setName("jcbLogOut");
             logInOutButton.setIcon(getResizableIconFromResource("/resources/imagenes/th_logout.png"));
             logInOutButton.setText("Log Out");
@@ -378,7 +387,12 @@ public class SyscafilDesktop extends JRibbonFrame {
             if (buttonName.equalsIgnoreCase("jcbLogIn")) {
                 doLogin(buttonClicked);
             } else if (buttonName.equalsIgnoreCase("jcbLogOut")) {
-                doLogout(buttonClicked);
+                int op = JOptionPane.showConfirmDialog(SyscafilDesktop.this, "Confirma desea cerrar sesion?", "Syscafil - Log Out",
+                        JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
+
+                if (op == JOptionPane.OK_OPTION) {
+                    doLogout(buttonClicked);
+                }
             } else if (buttonName.equalsIgnoreCase("jcbSalir")) {
                 doExit(buttonClicked);
             } else if (buttonName.equalsIgnoreCase("jcbVerEmpresas")) {

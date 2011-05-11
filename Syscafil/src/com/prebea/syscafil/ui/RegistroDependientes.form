@@ -36,10 +36,8 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Component id="statusPanel" alignment="0" max="32767" attributes="1"/>
-          <Component id="pnlNodeBar" alignment="0" max="32767" attributes="0"/>
-          <Component id="jPanel1" alignment="0" max="32767" attributes="1"/>
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace pref="18" max="32767" attributes="0"/>
               <Component id="btnAceptar" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="189" max="-2" attributes="0"/>
               <Component id="lblMensajeInsercion" min="-2" pref="406" max="-2" attributes="0"/>
@@ -47,13 +45,12 @@
               <Component id="btnSalir" min="-2" pref="38" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
+          <Component id="jPanel1" alignment="0" max="32767" attributes="1"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
-              <Component id="pnlNodeBar" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
@@ -75,11 +72,11 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="statusPanelSeparator" alignment="0" pref="808" max="32767" attributes="0"/>
+              <Component id="statusPanelSeparator" alignment="0" pref="816" max="32767" attributes="0"/>
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="statusMessageLabel" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="788" max="32767" attributes="0"/>
+                  <EmptySpace pref="796" max="32767" attributes="0"/>
                   <Component id="statusAnimationLabel" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -148,17 +145,17 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Component id="pnlInfoServicio" alignment="0" max="32767" attributes="1"/>
+                      <Group type="102" alignment="0" attributes="0">
                           <Component id="pnlInfoPersonal" min="-2" max="-2" attributes="1"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="pnlInfoContacto" max="32767" attributes="1"/>
                       </Group>
-                      <Component id="pnlInfoServicio" alignment="0" min="-2" max="-2" attributes="1"/>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -170,7 +167,7 @@
                       <Component id="pnlInfoContacto" max="32767" attributes="1"/>
                       <Component id="pnlInfoPersonal" alignment="0" max="32767" attributes="1"/>
                   </Group>
-                  <EmptySpace pref="18" max="32767" attributes="0"/>
+                  <EmptySpace pref="42" max="32767" attributes="0"/>
                   <Component id="pnlInfoServicio" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -399,7 +396,6 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="33" green="33" red="ff" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="*"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="lblAsterVal3">
@@ -407,7 +403,6 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="33" green="33" red="ff" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="*"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="lblAsterVal4">
@@ -415,7 +410,6 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="33" green="33" red="ff" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="*"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="lblAsterVal5">
@@ -423,7 +417,6 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="33" green="33" red="ff" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="*"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="lblAsterVal10">
@@ -431,7 +424,6 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="33" green="33" red="ff" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="*"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="lblAsterVal9">
@@ -439,7 +431,6 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="33" green="33" red="ff" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="*"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="lblAsterVal8">
@@ -447,7 +438,6 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="33" green="33" red="ff" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="*"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="lblAsterVal6">
@@ -455,7 +445,6 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="33" green="33" red="ff" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="*"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="lblAsterVal7">
@@ -463,7 +452,6 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="33" green="33" red="ff" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="*"/>
               </Properties>
             </Component>
           </SubComponents>
@@ -493,9 +481,9 @@
                       <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="ftfTelefono" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
-                          <Component id="txtEmail" alignment="0" pref="289" max="32767" attributes="1"/>
-                          <Component id="txtDireccion" alignment="0" pref="289" max="32767" attributes="1"/>
-                          <Component id="txtDireccion2" alignment="0" pref="289" max="32767" attributes="1"/>
+                          <Component id="txtEmail" alignment="0" pref="297" max="32767" attributes="1"/>
+                          <Component id="txtDireccion" alignment="0" pref="297" max="32767" attributes="1"/>
+                          <Component id="txtDireccion2" alignment="0" pref="297" max="32767" attributes="1"/>
                           <Component id="txtCiudad" alignment="0" min="-2" pref="112" max="-2" attributes="1"/>
                           <Component id="txtRegion" alignment="0" min="-2" pref="175" max="-2" attributes="1"/>
                           <Component id="txtPais" alignment="0" min="-2" pref="201" max="-2" attributes="0"/>
@@ -613,7 +601,6 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="33" green="33" red="ff" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="*"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="lblAsterVal12">
@@ -621,7 +608,6 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="33" green="33" red="ff" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="*"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="lblAsterVal13">
@@ -629,7 +615,6 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="33" green="33" red="ff" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="*"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="lblAsterVal14">
@@ -637,7 +622,6 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="33" green="33" red="ff" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="*"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="lblAsterVal15">
@@ -645,7 +629,6 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="33" green="33" red="ff" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="*"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="lblAsterVal16">
@@ -653,7 +636,6 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="33" green="33" red="ff" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="*"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="lblAsterVal17">
@@ -661,7 +643,6 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="33" green="33" red="ff" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="*"/>
               </Properties>
             </Component>
           </SubComponents>
@@ -708,7 +689,7 @@
                           </Group>
                           <Component id="chkDepExtra" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace pref="16" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -796,7 +777,6 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="33" green="33" red="ff" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="*"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="lblAsterVal19">
@@ -804,43 +784,10 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="33" green="33" red="ff" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="*"/>
               </Properties>
             </Component>
           </SubComponents>
         </Container>
-      </SubComponents>
-    </Container>
-    <Container class="javax.swing.JPanel" name="pnlNodeBar">
-      <Properties>
-        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
-            <EtchetBorder/>
-          </Border>
-        </Property>
-      </Properties>
-
-      <Layout>
-        <DimensionLayout dim="0">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <Component id="lblNodeMenu" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="743" max="32767" attributes="0"/>
-              </Group>
-          </Group>
-        </DimensionLayout>
-        <DimensionLayout dim="1">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="lblNodeMenu" min="-2" max="-2" attributes="0"/>
-          </Group>
-        </DimensionLayout>
-      </Layout>
-      <SubComponents>
-        <Component class="javax.swing.JLabel" name="lblNodeMenu">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Dependiente"/>
-          </Properties>
-        </Component>
       </SubComponents>
     </Container>
     <Component class="javax.swing.JLabel" name="lblMensajeInsercion">

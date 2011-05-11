@@ -34,6 +34,8 @@ import com.prebea.syscafil.model.entities.Usuario;
 import java.awt.event.KeyEvent;
 import java.util.Arrays;
 import javax.swing.JOptionPane;
+import org.pushingpixels.flamingo.api.common.RichTooltip;
+import org.pushingpixels.flamingo.internal.ui.common.JRichTooltipPanel;
 
 /**
  *
@@ -181,7 +183,7 @@ public class Login extends javax.swing.JDialog {
 
         if (esUsuarioValido(txtlNombreUsuario.getText())) {
             setUsuario(new UsuarioManager().getUsuarioByLogin(txtlNombreUsuario.getText()));
-            JOptionPane.showMessageDialog(this, "Bienvenido, " + txtlNombreUsuario.getText(), "Validacion de Usuario", JOptionPane.INFORMATION_MESSAGE);
+            //JOptionPane.showMessageDialog(this, "Bienvenido, " + txtlNombreUsuario.getText(), "Validacion de Usuario", JOptionPane.INFORMATION_MESSAGE);
             this.dispose();
         } else {
             JOptionPane.showMessageDialog(this, "Usuario / Contraseña Invalido", "Validacion de Usuario", JOptionPane.ERROR_MESSAGE);

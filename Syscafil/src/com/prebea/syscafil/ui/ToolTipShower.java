@@ -23,44 +23,60 @@
  */
 package com.prebea.syscafil.ui;
 
-import java.awt.Component;
 import java.awt.Container;
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
-import javax.swing.text.JTextComponent;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.pushingpixels.flamingo.internal.ui.common.JRichTooltipPanel;
 
 /**
  *
  * @author Edwin Bratini <edwin.bratini@gmail.com>
  */
-public abstract class LimpiadorComponentes {
+public class ToolTipShower implements Runnable {
 
-    public static void limpiar(Component comp) {
-        if (comp instanceof JTextComponent) {
-            ((JTextComponent) comp).setText("");
-        } else if (comp instanceof JComboBox && ((JComboBox) comp).getItemCount() >= 1) {
-            ((JComboBox) comp).setSelectedIndex(0);
-        }
+    private JRichTooltipPanel rtp;
+    private long time = 2000;
+
+    public ToolTipShower() {
     }
 
-    public static void limpiarComponentes(Container container) {
-        for (Component comp : container.getComponents()) {
-            if (comp instanceof JTextComponent || comp instanceof JComboBox) {
-                limpiar(comp);
-            } else if (comp instanceof Container) {
-                limpiarComponentes((Container) comp);
-            }
-        }
+    public ToolTipShower(JRichTooltipPanel rtp) {
+        this.rtp = rtp;
     }
 
-    public static void limpiarValidationMarkers(Container container) {
-        for (Component comp : container.getComponents()) {
-            if (comp instanceof JLabel && ((JLabel) comp).getText().equalsIgnoreCase("*")) {
-                //((JLabel) comp).setText("");
-                ((JLabel) comp).setVisible(false);
-            } else if (comp instanceof Container) {
-                limpiarValidationMarkers((Container) comp);
-            }
+    public ToolTipShower(JRichTooltipPanel rtp, long time) {
+        this.rtp = rtp;
+        this.time = time;
+    }
+
+    public JRichTooltipPanel getRtp() {
+        return rtp;
+    }
+
+    public void setRtp(JRichTooltipPanel rtp) {
+        this.rtp = rtp;
+    }
+
+    public long getTime() {
+        return time;
+    }
+
+    public void setTime(long time) {
+        this.time = time;
+    }
+
+    @Override
+    public void run() {
+        try {
+            rtp.setVisible(true);
+            Thread.sleep(time);
+            //this.rtp.setVisible(false);
+            Container parent = rtp.getParent();
+            parent.remove(rtp);
+            parent.validate();
+            parent.repaint();
+        } catch (InterruptedException ex) {
+            Logger.getLogger(ToolTipShower.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

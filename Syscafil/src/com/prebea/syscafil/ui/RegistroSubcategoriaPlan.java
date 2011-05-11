@@ -30,6 +30,8 @@
 
 package com.prebea.syscafil.ui;
 
+import java.awt.Toolkit;
+
 /**
  *
  * @author Edwin Bratini
@@ -67,6 +69,7 @@ public class RegistroSubcategoriaPlan extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Registro Subcategoria Plan");
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/resources/imagenes/prebea_logo.png")));
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
@@ -146,7 +149,6 @@ public class RegistroSubcategoriaPlan extends javax.swing.JDialog {
 
         lblMensajeInsercion.setForeground(new java.awt.Color(204, 204, 204));
         lblMensajeInsercion.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblMensajeInsercion.setText("*");
 
         btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/imagenes/salir_25x25.png"))); // NOI18N
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -163,9 +165,9 @@ public class RegistroSubcategoriaPlan extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnAceptar)
-                .addGap(18, 18, 18)
-                .addComponent(lblMensajeInsercion, javax.swing.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addComponent(lblMensajeInsercion, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(67, 67, 67)
                 .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
