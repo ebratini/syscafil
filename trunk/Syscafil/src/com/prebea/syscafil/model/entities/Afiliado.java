@@ -156,6 +156,22 @@ public class Afiliado implements Serializable {
         this.aflStatus = aflStatus;
     }
 
+    public Afiliado(String aflDni, String aflTipoDni, String aflNombre, String aflApellido, Date aflFechaIngreso, Date aflFechaNacimiento, char aflGenero, String aflTelefono, String aflDireccion, String aflCiudad, String aflRegion, String aflPais, char aflStatus) {
+        this.aflDni = aflDni;
+        this.aflTipoDni = aflTipoDni;
+        this.aflNombre = aflNombre;
+        this.aflApellido = aflApellido;
+        this.aflFechaIngreso = aflFechaIngreso;
+        this.aflFechaNacimiento = aflFechaNacimiento;
+        this.aflGenero = aflGenero;
+        this.aflTelefono = aflTelefono;
+        this.aflDireccion = aflDireccion;
+        this.aflCiudad = aflCiudad;
+        this.aflRegion = aflRegion;
+        this.aflPais = aflPais;
+        this.aflStatus = aflStatus;
+    }
+
     public Integer getAflId() {
         return aflId;
     }

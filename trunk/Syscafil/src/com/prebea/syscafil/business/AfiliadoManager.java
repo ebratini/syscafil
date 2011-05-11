@@ -9,6 +9,7 @@ import com.prebea.syscafil.model.JpaAfiliadoDao;
 import com.prebea.syscafil.model.entities.Afiliado;
 import java.util.List;
 import java.util.Map;
+import javax.persistence.NoResultException;
 
 /**
  *
@@ -50,7 +51,13 @@ public class AfiliadoManager {
     }
 
     public Afiliado getAfiliadoByDNI(String dni) {
-        return ad.findAfiliadoByDNI(dni);
+        Afiliado afiliado = null;
+
+        try {
+            afiliado = ad.findAfiliadoByDNI(dni);
+        } catch (NoResultException nre) {
+        }
+        return afiliado;
     }
 
     public List<Afiliado> getAfiliadoByNombre(String nombre) {

@@ -29,13 +29,16 @@
  */
 package com.prebea.syscafil.ui;
 
-import com.prebea.syscafil.business.ValidadorCampos;
+import com.prebea.syscafil.business.FormFieldValidator;
 import com.prebea.syscafil.business.EmpresaManager;
 import com.prebea.syscafil.business.FieldValidator;
 import com.prebea.syscafil.business.ValidatorsHolder;
 import com.prebea.syscafil.model.entities.Empresa;
 import java.awt.Color;
 import java.awt.Toolkit;
+import java.util.HashMap;
+import javax.swing.JLabel;
+import javax.swing.text.JTextComponent;
 
 /**
  *
@@ -103,7 +106,7 @@ public class RegistroEmpresas extends javax.swing.JFrame {
         ftfFax = new javax.swing.JFormattedTextField();
         lblTelValMarker = new javax.swing.JLabel();
         lblDirValMarker = new javax.swing.JLabel();
-        lblDirValMarker2 = new javax.swing.JLabel();
+        lblDir2ValMarker = new javax.swing.JLabel();
         lblCiudadValMarker = new javax.swing.JLabel();
         lblRegionValMarker = new javax.swing.JLabel();
         lblPaisValMarker = new javax.swing.JLabel();
@@ -334,9 +337,9 @@ public class RegistroEmpresas extends javax.swing.JFrame {
         binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, txtDireccion, org.jdesktop.beansbinding.ObjectProperty.create(), lblDirValMarker, org.jdesktop.beansbinding.BeanProperty.create("labelFor"));
         bindingGroup.addBinding(binding);
 
-        lblDirValMarker2.setForeground(new java.awt.Color(255, 51, 51));
+        lblDir2ValMarker.setForeground(new java.awt.Color(255, 51, 51));
 
-        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, txtDireccion2, org.jdesktop.beansbinding.ObjectProperty.create(), lblDirValMarker2, org.jdesktop.beansbinding.BeanProperty.create("labelFor"));
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, txtDireccion2, org.jdesktop.beansbinding.ObjectProperty.create(), lblDir2ValMarker, org.jdesktop.beansbinding.BeanProperty.create("labelFor"));
         bindingGroup.addBinding(binding);
 
         lblCiudadValMarker.setForeground(new java.awt.Color(255, 51, 51));
@@ -356,9 +359,18 @@ public class RegistroEmpresas extends javax.swing.JFrame {
 
         lblFaxValMarker.setForeground(new java.awt.Color(255, 51, 51));
 
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, ftfFax, org.jdesktop.beansbinding.ObjectProperty.create(), lblFaxValMarker, org.jdesktop.beansbinding.BeanProperty.create("labelFor"));
+        bindingGroup.addBinding(binding);
+
         lblWebValMarker.setForeground(new java.awt.Color(255, 51, 51));
 
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, txtWeb, org.jdesktop.beansbinding.ObjectProperty.create(), lblWebValMarker, org.jdesktop.beansbinding.BeanProperty.create("labelFor"));
+        bindingGroup.addBinding(binding);
+
         lblEmailValMarker.setForeground(new java.awt.Color(255, 51, 51));
+
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, txtEmail, org.jdesktop.beansbinding.ObjectProperty.create(), lblEmailValMarker, org.jdesktop.beansbinding.BeanProperty.create("labelFor"));
+        bindingGroup.addBinding(binding);
 
         javax.swing.GroupLayout pnlInfoContactoLayout = new javax.swing.GroupLayout(pnlInfoContacto);
         pnlInfoContacto.setLayout(pnlInfoContactoLayout);
@@ -394,7 +406,7 @@ public class RegistroEmpresas extends javax.swing.JFrame {
                 .addGroup(pnlInfoContactoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(lblTelValMarker)
                     .addComponent(lblDirValMarker)
-                    .addComponent(lblDirValMarker2)
+                    .addComponent(lblDir2ValMarker)
                     .addComponent(lblCiudadValMarker)
                     .addComponent(lblRegionValMarker)
                     .addComponent(lblPaisValMarker)
@@ -434,7 +446,7 @@ public class RegistroEmpresas extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlInfoContactoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtDireccion2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblDirValMarker2))
+                    .addComponent(lblDir2ValMarker))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlInfoContactoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCiudad)
@@ -506,57 +518,63 @@ public class RegistroEmpresas extends javax.swing.JFrame {
         LimpiadorComponentes.limpiarValidationMarkers(this);
     }//GEN-LAST:event_formWindowOpened
 
-    private boolean checkValidationFields() {
+    private boolean checkFormFields() {
         boolean validFields = true;
         boolean[] bFields = new boolean[14];
 
         ValidatorsHolder validatorsHolder = new ValidatorsHolder();
 
-        bFields[0] = ValidadorCampos.performValidation(validatorsHolder.getEmptynessValidator(), txtRazonSocial, lblRSValMarker);
-        bFields[1] = ValidadorCampos.performValidation(validatorsHolder.getEmptynessValidator(), txtDni, lblDNIValMarker);
-        bFields[2] = ValidadorCampos.performValidation(validatorsHolder.getDefComboValueValidator(), cmbTipoDni, lblTipoDniValMarker);
-        bFields[3] = ValidadorCampos.performValidation(validatorsHolder.getEmptynessValidator(), txtContacto, lblContactoValMarker);
-        bFields[4] = ValidadorCampos.performValidation(validatorsHolder.getEmptynessValidator(), txtPosContacto, lblPosContactoValMarker);
+        FieldValidator emptynessVal, DefCombVal, phoneVal, dateVal, emailVal, webVal;
+        emptynessVal = validatorsHolder.getEmptynessValidator();
+        DefCombVal = validatorsHolder.getDefComboValueValidator();
+        phoneVal = validatorsHolder.getPhoneValidator();
+        dateVal = validatorsHolder.getDateValidator();
+        emailVal = validatorsHolder.getEmailValidator();
+        webVal = validatorsHolder.getWebValidator();
 
-        bFields[5] = ValidadorCampos.performValidation(
-                new FieldValidator[]{validatorsHolder.getEmptynessValidator(), validatorsHolder.getPhoneValidator()},
-                ftfTelefono, lblTelValMarker);
+        FieldValidator[] emptynessArr = new FieldValidator[]{emptynessVal};
 
-        bFields[6] = (!ftfFax.getText().isEmpty()
-                ? ValidadorCampos.performValidation(validatorsHolder.getPhoneValidator(), ftfFax, lblFaxValMarker) : true);
+        HashMap<JLabel, FieldValidator[]> campos = new HashMap<JLabel, FieldValidator[]>();
+        campos.put(lblRSValMarker, emptynessArr);
+        campos.put(lblDNIValMarker, emptynessArr);
+        campos.put(lblTipoDniValMarker, new FieldValidator[]{DefCombVal});
+        campos.put(lblContactoValMarker, emptynessArr);
+        campos.put(lblPosContactoValMarker, emptynessArr);
+        campos.put(lblTelValMarker, new FieldValidator[]{emptynessVal, phoneVal});
 
-        bFields[7] = (!txtEmail.getText().isEmpty()
-                ? ValidadorCampos.performValidation(validatorsHolder.getEmailValidator(), txtEmail, lblEmailValMarker) : true);
-
-        bFields[8] = (!txtWeb.getText().isEmpty()
-                ? ValidadorCampos.performValidation(validatorsHolder.getWebValidator(), txtWeb, lblWebValMarker) : true);
-
-        bFields[9] = ValidadorCampos.performValidation(validatorsHolder.getEmptynessValidator(), txtDireccion, lblDirValMarker);
-
-        bFields[10] = ValidadorCampos.performValidation(validatorsHolder.getEmptynessValidator(), txtDireccion2, lblDirValMarker2);
-
-        bFields[11] = ValidadorCampos.performValidation(validatorsHolder.getEmptynessValidator(), txtCiudad, lblCiudadValMarker);
-
-        bFields[12] = ValidadorCampos.performValidation(validatorsHolder.getEmptynessValidator(), txtRegion, lblRegionValMarker);
-
-        bFields[13] = ValidadorCampos.performValidation(validatorsHolder.getEmptynessValidator(), txtPais, lblPaisValMarker);
-
-        for (boolean b : bFields) {
-            validFields &= b;
+        if (!((JTextComponent) lblFaxValMarker.getLabelFor()).getText().isEmpty()) {
+            campos.put(lblFaxValMarker, new FieldValidator[]{phoneVal});
         }
+
+        if (!((JTextComponent) lblEmailValMarker.getLabelFor()).getText().isEmpty()) {
+            campos.put(lblEmailValMarker, new FieldValidator[]{emailVal});
+        }
+
+        if (!((JTextComponent) lblWebValMarker.getLabelFor()).getText().isEmpty()) {
+            campos.put(lblWebValMarker, new FieldValidator[]{webVal});
+        }
+
+        campos.put(lblDirValMarker, emptynessArr);
+        campos.put(lblDir2ValMarker, emptynessArr);
+        campos.put(lblCiudadValMarker, emptynessArr);
+        campos.put(lblRegionValMarker, emptynessArr);
+        campos.put(lblPaisValMarker, emptynessArr);
+
+        validFields = FormFieldValidator.verifyFormFields(campos);
 
         return validFields;
     }
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
 
-        if (!checkValidationFields()) {
+        if (!checkFormFields()) {
             lblMensajeInsercion.setText("Por favor corriga los campos marcados");
             lblMensajeInsercion.setForeground(Color.red);
             lblMensajeInsercion.setVisible(true);
             return;
         } else {
-            lblMensajeInsercion.setText("");
+            //lblMensajeInsercion.setText("");
+            lblMensajeInsercion.setVisible(false);
 
             EmpresaManager em = new EmpresaManager();
 
@@ -581,7 +599,7 @@ public class RegistroEmpresas extends javax.swing.JFrame {
             lblMensajeInsercion.setText("Empresa creada exitosamente");
             lblMensajeInsercion.setForeground(Color.GREEN);
             lblMensajeInsercion.setVisible(true);
-            new Thread(new LabelTooTipShower(lblMensajeInsercion)).start();
+            new Thread(new LabelToolTipShower(lblMensajeInsercion)).start();
             LimpiadorComponentes.limpiarComponentes(this);
             txtRazonSocial.requestFocusInWindow();
         }
@@ -609,8 +627,8 @@ public class RegistroEmpresas extends javax.swing.JFrame {
     private javax.swing.JLabel lblContacto;
     private javax.swing.JLabel lblContactoValMarker;
     private javax.swing.JLabel lblDNIValMarker;
+    private javax.swing.JLabel lblDir2ValMarker;
     private javax.swing.JLabel lblDirValMarker;
-    private javax.swing.JLabel lblDirValMarker2;
     private javax.swing.JLabel lblDireccion;
     private javax.swing.JLabel lblDni;
     private javax.swing.JLabel lblEmail;

@@ -27,7 +27,7 @@ package com.prebea.syscafil.business;
  *
  * @author Edwin Bratini <edwin.bratini@gmail.com>
  */
-public class PhoneFieldValidator extends DateFieldValidator {
+public class PhoneFieldValidator extends DatePhoneFieldValidator {
 
     public PhoneFieldValidator() {
         this("\\d\\d\\d-\\d\\d\\d-\\d\\d\\d\\d");

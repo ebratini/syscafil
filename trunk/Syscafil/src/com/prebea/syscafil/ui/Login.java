@@ -34,8 +34,6 @@ import com.prebea.syscafil.model.entities.Usuario;
 import java.awt.event.KeyEvent;
 import java.util.Arrays;
 import javax.swing.JOptionPane;
-import org.pushingpixels.flamingo.api.common.RichTooltip;
-import org.pushingpixels.flamingo.internal.ui.common.JRichTooltipPanel;
 
 /**
  *

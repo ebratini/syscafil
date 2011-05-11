@@ -31,19 +31,19 @@ import javax.swing.JLabel;
  *
  * @author Edwin Bratini <edwin.bratini@gmail.com>
  */
-public class LabelTooTipShower implements Runnable {
+public class LabelToolTipShower implements Runnable {
 
     private JLabel label;
     private long time = 1500;
 
-    public LabelTooTipShower() {
+    public LabelToolTipShower() {
     }
 
-    public LabelTooTipShower(JLabel label) {
+    public LabelToolTipShower(JLabel label) {
         this.label = label;
     }
 
-    public LabelTooTipShower(JLabel label, long time) {
+    public LabelToolTipShower(JLabel label, long time) {
         this.label = label;
         this.time = time;
     }
@@ -71,7 +71,7 @@ public class LabelTooTipShower implements Runnable {
             Thread.sleep(time);
             label.setVisible(false);
         } catch (InterruptedException ex) {
-            Logger.getLogger(LabelTooTipShower.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(LabelToolTipShower.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

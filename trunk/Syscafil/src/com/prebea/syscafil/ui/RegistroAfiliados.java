@@ -27,17 +27,37 @@
  *
  * Created on May 2, 2011, 1:17:14 PM
  */
-
 package com.prebea.syscafil.ui;
 
+import com.prebea.syscafil.business.AfiliadoManager;
+import com.prebea.syscafil.business.FieldValidator;
+import com.prebea.syscafil.business.FormFieldValidator;
+import com.prebea.syscafil.business.PlanManager;
+import com.prebea.syscafil.business.ValidatorsHolder;
+import com.prebea.syscafil.model.entities.Afiliado;
+import com.prebea.syscafil.model.entities.Empresa;
+import com.prebea.syscafil.model.entities.Plan;
+import java.awt.Color;
 import java.awt.Toolkit;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.text.JTextComponent;
 
 /**
  *
  * @author Edwin Bratini <edwin.bratini@gmail.com>
  */
 public class RegistroAfiliados extends javax.swing.JFrame {
+
+    private Empresa empresa;
 
     /** Creates new form RegistroAfiliados */
     public RegistroAfiliados() {
@@ -52,6 +72,7 @@ public class RegistroAfiliados extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
         statusPanel = new javax.swing.JPanel();
         javax.swing.JSeparator statusPanelSeparator = new javax.swing.JSeparator();
@@ -79,15 +100,15 @@ public class RegistroAfiliados extends javax.swing.JFrame {
         cmbGenero = new javax.swing.JComboBox();
         lblEstadoCivil = new javax.swing.JLabel();
         cmbEstadoCivil = new javax.swing.JComboBox();
-        lblAsterVal2 = new javax.swing.JLabel();
-        lblAsterVal3 = new javax.swing.JLabel();
-        lblAsterVal4 = new javax.swing.JLabel();
-        lblAsterVal5 = new javax.swing.JLabel();
-        lblAsterVal6 = new javax.swing.JLabel();
-        lblAsterVal7 = new javax.swing.JLabel();
-        lblAsterVal8 = new javax.swing.JLabel();
-        lblAsterVal9 = new javax.swing.JLabel();
-        lblAsterVal10 = new javax.swing.JLabel();
+        lblNombreValMarker = new javax.swing.JLabel();
+        lblApellidoValMarker = new javax.swing.JLabel();
+        lblDNIValMarker = new javax.swing.JLabel();
+        lblTipoDniValMarker = new javax.swing.JLabel();
+        lblEstadoCivilValMarker = new javax.swing.JLabel();
+        lblGeneroValMarker = new javax.swing.JLabel();
+        lblNacionalidadValMarker = new javax.swing.JLabel();
+        lblLugarNacimientoValMarker = new javax.swing.JLabel();
+        lblFechaNacimientoValMarker = new javax.swing.JLabel();
         pnlInfoContacto = new javax.swing.JPanel();
         lblDireccion = new javax.swing.JLabel();
         txtDireccion = new javax.swing.JTextField();
@@ -99,16 +120,16 @@ public class RegistroAfiliados extends javax.swing.JFrame {
         lblPais = new javax.swing.JLabel();
         txtPais = new javax.swing.JTextField();
         lblTelefono = new javax.swing.JLabel();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
+        ftfTelefono = new javax.swing.JFormattedTextField();
         lblEmail = new javax.swing.JLabel();
         txtEmail = new javax.swing.JTextField();
-        lblAsterVal12 = new javax.swing.JLabel();
-        lblAsterVal16 = new javax.swing.JLabel();
-        lblAsterVal13 = new javax.swing.JLabel();
-        lblAsterVal17 = new javax.swing.JLabel();
-        lblAsterVal14 = new javax.swing.JLabel();
-        lblAsterVal11 = new javax.swing.JLabel();
-        lblAsterVal15 = new javax.swing.JLabel();
+        lblEmailValMarker = new javax.swing.JLabel();
+        lblRegionValMarker = new javax.swing.JLabel();
+        lblDirValMarker = new javax.swing.JLabel();
+        lblPaisValMarker = new javax.swing.JLabel();
+        lblDir2ValMarker = new javax.swing.JLabel();
+        lblTelValMarker = new javax.swing.JLabel();
+        lblCiudadValMarker = new javax.swing.JLabel();
         pnlInfoServicio = new javax.swing.JPanel();
         ftfFechaIngreso = new javax.swing.JFormattedTextField();
         lblFechaIngreso = new javax.swing.JLabel();
@@ -117,8 +138,8 @@ public class RegistroAfiliados extends javax.swing.JFrame {
         lblEmpresa = new javax.swing.JLabel();
         txtEmpresa = new javax.swing.JTextField();
         btnBuscar = new javax.swing.JButton();
-        lblAsterVal18 = new javax.swing.JLabel();
-        lblAsterVal19 = new javax.swing.JLabel();
+        lblFechaIngresoValMarker = new javax.swing.JLabel();
+        lblPlanValMarker = new javax.swing.JLabel();
         lblMensajeInsercion = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -159,6 +180,11 @@ public class RegistroAfiliados extends javax.swing.JFrame {
 
         btnAceptar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/imagenes/add_25x25.png"))); // NOI18N
         btnAceptar.setText("Aceptar");
+        btnAceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAceptarActionPerformed(evt);
+            }
+        });
 
         btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/imagenes/salir_25x25.png"))); // NOI18N
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -195,23 +221,50 @@ public class RegistroAfiliados extends javax.swing.JFrame {
 
         cmbEstadoCivil.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccion", "Casado(a)", "Soltero(a)", "Divorciado(a)", "Viudo(a)" }));
 
-        lblAsterVal2.setForeground(new java.awt.Color(255, 51, 51));
+        lblNombreValMarker.setForeground(new java.awt.Color(255, 51, 51));
 
-        lblAsterVal3.setForeground(new java.awt.Color(255, 51, 51));
+        org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, txtNombre, org.jdesktop.beansbinding.ObjectProperty.create(), lblNombreValMarker, org.jdesktop.beansbinding.BeanProperty.create("labelFor"));
+        bindingGroup.addBinding(binding);
 
-        lblAsterVal4.setForeground(new java.awt.Color(255, 51, 51));
+        lblApellidoValMarker.setForeground(new java.awt.Color(255, 51, 51));
 
-        lblAsterVal5.setForeground(new java.awt.Color(255, 51, 51));
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, txtApellido, org.jdesktop.beansbinding.ObjectProperty.create(), lblApellidoValMarker, org.jdesktop.beansbinding.BeanProperty.create("labelFor"));
+        bindingGroup.addBinding(binding);
 
-        lblAsterVal6.setForeground(new java.awt.Color(255, 51, 51));
+        lblDNIValMarker.setForeground(new java.awt.Color(255, 51, 51));
 
-        lblAsterVal7.setForeground(new java.awt.Color(255, 51, 51));
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, txtDni, org.jdesktop.beansbinding.ObjectProperty.create(), lblDNIValMarker, org.jdesktop.beansbinding.BeanProperty.create("labelFor"));
+        bindingGroup.addBinding(binding);
 
-        lblAsterVal8.setForeground(new java.awt.Color(255, 51, 51));
+        lblTipoDniValMarker.setForeground(new java.awt.Color(255, 51, 51));
 
-        lblAsterVal9.setForeground(new java.awt.Color(255, 51, 51));
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, cmbTipoDni, org.jdesktop.beansbinding.ObjectProperty.create(), lblTipoDniValMarker, org.jdesktop.beansbinding.BeanProperty.create("labelFor"));
+        bindingGroup.addBinding(binding);
 
-        lblAsterVal10.setForeground(new java.awt.Color(255, 51, 51));
+        lblEstadoCivilValMarker.setForeground(new java.awt.Color(255, 51, 51));
+
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, cmbEstadoCivil, org.jdesktop.beansbinding.ObjectProperty.create(), lblEstadoCivilValMarker, org.jdesktop.beansbinding.BeanProperty.create("labelFor"));
+        bindingGroup.addBinding(binding);
+
+        lblGeneroValMarker.setForeground(new java.awt.Color(255, 51, 51));
+
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, cmbGenero, org.jdesktop.beansbinding.ObjectProperty.create(), lblGeneroValMarker, org.jdesktop.beansbinding.BeanProperty.create("labelFor"));
+        bindingGroup.addBinding(binding);
+
+        lblNacionalidadValMarker.setForeground(new java.awt.Color(255, 51, 51));
+
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, txtNacionalidad, org.jdesktop.beansbinding.ObjectProperty.create(), lblNacionalidadValMarker, org.jdesktop.beansbinding.BeanProperty.create("labelFor"));
+        bindingGroup.addBinding(binding);
+
+        lblLugarNacimientoValMarker.setForeground(new java.awt.Color(255, 51, 51));
+
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, txtLugarNacimiento, org.jdesktop.beansbinding.ObjectProperty.create(), lblLugarNacimientoValMarker, org.jdesktop.beansbinding.BeanProperty.create("labelFor"));
+        bindingGroup.addBinding(binding);
+
+        lblFechaNacimientoValMarker.setForeground(new java.awt.Color(255, 51, 51));
+
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, ftfFechaNacimiento, org.jdesktop.beansbinding.ObjectProperty.create(), lblFechaNacimientoValMarker, org.jdesktop.beansbinding.BeanProperty.create("labelFor"));
+        bindingGroup.addBinding(binding);
 
         javax.swing.GroupLayout pnlInfoPersonalLayout = new javax.swing.GroupLayout(pnlInfoPersonal);
         pnlInfoPersonal.setLayout(pnlInfoPersonalLayout);
@@ -244,15 +297,15 @@ public class RegistroAfiliados extends javax.swing.JFrame {
                     .addComponent(cmbEstadoCivil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(pnlInfoPersonalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblAsterVal2)
-                    .addComponent(lblAsterVal3)
-                    .addComponent(lblAsterVal4)
-                    .addComponent(lblAsterVal5)
-                    .addComponent(lblAsterVal6)
-                    .addComponent(lblAsterVal7)
-                    .addComponent(lblAsterVal8)
-                    .addComponent(lblAsterVal9)
-                    .addComponent(lblAsterVal10))
+                    .addComponent(lblNombreValMarker)
+                    .addComponent(lblApellidoValMarker)
+                    .addComponent(lblDNIValMarker)
+                    .addComponent(lblTipoDniValMarker)
+                    .addComponent(lblEstadoCivilValMarker)
+                    .addComponent(lblGeneroValMarker)
+                    .addComponent(lblNacionalidadValMarker)
+                    .addComponent(lblLugarNacimientoValMarker)
+                    .addComponent(lblFechaNacimientoValMarker))
                 .addContainerGap())
         );
         pnlInfoPersonalLayout.setVerticalGroup(
@@ -262,47 +315,47 @@ public class RegistroAfiliados extends javax.swing.JFrame {
                 .addGroup(pnlInfoPersonalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblNombre)
-                    .addComponent(lblAsterVal2))
+                    .addComponent(lblNombreValMarker))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlInfoPersonalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblApellido)
-                    .addComponent(lblAsterVal3))
+                    .addComponent(lblApellidoValMarker))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlInfoPersonalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtDni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblDni)
-                    .addComponent(lblAsterVal4))
+                    .addComponent(lblDNIValMarker))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlInfoPersonalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblTipoDni)
                     .addComponent(cmbTipoDni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblAsterVal5))
+                    .addComponent(lblTipoDniValMarker))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlInfoPersonalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblFechaNacimiento)
                     .addComponent(ftfFechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblAsterVal10))
+                    .addComponent(lblFechaNacimientoValMarker))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlInfoPersonalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblLugarNacimiento)
                     .addComponent(txtLugarNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblAsterVal9))
+                    .addComponent(lblLugarNacimientoValMarker))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlInfoPersonalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblNacionalidad)
                     .addComponent(txtNacionalidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblAsterVal8))
+                    .addComponent(lblNacionalidadValMarker))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlInfoPersonalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblGenero)
                     .addComponent(cmbGenero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblAsterVal7))
+                    .addComponent(lblGeneroValMarker))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlInfoPersonalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblEstadoCivil)
                     .addComponent(cmbEstadoCivil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblAsterVal6))
+                    .addComponent(lblEstadoCivilValMarker))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -322,19 +375,37 @@ public class RegistroAfiliados extends javax.swing.JFrame {
 
         lblEmail.setText("Email");
 
-        lblAsterVal12.setForeground(new java.awt.Color(255, 51, 51));
+        lblEmailValMarker.setForeground(new java.awt.Color(255, 51, 51));
 
-        lblAsterVal16.setForeground(new java.awt.Color(255, 51, 51));
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, txtEmail, org.jdesktop.beansbinding.ObjectProperty.create(), lblEmailValMarker, org.jdesktop.beansbinding.BeanProperty.create("labelFor"));
+        bindingGroup.addBinding(binding);
 
-        lblAsterVal13.setForeground(new java.awt.Color(255, 51, 51));
+        lblRegionValMarker.setForeground(new java.awt.Color(255, 51, 51));
 
-        lblAsterVal17.setForeground(new java.awt.Color(255, 51, 51));
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, txtRegion, org.jdesktop.beansbinding.ObjectProperty.create(), lblRegionValMarker, org.jdesktop.beansbinding.BeanProperty.create("labelFor"));
+        bindingGroup.addBinding(binding);
 
-        lblAsterVal14.setForeground(new java.awt.Color(255, 51, 51));
+        lblDirValMarker.setForeground(new java.awt.Color(255, 51, 51));
 
-        lblAsterVal11.setForeground(new java.awt.Color(255, 51, 51));
+        lblPaisValMarker.setForeground(new java.awt.Color(255, 51, 51));
 
-        lblAsterVal15.setForeground(new java.awt.Color(255, 51, 51));
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, txtPais, org.jdesktop.beansbinding.ObjectProperty.create(), lblPaisValMarker, org.jdesktop.beansbinding.BeanProperty.create("labelFor"));
+        bindingGroup.addBinding(binding);
+
+        lblDir2ValMarker.setForeground(new java.awt.Color(255, 51, 51));
+
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, txtDireccion2, org.jdesktop.beansbinding.ObjectProperty.create(), lblDir2ValMarker, org.jdesktop.beansbinding.BeanProperty.create("labelFor"));
+        bindingGroup.addBinding(binding);
+
+        lblTelValMarker.setForeground(new java.awt.Color(255, 51, 51));
+
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, ftfTelefono, org.jdesktop.beansbinding.ObjectProperty.create(), lblTelValMarker, org.jdesktop.beansbinding.BeanProperty.create("labelFor"));
+        bindingGroup.addBinding(binding);
+
+        lblCiudadValMarker.setForeground(new java.awt.Color(255, 51, 51));
+
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, txtCiudad, org.jdesktop.beansbinding.ObjectProperty.create(), lblCiudadValMarker, org.jdesktop.beansbinding.BeanProperty.create("labelFor"));
+        bindingGroup.addBinding(binding);
 
         javax.swing.GroupLayout pnlInfoContactoLayout = new javax.swing.GroupLayout(pnlInfoContacto);
         pnlInfoContacto.setLayout(pnlInfoContactoLayout);
@@ -352,7 +423,7 @@ public class RegistroAfiliados extends javax.swing.JFrame {
                     .addComponent(lblTelefono))
                 .addGap(10, 10, 10)
                 .addGroup(pnlInfoContactoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ftfTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 311, Short.MAX_VALUE)
                     .addComponent(txtDireccion2, javax.swing.GroupLayout.DEFAULT_SIZE, 311, Short.MAX_VALUE)
                     .addComponent(txtCiudad, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -361,13 +432,13 @@ public class RegistroAfiliados extends javax.swing.JFrame {
                     .addComponent(txtDireccion, javax.swing.GroupLayout.DEFAULT_SIZE, 311, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(pnlInfoContactoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblAsterVal17)
-                    .addComponent(lblAsterVal16)
-                    .addComponent(lblAsterVal15)
-                    .addComponent(lblAsterVal14)
-                    .addComponent(lblAsterVal13)
-                    .addComponent(lblAsterVal12)
-                    .addComponent(lblAsterVal11))
+                    .addComponent(lblPaisValMarker)
+                    .addComponent(lblRegionValMarker)
+                    .addComponent(lblCiudadValMarker)
+                    .addComponent(lblDir2ValMarker)
+                    .addComponent(lblDirValMarker)
+                    .addComponent(lblEmailValMarker)
+                    .addComponent(lblTelValMarker))
                 .addContainerGap())
         );
         pnlInfoContactoLayout.setVerticalGroup(
@@ -375,48 +446,54 @@ public class RegistroAfiliados extends javax.swing.JFrame {
             .addGroup(pnlInfoContactoLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnlInfoContactoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblAsterVal11)
+                    .addComponent(ftfTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblTelValMarker)
                     .addComponent(lblTelefono))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlInfoContactoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblEmail)
                     .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblAsterVal12))
+                    .addComponent(lblEmailValMarker))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlInfoContactoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblDireccion)
                     .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblAsterVal13))
+                    .addComponent(lblDirValMarker))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlInfoContactoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtDireccion2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblAsterVal14))
+                    .addComponent(lblDir2ValMarker))
                 .addGap(9, 9, 9)
                 .addGroup(pnlInfoContactoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtCiudad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblCiudad)
-                    .addComponent(lblAsterVal15))
+                    .addComponent(lblCiudadValMarker))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlInfoContactoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblRegion)
                     .addComponent(txtRegion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblAsterVal16))
+                    .addComponent(lblRegionValMarker))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlInfoContactoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblPais)
                     .addComponent(txtPais, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblAsterVal17))
+                    .addComponent(lblPaisValMarker))
                 .addContainerGap(60, Short.MAX_VALUE))
         );
 
         pnlInfoServicio.setBorder(javax.swing.BorderFactory.createTitledBorder("Informacion de Servicio"));
 
+        ftfFechaIngreso.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                ftfFechaIngresoFocusGained(evt);
+            }
+        });
+
         lblFechaIngreso.setText("Fecha Ingreso");
 
         lblPlan.setText("Plan");
 
-        cmbPlan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccion", "Basico Familiar", "Optimo Familiar", "Supremo Familiar", "Premium Familiar", "Basico Empresarial", "Optimo Empresarial", "Empresarial Empresarial", "Premium Empresarial" }));
+        cmbPlan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccion" }));
         cmbPlan.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cmbPlanItemStateChanged(evt);
@@ -436,9 +513,15 @@ public class RegistroAfiliados extends javax.swing.JFrame {
             }
         });
 
-        lblAsterVal18.setForeground(new java.awt.Color(255, 51, 51));
+        lblFechaIngresoValMarker.setForeground(new java.awt.Color(255, 51, 51));
 
-        lblAsterVal19.setForeground(new java.awt.Color(255, 51, 51));
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, ftfFechaIngreso, org.jdesktop.beansbinding.ObjectProperty.create(), lblFechaIngresoValMarker, org.jdesktop.beansbinding.BeanProperty.create("labelFor"));
+        bindingGroup.addBinding(binding);
+
+        lblPlanValMarker.setForeground(new java.awt.Color(255, 51, 51));
+
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, cmbPlan, org.jdesktop.beansbinding.ObjectProperty.create(), lblPlanValMarker, org.jdesktop.beansbinding.BeanProperty.create("labelFor"));
+        bindingGroup.addBinding(binding);
 
         javax.swing.GroupLayout pnlInfoServicioLayout = new javax.swing.GroupLayout(pnlInfoServicio);
         pnlInfoServicio.setLayout(pnlInfoServicioLayout);
@@ -456,14 +539,14 @@ public class RegistroAfiliados extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(pnlInfoServicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlInfoServicioLayout.createSequentialGroup()
-                        .addComponent(lblAsterVal18)
+                        .addComponent(lblFechaIngresoValMarker)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 157, Short.MAX_VALUE)
                         .addComponent(lblEmpresa)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(lblAsterVal19))
+                    .addComponent(lblPlanValMarker))
                 .addContainerGap())
         );
         pnlInfoServicioLayout.setVerticalGroup(
@@ -476,7 +559,7 @@ public class RegistroAfiliados extends javax.swing.JFrame {
                         .addGroup(pnlInfoServicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtEmpresa)
                             .addComponent(lblEmpresa)))
-                    .addComponent(lblAsterVal18)
+                    .addComponent(lblFechaIngresoValMarker)
                     .addGroup(pnlInfoServicioLayout.createSequentialGroup()
                         .addGroup(pnlInfoServicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblFechaIngreso)
@@ -485,7 +568,7 @@ public class RegistroAfiliados extends javax.swing.JFrame {
                         .addGroup(pnlInfoServicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(cmbPlan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblPlan)
-                            .addComponent(lblAsterVal19))))
+                            .addComponent(lblPlanValMarker))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -547,6 +630,8 @@ public class RegistroAfiliados extends javax.swing.JFrame {
                 .addComponent(statusPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
+        bindingGroup.bind();
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -570,6 +655,7 @@ public class RegistroAfiliados extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
+        loadPlanesComboBox();
         LimpiadorComponentes.limpiarComponentes(this);
         LimpiadorComponentes.limpiarValidationMarkers(this);
     }//GEN-LAST:event_formWindowOpened
@@ -583,17 +669,154 @@ public class RegistroAfiliados extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_cmbPlanItemStateChanged
 
+    private void loadPlanesComboBox() {
+        List<Plan> planes = new PlanManager().getPlanes();
+        for (Plan plan : planes) {
+            cmbPlan.addItem(plan.getPlnNombre());
+        }
+    }
+
+    private boolean checkFormFields() {
+        boolean validFields = true;
+        boolean[] bFields = new boolean[14];
+
+        ValidatorsHolder validatorsHolder = new ValidatorsHolder();
+
+        FieldValidator emptynessVal, DefCombVal, phoneVal, dateVal, emailVal, webVal;
+        emptynessVal = validatorsHolder.getEmptynessValidator();
+        DefCombVal = validatorsHolder.getDefComboValueValidator();
+        phoneVal = validatorsHolder.getPhoneValidator();
+        dateVal = validatorsHolder.getDateValidator();
+        emailVal = validatorsHolder.getEmailValidator();
+        webVal = validatorsHolder.getWebValidator();
+
+        FieldValidator[] emptynessArr = new FieldValidator[]{emptynessVal};
+
+        HashMap<JLabel, FieldValidator[]> campos = new HashMap<JLabel, FieldValidator[]>();
+        campos.put(lblNombreValMarker, emptynessArr);
+        campos.put(lblApellidoValMarker, emptynessArr);
+        campos.put(lblDNIValMarker, emptynessArr);
+        campos.put(lblTipoDniValMarker, new FieldValidator[]{DefCombVal});
+        campos.put(lblFechaNacimientoValMarker, new FieldValidator[]{dateVal});
+        campos.put(lblLugarNacimientoValMarker, emptynessArr);
+
+        if (!((JTextComponent) lblNacionalidadValMarker.getLabelFor()).getText().isEmpty()) {
+            campos.put(lblNacionalidadValMarker, emptynessArr);
+        }
+
+        campos.put(lblGeneroValMarker, new FieldValidator[]{DefCombVal});
+
+        if (!((JTextComponent) lblNacionalidadValMarker.getLabelFor()).getText().isEmpty()) {
+            campos.put(lblEstadoCivilValMarker, new FieldValidator[]{DefCombVal});
+        }
+
+        campos.put(lblTelValMarker, new FieldValidator[]{emptynessVal, phoneVal});
+
+        if (!((JTextComponent) lblEmailValMarker.getLabelFor()).getText().isEmpty()) {
+            campos.put(lblEmailValMarker, new FieldValidator[]{emailVal});
+        }
+
+        campos.put(lblDirValMarker, emptynessArr);
+        campos.put(lblDir2ValMarker, emptynessArr);
+        campos.put(lblCiudadValMarker, emptynessArr);
+        campos.put(lblRegionValMarker, emptynessArr);
+        campos.put(lblPaisValMarker, emptynessArr);
+        campos.put(lblFechaIngresoValMarker, new FieldValidator[]{dateVal});
+        campos.put(lblPlanValMarker, new FieldValidator[]{DefCombVal});
+
+        validFields = FormFieldValidator.verifyFormFields(campos);
+
+        return validFields;
+    }
+
+    private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
+        // TODO add your handling code here:
+        if (!checkFormFields()) {
+            lblMensajeInsercion.setText("Por favor corriga los campos marcados");
+            lblMensajeInsercion.setForeground(Color.red);
+            //lblMensajeInsercion.setVisible(true);
+            new Thread(new LabelToolTipShower(lblMensajeInsercion, 3000)).start();
+            return;
+        } else {
+            //lblMensajeInsercion.setText("");
+            lblMensajeInsercion.setVisible(false);
+
+            AfiliadoManager am = new AfiliadoManager();
+
+            if (am.getAfiliadoByDNI(txtDni.getText()) != null) {
+                lblDNIValMarker.setText("*");
+                lblDNIValMarker.setVisible(true);
+                lblMensajeInsercion.setText("Ya existe un afiliado con DNI digitado");
+                lblMensajeInsercion.setForeground(Color.red);
+                lblMensajeInsercion.setVisible(true);
+                return;
+            }
+
+            Afiliado afiliado;
+            try {
+                afiliado = new Afiliado(txtDni.getText(), cmbTipoDni.getSelectedItem().toString(), txtNombre.getText(),
+                        txtApellido.getText(), DateFormat.getInstance().parse(ftfFechaIngreso.getText()), DateFormat.getInstance().parse(ftfFechaNacimiento.getText()),
+                        cmbGenero.getSelectedItem().toString().equalsIgnoreCase("femenino") ? 'F' : 'M', ftfTelefono.getText(),
+                        String.format("%s %s", txtDireccion.getText(), txtDireccion2.getText()), txtCiudad.getText(), txtRegion.getText(),
+                        txtPais.getText(), 'A');
+
+                // ...........
+
+                Plan plan = new PlanManager().getPlanByNombre(cmbPlan.getSelectedItem().toString());
+                if (plan == null) {
+                    lblDNIValMarker.setText("*");
+                    lblDNIValMarker.setVisible(true);
+                    lblMensajeInsercion.setText("Problemas con plan seleccionado. Insercion abortado");
+                    lblMensajeInsercion.setForeground(Color.red);
+                    lblMensajeInsercion.setVisible(true);
+                    return;
+                }
+
+                afiliado.setPlan(plan);
+
+                // ***
+                plan.getAfiliadoCollection().add(afiliado);
+
+                if (!txtEmpresa.getText().isEmpty() && empresa != null) {
+                    afiliado.setEmpresa(empresa);
+
+                    // ***
+                    empresa.getAfiliadoCollection().add(afiliado);
+                }
+                // .............
+
+                am.crearAfiliado(afiliado);
+
+                lblMensajeInsercion.setText("Afiiado creado exitosamente");
+                lblMensajeInsercion.setForeground(Color.GREEN);
+                lblMensajeInsercion.setVisible(true);
+                new Thread(new LabelToolTipShower(lblMensajeInsercion)).start();
+                LimpiadorComponentes.limpiarComponentes(this);
+                txtNombre.requestFocusInWindow();
+            } catch (ParseException ex) {
+                Logger.getLogger(RegistroAfiliados.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_btnAceptarActionPerformed
+
+    private void ftfFechaIngresoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_ftfFechaIngresoFocusGained
+        // TODO add your handling code here:
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(new Date());
+        ftfFechaIngreso.setText(String.format("%tF", cal));
+    }//GEN-LAST:event_ftfFechaIngresoFocusGained
+
     /**
-    * @param args the command line arguments
-    */
+     * @param args the command line arguments
+     */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
+
             public void run() {
                 new RegistroAfiliados().setVisible(true);
             }
         });
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptar;
     private javax.swing.JButton btnBuscar;
@@ -604,45 +827,45 @@ public class RegistroAfiliados extends javax.swing.JFrame {
     private javax.swing.JComboBox cmbTipoDni;
     private javax.swing.JFormattedTextField ftfFechaIngreso;
     private javax.swing.JFormattedTextField ftfFechaNacimiento;
-    private javax.swing.JFormattedTextField jFormattedTextField1;
+    private javax.swing.JFormattedTextField ftfTelefono;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblApellido;
-    private javax.swing.JLabel lblAsterVal10;
-    private javax.swing.JLabel lblAsterVal11;
-    private javax.swing.JLabel lblAsterVal12;
-    private javax.swing.JLabel lblAsterVal13;
-    private javax.swing.JLabel lblAsterVal14;
-    private javax.swing.JLabel lblAsterVal15;
-    private javax.swing.JLabel lblAsterVal16;
-    private javax.swing.JLabel lblAsterVal17;
-    private javax.swing.JLabel lblAsterVal18;
-    private javax.swing.JLabel lblAsterVal19;
-    private javax.swing.JLabel lblAsterVal2;
-    private javax.swing.JLabel lblAsterVal3;
-    private javax.swing.JLabel lblAsterVal4;
-    private javax.swing.JLabel lblAsterVal5;
-    private javax.swing.JLabel lblAsterVal6;
-    private javax.swing.JLabel lblAsterVal7;
-    private javax.swing.JLabel lblAsterVal8;
-    private javax.swing.JLabel lblAsterVal9;
+    private javax.swing.JLabel lblApellidoValMarker;
     private javax.swing.JLabel lblCiudad;
+    private javax.swing.JLabel lblCiudadValMarker;
+    private javax.swing.JLabel lblDNIValMarker;
+    private javax.swing.JLabel lblDir2ValMarker;
+    private javax.swing.JLabel lblDirValMarker;
     private javax.swing.JLabel lblDireccion;
     private javax.swing.JLabel lblDni;
     private javax.swing.JLabel lblEmail;
+    private javax.swing.JLabel lblEmailValMarker;
     private javax.swing.JLabel lblEmpresa;
     private javax.swing.JLabel lblEstadoCivil;
+    private javax.swing.JLabel lblEstadoCivilValMarker;
     private javax.swing.JLabel lblFechaIngreso;
+    private javax.swing.JLabel lblFechaIngresoValMarker;
     private javax.swing.JLabel lblFechaNacimiento;
+    private javax.swing.JLabel lblFechaNacimientoValMarker;
     private javax.swing.JLabel lblGenero;
+    private javax.swing.JLabel lblGeneroValMarker;
     private javax.swing.JLabel lblLugarNacimiento;
+    private javax.swing.JLabel lblLugarNacimientoValMarker;
     private javax.swing.JLabel lblMensajeInsercion;
     private javax.swing.JLabel lblNacionalidad;
+    private javax.swing.JLabel lblNacionalidadValMarker;
     private javax.swing.JLabel lblNombre;
+    private javax.swing.JLabel lblNombreValMarker;
     private javax.swing.JLabel lblPais;
+    private javax.swing.JLabel lblPaisValMarker;
     private javax.swing.JLabel lblPlan;
+    private javax.swing.JLabel lblPlanValMarker;
     private javax.swing.JLabel lblRegion;
+    private javax.swing.JLabel lblRegionValMarker;
+    private javax.swing.JLabel lblTelValMarker;
     private javax.swing.JLabel lblTelefono;
     private javax.swing.JLabel lblTipoDni;
+    private javax.swing.JLabel lblTipoDniValMarker;
     private javax.swing.JPanel pnlInfoContacto;
     private javax.swing.JPanel pnlInfoPersonal;
     private javax.swing.JPanel pnlInfoServicio;
@@ -661,6 +884,6 @@ public class RegistroAfiliados extends javax.swing.JFrame {
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtPais;
     private javax.swing.JTextField txtRegion;
+    private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
-
 }

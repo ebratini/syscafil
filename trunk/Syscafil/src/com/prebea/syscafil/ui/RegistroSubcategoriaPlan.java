@@ -52,17 +52,18 @@ public class RegistroSubcategoriaPlan extends javax.swing.JDialog {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
         jPanel1 = new javax.swing.JPanel();
         lblSubcategoria = new javax.swing.JLabel();
         txtNombreSubcat = new javax.swing.JTextField();
         lblDescripcion = new javax.swing.JLabel();
-        txtDescripcionCat = new javax.swing.JTextField();
+        txtDescripcionSubcat = new javax.swing.JTextField();
         lblCategoriaPlan = new javax.swing.JLabel();
         cmbCategoriaPlan = new javax.swing.JComboBox();
-        lblAsterVal11 = new javax.swing.JLabel();
-        lblAsterVal12 = new javax.swing.JLabel();
-        lblAsterVal14 = new javax.swing.JLabel();
+        lblCatPlanValMarker = new javax.swing.JLabel();
+        lblNombreSubcatValMarker = new javax.swing.JLabel();
+        lblDescripcionValMarker = new javax.swing.JLabel();
         btnAceptar = new javax.swing.JButton();
         lblMensajeInsercion = new javax.swing.JLabel();
         btnSalir = new javax.swing.JButton();
@@ -87,14 +88,20 @@ public class RegistroSubcategoriaPlan extends javax.swing.JDialog {
 
         cmbCategoriaPlan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccion", "Familiar", "Empresarial" }));
 
-        lblAsterVal11.setForeground(new java.awt.Color(255, 51, 51));
-        lblAsterVal11.setText("*");
+        lblCatPlanValMarker.setForeground(new java.awt.Color(255, 51, 51));
 
-        lblAsterVal12.setForeground(new java.awt.Color(255, 51, 51));
-        lblAsterVal12.setText("*");
+        org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, cmbCategoriaPlan, org.jdesktop.beansbinding.ObjectProperty.create(), lblCatPlanValMarker, org.jdesktop.beansbinding.BeanProperty.create("labelFor"));
+        bindingGroup.addBinding(binding);
 
-        lblAsterVal14.setForeground(new java.awt.Color(255, 51, 51));
-        lblAsterVal14.setText("*");
+        lblNombreSubcatValMarker.setForeground(new java.awt.Color(255, 51, 51));
+
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, txtNombreSubcat, org.jdesktop.beansbinding.ObjectProperty.create(), lblNombreSubcatValMarker, org.jdesktop.beansbinding.BeanProperty.create("labelFor"));
+        bindingGroup.addBinding(binding);
+
+        lblDescripcionValMarker.setForeground(new java.awt.Color(255, 51, 51));
+
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, txtDescripcionSubcat, org.jdesktop.beansbinding.ObjectProperty.create(), lblDescripcionValMarker, org.jdesktop.beansbinding.BeanProperty.create("labelFor"));
+        bindingGroup.addBinding(binding);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -115,12 +122,12 @@ public class RegistroSubcategoriaPlan extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtNombreSubcat, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtDescripcionCat, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                            .addComponent(txtDescripcionSubcat, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblAsterVal11)
-                    .addComponent(lblAsterVal12)
-                    .addComponent(lblAsterVal14))
+                    .addComponent(lblCatPlanValMarker)
+                    .addComponent(lblNombreSubcatValMarker)
+                    .addComponent(lblDescripcionValMarker))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -130,17 +137,17 @@ public class RegistroSubcategoriaPlan extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCategoriaPlan)
                     .addComponent(cmbCategoriaPlan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblAsterVal11))
+                    .addComponent(lblCatPlanValMarker))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblSubcategoria)
                     .addComponent(txtNombreSubcat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblAsterVal12))
+                    .addComponent(lblNombreSubcatValMarker))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblDescripcion)
-                    .addComponent(txtDescripcionCat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblAsterVal14))
+                    .addComponent(txtDescripcionSubcat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblDescripcionValMarker))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -184,6 +191,8 @@ public class RegistroSubcategoriaPlan extends javax.swing.JDialog {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        bindingGroup.bind();
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -220,15 +229,16 @@ public class RegistroSubcategoriaPlan extends javax.swing.JDialog {
     private javax.swing.JButton btnSalir;
     private javax.swing.JComboBox cmbCategoriaPlan;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel lblAsterVal11;
-    private javax.swing.JLabel lblAsterVal12;
-    private javax.swing.JLabel lblAsterVal14;
+    private javax.swing.JLabel lblCatPlanValMarker;
     private javax.swing.JLabel lblCategoriaPlan;
     private javax.swing.JLabel lblDescripcion;
+    private javax.swing.JLabel lblDescripcionValMarker;
     private javax.swing.JLabel lblMensajeInsercion;
+    private javax.swing.JLabel lblNombreSubcatValMarker;
     private javax.swing.JLabel lblSubcategoria;
-    private javax.swing.JTextField txtDescripcionCat;
+    private javax.swing.JTextField txtDescripcionSubcat;
     private javax.swing.JTextField txtNombreSubcat;
+    private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
 
 }
