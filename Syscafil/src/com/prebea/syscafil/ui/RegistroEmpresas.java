@@ -35,14 +35,7 @@ import com.prebea.syscafil.business.FieldValidator;
 import com.prebea.syscafil.business.ValidatorsHolder;
 import com.prebea.syscafil.model.entities.Empresa;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Toolkit;
-import java.util.HashMap;
-import javax.swing.JComboBox;
-import javax.swing.JComponent;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.text.JTextComponent;
 
 /**
  *
@@ -215,8 +208,8 @@ public class RegistroEmpresas extends javax.swing.JFrame {
                     .addComponent(txtRazonSocial, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtDni, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cmbTipoDni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtContacto, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
-                    .addComponent(txtPosContacto, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE))
+                    .addComponent(txtContacto, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)
+                    .addComponent(txtPosContacto, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(pnlEntidadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblRSValMarker, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -411,7 +404,7 @@ public class RegistroEmpresas extends javax.swing.JFrame {
                     .addGroup(pnlInfoContactoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(ftfFax, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(ftfTelefono, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
                 .addGroup(pnlInfoContactoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(lblTelValMarker)
                     .addComponent(lblDirValMarker)
@@ -481,10 +474,10 @@ public class RegistroEmpresas extends javax.swing.JFrame {
             .addComponent(pnlNodeBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblMensajeInsercion, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 104, Short.MAX_VALUE)
+                .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblMensajeInsercion, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addComponent(pnlInfoContacto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -501,12 +494,11 @@ public class RegistroEmpresas extends javax.swing.JFrame {
                 .addComponent(pnlInfoContacto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(lblMensajeInsercion))
                     .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(statusPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -522,16 +514,8 @@ public class RegistroEmpresas extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
-        LimpiadorComponentes.hideValidationLabels(this);
+        LimpiadorComponentes.hideValidationLabelMarkers(this);
     }//GEN-LAST:event_formWindowOpened
-
-    private JLabel getValidationMarkerAtached(HashMap<JComponent, JLabel> componentes, JComponent comp) {
-        JLabel label = null;
-        if (componentes.containsKey(comp)) {
-            label = (JLabel) componentes.get(comp);
-        }
-        return label;
-    }
 
     private boolean checkValidationFields() {
         boolean validFields = true;
@@ -588,6 +572,7 @@ public class RegistroEmpresas extends javax.swing.JFrame {
             EmpresaManager em = new EmpresaManager();
 
             if (em.getEmpresaByDNI(txtDni.getText()) != null) {
+                lblDNIValMarker.setText("*");
                 lblDNIValMarker.setVisible(true);
                 lblMensajeInsercion.setText("Ya existe una empresa con DNI digitado");
                 lblMensajeInsercion.setForeground(Color.red);
@@ -607,10 +592,6 @@ public class RegistroEmpresas extends javax.swing.JFrame {
             lblMensajeInsercion.setText("Empresa creada exitosamente");
             lblMensajeInsercion.setForeground(Color.GREEN);
             lblMensajeInsercion.setVisible(true);
-            /*LimpiadorComponentes.limpiar(new JLabel[]{
-                        lblRSValMarker, lblDNIValMarker, lblTipoDniValMarker, lblContactoValMarker, lblPosContactoValMarker, lblTelValMarker, lblDirValMarker, lblDirValMarker2, lblCiudadValMarker,
-                        lblRegionValMarker, lblPaisValMarker
-                    });*/
             LimpiadorComponentes.limpiarComponentes(this);
         }
     }//GEN-LAST:event_btnAceptarActionPerformed

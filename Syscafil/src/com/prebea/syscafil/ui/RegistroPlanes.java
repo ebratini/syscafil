@@ -379,7 +379,7 @@ public class RegistroPlanes extends javax.swing.JFrame {
         // TODO add your handling code here:
         btnNuevaCatPlan.setVisible(false);
         btnNuevaSubcatPlan.setVisible(false);
-        LimpiadorComponentes.hideValidationLabels(this);
+        LimpiadorComponentes.hideValidationLabelMarkers(this);
     }//GEN-LAST:event_formWindowOpened
 
     private void cmbCategoriaPlanFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cmbCategoriaPlanFocusGained

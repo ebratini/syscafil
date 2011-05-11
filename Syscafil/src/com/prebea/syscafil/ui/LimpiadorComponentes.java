@@ -36,7 +36,7 @@ import javax.swing.text.JTextComponent;
  */
 public class LimpiadorComponentes {
 
-    public static void hideValidationLabels(JFrame frame) {
+    public static void hideValidationLabelMarkers(JFrame frame) {
         for (Component comp : frame.getContentPane().getComponents()) {
             if (comp instanceof JPanel) {
                 for (Component pnlComp : ((JPanel) comp).getComponents()) {
@@ -46,7 +46,6 @@ public class LimpiadorComponentes {
                 }
             }
         }
-
     }
 
     public static void limpiar(Component comp) {

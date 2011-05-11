@@ -33,11 +33,10 @@
           <Component id="pnlNodeBar" alignment="0" max="32767" attributes="0"/>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="btnAceptar" alignment="0" min="-2" pref="99" max="-2" attributes="0"/>
-                  <Component id="lblMensajeInsercion" pref="214" max="32767" attributes="0"/>
-              </Group>
-              <EmptySpace pref="104" max="32767" attributes="0"/>
+              <Component id="btnAceptar" min="-2" pref="99" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="lblMensajeInsercion" pref="199" max="32767" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="btnSalir" min="-2" pref="41" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -56,14 +55,13 @@
               <Component id="pnlInfoContacto" min="-2" max="-2" attributes="1"/>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Component id="btnAceptar" min="-2" pref="38" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="lblMensajeInsercion" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="btnAceptar" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
+                      <Component id="lblMensajeInsercion" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Component id="btnSalir" min="-2" pref="39" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="21" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
               <Component id="statusPanel" min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -128,8 +126,8 @@
                       <Component id="txtRazonSocial" alignment="0" min="-2" pref="197" max="-2" attributes="0"/>
                       <Component id="txtDni" alignment="0" min="-2" pref="145" max="-2" attributes="1"/>
                       <Component id="cmbTipoDni" alignment="0" min="-2" max="-2" attributes="1"/>
-                      <Component id="txtContacto" alignment="0" pref="230" max="32767" attributes="1"/>
-                      <Component id="txtPosContacto" alignment="0" pref="230" max="32767" attributes="0"/>
+                      <Component id="txtContacto" alignment="0" pref="234" max="32767" attributes="1"/>
+                      <Component id="txtPosContacto" alignment="0" pref="234" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
@@ -414,7 +412,7 @@
                           <Component id="ftfTelefono" alignment="0" pref="119" max="32767" attributes="1"/>
                       </Group>
                   </Group>
-                  <EmptySpace pref="47" max="32767" attributes="0"/>
+                  <EmptySpace pref="51" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
                       <Component id="lblTelValMarker" alignment="1" min="-2" max="-2" attributes="0"/>
                       <Component id="lblDirValMarker" alignment="1" min="-2" max="-2" attributes="0"/>
