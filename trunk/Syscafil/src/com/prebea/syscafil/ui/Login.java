@@ -31,6 +31,7 @@ package com.prebea.syscafil.ui;
 
 import com.prebea.syscafil.business.UsuarioManager;
 import com.prebea.syscafil.model.entities.Usuario;
+import java.awt.event.KeyEvent;
 import java.util.Arrays;
 import javax.swing.JOptionPane;
 
@@ -86,6 +87,11 @@ public class Login extends javax.swing.JDialog {
         lblContrasenia.setText("Contraseña");
 
         psfContrasenia.setNextFocusableComponent(btnOk);
+        psfContrasenia.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                psfContraseniaKeyPressed(evt);
+            }
+        });
 
         btnOk.setText("Ok");
         btnOk.setNextFocusableComponent(btnCancelar);
@@ -185,6 +191,13 @@ public class Login extends javax.swing.JDialog {
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         // TODO add your handling code here:
     }//GEN-LAST:event_formWindowClosing
+
+    private void psfContraseniaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_psfContraseniaKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            btnOk.doClick();
+        }
+    }//GEN-LAST:event_psfContraseniaKeyPressed
 
     /**
      * @param args the command line arguments
