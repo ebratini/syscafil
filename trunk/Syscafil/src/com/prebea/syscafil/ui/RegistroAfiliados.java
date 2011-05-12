@@ -45,6 +45,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
@@ -58,6 +59,9 @@ import javax.swing.text.JTextComponent;
 public class RegistroAfiliados extends javax.swing.JFrame {
 
     private Empresa empresa;
+
+    //Calendar cal = Calendar.getInstance(new Locale("es", "DO"));
+    DateFormat rdDF = DateFormat.getDateInstance(DateFormat.SHORT, new Locale("es", "DO"));
 
     /** Creates new form RegistroAfiliados */
     public RegistroAfiliados() {
@@ -186,7 +190,8 @@ public class RegistroAfiliados extends javax.swing.JFrame {
             }
         });
 
-        btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/imagenes/salir_25x25.png"))); // NOI18N
+        btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/imagenes/salir2-32x32.png"))); // NOI18N
+        btnSalir.setPreferredSize(new java.awt.Dimension(65, 41));
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSalirActionPerformed(evt);
@@ -387,6 +392,9 @@ public class RegistroAfiliados extends javax.swing.JFrame {
 
         lblDirValMarker.setForeground(new java.awt.Color(255, 51, 51));
 
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, txtDireccion, org.jdesktop.beansbinding.ObjectProperty.create(), lblDirValMarker, org.jdesktop.beansbinding.BeanProperty.create("labelFor"));
+        bindingGroup.addBinding(binding);
+
         lblPaisValMarker.setForeground(new java.awt.Color(255, 51, 51));
 
         binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, txtPais, org.jdesktop.beansbinding.ObjectProperty.create(), lblPaisValMarker, org.jdesktop.beansbinding.BeanProperty.create("labelFor"));
@@ -424,12 +432,12 @@ public class RegistroAfiliados extends javax.swing.JFrame {
                 .addGap(10, 10, 10)
                 .addGroup(pnlInfoContactoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(ftfTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 311, Short.MAX_VALUE)
-                    .addComponent(txtDireccion2, javax.swing.GroupLayout.DEFAULT_SIZE, 311, Short.MAX_VALUE)
+                    .addComponent(txtEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE)
+                    .addComponent(txtDireccion2, javax.swing.GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE)
                     .addComponent(txtCiudad, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtRegion, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtPais, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtDireccion, javax.swing.GroupLayout.DEFAULT_SIZE, 311, Short.MAX_VALUE))
+                    .addComponent(txtDireccion, javax.swing.GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(pnlInfoContactoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblPaisValMarker)
@@ -483,6 +491,7 @@ public class RegistroAfiliados extends javax.swing.JFrame {
 
         pnlInfoServicio.setBorder(javax.swing.BorderFactory.createTitledBorder("Informacion de Servicio"));
 
+        ftfFechaIngreso.setNextFocusableComponent(cmbPlan);
         ftfFechaIngreso.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 ftfFechaIngresoFocusGained(evt);
@@ -494,6 +503,7 @@ public class RegistroAfiliados extends javax.swing.JFrame {
         lblPlan.setText("Plan");
 
         cmbPlan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccion" }));
+        cmbPlan.setNextFocusableComponent(txtEmpresa);
         cmbPlan.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cmbPlanItemStateChanged(evt);
@@ -503,6 +513,7 @@ public class RegistroAfiliados extends javax.swing.JFrame {
         lblEmpresa.setText("Empresa");
 
         txtEmpresa.setEditable(false);
+        txtEmpresa.setNextFocusableComponent(btnAceptar);
 
         btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/imagenes/searchglass_vflip.gif"))); // NOI18N
         btnBuscar.setBorder(null);
@@ -540,7 +551,7 @@ public class RegistroAfiliados extends javax.swing.JFrame {
                 .addGroup(pnlInfoServicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlInfoServicioLayout.createSequentialGroup()
                         .addComponent(lblFechaIngresoValMarker)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 157, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 161, Short.MAX_VALUE)
                         .addComponent(lblEmpresa)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -611,8 +622,8 @@ public class RegistroAfiliados extends javax.swing.JFrame {
                 .addComponent(btnAceptar)
                 .addGap(69, 69, 69)
                 .addComponent(lblMensajeInsercion, javax.swing.GroupLayout.PREFERRED_SIZE, 496, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 115, Short.MAX_VALUE)
-                .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 114, Short.MAX_VALUE)
+                .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -623,9 +634,9 @@ public class RegistroAfiliados extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(lblMensajeInsercion))
-                    .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(statusPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -754,8 +765,10 @@ public class RegistroAfiliados extends javax.swing.JFrame {
 
             Afiliado afiliado;
             try {
+
+                
                 afiliado = new Afiliado(txtDni.getText(), cmbTipoDni.getSelectedItem().toString(), txtNombre.getText(),
-                        txtApellido.getText(), DateFormat.getInstance().parse(ftfFechaIngreso.getText()), DateFormat.getInstance().parse(ftfFechaNacimiento.getText()),
+                        txtApellido.getText(), rdDF.parse(ftfFechaIngreso.getText()), rdDF.parse(ftfFechaNacimiento.getText()),
                         cmbGenero.getSelectedItem().toString().equalsIgnoreCase("femenino") ? 'F' : 'M', ftfTelefono.getText(),
                         String.format("%s %s", txtDireccion.getText(), txtDireccion2.getText()), txtCiudad.getText(), txtRegion.getText(),
                         txtPais.getText(), 'A');
@@ -803,7 +816,8 @@ public class RegistroAfiliados extends javax.swing.JFrame {
         // TODO add your handling code here:
         Calendar cal = Calendar.getInstance();
         cal.setTime(new Date());
-        ftfFechaIngreso.setText(String.format("%tF", cal));
+        //ftfFechaIngreso.setText(String.format("%tF", cal));
+        ftfFechaIngreso.setText(String.format("%1$td-%1$tm-%1$tY", cal));
     }//GEN-LAST:event_ftfFechaIngresoFocusGained
 
     /**

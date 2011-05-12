@@ -27,13 +27,10 @@ import com.prebea.syscafil.model.entities.Usuario;
 import java.awt.event.WindowEvent;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Arrays;
 import java.util.List;
-import javax.swing.GroupLayout;
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -161,7 +158,7 @@ public class SyscafilDesktop extends JRibbonFrame {
         jcbLogInOut = createJCommandButton("Log In", getResizableIconFromResource("/resources/imagenes/login.png"), "jcbLogIn",
                 new RichTooltip("Login/Logout", "Click aqui para abrir/cerrar sesion de usuario"), buttonActHandler);
 
-        jcbSalir = createJCommandButton("Salir", getResizableIconFromResource("/resources/imagenes/application-exit.png"), "jcbSalir",
+        jcbSalir = createJCommandButton("Salir", getResizableIconFromResource("/resources/imagenes/salir.png"), "jcbSalir",
                 new RichTooltip("Salir", "Click aqui para salir de la aplicacion"), buttonActHandler);
 
         // creando la banda "Acceso"

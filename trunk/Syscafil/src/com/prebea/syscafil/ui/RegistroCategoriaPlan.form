@@ -35,8 +35,8 @@
               <Component id="btnAceptar" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="131" max="-2" attributes="0"/>
               <Component id="lblMensajeInsercion" min="-2" pref="121" max="-2" attributes="0"/>
-              <EmptySpace pref="30" max="32767" attributes="0"/>
-              <Component id="btnSalir" min="-2" pref="38" max="-2" attributes="0"/>
+              <EmptySpace pref="28" max="32767" attributes="0"/>
+              <Component id="btnSalir" min="-2" pref="40" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
           <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
@@ -49,8 +49,8 @@
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="btnAceptar" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
-                  <Component id="btnSalir" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
+                  <Component id="btnAceptar" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                  <Component id="btnSalir" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                   <Component id="lblMensajeInsercion" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
@@ -78,7 +78,7 @@
     <Component class="javax.swing.JButton" name="btnSalir">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/resources/imagenes/salir_25x25.png"/>
+          <Image iconType="3" name="/resources/imagenes/salir2-32x32.png"/>
         </Property>
       </Properties>
       <Events>
