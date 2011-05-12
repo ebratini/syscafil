@@ -30,6 +30,8 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -54,6 +56,7 @@ public class SubcategoriaPlan implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "sup_id", nullable = false)
     private Integer supId;
     @Basic(optional = false)
@@ -80,6 +83,12 @@ public class SubcategoriaPlan implements Serializable {
 
     public SubcategoriaPlan(Integer supId, String supNombre, String supDescripcion, char supStatus) {
         this.supId = supId;
+        this.supNombre = supNombre;
+        this.supDescripcion = supDescripcion;
+        this.supStatus = supStatus;
+    }
+
+    public SubcategoriaPlan(String supNombre, String supDescripcion, char supStatus) {
         this.supNombre = supNombre;
         this.supDescripcion = supDescripcion;
         this.supStatus = supStatus;

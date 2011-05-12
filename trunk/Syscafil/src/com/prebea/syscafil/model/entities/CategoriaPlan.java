@@ -30,6 +30,8 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -52,6 +54,7 @@ public class CategoriaPlan implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "cap_id", nullable = false)
     private Integer capId;
     @Basic(optional = false)
@@ -77,6 +80,12 @@ public class CategoriaPlan implements Serializable {
 
     public CategoriaPlan(Integer capId, String capNombre, String capDescripcion, char capStatus) {
         this.capId = capId;
+        this.capNombre = capNombre;
+        this.capDescripcion = capDescripcion;
+        this.capStatus = capStatus;
+    }
+
+    public CategoriaPlan(String capNombre, String capDescripcion, char capStatus) {
         this.capNombre = capNombre;
         this.capDescripcion = capDescripcion;
         this.capStatus = capStatus;

@@ -34,12 +34,11 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Component id="btnAceptar" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="36" max="32767" attributes="0"/>
-              <Component id="lblMensajeInsercion" min="-2" pref="177" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
+              <EmptySpace pref="280" max="32767" attributes="0"/>
               <Component id="btnSalir" min="-2" pref="40" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
+          <Component id="lblMensajeInsercion" alignment="1" pref="439" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -51,9 +50,10 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btnAceptar" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                   <Component id="btnSalir" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                  <Component id="lblMensajeInsercion" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="lblMensajeInsercion" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -75,27 +75,19 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
+                  <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
-                          <Component id="lblCategoriaPlan" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="cmbCategoriaPlan" min="-2" pref="104" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="lblSubcategoria" alignment="1" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblDescripcion" alignment="1" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="txtNombreSubcat" min="-2" pref="202" max="-2" attributes="0"/>
-                              <Component id="txtDescripcionSubcat" alignment="0" min="-2" pref="283" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
+                      <Component id="lblCategoriaPlan" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblSubcategoria" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblDescripcion" alignment="1" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="25" max="32767" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="cmbCategoriaPlan" alignment="0" min="-2" pref="104" max="-2" attributes="0"/>
+                      <Component id="txtNombreSubcat" min="-2" pref="202" max="-2" attributes="0"/>
+                      <Component id="txtDescripcionSubcat" alignment="0" min="-2" pref="283" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace pref="13" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="lblCatPlanValMarker" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="lblNombreSubcatValMarker" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -110,21 +102,21 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="lblCategoriaPlan" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="cmbCategoriaPlan" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="lblCatPlanValMarker" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblCategoriaPlan" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="lblSubcategoria" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="txtNombreSubcat" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="lblNombreSubcatValMarker" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblSubcategoria" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="lblDescripcion" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="txtDescripcionSubcat" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="lblDescripcionValMarker" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblDescripcion" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -201,6 +193,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Aceptar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAceptarActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lblMensajeInsercion">
       <Properties>
@@ -208,6 +203,7 @@
           <Color blue="cc" green="cc" red="cc" type="rgb"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
+        <Property name="text" type="java.lang.String" value="*"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="btnSalir">

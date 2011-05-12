@@ -30,7 +30,15 @@
 
 package com.prebea.syscafil.ui;
 
+import com.prebea.syscafil.business.CategoriaPlanManager;
+import com.prebea.syscafil.business.EmptyFieldValidator;
+import com.prebea.syscafil.business.FieldValidator;
+import com.prebea.syscafil.business.FormFieldValidator;
+import com.prebea.syscafil.model.entities.CategoriaPlan;
+import java.awt.Color;
 import java.awt.Toolkit;
+import java.util.HashMap;
+import javax.swing.JLabel;
 
 /**
  *
@@ -52,6 +60,7 @@ public class RegistroCategoriaPlan extends javax.swing.JDialog {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
         btnAceptar = new javax.swing.JButton();
         lblMensajeInsercion = new javax.swing.JLabel();
@@ -61,8 +70,8 @@ public class RegistroCategoriaPlan extends javax.swing.JDialog {
         txtNombreCat = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         txtDescripcionCat = new javax.swing.JTextField();
-        lblAsterVal18 = new javax.swing.JLabel();
-        lblAsterVal19 = new javax.swing.JLabel();
+        lblNombreCategoriaValMarker = new javax.swing.JLabel();
+        lblDescripcionValMarker = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Registro Categoria Plan");
@@ -76,9 +85,15 @@ public class RegistroCategoriaPlan extends javax.swing.JDialog {
 
         btnAceptar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/imagenes/add_25x25.png"))); // NOI18N
         btnAceptar.setText("Aceptar");
+        btnAceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAceptarActionPerformed(evt);
+            }
+        });
 
         lblMensajeInsercion.setForeground(new java.awt.Color(204, 204, 204));
         lblMensajeInsercion.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblMensajeInsercion.setText("*");
 
         btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/imagenes/salir2-32x32.png"))); // NOI18N
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -93,11 +108,15 @@ public class RegistroCategoriaPlan extends javax.swing.JDialog {
 
         jLabel2.setText("Descripcion");
 
-        lblAsterVal18.setForeground(new java.awt.Color(255, 51, 51));
-        lblAsterVal18.setText("*");
+        lblNombreCategoriaValMarker.setForeground(new java.awt.Color(255, 51, 51));
 
-        lblAsterVal19.setForeground(new java.awt.Color(255, 51, 51));
-        lblAsterVal19.setText("*");
+        org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, txtNombreCat, org.jdesktop.beansbinding.ObjectProperty.create(), lblNombreCategoriaValMarker, org.jdesktop.beansbinding.BeanProperty.create("labelFor"));
+        bindingGroup.addBinding(binding);
+
+        lblDescripcionValMarker.setForeground(new java.awt.Color(255, 51, 51));
+
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, txtDescripcionCat, org.jdesktop.beansbinding.ObjectProperty.create(), lblDescripcionValMarker, org.jdesktop.beansbinding.BeanProperty.create("labelFor"));
+        bindingGroup.addBinding(binding);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -111,11 +130,11 @@ public class RegistroCategoriaPlan extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtNombreCat, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtDescripcionCat, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE))
+                    .addComponent(txtDescripcionCat, javax.swing.GroupLayout.DEFAULT_SIZE, 306, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblAsterVal19)
-                    .addComponent(lblAsterVal18))
+                    .addComponent(lblDescripcionValMarker)
+                    .addComponent(lblNombreCategoriaValMarker))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -125,12 +144,12 @@ public class RegistroCategoriaPlan extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(txtNombreCat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblAsterVal18))
+                    .addComponent(lblNombreCategoriaValMarker))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txtDescripcionCat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblAsterVal19))
+                    .addComponent(lblDescripcionValMarker))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -141,9 +160,9 @@ public class RegistroCategoriaPlan extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnAceptar)
-                .addGap(131, 131, 131)
-                .addComponent(lblMensajeInsercion, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addGap(43, 43, 43)
+                .addComponent(lblMensajeInsercion, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
                 .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -161,6 +180,8 @@ public class RegistroCategoriaPlan extends javax.swing.JDialog {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        bindingGroup.bind();
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -174,6 +195,54 @@ public class RegistroCategoriaPlan extends javax.swing.JDialog {
         LimpiadorComponentes.limpiarComponentes(this);
         LimpiadorComponentes.limpiarValidationMarkers(this);
     }//GEN-LAST:event_formWindowOpened
+
+    private boolean checkFormFields() {
+        boolean validFields = true;
+
+        FieldValidator emptynessVal;
+        emptynessVal = new EmptyFieldValidator();
+        FieldValidator[] emptynessArr = new FieldValidator[]{emptynessVal};
+
+        HashMap<JLabel, FieldValidator[]> campos = new HashMap<JLabel, FieldValidator[]>();
+        campos.put(lblNombreCategoriaValMarker, emptynessArr);
+        campos.put(lblDescripcionValMarker, emptynessArr);
+
+        validFields = FormFieldValidator.verifyFormFields(campos);
+
+        return validFields;
+    }
+
+    private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
+        // TODO add your handling code here:
+        if (!checkFormFields()) {
+            lblMensajeInsercion.setText("Por favor corriga los campos marcados");
+            lblMensajeInsercion.setForeground(Color.red);
+            //lblMensajeInsercion.setVisible(true);
+            new Thread(new LabelToolTipShower(lblMensajeInsercion, 3000)).start();
+            return;
+        } else {
+            CategoriaPlanManager cpm = new CategoriaPlanManager();
+
+            if (cpm.getCategoriaPlanByNombre(txtNombreCat.getText()) != null) {
+                lblNombreCategoriaValMarker.setText("*");
+                lblNombreCategoriaValMarker.setVisible(true);
+                lblMensajeInsercion.setText("Ya existe una categoria de plan con nombre digitado");
+                lblMensajeInsercion.setForeground(Color.red);
+                lblMensajeInsercion.setVisible(true);
+                return;
+            }
+
+            CategoriaPlan catPlan = new CategoriaPlan(txtNombreCat.getText(), txtDescripcionCat.getText(), 'A');
+            cpm.crearCategoriaPlan(catPlan);
+
+            lblMensajeInsercion.setText("Categoria de plan creada exitosamente");
+            lblMensajeInsercion.setForeground(Color.GREEN);
+            lblMensajeInsercion.setVisible(true);
+            new Thread(new LabelToolTipShower(lblMensajeInsercion)).start();
+            LimpiadorComponentes.limpiarComponentes(this);
+            txtNombreCat.requestFocusInWindow();
+        }
+    }//GEN-LAST:event_btnAceptarActionPerformed
 
     /**
     * @param args the command line arguments
@@ -198,11 +267,12 @@ public class RegistroCategoriaPlan extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel lblAsterVal18;
-    private javax.swing.JLabel lblAsterVal19;
+    private javax.swing.JLabel lblDescripcionValMarker;
     private javax.swing.JLabel lblMensajeInsercion;
+    private javax.swing.JLabel lblNombreCategoriaValMarker;
     private javax.swing.JTextField txtDescripcionCat;
     private javax.swing.JTextField txtNombreCat;
+    private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
 
 }
