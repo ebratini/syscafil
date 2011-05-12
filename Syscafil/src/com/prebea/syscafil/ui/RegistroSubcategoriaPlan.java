@@ -30,7 +30,21 @@
 
 package com.prebea.syscafil.ui;
 
+import com.prebea.syscafil.business.CategoriaPlanManager;
+import com.prebea.syscafil.business.DefaultComboFieldValueValidator;
+import com.prebea.syscafil.business.EmptyFieldValidator;
+import com.prebea.syscafil.business.FieldValidator;
+import com.prebea.syscafil.business.FormFieldValidator;
+import com.prebea.syscafil.business.SubcategoriaPlanManager;
+import com.prebea.syscafil.model.entities.CategoriaPlan;
+import com.prebea.syscafil.model.entities.SubcategoriaPlan;
+import java.awt.Color;
 import java.awt.Toolkit;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
+import javax.swing.JLabel;
 
 /**
  *
@@ -108,22 +122,17 @@ public class RegistroSubcategoriaPlan extends javax.swing.JDialog {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(16, 16, 16)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(66, 66, 66)
-                        .addComponent(lblCategoriaPlan)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cmbCategoriaPlan, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lblSubcategoria)
-                            .addComponent(lblDescripcion))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtNombreSubcat, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtDescripcionSubcat, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                    .addComponent(lblCategoriaPlan, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblSubcategoria, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblDescripcion, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cmbCategoriaPlan, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNombreSubcat, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtDescripcionSubcat, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblCatPlanValMarker)
                     .addComponent(lblNombreSubcatValMarker)
@@ -135,27 +144,33 @@ public class RegistroSubcategoriaPlan extends javax.swing.JDialog {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblCategoriaPlan)
                     .addComponent(cmbCategoriaPlan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblCatPlanValMarker))
+                    .addComponent(lblCatPlanValMarker)
+                    .addComponent(lblCategoriaPlan))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblSubcategoria)
                     .addComponent(txtNombreSubcat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblNombreSubcatValMarker))
+                    .addComponent(lblNombreSubcatValMarker)
+                    .addComponent(lblSubcategoria))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblDescripcion)
                     .addComponent(txtDescripcionSubcat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblDescripcionValMarker))
+                    .addComponent(lblDescripcionValMarker)
+                    .addComponent(lblDescripcion))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         btnAceptar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/imagenes/add_25x25.png"))); // NOI18N
         btnAceptar.setText("Aceptar");
+        btnAceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAceptarActionPerformed(evt);
+            }
+        });
 
         lblMensajeInsercion.setForeground(new java.awt.Color(204, 204, 204));
         lblMensajeInsercion.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblMensajeInsercion.setText("*");
 
         btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/imagenes/salir2-32x32.png"))); // NOI18N
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -172,11 +187,10 @@ public class RegistroSubcategoriaPlan extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnAceptar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
-                .addComponent(lblMensajeInsercion, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(67, 67, 67)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 280, Short.MAX_VALUE)
                 .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
+            .addComponent(lblMensajeInsercion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 439, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -186,9 +200,10 @@ public class RegistroSubcategoriaPlan extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblMensajeInsercion))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(lblMensajeInsercion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         bindingGroup.bind();
@@ -205,7 +220,79 @@ public class RegistroSubcategoriaPlan extends javax.swing.JDialog {
         // TODO add your handling code here:
         LimpiadorComponentes.limpiarComponentes(this);
         LimpiadorComponentes.limpiarValidationMarkers(this);
+        loadCategoriaPlanComboBox();
     }//GEN-LAST:event_formWindowOpened
+
+    private void loadCategoriaPlanComboBox() {
+        List<CategoriaPlan> catsPlan = new CategoriaPlanManager().getCategoriaPlanes();
+        cmbCategoriaPlan.removeAllItems();
+        cmbCategoriaPlan.addItem("Seleccion");
+        for (CategoriaPlan catPlan : catsPlan) {
+            cmbCategoriaPlan.addItem(catPlan.getCapNombre());
+        }
+    }
+
+    private boolean checkFormFields() {
+        boolean validFields = true;
+
+        FieldValidator emptynessVal;
+        emptynessVal = new EmptyFieldValidator();
+        FieldValidator[] emptynessArr = new FieldValidator[]{emptynessVal};
+
+        HashMap<JLabel, FieldValidator[]> campos = new HashMap<JLabel, FieldValidator[]>();
+        campos.put(lblCatPlanValMarker, new FieldValidator[]{new DefaultComboFieldValueValidator()});
+        campos.put(lblNombreSubcatValMarker, emptynessArr);
+        campos.put(lblDescripcionValMarker, emptynessArr);
+
+        validFields = FormFieldValidator.verifyFormFields(campos);
+
+        return validFields;
+    }
+
+    private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
+        // TODO add your handling code here:
+        if (!checkFormFields()) {
+            lblMensajeInsercion.setText("Por favor corriga los campos marcados");
+            lblMensajeInsercion.setForeground(Color.red);
+            new Thread(new LabelToolTipShower(lblMensajeInsercion, 3000)).start();
+            return;
+        } else {
+            SubcategoriaPlanManager spm = new SubcategoriaPlanManager();
+
+            CategoriaPlan catPlan = new CategoriaPlanManager().getCategoriaPlanByNombre(cmbCategoriaPlan.getSelectedItem().toString());
+            List<SubcategoriaPlan> testSubCatsPlan = spm.getSubcategoriaPlanByCategoriaPlan(catPlan);
+
+            List<String> nombresSubCatPlan = new ArrayList<String>();
+            for (SubcategoriaPlan sp : testSubCatsPlan) {
+                nombresSubCatPlan.add(sp.getSupNombre().toLowerCase());
+            }
+
+            if (nombresSubCatPlan.contains(txtNombreSubcat.getText().toLowerCase())) {
+                lblNombreSubcatValMarker.setText("*");
+                lblNombreSubcatValMarker.setVisible(true);
+                lblMensajeInsercion.setText("Ya existe una subcategoria de plan con nombre \ndigitado en la categoria seleccionada");
+                lblMensajeInsercion.setForeground(Color.red);
+                new Thread(new LabelToolTipShower(lblMensajeInsercion, 5000)).start();
+                //lblMensajeInsercion.setVisible(true);
+                return;
+            }
+
+            SubcategoriaPlan subCatPlan = new SubcategoriaPlan(txtNombreSubcat.getText(), txtDescripcionSubcat.getText(), 'A');
+
+            
+            subCatPlan.setCategoriaPlan(catPlan);
+            catPlan.getSubcategoriaPlanCollection().add(subCatPlan);
+
+            spm.crearSubcategoriaPlan(subCatPlan);
+
+            lblMensajeInsercion.setText("Subcategoria de plan creada exitosamente");
+            lblMensajeInsercion.setForeground(Color.GREEN);
+            lblMensajeInsercion.setVisible(true);
+            new Thread(new LabelToolTipShower(lblMensajeInsercion)).start();
+            LimpiadorComponentes.limpiarComponentes(this);
+            txtNombreSubcat.requestFocusInWindow();
+        }
+    }//GEN-LAST:event_btnAceptarActionPerformed
 
     /**
     * @param args the command line arguments

@@ -27,15 +27,16 @@
  *
  * Created on 05/04/2011, 12:12:46 PM
  */
-
 package com.prebea.syscafil.ui;
 
+import com.prebea.syscafil.business.CategoriaPlanManager;
 import com.prebea.syscafil.business.DecimalFieldValidator;
 import com.prebea.syscafil.business.DefaultComboFieldValueValidator;
 import com.prebea.syscafil.business.EmptyFieldValidator;
 import com.prebea.syscafil.business.FieldValidator;
 import com.prebea.syscafil.business.FormFieldValidator;
 import com.prebea.syscafil.business.PlanManager;
+import com.prebea.syscafil.business.SubcategoriaPlanManager;
 import com.prebea.syscafil.model.entities.CategoriaPlan;
 import com.prebea.syscafil.model.entities.Plan;
 import com.prebea.syscafil.model.entities.SubcategoriaPlan;
@@ -44,6 +45,7 @@ import java.awt.Toolkit;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import javax.swing.JLabel;
 
 /**
@@ -111,7 +113,12 @@ public class RegistroPlanes extends javax.swing.JFrame {
 
         lblCategoriaPlan.setText("Categoria Plan");
 
-        cmbCategoriaPlan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccion", "Familiar", "Empresarial" }));
+        cmbCategoriaPlan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccion" }));
+        cmbCategoriaPlan.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmbCategoriaPlanItemStateChanged(evt);
+            }
+        });
         cmbCategoriaPlan.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 cmbCategoriaPlanFocusGained(evt);
@@ -120,7 +127,7 @@ public class RegistroPlanes extends javax.swing.JFrame {
 
         lblSubcategoria.setText("Subcategoria");
 
-        cmbSubcategoriaPlan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccion", "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbSubcategoriaPlan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccion" }));
         cmbSubcategoriaPlan.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 cmbSubcategoriaPlanFocusGained(evt);
@@ -198,91 +205,79 @@ public class RegistroPlanes extends javax.swing.JFrame {
         pnlInfoPlanLayout.setHorizontalGroup(
             pnlInfoPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlInfoPlanLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(pnlInfoPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblPrecioDepExtra, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblPrecioPlan, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblSubcategoria, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblCategoriaPlan, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblDescripcionPlan, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblNombrePlan, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(pnlInfoPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE)
+                    .addComponent(txtNombrePlan)
                     .addGroup(pnlInfoPlanLayout.createSequentialGroup()
-                        .addGap(40, 40, 40)
+                        .addGroup(pnlInfoPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(ftfPrecioDepExtra, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(ftfPrecioPlan, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cmbSubcategoriaPlan, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cmbCategoriaPlan, javax.swing.GroupLayout.Alignment.LEADING, 0, 105, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
                         .addGroup(pnlInfoPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblNombrePlan, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lblDescripcionPlan, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(pnlInfoPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtNombrePlan)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 263, Short.MAX_VALUE)))
-                    .addGroup(pnlInfoPlanLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(pnlInfoPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblCategoriaPlan, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lblSubcategoria, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lblPrecioPlan, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lblPrecioDepExtra, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(pnlInfoPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(ftfPrecioPlan, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)
-                            .addComponent(ftfPrecioDepExtra, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlInfoPlanLayout.createSequentialGroup()
-                                .addGroup(pnlInfoPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(cmbCategoriaPlan, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(cmbSubcategoriaPlan, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
-                                .addGroup(pnlInfoPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(btnNuevaCatPlan, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnNuevaSubcatPlan, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(94, 94, 94)))
+                            .addComponent(btnNuevaSubcatPlan, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnNuevaCatPlan, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(18, 18, 18)
                 .addGroup(pnlInfoPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblNombreValMarker)
                     .addComponent(lblDescripcionValMarker)
+                    .addComponent(lblNombreValMarker)
                     .addComponent(lblCatPlanValMarker)
                     .addComponent(lblSubcatPlanValMarker)
                     .addComponent(lblPrecioValMarker)
                     .addComponent(lblPrecioDepExtraValMarker))
-                .addContainerGap())
+                .addContainerGap(16, Short.MAX_VALUE))
         );
         pnlInfoPlanLayout.setVerticalGroup(
             pnlInfoPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlInfoPlanLayout.createSequentialGroup()
                 .addContainerGap()
+                .addGroup(pnlInfoPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblNombrePlan)
+                    .addComponent(txtNombrePlan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblNombreValMarker))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlInfoPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlInfoPlanLayout.createSequentialGroup()
+                        .addGroup(pnlInfoPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblDescripcionPlan)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(pnlInfoPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(pnlInfoPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(lblCategoriaPlan)
+                                .addComponent(cmbCategoriaPlan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lblCatPlanValMarker))
+                            .addComponent(btnNuevaCatPlan, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(lblDescripcionValMarker))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlInfoPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlInfoPlanLayout.createSequentialGroup()
                         .addGroup(pnlInfoPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblNombrePlan)
-                            .addComponent(txtNombrePlan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblNombreValMarker))
+                            .addComponent(lblSubcategoria)
+                            .addComponent(cmbSubcategoriaPlan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblSubcatPlanValMarker))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(pnlInfoPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblDescripcionPlan)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE))
+                        .addGroup(pnlInfoPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblPrecioPlan)
+                            .addComponent(ftfPrecioPlan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblPrecioValMarker))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(pnlInfoPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(pnlInfoPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(lblCategoriaPlan)
-                                .addComponent(cmbCategoriaPlan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(btnNuevaCatPlan, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                    .addGroup(pnlInfoPlanLayout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addComponent(lblDescripcionValMarker)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 130, Short.MAX_VALUE)
-                        .addComponent(lblCatPlanValMarker)
-                        .addGap(8, 8, 8)))
-                .addGroup(pnlInfoPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlInfoPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(lblSubcategoria)
-                        .addComponent(cmbSubcategoriaPlan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnlInfoPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(lblSubcatPlanValMarker)
-                        .addComponent(btnNuevaSubcatPlan, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnlInfoPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblPrecioPlan)
-                    .addComponent(ftfPrecioPlan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblPrecioValMarker))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnlInfoPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblPrecioDepExtra)
-                    .addComponent(ftfPrecioDepExtra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblPrecioDepExtraValMarker))
-                .addContainerGap())
+                        .addGroup(pnlInfoPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblPrecioDepExtra)
+                            .addComponent(ftfPrecioDepExtra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblPrecioDepExtraValMarker)))
+                    .addComponent(btnNuevaSubcatPlan, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         statusAnimationLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -291,11 +286,11 @@ public class RegistroPlanes extends javax.swing.JFrame {
         statusPanel.setLayout(statusPanelLayout);
         statusPanelLayout.setHorizontalGroup(
             statusPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(statusPanelSeparator, javax.swing.GroupLayout.DEFAULT_SIZE, 399, Short.MAX_VALUE)
+            .addComponent(statusPanelSeparator, javax.swing.GroupLayout.DEFAULT_SIZE, 361, Short.MAX_VALUE)
             .addGroup(statusPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(statusMessageLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 379, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 341, Short.MAX_VALUE)
                 .addComponent(statusAnimationLabel)
                 .addContainerGap())
         );
@@ -320,6 +315,7 @@ public class RegistroPlanes extends javax.swing.JFrame {
 
         lblMensajeInsercion.setForeground(new java.awt.Color(204, 204, 204));
         lblMensajeInsercion.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblMensajeInsercion.setText("*");
 
         btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/imagenes/salir2-32x32.png"))); // NOI18N
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -333,29 +329,28 @@ public class RegistroPlanes extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(statusPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(pnlInfoPlan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnAceptar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblMensajeInsercion, javax.swing.GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE)
-                        .addGap(54, 54, 54))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 202, Short.MAX_VALUE)
+                .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+            .addComponent(pnlInfoPlan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblMensajeInsercion, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(145, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(pnlInfoPlan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lblMensajeInsercion))
+                    .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblMensajeInsercion)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(statusPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -374,6 +369,7 @@ public class RegistroPlanes extends javax.swing.JFrame {
         RegistroCategoriaPlan rcp = new RegistroCategoriaPlan(this, true);
         rcp.setLocationRelativeTo(this);
         rcp.setVisible(true);
+        loadCategoriaPlanComboBox();
     }//GEN-LAST:event_btnNuevaCatPlanActionPerformed
 
     private void btnNuevaSubcatPlanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevaSubcatPlanActionPerformed
@@ -381,12 +377,12 @@ public class RegistroPlanes extends javax.swing.JFrame {
         RegistroSubcategoriaPlan rsp = new RegistroSubcategoriaPlan(this, true);
         rsp.setLocationRelativeTo(this);
         rsp.setVisible(true);
+        loadSubcategoriaPlanComboBox();
     }//GEN-LAST:event_btnNuevaSubcatPlanActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
-        btnNuevaCatPlan.setVisible(false);
-        btnNuevaSubcatPlan.setVisible(false);
+        loadCategoriaPlanComboBox();
         LimpiadorComponentes.limpiarComponentes(this);
         LimpiadorComponentes.limpiarValidationMarkers(this);
     }//GEN-LAST:event_formWindowOpened
@@ -406,9 +402,29 @@ public class RegistroPlanes extends javax.swing.JFrame {
         this.dispose();
 }//GEN-LAST:event_btnSalirActionPerformed
 
+    private void loadCategoriaPlanComboBox() {
+        List<CategoriaPlan> catsPlan = new CategoriaPlanManager().getCategoriaPlanes();
+        cmbCategoriaPlan.removeAllItems();
+        cmbCategoriaPlan.addItem("Seleccion");
+        for (CategoriaPlan catPlan : catsPlan) {
+            cmbCategoriaPlan.addItem(catPlan.getCapNombre());
+        }
+    }
+
+    private void loadSubcategoriaPlanComboBox() {
+        if (cmbCategoriaPlan.getSelectedItem() != null && new DefaultComboFieldValueValidator().validate(cmbCategoriaPlan.getSelectedItem().toString())) {
+            List<SubcategoriaPlan> subCatsPlan = new SubcategoriaPlanManager().
+                    getSubcategoriaPlanByCategoriaPlan(new CategoriaPlanManager().getCategoriaPlanByNombre(cmbCategoriaPlan.getSelectedItem().toString()));
+
+            for (SubcategoriaPlan subCatPlan : subCatsPlan) {
+                cmbSubcategoriaPlan.addItem(subCatPlan.getSupNombre());
+            }
+        }
+    }
+
     private boolean checkFormFields() {
         boolean validFields = true;
-        
+
         FieldValidator emptynessVal, DefCombVal, decimalVal;
         emptynessVal = new EmptyFieldValidator();
         DefCombVal = new DefaultComboFieldValueValidator();
@@ -422,7 +438,7 @@ public class RegistroPlanes extends javax.swing.JFrame {
         campos.put(lblSubcatPlanValMarker, new FieldValidator[]{DefCombVal});
         campos.put(lblPrecioValMarker, new FieldValidator[]{decimalVal});
         campos.put(lblPrecioDepExtraValMarker, new FieldValidator[]{decimalVal});
-        
+
         validFields = FormFieldValidator.verifyFormFields(campos);
 
         return validFields;
@@ -453,8 +469,19 @@ public class RegistroPlanes extends javax.swing.JFrame {
 
 
             // TODO: crear los managers correspondiente
-            plan.setCategoriaPlan(new CategoriaPlan());
-            plan.setSubcategoriaPlan(new SubcategoriaPlan());
+            CategoriaPlan catPlan = new CategoriaPlanManager().getCategoriaPlanByNombre(cmbCategoriaPlan.getSelectedItem().toString());
+            plan.setCategoriaPlan(catPlan);
+            catPlan.getPlanCollection().add(plan);
+
+            // TODO: hay problemas aqui
+            HashMap<String, SubcategoriaPlan> subCatsPlan = new HashMap<String, SubcategoriaPlan>();
+            for (SubcategoriaPlan sp : catPlan.getSubcategoriaPlanCollection()) {
+                subCatsPlan.put(sp.getSupNombre(), sp);
+            }
+
+            SubcategoriaPlan subCatPlan = subCatsPlan.get(cmbSubcategoriaPlan.getSelectedItem().toString());
+            plan.setSubcategoriaPlan(subCatPlan);
+            subCatPlan.getPlanCollection().add(plan);
 
             pm.crearPlan(plan);
 
@@ -467,17 +494,25 @@ public class RegistroPlanes extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnAceptarActionPerformed
 
+    private void cmbCategoriaPlanItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbCategoriaPlanItemStateChanged
+        // TODO add your handling code here:
+        cmbSubcategoriaPlan.removeAllItems();
+        cmbSubcategoriaPlan.addItem("Seleccion");
+        loadSubcategoriaPlanComboBox();
+
+    }//GEN-LAST:event_cmbCategoriaPlanItemStateChanged
+
     /**
-    * @param args the command line arguments
-    */
+     * @param args the command line arguments
+     */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
+
             public void run() {
                 new RegistroPlanes().setVisible(true);
             }
         });
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptar;
     private javax.swing.JButton btnNuevaCatPlan;
@@ -509,5 +544,4 @@ public class RegistroPlanes extends javax.swing.JFrame {
     private javax.swing.JTextField txtNombrePlan;
     private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
-
 }

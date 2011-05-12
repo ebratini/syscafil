@@ -27,20 +27,15 @@ import com.prebea.syscafil.business.TimeDateShower;
 import com.prebea.syscafil.model.entities.Usuario;
 import java.awt.event.WindowEvent;
 import java.awt.BorderLayout;
-import java.awt.Container;
 import java.awt.Dimension;
-import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Arrays;
 import java.util.List;
-import javax.swing.ActionMap;
-import javax.swing.InputMap;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.KeyStroke;
 import javax.swing.border.EtchedBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -204,7 +199,7 @@ public class SyscafilDesktop extends JRibbonFrame {
                 "jcbEditarEmpresa", new RichTooltip("Editar", "Click aqui para editar empresa"), buttonActHandler);
 
         jcbEliminarEmpresa = createJCommandButton("Eliminar", getResizableIconFromResource("/resources/imagenes/delete.png"),
-                "jcbEliminarEmpresa", new RichTooltip("Eliminar", "Click aqui para eliminar empresa"), buttonActHandler);
+                    "jcbEliminarEmpresa", new RichTooltip("Eliminar", "Click aqui para eliminar empresa"), buttonActHandler);
 
         JRibbonBand jrbEmpresasBand = new JRibbonBand("Empresas", getResizableIconFromResource("/resources/imagenes/empresas4.png"));
         jrbEmpresasBand.addCommandButton(jcbVerEmpresas, RibbonElementPriority.TOP);
@@ -337,7 +332,7 @@ public class SyscafilDesktop extends JRibbonFrame {
     }
 
     private void initComponents() {
-        LookAndFeelSelector.setLookAndFeel(LookAndFeelSelector.LAF.WINDOWS);
+        LookAndFeelSelector.setLookAndFeel(LookAndFeelSelector.LAF.NIMBUS);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setApplicationIcon(getResizableIconFromResource("/resources/imagenes/prebea_logo.PNG"));
         setPreferredSize(new Dimension(1100, 600));
