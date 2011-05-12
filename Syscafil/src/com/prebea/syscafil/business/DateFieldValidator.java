@@ -32,7 +32,7 @@ import java.util.regex.Pattern;
 public class DateFieldValidator extends DatePhoneFieldValidator {
 
     public DateFieldValidator() {
-        this("\\d\\d\\d\\d-\\d\\d-\\d\\d");
+        this("\\d\\d-\\d\\d-\\d\\d\\d\\d");
     }
 
     public DateFieldValidator(String patternToMatch) {
@@ -45,9 +45,9 @@ public class DateFieldValidator extends DatePhoneFieldValidator {
         String[] dateSplitted = textToValidate.split("-");
 
         if (!textToValidate.isEmpty()) {
-            int anio = Integer.parseInt(dateSplitted[0]);
+            int dia = Integer.parseInt(dateSplitted[0]);
             int mes = Integer.parseInt(dateSplitted[1]);
-            int dia = Integer.parseInt(dateSplitted[2]);
+            int anio = Integer.parseInt(dateSplitted[2]);
             if ((anio >= 1) && (mes >= 1 && mes <= 12) && (dia >= 1 && dia <= 31)) {
                 if (Pattern.matches(getPatternToMatch(), textToValidate)) {
                     valid = true;
