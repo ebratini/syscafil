@@ -30,7 +30,21 @@
 
 package com.prebea.syscafil.ui;
 
+import com.prebea.syscafil.business.DecimalFieldValidator;
+import com.prebea.syscafil.business.DefaultComboFieldValueValidator;
+import com.prebea.syscafil.business.EmptyFieldValidator;
+import com.prebea.syscafil.business.FieldValidator;
+import com.prebea.syscafil.business.FormFieldValidator;
+import com.prebea.syscafil.business.PlanManager;
+import com.prebea.syscafil.model.entities.CategoriaPlan;
+import com.prebea.syscafil.model.entities.Plan;
+import com.prebea.syscafil.model.entities.SubcategoriaPlan;
+import java.awt.Color;
 import java.awt.Toolkit;
+import java.math.BigDecimal;
+import java.util.Date;
+import java.util.HashMap;
+import javax.swing.JLabel;
 
 /**
  *
@@ -298,6 +312,11 @@ public class RegistroPlanes extends javax.swing.JFrame {
 
         btnAceptar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/imagenes/add_25x25.png"))); // NOI18N
         btnAceptar.setText("Aceptar");
+        btnAceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAceptarActionPerformed(evt);
+            }
+        });
 
         lblMensajeInsercion.setForeground(new java.awt.Color(204, 204, 204));
         lblMensajeInsercion.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -386,6 +405,67 @@ public class RegistroPlanes extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.dispose();
 }//GEN-LAST:event_btnSalirActionPerformed
+
+    private boolean checkFormFields() {
+        boolean validFields = true;
+        
+        FieldValidator emptynessVal, DefCombVal, decimalVal;
+        emptynessVal = new EmptyFieldValidator();
+        DefCombVal = new DefaultComboFieldValueValidator();
+        FieldValidator[] emptynessArr = new FieldValidator[]{emptynessVal};
+        decimalVal = new DecimalFieldValidator();
+
+        HashMap<JLabel, FieldValidator[]> campos = new HashMap<JLabel, FieldValidator[]>();
+        campos.put(lblNombreValMarker, emptynessArr);
+        campos.put(lblDescripcionValMarker, emptynessArr);
+        campos.put(lblCatPlanValMarker, new FieldValidator[]{DefCombVal});
+        campos.put(lblSubcatPlanValMarker, new FieldValidator[]{DefCombVal});
+        campos.put(lblPrecioValMarker, new FieldValidator[]{decimalVal});
+        campos.put(lblPrecioDepExtraValMarker, new FieldValidator[]{decimalVal});
+        
+        validFields = FormFieldValidator.verifyFormFields(campos);
+
+        return validFields;
+    }
+
+    private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
+        // TODO add your handling code here:
+        if (!checkFormFields()) {
+            lblMensajeInsercion.setText("Por favor corriga los campos marcados");
+            lblMensajeInsercion.setForeground(Color.red);
+            //lblMensajeInsercion.setVisible(true);
+            new Thread(new LabelToolTipShower(lblMensajeInsercion, 3000)).start();
+            return;
+        } else {
+            PlanManager pm = new PlanManager();
+
+            if (pm.getPlanByNombre(txtNombrePlan.getText()) != null) {
+                lblNombreValMarker.setText("*");
+                lblNombreValMarker.setVisible(true);
+                lblMensajeInsercion.setText("Ya existe un plan con nombre digitado");
+                lblMensajeInsercion.setForeground(Color.red);
+                lblMensajeInsercion.setVisible(true);
+                return;
+            }
+
+            Plan plan = new Plan(txtNombrePlan.getText(), jtaDescripcion.getText(), BigDecimal.valueOf(Double.parseDouble(ftfPrecioPlan.getText())),
+                    BigDecimal.valueOf(Double.parseDouble(ftfPrecioDepExtra.getText())), 'A', "RegistroPlanes", new Date());
+
+
+            // TODO: crear los managers correspondiente
+            plan.setCategoriaPlan(new CategoriaPlan());
+            plan.setSubcategoriaPlan(new SubcategoriaPlan());
+
+            pm.crearPlan(plan);
+
+            lblMensajeInsercion.setText("Plan creado exitosamente");
+            lblMensajeInsercion.setForeground(Color.GREEN);
+            lblMensajeInsercion.setVisible(true);
+            new Thread(new LabelToolTipShower(lblMensajeInsercion)).start();
+            LimpiadorComponentes.limpiarComponentes(this);
+            txtNombrePlan.requestFocusInWindow();
+        }
+    }//GEN-LAST:event_btnAceptarActionPerformed
 
     /**
     * @param args the command line arguments

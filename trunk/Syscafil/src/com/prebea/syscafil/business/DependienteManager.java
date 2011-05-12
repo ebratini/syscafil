@@ -10,6 +10,7 @@ import com.prebea.syscafil.model.entities.Afiliado;
 import com.prebea.syscafil.model.entities.Dependiente;
 import java.util.List;
 import java.util.Map;
+import javax.persistence.NoResultException;
 
 /**
  *
@@ -43,7 +44,12 @@ public class DependienteManager {
     }
 
     public Dependiente getDependienteById(Integer id) {
-        return dd.findById(id);
+        Dependiente dependiente = null;
+        try {
+            dependiente = dd.findById(id);
+        } catch (NoResultException nre) {
+        }
+        return dependiente;
     }
 
     public List<Dependiente> getDependientesActivos() {
@@ -51,7 +57,12 @@ public class DependienteManager {
     }
 
     public Dependiente getDependienteByDNI(String dni) {
-        return dd.findDependienteByDNI(dni);
+        Dependiente dependiente = null;
+        try {
+            dependiente = dd.findDependienteByDNI(dni);
+        } catch (NoResultException nre) {
+        }
+        return dependiente;
     }
 
     public List<Dependiente> getDependienteByNombre(String nombre) {
@@ -60,6 +71,10 @@ public class DependienteManager {
 
     public List<Dependiente> getDependienteByApellido(String apellido) {
         return (List<Dependiente>) dd.findDependienteByApellido(apellido);
+    }
+
+    public List<Dependiente> getDependienteByAfiliado(Afiliado afiliado) {
+        return (List<Dependiente>) dd.findDependienteByAfiliado(afiliado);
     }
 
     public List<Dependiente> getDependienteActivosExtrasByAfiliado(Afiliado afiliado) {

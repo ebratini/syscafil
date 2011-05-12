@@ -29,6 +29,8 @@ import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -71,6 +73,7 @@ public class Dependiente implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "dep_id", nullable = false)
     private Integer depId;
     @Basic(optional = false)
@@ -139,6 +142,24 @@ public class Dependiente implements Serializable {
 
     public Dependiente(Integer depId, String depDni, String depTipoDni, String depNombre, String depApellido, String depParentesco, Date depFechaIngreso, Date depFechaNacimiento, char depGenero, String depTelefono, String depDireccion, String depCiudad, String depRegion, String depPais, short depExtra, char depStatus) {
         this.depId = depId;
+        this.depDni = depDni;
+        this.depTipoDni = depTipoDni;
+        this.depNombre = depNombre;
+        this.depApellido = depApellido;
+        this.depParentesco = depParentesco;
+        this.depFechaIngreso = depFechaIngreso;
+        this.depFechaNacimiento = depFechaNacimiento;
+        this.depGenero = depGenero;
+        this.depTelefono = depTelefono;
+        this.depDireccion = depDireccion;
+        this.depCiudad = depCiudad;
+        this.depRegion = depRegion;
+        this.depPais = depPais;
+        this.depExtra = depExtra;
+        this.depStatus = depStatus;
+    }
+
+    public Dependiente(String depDni, String depTipoDni, String depNombre, String depApellido, String depParentesco, Date depFechaIngreso, Date depFechaNacimiento, char depGenero, String depTelefono, String depDireccion, String depCiudad, String depRegion, String depPais, short depExtra, char depStatus) {
         this.depDni = depDni;
         this.depTipoDni = depTipoDni;
         this.depNombre = depNombre;

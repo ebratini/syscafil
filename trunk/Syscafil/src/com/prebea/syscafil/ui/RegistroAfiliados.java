@@ -30,24 +30,24 @@
 package com.prebea.syscafil.ui;
 
 import com.prebea.syscafil.business.AfiliadoManager;
+import com.prebea.syscafil.business.DateFieldValidator;
+import com.prebea.syscafil.business.DateUtils;
+import com.prebea.syscafil.business.DefaultComboFieldValueValidator;
+import com.prebea.syscafil.business.EmailFieldValidator;
+import com.prebea.syscafil.business.EmptyFieldValidator;
 import com.prebea.syscafil.business.FieldValidator;
 import com.prebea.syscafil.business.FormFieldValidator;
+import com.prebea.syscafil.business.PhoneFieldValidator;
 import com.prebea.syscafil.business.PlanManager;
-import com.prebea.syscafil.business.ValidatorsHolder;
 import com.prebea.syscafil.model.entities.Afiliado;
 import com.prebea.syscafil.model.entities.Empresa;
 import com.prebea.syscafil.model.entities.Plan;
 import java.awt.Color;
 import java.awt.Toolkit;
-import java.text.DateFormat;
-import java.text.ParseException;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.text.JTextComponent;
@@ -59,9 +59,6 @@ import javax.swing.text.JTextComponent;
 public class RegistroAfiliados extends javax.swing.JFrame {
 
     private Empresa empresa;
-
-    //Calendar cal = Calendar.getInstance(new Locale("es", "DO"));
-    DateFormat rdDF = DateFormat.getDateInstance(DateFormat.SHORT, new Locale("es", "DO"));
 
     /** Creates new form RegistroAfiliados */
     public RegistroAfiliados() {
@@ -106,7 +103,7 @@ public class RegistroAfiliados extends javax.swing.JFrame {
         cmbEstadoCivil = new javax.swing.JComboBox();
         lblNombreValMarker = new javax.swing.JLabel();
         lblApellidoValMarker = new javax.swing.JLabel();
-        lblDNIValMarker = new javax.swing.JLabel();
+        lblDniValMarker = new javax.swing.JLabel();
         lblTipoDniValMarker = new javax.swing.JLabel();
         lblEstadoCivilValMarker = new javax.swing.JLabel();
         lblGeneroValMarker = new javax.swing.JLabel();
@@ -163,11 +160,11 @@ public class RegistroAfiliados extends javax.swing.JFrame {
         statusPanel.setLayout(statusPanelLayout);
         statusPanelLayout.setHorizontalGroup(
             statusPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(statusPanelSeparator, javax.swing.GroupLayout.DEFAULT_SIZE, 838, Short.MAX_VALUE)
+            .addComponent(statusPanelSeparator, javax.swing.GroupLayout.DEFAULT_SIZE, 846, Short.MAX_VALUE)
             .addGroup(statusPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(statusMessageLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 818, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 826, Short.MAX_VALUE)
                 .addComponent(statusAnimationLabel)
                 .addContainerGap())
         );
@@ -191,7 +188,6 @@ public class RegistroAfiliados extends javax.swing.JFrame {
         });
 
         btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/imagenes/salir2-32x32.png"))); // NOI18N
-        btnSalir.setPreferredSize(new java.awt.Dimension(65, 41));
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSalirActionPerformed(evt);
@@ -236,9 +232,9 @@ public class RegistroAfiliados extends javax.swing.JFrame {
         binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, txtApellido, org.jdesktop.beansbinding.ObjectProperty.create(), lblApellidoValMarker, org.jdesktop.beansbinding.BeanProperty.create("labelFor"));
         bindingGroup.addBinding(binding);
 
-        lblDNIValMarker.setForeground(new java.awt.Color(255, 51, 51));
+        lblDniValMarker.setForeground(new java.awt.Color(255, 51, 51));
 
-        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, txtDni, org.jdesktop.beansbinding.ObjectProperty.create(), lblDNIValMarker, org.jdesktop.beansbinding.BeanProperty.create("labelFor"));
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, txtDni, org.jdesktop.beansbinding.ObjectProperty.create(), lblDniValMarker, org.jdesktop.beansbinding.BeanProperty.create("labelFor"));
         bindingGroup.addBinding(binding);
 
         lblTipoDniValMarker.setForeground(new java.awt.Color(255, 51, 51));
@@ -304,7 +300,7 @@ public class RegistroAfiliados extends javax.swing.JFrame {
                 .addGroup(pnlInfoPersonalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblNombreValMarker)
                     .addComponent(lblApellidoValMarker)
-                    .addComponent(lblDNIValMarker)
+                    .addComponent(lblDniValMarker)
                     .addComponent(lblTipoDniValMarker)
                     .addComponent(lblEstadoCivilValMarker)
                     .addComponent(lblGeneroValMarker)
@@ -330,7 +326,7 @@ public class RegistroAfiliados extends javax.swing.JFrame {
                 .addGroup(pnlInfoPersonalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtDni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblDni)
-                    .addComponent(lblDNIValMarker))
+                    .addComponent(lblDniValMarker))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlInfoPersonalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblTipoDni)
@@ -512,7 +508,7 @@ public class RegistroAfiliados extends javax.swing.JFrame {
 
         lblEmpresa.setText("Empresa");
 
-        txtEmpresa.setEditable(false);
+        txtEmpresa.setEnabled(false);
         txtEmpresa.setNextFocusableComponent(btnAceptar);
 
         btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/imagenes/searchglass_vflip.gif"))); // NOI18N
@@ -551,7 +547,7 @@ public class RegistroAfiliados extends javax.swing.JFrame {
                 .addGroup(pnlInfoServicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlInfoServicioLayout.createSequentialGroup()
                         .addComponent(lblFechaIngresoValMarker)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 161, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 165, Short.MAX_VALUE)
                         .addComponent(lblEmpresa)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -622,7 +618,7 @@ public class RegistroAfiliados extends javax.swing.JFrame {
                 .addComponent(btnAceptar)
                 .addGap(69, 69, 69)
                 .addComponent(lblMensajeInsercion, javax.swing.GroupLayout.PREFERRED_SIZE, 496, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 114, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 122, Short.MAX_VALUE)
                 .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -648,7 +644,7 @@ public class RegistroAfiliados extends javax.swing.JFrame {
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         // TODO add your handling code here:
-        BusquedaRapida br = new BusquedaRapida();
+        BusquedaRapidaFrame br = new BusquedaRapidaFrame();
         br.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         br.setLocationRelativeTo(this);
         br.setTitle("Buscar Empresa");
@@ -689,24 +685,20 @@ public class RegistroAfiliados extends javax.swing.JFrame {
 
     private boolean checkFormFields() {
         boolean validFields = true;
-        boolean[] bFields = new boolean[14];
 
-        ValidatorsHolder validatorsHolder = new ValidatorsHolder();
-
-        FieldValidator emptynessVal, DefCombVal, phoneVal, dateVal, emailVal, webVal;
-        emptynessVal = validatorsHolder.getEmptynessValidator();
-        DefCombVal = validatorsHolder.getDefComboValueValidator();
-        phoneVal = validatorsHolder.getPhoneValidator();
-        dateVal = validatorsHolder.getDateValidator();
-        emailVal = validatorsHolder.getEmailValidator();
-        webVal = validatorsHolder.getWebValidator();
+        FieldValidator emptynessVal, DefCombVal, phoneVal, dateVal, emailVal;
+        emptynessVal = new EmptyFieldValidator();
+        DefCombVal = new DefaultComboFieldValueValidator();
+        phoneVal = new PhoneFieldValidator();
+        dateVal = new DateFieldValidator();
+        emailVal = new EmailFieldValidator();
 
         FieldValidator[] emptynessArr = new FieldValidator[]{emptynessVal};
 
         HashMap<JLabel, FieldValidator[]> campos = new HashMap<JLabel, FieldValidator[]>();
         campos.put(lblNombreValMarker, emptynessArr);
         campos.put(lblApellidoValMarker, emptynessArr);
-        campos.put(lblDNIValMarker, emptynessArr);
+        campos.put(lblDniValMarker, emptynessArr);
         campos.put(lblTipoDniValMarker, new FieldValidator[]{DefCombVal});
         campos.put(lblFechaNacimientoValMarker, new FieldValidator[]{dateVal});
         campos.put(lblLugarNacimientoValMarker, emptynessArr);
@@ -749,66 +741,80 @@ public class RegistroAfiliados extends javax.swing.JFrame {
             new Thread(new LabelToolTipShower(lblMensajeInsercion, 3000)).start();
             return;
         } else {
-            //lblMensajeInsercion.setText("");
             lblMensajeInsercion.setVisible(false);
 
             AfiliadoManager am = new AfiliadoManager();
 
             if (am.getAfiliadoByDNI(txtDni.getText()) != null) {
-                lblDNIValMarker.setText("*");
-                lblDNIValMarker.setVisible(true);
+                lblDniValMarker.setText("*");
+                lblDniValMarker.setVisible(true);
                 lblMensajeInsercion.setText("Ya existe un afiliado con DNI digitado");
                 lblMensajeInsercion.setForeground(Color.red);
                 lblMensajeInsercion.setVisible(true);
                 return;
             }
 
-            Afiliado afiliado;
-            try {
+            /*
+            if (txtEmpresa.isEnabled() && txtEmpresa.getText().isEmpty()) {
+            lblMensajeInsercion.setText("Para planes empresariales debe indicar empresa");
+            lblMensajeInsercion.setForeground(Color.red);
+            lblMensajeInsercion.setVisible(true);
+            return;
+            }
+             */
 
-                
-                afiliado = new Afiliado(txtDni.getText(), cmbTipoDni.getSelectedItem().toString(), txtNombre.getText(),
-                        txtApellido.getText(), rdDF.parse(ftfFechaIngreso.getText()), rdDF.parse(ftfFechaNacimiento.getText()),
-                        cmbGenero.getSelectedItem().toString().equalsIgnoreCase("femenino") ? 'F' : 'M', ftfTelefono.getText(),
-                        String.format("%s %s", txtDireccion.getText(), txtDireccion2.getText()), txtCiudad.getText(), txtRegion.getText(),
-                        txtPais.getText(), 'A');
+            if (cmbPlan.getSelectedItem().toString().toLowerCase().contains("empresarial") && empresa == null) {
+                lblMensajeInsercion.setText("Para planes empresariales debe indicar empresa");
+                lblMensajeInsercion.setForeground(Color.red);
+                lblMensajeInsercion.setVisible(true);
+                return;
+            }
 
-                // ...........
+            Afiliado afiliado = new Afiliado(txtDni.getText(), cmbTipoDni.getSelectedItem().toString(), txtNombre.getText(),
+                    txtApellido.getText(), DateUtils.parseDate(ftfFechaIngreso.getText()), DateUtils.parseDate(ftfFechaNacimiento.getText()),
+                    cmbGenero.getSelectedItem().toString().equalsIgnoreCase("femenino") ? 'F' : 'M', ftfTelefono.getText(),
+                    String.format("%s %s", txtDireccion.getText(), txtDireccion2.getText()), txtCiudad.getText(), txtRegion.getText(),
+                    txtPais.getText(), 'A');
 
-                Plan plan = new PlanManager().getPlanByNombre(cmbPlan.getSelectedItem().toString());
-                if (plan == null) {
-                    lblDNIValMarker.setText("*");
-                    lblDNIValMarker.setVisible(true);
-                    lblMensajeInsercion.setText("Problemas con plan seleccionado. Insercion abortado");
-                    lblMensajeInsercion.setForeground(Color.red);
-                    lblMensajeInsercion.setVisible(true);
-                    return;
-                }
+            afiliado.setAflNacionalidad((txtNacionalidad.getText().isEmpty() ? null : txtNacionalidad.getText()));
+            afiliado.setAflEstadoCivil((new DefaultComboFieldValueValidator().validate(cmbEstadoCivil.getSelectedItem().toString()) ?
+                cmbEstadoCivil.getSelectedItem().toString() : null));
+            afiliado.setAflEmail((txtEmail.getText().isEmpty() ? null : txtEmail.getText()));
 
-                afiliado.setPlan(plan);
+            // ...........
+
+            Plan plan = new PlanManager().getPlanByNombre(cmbPlan.getSelectedItem().toString());
+            if (plan == null) {
+                lblDniValMarker.setText("*");
+                lblDniValMarker.setVisible(true);
+                lblMensajeInsercion.setText("Problemas con plan seleccionado. Insercion abortado");
+                lblMensajeInsercion.setForeground(Color.red);
+                lblMensajeInsercion.setVisible(true);
+                return;
+            }
+
+            afiliado.setPlan(plan);
+
+            // TODO: verificar en db lo que agrega
+            // ***
+            plan.getAfiliadoCollection().add(afiliado);
+
+            if (!txtEmpresa.getText().isEmpty() && empresa != null) {
+                afiliado.setEmpresa(empresa);
 
                 // ***
-                plan.getAfiliadoCollection().add(afiliado);
-
-                if (!txtEmpresa.getText().isEmpty() && empresa != null) {
-                    afiliado.setEmpresa(empresa);
-
-                    // ***
-                    empresa.getAfiliadoCollection().add(afiliado);
-                }
-                // .............
-
-                am.crearAfiliado(afiliado);
-
-                lblMensajeInsercion.setText("Afiiado creado exitosamente");
-                lblMensajeInsercion.setForeground(Color.GREEN);
-                lblMensajeInsercion.setVisible(true);
-                new Thread(new LabelToolTipShower(lblMensajeInsercion)).start();
-                LimpiadorComponentes.limpiarComponentes(this);
-                txtNombre.requestFocusInWindow();
-            } catch (ParseException ex) {
-                Logger.getLogger(RegistroAfiliados.class.getName()).log(Level.SEVERE, null, ex);
+                empresa.getAfiliadoCollection().add(afiliado);
             }
+            // .............
+
+            am.crearAfiliado(afiliado);
+
+            lblMensajeInsercion.setText("Afiliado creado exitosamente");
+            lblMensajeInsercion.setForeground(Color.GREEN);
+            lblMensajeInsercion.setVisible(true);
+            new Thread(new LabelToolTipShower(lblMensajeInsercion)).start();
+            LimpiadorComponentes.limpiarComponentes(this);
+            txtNombre.requestFocusInWindow();
         }
     }//GEN-LAST:event_btnAceptarActionPerformed
 
@@ -816,7 +822,6 @@ public class RegistroAfiliados extends javax.swing.JFrame {
         // TODO add your handling code here:
         Calendar cal = Calendar.getInstance();
         cal.setTime(new Date());
-        //ftfFechaIngreso.setText(String.format("%tF", cal));
         ftfFechaIngreso.setText(String.format("%1$td-%1$tm-%1$tY", cal));
     }//GEN-LAST:event_ftfFechaIngresoFocusGained
 
@@ -847,11 +852,11 @@ public class RegistroAfiliados extends javax.swing.JFrame {
     private javax.swing.JLabel lblApellidoValMarker;
     private javax.swing.JLabel lblCiudad;
     private javax.swing.JLabel lblCiudadValMarker;
-    private javax.swing.JLabel lblDNIValMarker;
     private javax.swing.JLabel lblDir2ValMarker;
     private javax.swing.JLabel lblDirValMarker;
     private javax.swing.JLabel lblDireccion;
     private javax.swing.JLabel lblDni;
+    private javax.swing.JLabel lblDniValMarker;
     private javax.swing.JLabel lblEmail;
     private javax.swing.JLabel lblEmailValMarker;
     private javax.swing.JLabel lblEmpresa;

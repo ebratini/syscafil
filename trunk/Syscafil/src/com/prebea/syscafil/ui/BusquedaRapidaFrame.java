@@ -1,7 +1,7 @@
 /*
  *  The MIT License
  * 
- *  Copyright 2011 Edwin Bratini <edwin.bratini@gmail.com>.
+ *  Copyright 2011 Edwin Bratini.
  * 
  *  Permission is hereby granted, free of charge, to any person obtaining a copy
  *  of this software and associated documentation files (the "Software"), to deal
@@ -23,9 +23,9 @@
  */
 
 /*
- * BusquedaRapida.java
+ * BusquedaRapidaFrame.java
  *
- * Created on 05/12/2011, 10:40:03 AM
+ * Created on 05/04/2011, 11:03:01 AM
  */
 package com.prebea.syscafil.ui;
 
@@ -33,6 +33,8 @@ import com.prebea.syscafil.model.entities.Afiliado;
 import com.prebea.syscafil.model.entities.Dependiente;
 import com.prebea.syscafil.model.entities.Empresa;
 import com.prebea.syscafil.model.entities.Plan;
+import java.awt.Toolkit;
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
@@ -44,18 +46,17 @@ import javax.swing.JTextField;
 
 /**
  *
- * @author Edwin Bratini <edwin.bratini@gmail.com>
+ * @author Edwin Bratini
  */
-public class BusquedaRapida extends javax.swing.JDialog {
+public class BusquedaRapidaFrame extends javax.swing.JFrame {
 
     private Empresa empresa;
     private Afiliado afiliado;
     private Dependiente dependiente;
     private Plan plan;
 
-    /** Creates new form BusquedaRapida */
-    public BusquedaRapida(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
+    /** Creates new form BusquedaRapidaFrame */
+    public BusquedaRapidaFrame() {
         initComponents();
     }
 
@@ -68,6 +69,7 @@ public class BusquedaRapida extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        bgrOpBusqueda = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         pnlOpBusqueda = new javax.swing.JPanel();
         chkFiltro = new javax.swing.JCheckBox();
@@ -79,9 +81,17 @@ public class BusquedaRapida extends javax.swing.JDialog {
         jtbEntidades = new javax.swing.JTable();
         btnBuscar = new javax.swing.JButton();
         txtBusqueda = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        btnSeleccionar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/resources/imagenes/prebea_logo.png")));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.white, java.awt.Color.lightGray));
 
         pnlOpBusqueda.setBorder(javax.swing.BorderFactory.createTitledBorder("Opciones de Busqueda"));
         pnlOpBusqueda.setName("pnlOpBusqueda"); // NOI18N
@@ -94,13 +104,16 @@ public class BusquedaRapida extends javax.swing.JDialog {
             }
         });
 
+        bgrOpBusqueda.add(rdbField1);
         rdbField1.setSelected(true);
         rdbField1.setText("Field 1");
         rdbField1.setName("rdbField1"); // NOI18N
 
+        bgrOpBusqueda.add(rdbField2);
         rdbField2.setText("Field 2");
         rdbField2.setName("rdbField2"); // NOI18N
 
+        bgrOpBusqueda.add(rdbField3);
         rdbField3.setText("Field 3");
         rdbField3.setName("rdbField3"); // NOI18N
 
@@ -115,15 +128,15 @@ public class BusquedaRapida extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(rdbField2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(rdbField3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(rdbField3, javax.swing.GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE))
                     .addComponent(chkFiltro))
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
         pnlOpBusquedaLayout.setVerticalGroup(
             pnlOpBusquedaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlOpBusquedaLayout.createSequentialGroup()
                 .addComponent(chkFiltro)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addGroup(pnlOpBusquedaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(rdbField1)
                     .addComponent(rdbField2)
@@ -152,42 +165,47 @@ public class BusquedaRapida extends javax.swing.JDialog {
 
         txtBusqueda.setName("txtBusqueda"); // NOI18N
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/imagenes/ok.PNG"))); // NOI18N
+        btnSeleccionar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/imagenes/ok.PNG"))); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(scrEntidades, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 501, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(pnlOpBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtBusqueda, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnBuscar))
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblEntidades, javax.swing.GroupLayout.Alignment.LEADING))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(scrEntidades, javax.swing.GroupLayout.DEFAULT_SIZE, 550, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(pnlOpBusqueda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lblEntidades))
+                        .addGap(10, 10, 10)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnSeleccionar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
+                        .addComponent(pnlOpBusqueda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(txtBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(btnBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE))
-                            .addComponent(pnlOpBusqueda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(21, 21, 21)
-                        .addComponent(lblEntidades)))
+                            .addComponent(btnSeleccionar, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblEntidades)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(67, 67, 67)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnBuscar))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(scrEntidades, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(scrEntidades, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -195,25 +213,22 @@ public class BusquedaRapida extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 521, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 275, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+//GEN-FIRST:event_chkFiltroActionPerformed
+    private void chkFiltroActionPerformed(java.awt.event.ActionEvent evt) {
+        // TODO add your handling code here:
+    }
 
     public Afiliado getAfiliado() {
         return afiliado;
@@ -221,22 +236,6 @@ public class BusquedaRapida extends javax.swing.JDialog {
 
     public void setAfiliado(Afiliado afiliado) {
         this.afiliado = afiliado;
-    }
-
-    public JButton getBtnBuscar() {
-        return btnBuscar;
-    }
-
-    public void setBtnBuscar(JButton btnBuscar) {
-        this.btnBuscar = btnBuscar;
-    }
-
-    public JCheckBox getChkFiltro() {
-        return chkFiltro;
-    }
-
-    public void setChkFiltro(JCheckBox chkFiltro) {
-        this.chkFiltro = chkFiltro;
     }
 
     public Dependiente getDependiente() {
@@ -255,38 +254,6 @@ public class BusquedaRapida extends javax.swing.JDialog {
         this.empresa = empresa;
     }
 
-    public JButton getjButton1() {
-        return jButton1;
-    }
-
-    public void setjButton1(JButton jButton1) {
-        this.jButton1 = jButton1;
-    }
-
-    public JPanel getjPanel1() {
-        return jPanel1;
-    }
-
-    public void setjPanel1(JPanel jPanel1) {
-        this.jPanel1 = jPanel1;
-    }
-
-    public JTable getJtbEntidades() {
-        return jtbEntidades;
-    }
-
-    public void setJtbEntidades(JTable jtbEntidades) {
-        this.jtbEntidades = jtbEntidades;
-    }
-
-    public JLabel getLblEntidades() {
-        return lblEntidades;
-    }
-
-    public void setLblEntidades(JLabel lblEntidades) {
-        this.lblEntidades = lblEntidades;
-    }
-
     public Plan getPlan() {
         return plan;
     }
@@ -295,58 +262,63 @@ public class BusquedaRapida extends javax.swing.JDialog {
         this.plan = plan;
     }
 
-    public JPanel getPnlOpBusqueda() {
-        return pnlOpBusqueda;
+    public ButtonGroup getBgrOpBusqueda() {
+        return bgrOpBusqueda;
     }
 
-    public void setPnlOpBusqueda(JPanel pnlOpBusqueda) {
-        this.pnlOpBusqueda = pnlOpBusqueda;
+    public JButton getBtnBuscar() {
+        return btnBuscar;
+    }
+
+    public JCheckBox getChkFiltro() {
+        return chkFiltro;
+    }
+
+    public JPanel getjPanel1() {
+        return jPanel1;
+    }
+
+    public JTable getJtbEntidades() {
+        return jtbEntidades;
+    }
+
+    public JLabel getLblEntidades() {
+        return lblEntidades;
+    }
+
+    public JPanel getPnlOpBusqueda() {
+        return pnlOpBusqueda;
     }
 
     public JRadioButton getRdbField1() {
         return rdbField1;
     }
 
-    public void setRdbField1(JRadioButton rdbField1) {
-        this.rdbField1 = rdbField1;
-    }
-
     public JRadioButton getRdbField2() {
         return rdbField2;
-    }
-
-    public void setRdbField2(JRadioButton rdbField2) {
-        this.rdbField2 = rdbField2;
     }
 
     public JRadioButton getRdbField3() {
         return rdbField3;
     }
 
-    public void setRdbField3(JRadioButton rdbField3) {
-        this.rdbField3 = rdbField3;
-    }
-
     public JScrollPane getScrEntidades() {
         return scrEntidades;
-    }
-
-    public void setScrEntidades(JScrollPane scrEntidades) {
-        this.scrEntidades = scrEntidades;
     }
 
     public JTextField getTxtBusqueda() {
         return txtBusqueda;
     }
 
-    public void setTxtBusqueda(JTextField txtBusqueda) {
-        this.txtBusqueda = txtBusqueda;
+    public JButton getBtnSeleccionar() {
+        return btnSeleccionar;
     }
 
-    private void chkFiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkFiltroActionPerformed
+//GEN-LAST:event_chkFiltroActionPerformed
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
-}//GEN-LAST:event_chkFiltroActionPerformed
-
+        btnSeleccionar.setVisible(false);
+    }//GEN-LAST:event_formWindowOpened
     /**
      * @param args the command line arguments
      */
@@ -354,21 +326,15 @@ public class BusquedaRapida extends javax.swing.JDialog {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                BusquedaRapida dialog = new BusquedaRapida(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
+                new BusquedaRapidaFrame().setVisible(true);
             }
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup bgrOpBusqueda;
     private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnSeleccionar;
     private javax.swing.JCheckBox chkFiltro;
-    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTable jtbEntidades;
     private javax.swing.JLabel lblEntidades;

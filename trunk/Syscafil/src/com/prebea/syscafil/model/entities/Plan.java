@@ -32,6 +32,8 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -62,6 +64,7 @@ public class Plan implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "pln_id", nullable = false)
     private Integer plnId;
     @Basic(optional = false)
@@ -106,6 +109,16 @@ public class Plan implements Serializable {
 
     public Plan(Integer plnId, String plnNombre, String plnDescripcion, BigDecimal plnPrecio, BigDecimal plnPrecioDependienteExtra, char plnStatus, String plnUpdateBy, Date plnUpdateDate) {
         this.plnId = plnId;
+        this.plnNombre = plnNombre;
+        this.plnDescripcion = plnDescripcion;
+        this.plnPrecio = plnPrecio;
+        this.plnPrecioDependienteExtra = plnPrecioDependienteExtra;
+        this.plnStatus = plnStatus;
+        this.plnUpdateBy = plnUpdateBy;
+        this.plnUpdateDate = plnUpdateDate;
+    }
+
+    public Plan(String plnNombre, String plnDescripcion, BigDecimal plnPrecio, BigDecimal plnPrecioDependienteExtra, char plnStatus, String plnUpdateBy, Date plnUpdateDate) {
         this.plnNombre = plnNombre;
         this.plnDescripcion = plnDescripcion;
         this.plnPrecio = plnPrecio;
