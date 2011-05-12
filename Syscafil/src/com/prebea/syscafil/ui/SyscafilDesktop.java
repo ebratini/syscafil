@@ -23,18 +23,24 @@
  */
 package com.prebea.syscafil.ui;
 
+import com.prebea.syscafil.business.TimeDateShower;
 import com.prebea.syscafil.model.entities.Usuario;
 import java.awt.event.WindowEvent;
 import java.awt.BorderLayout;
+import java.awt.Container;
 import java.awt.Dimension;
+import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Arrays;
 import java.util.List;
+import javax.swing.ActionMap;
+import javax.swing.InputMap;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.KeyStroke;
 import javax.swing.border.EtchedBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -70,8 +76,9 @@ public class SyscafilDesktop extends JRibbonFrame {
     // for the status bar
     private JPanel pnlStatusBar;
     private JLabel statusMessageLabel = new JLabel("Ready");
-    private JLabel usuarioLogeado = new JLabel("Usuario no logeado");
     private JLabel taskSelectedLabel = new JLabel();
+    private JLabel usuarioLogeado = new JLabel("Usuario no logeado");
+    private JLabel timeDate = new JLabel("Time/Date");
 
     public SyscafilDesktop() {
         super("Syscafil");
@@ -111,6 +118,10 @@ public class SyscafilDesktop extends JRibbonFrame {
         add(pnlBody, BorderLayout.CENTER);
     }
 
+    private void initTimeDate() {
+        new TimeDateShower(timeDate).start();
+    }
+
     private void initStatusBar() {
         pnlStatusBar = new JPanel(new BorderLayout());
         pnlStatusBar.setPreferredSize(new Dimension(400, 25));
@@ -118,10 +129,12 @@ public class SyscafilDesktop extends JRibbonFrame {
 
         usuarioLogeado.setBorder(new EtchedBorder(EtchedBorder.RAISED));
         taskSelectedLabel.setBorder(new EtchedBorder(EtchedBorder.RAISED));
+        timeDate.setBorder(new EtchedBorder(EtchedBorder.RAISED));
 
         JPanel pnl = new JPanel(new BorderLayout(2, 0));
         pnl.add(taskSelectedLabel, BorderLayout.WEST);
-        pnl.add(usuarioLogeado, BorderLayout.EAST);
+        pnl.add(usuarioLogeado, BorderLayout.CENTER);
+        pnl.add(timeDate, BorderLayout.EAST);
 
         pnlStatusBar.add(pnl, BorderLayout.EAST);
 
@@ -157,7 +170,7 @@ public class SyscafilDesktop extends JRibbonFrame {
         JCommandButton jcbLogInOut, jcbSalir;
         jcbLogInOut = createJCommandButton("Log In", getResizableIconFromResource("/resources/imagenes/login.png"), "jcbLogIn",
                 new RichTooltip("Login/Logout", "Click aqui para abrir/cerrar sesion de usuario"), buttonActHandler);
-
+        
         jcbSalir = createJCommandButton("Salir", getResizableIconFromResource("/resources/imagenes/salir.png"), "jcbSalir",
                 new RichTooltip("Salir", "Click aqui para salir de la aplicacion"), buttonActHandler);
 
@@ -292,14 +305,14 @@ public class SyscafilDesktop extends JRibbonFrame {
         throw new NotImplementedException();
     }
 
-    private RibbonTask getSettingsTask() {
-        throw new NotImplementedException();
-    }
-
     private RibbonTask getFacturacionTask() {
         throw new NotImplementedException();
     }
 
+    private RibbonTask getSettingsTask() {
+        throw new NotImplementedException();
+    }
+    
     private RibbonTask getAdministracionTask() {
         throw new NotImplementedException();
     }
@@ -333,6 +346,7 @@ public class SyscafilDesktop extends JRibbonFrame {
         //addGap(0, 10);
         initBodyContent();
         initStatusBar();
+        initTimeDate();
         pack();
     }
 
@@ -345,7 +359,7 @@ public class SyscafilDesktop extends JRibbonFrame {
             usuarioLogeado.setText(usuario.getUsrLogin());
 
             JRichTooltipPanel rtp = new JRichTooltipPanel(new RichTooltip("Login", "Bienvenido, " + usuario.getUsrLogin()));
-            pnlBody.add(rtp);
+            pnlBody.add(rtp, BorderLayout.EAST);
             new Thread(new ToolTipShower(rtp)).start();
 
             logInOutButton.setName("jcbLogOut");

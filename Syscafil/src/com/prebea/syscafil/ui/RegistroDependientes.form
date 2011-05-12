@@ -37,11 +37,11 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Component id="statusPanel" alignment="0" max="32767" attributes="1"/>
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="24" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Component id="btnAceptar" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="189" max="-2" attributes="0"/>
+              <EmptySpace pref="117" max="32767" attributes="0"/>
               <Component id="lblMensajeInsercion" min="-2" pref="406" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="150" max="-2" attributes="0"/>
               <Component id="btnSalir" min="-2" pref="40" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -55,8 +55,8 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
                   <Group type="103" alignment="1" groupAlignment="3" attributes="0">
-                      <Component id="btnAceptar" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                       <Component id="lblMensajeInsercion" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnAceptar" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                   </Group>
                   <Component id="btnSalir" min="-2" pref="40" max="-2" attributes="0"/>
               </Group>
@@ -72,11 +72,11 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="statusPanelSeparator" alignment="0" pref="824" max="32767" attributes="0"/>
+              <Component id="statusPanelSeparator" alignment="0" pref="832" max="32767" attributes="0"/>
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="statusMessageLabel" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="804" max="32767" attributes="0"/>
+                  <EmptySpace pref="812" max="32767" attributes="0"/>
                   <Component id="statusAnimationLabel" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -119,6 +119,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Aceptar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAceptarActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnSalir">
       <Properties>
@@ -669,6 +672,9 @@
                   <Color blue="33" green="33" red="ff" type="rgb"/>
                 </Property>
               </Properties>
+              <BindingProperties>
+                <BindingProperty name="labelFor" source="txtCiudad" target="lblCiudadValMarker" targetPath="labelFor" updateStrategy="0" immediately="false"/>
+              </BindingProperties>
             </Component>
             <Component class="javax.swing.JLabel" name="lblRegionValMarker">
               <Properties>
@@ -726,15 +732,10 @@
                       <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
                       <Component id="lblParentesco" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="1" attributes="0">
-                              <Component id="txtParentesco" min="-2" pref="293" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="lblParentescoValMarker" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Component id="chkDepExtra" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace pref="28" max="32767" attributes="0"/>
+                      <Component id="txtParentesco" min="-2" pref="293" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="lblParentescoValMarker" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="32" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -759,15 +760,10 @@
                               </Group>
                               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="txtParentesco" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblParentescoValMarker" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblParentesco" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="chkDepExtra" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="19" max="32767" attributes="0"/>
+                          <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                              <Component id="txtParentesco" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblParentescoValMarker" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblParentesco" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -776,6 +772,9 @@
           </Layout>
           <SubComponents>
             <Component class="javax.swing.JFormattedTextField" name="ftfFechaIngreso">
+              <Events>
+                <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="ftfFechaIngresoFocusGained"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="lblFechaIngreso">
               <Properties>
@@ -789,7 +788,7 @@
             </Component>
             <Component class="javax.swing.JTextField" name="txtAfiliado">
               <Properties>
-                <Property name="editable" type="boolean" value="false"/>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="lblParentesco">
@@ -798,11 +797,6 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="txtParentesco">
-            </Component>
-            <Component class="javax.swing.JCheckBox" name="chkDepExtra">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Dependiente Extra"/>
-              </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="btnBuscar">
               <Properties>
@@ -847,6 +841,7 @@
           <Color blue="cc" green="cc" red="cc" type="rgb"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
+        <Property name="text" type="java.lang.String" value="*"/>
       </Properties>
     </Component>
   </SubComponents>

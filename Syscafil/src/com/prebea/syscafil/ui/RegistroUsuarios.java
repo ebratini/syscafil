@@ -285,7 +285,7 @@ public class RegistroUsuarios extends javax.swing.JFrame {
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         // TODO add your handling code here:
-        BusquedaRapida br = new BusquedaRapida();
+        BusquedaRapidaFrame br = new BusquedaRapidaFrame();
         br.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         br.setTitle("Buscar Empresa");
         br.getLblEntidades().setText("Empresas");
