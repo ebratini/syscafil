@@ -42,6 +42,8 @@ import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
 
 /**
  *
@@ -236,8 +238,14 @@ public class BusquedaRapida extends javax.swing.JDialog {
         entityId = jtbEntidades.getValueAt(jtbEntidades.getSelectedRow(), 0);
 }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void showEntityOnJtable(Serializable entity) {
+    private void showEntityOnJtable(Object[][] data) {
+        DefaultTableModel dtm = new DefaultTableModel();
+        for (int i =0; i < jtbEntidades.getColumnCount(); i++) {
+            dtm.addColumn(jtbEntidades.getColumnClass(i));
+        }
 
+        dtm.addRow(data);
+        jtbEntidades.setModel(dtm);
     }
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
@@ -246,15 +254,23 @@ public class BusquedaRapida extends javax.swing.JDialog {
             EmpresaManager em = new EmpresaManager();
             if (getRdbField1().getText().equalsIgnoreCase("id")) {
                 Empresa empresaSearched = em.getEmpresaById(Integer.parseInt(txtBusqueda.getText()));
-                showEntityOnJtable(empresaSearched);
+                showEntityOnJtable(new Object[][] {
+                    {empresaSearched.getEmpId(), empresaSearched.getEmpDni(), empresaSearched.getEmpRazonSocial()}
+                });
             } else if (getRdbField1().getText().equalsIgnoreCase("dni")) {
                 Empresa empresaSearched = em.getEmpresaByDNI(txtBusqueda.getText());
-                showEntityOnJtable(empresaSearched);
+                showEntityOnJtable(new Object[][] {
+                    {empresaSearched.getEmpId(), empresaSearched.getEmpDni(), empresaSearched.getEmpRazonSocial()}
+                });
             } else {
                 List<Empresa> empresas = em.getEmpresaByRazonSocial(txtBusqueda.getText());
+                Object[][] rows = new Object[empresas.size()][];
+                int i =0;
                 for (Empresa emp : empresas) {
-                    showEntityOnJtable(emp);
+                    rows[i] = new Object[] {emp.getEmpId(), emp.getEmpDni(), emp.getEmpRazonSocial()};
+                    i++;
                 }
+                showEntityOnJtable(rows);
             }
         }
 }//GEN-LAST:event_btnBuscarActionPerformed
@@ -366,10 +382,7 @@ public class BusquedaRapida extends javax.swing.JDialog {
     public Serializable getEntityToSearch() {
         return entityToSearch;
     }
-
-    private void creaModeloTabla() {
-    }
-
+    
     /**
      * @param args the command line arguments
      */
