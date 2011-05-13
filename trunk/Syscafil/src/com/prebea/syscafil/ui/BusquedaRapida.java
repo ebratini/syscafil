@@ -29,13 +29,14 @@
  */
 package com.prebea.syscafil.ui;
 
-import com.prebea.syscafil.model.entities.Afiliado;
-import com.prebea.syscafil.model.entities.Dependiente;
+import com.prebea.syscafil.business.EmpresaManager;
 import com.prebea.syscafil.model.entities.Empresa;
-import com.prebea.syscafil.model.entities.Plan;
+import java.io.Serializable;
+import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
@@ -48,10 +49,8 @@ import javax.swing.JTextField;
  */
 public class BusquedaRapida extends javax.swing.JDialog {
 
-    private Empresa empresa;
-    private Afiliado afiliado;
-    private Dependiente dependiente;
-    private Plan plan;
+    private Serializable entityToSearch;
+    private Object entityId;
 
     /** Creates new form BusquedaRapida */
     public BusquedaRapida(java.awt.Frame parent, boolean modal) {
@@ -149,10 +148,20 @@ public class BusquedaRapida extends javax.swing.JDialog {
 
         btnBuscar.setText("Buscar");
         btnBuscar.setName("btnBuscar"); // NOI18N
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
 
         txtBusqueda.setName("txtBusqueda"); // NOI18N
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/imagenes/ok.PNG"))); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -215,13 +224,44 @@ public class BusquedaRapida extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public Afiliado getAfiliado() {
-        return afiliado;
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        if (jtbEntidades.getSelectedRow() == -1 && jtbEntidades.getRowCount() > 1) {
+            JOptionPane.showMessageDialog(this, "Primero seleccione registro", "Seleccion", JOptionPane.ERROR_MESSAGE);
+            return;
+        } else if (jtbEntidades.getSelectedRow() == -1 && jtbEntidades.getRowCount() == 1) {
+            entityId = jtbEntidades.getValueAt(jtbEntidades.getSelectedRow(), 0);
+        }
+
+        entityId = jtbEntidades.getValueAt(jtbEntidades.getSelectedRow(), 0);
+}//GEN-LAST:event_jButton1ActionPerformed
+
+    private void showEntityOnJtable(Serializable entity) {
+
     }
 
-    public void setAfiliado(Afiliado afiliado) {
-        this.afiliado = afiliado;
-    }
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        // TODO add your handling code here:
+        if (entityToSearch instanceof Empresa) {
+            EmpresaManager em = new EmpresaManager();
+            if (getRdbField1().getText().equalsIgnoreCase("id")) {
+                Empresa empresaSearched = em.getEmpresaById(Integer.parseInt(txtBusqueda.getText()));
+                showEntityOnJtable(empresaSearched);
+            } else if (getRdbField1().getText().equalsIgnoreCase("dni")) {
+                Empresa empresaSearched = em.getEmpresaByDNI(txtBusqueda.getText());
+                showEntityOnJtable(empresaSearched);
+            } else {
+                List<Empresa> empresas = em.getEmpresaByRazonSocial(txtBusqueda.getText());
+                for (Empresa emp : empresas) {
+                    showEntityOnJtable(emp);
+                }
+            }
+        }
+}//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void chkFiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkFiltroActionPerformed
+        // TODO add your handling code here:
+}//GEN-LAST:event_chkFiltroActionPerformed
 
     public JButton getBtnBuscar() {
         return btnBuscar;
@@ -237,22 +277,6 @@ public class BusquedaRapida extends javax.swing.JDialog {
 
     public void setChkFiltro(JCheckBox chkFiltro) {
         this.chkFiltro = chkFiltro;
-    }
-
-    public Dependiente getDependiente() {
-        return dependiente;
-    }
-
-    public void setDependiente(Dependiente dependiente) {
-        this.dependiente = dependiente;
-    }
-
-    public Empresa getEmpresa() {
-        return empresa;
-    }
-
-    public void setEmpresa(Empresa empresa) {
-        this.empresa = empresa;
     }
 
     public JButton getjButton1() {
@@ -285,14 +309,6 @@ public class BusquedaRapida extends javax.swing.JDialog {
 
     public void setLblEntidades(JLabel lblEntidades) {
         this.lblEntidades = lblEntidades;
-    }
-
-    public Plan getPlan() {
-        return plan;
-    }
-
-    public void setPlan(Plan plan) {
-        this.plan = plan;
     }
 
     public JPanel getPnlOpBusqueda() {
@@ -343,9 +359,16 @@ public class BusquedaRapida extends javax.swing.JDialog {
         this.txtBusqueda = txtBusqueda;
     }
 
-    private void chkFiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkFiltroActionPerformed
-        // TODO add your handling code here:
-}//GEN-LAST:event_chkFiltroActionPerformed
+    public Object getEntityId() {
+        return entityId;
+    }
+
+    public Serializable getEntityToSearch() {
+        return entityToSearch;
+    }
+
+    private void creaModeloTabla() {
+    }
 
     /**
      * @param args the command line arguments
