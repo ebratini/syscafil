@@ -413,8 +413,7 @@ public class RegistroPlanes extends javax.swing.JFrame {
 
     private void loadSubcategoriaPlanComboBox() {
         if (cmbCategoriaPlan.getSelectedItem() != null && new DefaultComboFieldValueValidator().validate(cmbCategoriaPlan.getSelectedItem().toString())) {
-            List<SubcategoriaPlan> subCatsPlan = new SubcategoriaPlanManager().
-                    getSubcategoriaPlanByCategoriaPlan(new CategoriaPlanManager().getCategoriaPlanByNombre(cmbCategoriaPlan.getSelectedItem().toString()));
+            List<SubcategoriaPlan> subCatsPlan = new SubcategoriaPlanManager().getSubcategoriaPlanByCategoriaPlan(new CategoriaPlanManager().getCategoriaPlanByNombre(cmbCategoriaPlan.getSelectedItem().toString()));
 
             for (SubcategoriaPlan subCatPlan : subCatsPlan) {
                 cmbSubcategoriaPlan.addItem(subCatPlan.getSupNombre());
@@ -466,14 +465,11 @@ public class RegistroPlanes extends javax.swing.JFrame {
 
             Plan plan = new Plan(txtNombrePlan.getText(), jtaDescripcion.getText(), BigDecimal.valueOf(Double.parseDouble(ftfPrecioPlan.getText())),
                     BigDecimal.valueOf(Double.parseDouble(ftfPrecioDepExtra.getText())), 'A', "RegistroPlanes", new Date());
-
-
-            // TODO: crear los managers correspondiente
+            
             CategoriaPlan catPlan = new CategoriaPlanManager().getCategoriaPlanByNombre(cmbCategoriaPlan.getSelectedItem().toString());
             plan.setCategoriaPlan(catPlan);
             catPlan.getPlanCollection().add(plan);
 
-            // TODO: hay problemas aqui
             HashMap<String, SubcategoriaPlan> subCatsPlan = new HashMap<String, SubcategoriaPlan>();
             for (SubcategoriaPlan sp : catPlan.getSubcategoriaPlanCollection()) {
                 subCatsPlan.put(sp.getSupNombre(), sp);

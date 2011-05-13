@@ -21,8 +21,9 @@
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  *  THE SOFTWARE.
  */
-
 package com.prebea.syscafil.business;
+
+import java.util.regex.Pattern;
 
 /**
  *
@@ -32,7 +33,10 @@ public class DecimalFieldValidator implements FieldValidator {
 
     @Override
     public boolean validate(String textToValidate) {
-        return true;
+        boolean valid = false;
+        if (Pattern.matches("(\\d{1,})\\.?(\\d{1,})", textToValidate)) {
+            valid = true;
+        }
+        return valid;
     }
-
 }
