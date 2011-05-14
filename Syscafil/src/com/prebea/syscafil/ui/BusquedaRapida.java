@@ -33,6 +33,7 @@ import com.prebea.syscafil.business.AfiliadoManager;
 import com.prebea.syscafil.business.CategoriaPlanManager;
 import com.prebea.syscafil.business.DependienteManager;
 import com.prebea.syscafil.business.EmpresaManager;
+import com.prebea.syscafil.business.NumberFieldValidator;
 import com.prebea.syscafil.business.PlanManager;
 import com.prebea.syscafil.model.entities.Afiliado;
 import com.prebea.syscafil.model.entities.CategoriaPlan;
@@ -40,6 +41,7 @@ import com.prebea.syscafil.model.entities.Dependiente;
 import com.prebea.syscafil.model.entities.Empresa;
 import com.prebea.syscafil.model.entities.Plan;
 import java.awt.Color;
+import java.awt.event.KeyEvent;
 import java.io.Serializable;
 import java.util.List;
 import javax.swing.JButton;
@@ -175,6 +177,11 @@ public class BusquedaRapida extends javax.swing.JDialog {
         });
 
         txtBusqueda.setName("txtBusqueda"); // NOI18N
+        txtBusqueda.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtBusquedaKeyPressed(evt);
+            }
+        });
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/imagenes/ok.PNG"))); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -263,7 +270,11 @@ public class BusquedaRapida extends javax.swing.JDialog {
         for (int i = 0; i < jtbEntidades.getColumnCount(); i++) {
             cols[i] = jtbEntidades.getColumnName(i);
         }
-        DefaultTableModel dtm = new DefaultTableModel(data, cols);
+        DefaultTableModel dtm = new DefaultTableModel(data, cols) {
+            public boolean isCellEditable(int rowIndex, int mColIndex) {
+                return false;
+            }
+        };
         jtbEntidades.setModel(dtm);
     }
 
@@ -272,6 +283,25 @@ public class BusquedaRapida extends javax.swing.JDialog {
         lblResultadosBusqueda.setForeground(Color.red);
         new Thread(new LabelToolTipShower(lblResultadosBusqueda, 3000)).start();
         return;
+    }
+
+    private boolean isEntityNull(Serializable entity) {
+        if (entity != null) {
+            return false;
+        } else {
+            showNoResultMessage();
+            showEntityOnJtable(new Object[][]{});
+            return true;
+        }
+    }
+
+    private boolean isIdFieldValid() {
+        if (!new NumberFieldValidator().validate(txtBusqueda.getText())) {
+            JOptionPane.showMessageDialog(this, "Solo numeros para busqueda por campo id", "Busqueda", JOptionPane.ERROR_MESSAGE);
+            return false;
+        } else {
+            return true;
+        }
     }
 
     private void doSearch() {
@@ -287,12 +317,21 @@ public class BusquedaRapida extends javax.swing.JDialog {
             EmpresaManager em = new EmpresaManager();
             Empresa empresaSearched = null;
             if (getRdbField1().isSelected()) {
+                if (!isIdFieldValid()) {
+                    return;
+                }
                 empresaSearched = em.getEmpresaById(Integer.parseInt(txtBusqueda.getText()));
+                if (isEntityNull(empresaSearched)) {
+                    return;
+                }
                 showEntityOnJtable(new Object[][]{
                             {empresaSearched.getEmpId(), empresaSearched.getEmpDni(), empresaSearched.getEmpRazonSocial()}
                         });
             } else if (getRdbField2().isSelected()) {
                 empresaSearched = em.getEmpresaByDNI(txtBusqueda.getText());
+                if (isEntityNull(empresaSearched)) {
+                    return;
+                }
                 showEntityOnJtable(new Object[][]{
                             {empresaSearched.getEmpId(), empresaSearched.getEmpDni(), empresaSearched.getEmpRazonSocial()}
                         });
@@ -310,9 +349,11 @@ public class BusquedaRapida extends javax.swing.JDialog {
             AfiliadoManager am = new AfiliadoManager();
             Afiliado afiliadoSearched = null;
             if (getRdbField1().isSelected()) {
-                afiliadoSearched = am.getAfiliadoById(txtBusqueda.getText());
-                if (afiliadoSearched == null) {
-                    showNoResultMessage();
+                if (!isIdFieldValid()) {
+                    return;
+                }
+                afiliadoSearched = am.getAfiliadoById(Integer.parseInt(txtBusqueda.getText()));
+                if (isEntityNull(afiliadoSearched)) {
                     return;
                 }
                 showEntityOnJtable(new Object[][]{
@@ -321,8 +362,7 @@ public class BusquedaRapida extends javax.swing.JDialog {
                         });
             } else if (getRdbField2().isSelected()) {
                 afiliadoSearched = am.getAfiliadoByDNI(txtBusqueda.getText());
-                if (afiliadoSearched == null) {
-                    showNoResultMessage();
+                if (isEntityNull(afiliadoSearched)) {
                     return;
                 }
                 showEntityOnJtable(new Object[][]{
@@ -333,7 +373,7 @@ public class BusquedaRapida extends javax.swing.JDialog {
                 List<Afiliado> afiliados = am.getAfiliadoByApellido(txtBusqueda.getText());
                 if(afiliados != null && afiliados.size() < 1) {
                     showNoResultMessage();
-                    return;
+                    //return;
                 }
                 Object[][] rows = new Object[afiliados.size()][];
                 int i = 0;
@@ -348,13 +388,22 @@ public class BusquedaRapida extends javax.swing.JDialog {
             DependienteManager dm = new DependienteManager();
             Dependiente dependienteSearched = null;
             if (getRdbField1().isSelected()) {
+                if (!isIdFieldValid()) {
+                    return;
+                }
                 dependienteSearched = dm.getDependienteById(Integer.parseInt(txtBusqueda.getText()));
+                if (isEntityNull(dependienteSearched)) {
+                    return;
+                }
                 showEntityOnJtable(new Object[][]{
                             {dependienteSearched.getDepId(), dependienteSearched.getDepDni(), String.format("%s, %s",
                                 dependienteSearched.getDepApellido(), dependienteSearched.getDepNombre())}
                         });
             } else if (getRdbField2().isSelected()) {
                 dependienteSearched = dm.getDependienteByDNI(txtBusqueda.getText());
+                if (isEntityNull(dependienteSearched)) {
+                    return;
+                }
                 showEntityOnJtable(new Object[][]{
                             {dependienteSearched.getDepId(), dependienteSearched.getDepDni(), String.format("%s, %s",
                                 dependienteSearched.getDepApellido(), dependienteSearched.getDepNombre())}
@@ -374,14 +423,22 @@ public class BusquedaRapida extends javax.swing.JDialog {
         } else if (entityToSearch instanceof Plan) {
             PlanManager pm = new PlanManager();
             Plan planSearched = null;
-
             if (getRdbField1().isSelected()) {
+                if (!isIdFieldValid()) {
+                    return;
+                }
                 planSearched = pm.getPlanById(Integer.parseInt(txtBusqueda.getText()));
+                if (isEntityNull(planSearched)) {
+                    return;
+                }
                 showEntityOnJtable(new Object[][]{
                             {planSearched.getPlnId(), planSearched.getPlnNombre(), planSearched.getCategoriaPlan().getCapNombre()}
                         });
             } else if (getRdbField2().isSelected()) {
                 planSearched = pm.getPlanByNombre(txtBusqueda.getText());
+                if (isEntityNull(planSearched)) {
+                    return;
+                }
                 showEntityOnJtable(new Object[][]{
                             {planSearched.getPlnId(), planSearched.getPlnNombre(), planSearched.getCategoriaPlan().getCapNombre()}
                         });
@@ -457,7 +514,12 @@ public class BusquedaRapida extends javax.swing.JDialog {
     private void loadEntities() {
         if (entityToSearch != null) {
             DefaultTableModel dtm = new DefaultTableModel(getDataFromEntity(entityToSearch),
-                    new Object[]{getRdbField1().getText(), getRdbField2().getText(), getRdbField3().getText()});
+                    new Object[]{getRdbField1().getText(), getRdbField2().getText(), getRdbField3().getText()}) {
+
+                public boolean isCellEditable(int rowIndex, int mColIndex) {
+                    return false;
+                }
+            };
 
             jtbEntidades.setModel(dtm);
         }
@@ -467,6 +529,13 @@ public class BusquedaRapida extends javax.swing.JDialog {
         // TODO add your handling code here:
         loadEntities();
     }//GEN-LAST:event_formWindowOpened
+
+    private void txtBusquedaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBusquedaKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            btnBuscar.doClick();
+        }
+    }//GEN-LAST:event_txtBusquedaKeyPressed
 
     public void setEntityToSearch(Serializable entityToSearch) {
         this.entityToSearch = entityToSearch;

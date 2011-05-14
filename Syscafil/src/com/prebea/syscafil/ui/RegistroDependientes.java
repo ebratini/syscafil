@@ -659,7 +659,7 @@ public class RegistroDependientes extends javax.swing.JFrame {
 
         Object entitySelectedId = br.getEntitySelectedId();
         if (entitySelectedId != null) {
-            afiliado = new AfiliadoManager().getAfiliadoById(entitySelectedId);
+            afiliado = new AfiliadoManager().getAfiliadoById((Integer)entitySelectedId);
             txtAfiliado.setText(String.format("%s, %s", afiliado.getAflApellido(), afiliado.getAflNombre()));
         }
     }//GEN-LAST:event_btnBuscarActionPerformed
@@ -743,8 +743,7 @@ public class RegistroDependientes extends javax.swing.JFrame {
                 lblMensajeInsercion.setVisible(true);
                 return;
             }
-
-            //afiliado = new AfiliadoManager().getAfiliadoById(1);
+            
             if (afiliado == null) {
                 lblMensajeInsercion.setText("Debe indicar afiliado titular");
                 lblMensajeInsercion.setForeground(Color.red);

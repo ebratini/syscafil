@@ -29,12 +29,30 @@ import java.util.regex.Pattern;
  *
  * @author Edwin Bratini <edwin.bratini@gmail.com>
  */
-public class DecimalFieldValidator implements FieldValidator {
+public class NumberFieldValidator implements FieldValidator {
+
+    private String pattern = "\\d+";
+    // "(\\d{1,})\\.?(\\d{1,})"
+
+    public NumberFieldValidator() {
+    }
+
+    public NumberFieldValidator(String pattern) {
+        this.pattern = pattern;
+    }
+
+    public String getPattern() {
+        return pattern;
+    }
+
+    public void setPattern(String pattern) {
+        this.pattern = pattern;
+    }
 
     @Override
     public boolean validate(String textToValidate) {
         boolean valid = false;
-        if (Pattern.matches("(\\d{1,})\\.?(\\d{1,})", textToValidate)) {
+        if (Pattern.matches(pattern, textToValidate)) {
             valid = true;
         }
         return valid;

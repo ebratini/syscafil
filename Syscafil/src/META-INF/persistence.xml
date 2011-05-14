@@ -18,6 +18,12 @@
     <class>com.prebea.syscafil.model.entities.Afiliado</class>
     <class>com.prebea.syscafil.model.entities.Facturacion</class>
     <class>com.prebea.syscafil.model.entities.Privilegio</class>
+    <class>com.prebea.syscafil.model.entities.Usuarios</class>
+    <class>com.prebea.syscafil.model.entities.Planes</class>
+    <class>com.prebea.syscafil.model.entities.Privilegios</class>
+    <class>com.prebea.syscafil.model.entities.Secuencias</class>
+    <class>com.prebea.syscafil.model.entities.Roles</class>
+    <class>com.prebea.syscafil.model.entities.SubcategoriaPlanes</class>
     <validation-mode>NONE</validation-mode>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:sqlserver://localhost:1433;databaseName=SYSCAFIL_DB"/>

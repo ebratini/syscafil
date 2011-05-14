@@ -1,7 +1,7 @@
 /*
  *  The MIT License
  * 
- *  Copyright 2011 Edwin Bratini.
+ *  Copyright 2011 Edwin Bratini <edwin.bratini@gmail.com>.
  * 
  *  Permission is hereby granted, free of charge, to any person obtaining a copy
  *  of this software and associated documentation files (the "Software"), to deal
@@ -30,6 +30,8 @@ import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -58,6 +60,7 @@ public class Privilegio implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "prv_id", nullable = false)
     private Integer prvId;
     @Basic(optional = false)
@@ -91,6 +94,14 @@ public class Privilegio implements Serializable {
 
     public Privilegio(Integer prvId, String prvNombre, String prvDescripcion, char prvStatus, String prvUpdateBy, Date prvUpdateDate) {
         this.prvId = prvId;
+        this.prvNombre = prvNombre;
+        this.prvDescripcion = prvDescripcion;
+        this.prvStatus = prvStatus;
+        this.prvUpdateBy = prvUpdateBy;
+        this.prvUpdateDate = prvUpdateDate;
+    }
+
+    public Privilegio(String prvNombre, String prvDescripcion, char prvStatus, String prvUpdateBy, Date prvUpdateDate) {
         this.prvNombre = prvNombre;
         this.prvDescripcion = prvDescripcion;
         this.prvStatus = prvStatus;
