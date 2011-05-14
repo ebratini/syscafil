@@ -26,7 +26,6 @@ package com.prebea.syscafil.model.entities;
 
 import java.io.Serializable;
 import java.util.Date;
-import javax.annotation.Generated;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -69,10 +68,10 @@ public class Bitacora implements Serializable {
     @Column(name = "bit_fuente", nullable = false, length = 40)
     private String bitFuente;
     @Basic(optional = false)
-    @Column(name = "bit_categoria", nullable = false, length = 20)
+    @Column(name = "bit_categoria", nullable = false, length = 40)
     private String bitCategoria;
     @Basic(optional = false)
-    @Column(name = "bit_descripcion", nullable = false, length = 200)
+    @Column(name = "bit_descripcion", nullable = false, length = 2147483647)
     private String bitDescripcion;
     @JoinColumn(name = "usr_id", referencedColumnName = "usr_id", nullable = false)
     @ManyToOne(optional = false)

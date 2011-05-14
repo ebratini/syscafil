@@ -68,7 +68,7 @@ public class Plan implements Serializable {
     @Column(name = "pln_id", nullable = false)
     private Integer plnId;
     @Basic(optional = false)
-    @Column(name = "pln_nombre", nullable = false, length = 20)
+    @Column(name = "pln_nombre", nullable = false, length = 40)
     private String plnNombre;
     @Basic(optional = false)
     @Column(name = "pln_descripcion", nullable = false, length = 80)

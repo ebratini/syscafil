@@ -58,7 +58,7 @@ public class CategoriaPlan implements Serializable {
     @Column(name = "cap_id", nullable = false)
     private Integer capId;
     @Basic(optional = false)
-    @Column(name = "cap_nombre", nullable = false, length = 20)
+    @Column(name = "cap_nombre", nullable = false, length = 40)
     private String capNombre;
     @Basic(optional = false)
     @Column(name = "cap_descripcion", nullable = false, length = 40)

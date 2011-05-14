@@ -108,7 +108,7 @@ public class Rol implements Serializable {
         this.rolUpdateBy = rolUpdateBy;
         this.rolUpdateDate = rolUpdateDate;
     }
-    
+
     public Rol(String rolNombre, String rolDescripcion, Date rolFechaCreacion, char rolStatus, String rolUpdateBy, Date rolUpdateDate) {
         this.rolNombre = rolNombre;
         this.rolDescripcion = rolDescripcion;
@@ -117,7 +117,6 @@ public class Rol implements Serializable {
         this.rolUpdateBy = rolUpdateBy;
         this.rolUpdateDate = rolUpdateDate;
     }
-
 
     public Integer getRolId() {
         return rolId;

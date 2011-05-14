@@ -30,8 +30,6 @@ import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -60,7 +58,6 @@ public class Privilegio implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "prv_id", nullable = false)
     private Integer prvId;
     @Basic(optional = false)
@@ -94,14 +91,6 @@ public class Privilegio implements Serializable {
 
     public Privilegio(Integer prvId, String prvNombre, String prvDescripcion, char prvStatus, String prvUpdateBy, Date prvUpdateDate) {
         this.prvId = prvId;
-        this.prvNombre = prvNombre;
-        this.prvDescripcion = prvDescripcion;
-        this.prvStatus = prvStatus;
-        this.prvUpdateBy = prvUpdateBy;
-        this.prvUpdateDate = prvUpdateDate;
-    }
-
-    public Privilegio(String prvNombre, String prvDescripcion, char prvStatus, String prvUpdateBy, Date prvUpdateDate) {
         this.prvNombre = prvNombre;
         this.prvDescripcion = prvDescripcion;
         this.prvStatus = prvStatus;

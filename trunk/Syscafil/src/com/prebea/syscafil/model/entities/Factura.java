@@ -91,7 +91,7 @@ public class Factura implements Serializable {
     @Column(name = "fac_precio_dependiente_extra", nullable = false, precision = 10, scale = 2)
     private BigDecimal facPrecioDependienteExtra;
     @Basic(optional = false)
-    @Column(name = "fac_descripcion", nullable = false, length = 400)
+    @Column(name = "fac_descripcion", nullable = false, length = 2147483647)
     private String facDescripcion;
     @Basic(optional = false)
     @Column(name = "fac_descuento", nullable = false, precision = 10, scale = 2)
@@ -118,7 +118,7 @@ public class Factura implements Serializable {
     @Column(name = "fac_status_factura", nullable = false, length = 2)
     private String facStatusFactura;
     @Basic(optional = false)
-    @Column(name = "fac_razon_status_factura", nullable = false, length = 60)
+    @Column(name = "fac_razon_status_factura", nullable = false, length = 2147483647)
     private String facRazonStatusFactura;
     @Basic(optional = false)
     @Column(name = "fac_update_by", nullable = false, length = 40)
