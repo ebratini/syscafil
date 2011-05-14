@@ -1,7 +1,7 @@
 /*
  *  The MIT License
  * 
- *  Copyright 2011 Edwin Bratini.
+ *  Copyright 2011 Edwin Bratini <edwin.bratini@gmail.com>.
  * 
  *  Permission is hereby granted, free of charge, to any person obtaining a copy
  *  of this software and associated documentation files (the "Software"), to deal
@@ -30,6 +30,8 @@ import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -59,6 +61,7 @@ public class Rol implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "rol_id", nullable = false)
     private Integer rolId;
     @Basic(optional = false)
@@ -105,6 +108,16 @@ public class Rol implements Serializable {
         this.rolUpdateBy = rolUpdateBy;
         this.rolUpdateDate = rolUpdateDate;
     }
+    
+    public Rol(String rolNombre, String rolDescripcion, Date rolFechaCreacion, char rolStatus, String rolUpdateBy, Date rolUpdateDate) {
+        this.rolNombre = rolNombre;
+        this.rolDescripcion = rolDescripcion;
+        this.rolFechaCreacion = rolFechaCreacion;
+        this.rolStatus = rolStatus;
+        this.rolUpdateBy = rolUpdateBy;
+        this.rolUpdateDate = rolUpdateDate;
+    }
+
 
     public Integer getRolId() {
         return rolId;

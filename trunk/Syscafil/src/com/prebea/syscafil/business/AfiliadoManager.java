@@ -42,7 +42,7 @@ public class AfiliadoManager {
         ad.remove(afiliado);
     }
 
-    public Afiliado getAfiliadoById(Object id) {
+    public Afiliado getAfiliadoById(Integer id) {
         return ad.findById(id);
     }
 

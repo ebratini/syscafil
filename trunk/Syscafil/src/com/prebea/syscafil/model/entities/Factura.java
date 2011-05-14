@@ -1,7 +1,7 @@
 /*
  *  The MIT License
  * 
- *  Copyright 2011 Edwin Bratini.
+ *  Copyright 2011 Edwin Bratini <edwin.bratini@gmail.com>.
  * 
  *  Permission is hereby granted, free of charge, to any person obtaining a copy
  *  of this software and associated documentation files (the "Software"), to deal
@@ -32,6 +32,8 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -71,6 +73,7 @@ public class Factura implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "fac_no", nullable = false)
     private Integer facNo;
     @Basic(optional = false)

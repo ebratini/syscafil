@@ -30,7 +30,7 @@
 package com.prebea.syscafil.ui;
 
 import com.prebea.syscafil.business.CategoriaPlanManager;
-import com.prebea.syscafil.business.DecimalFieldValidator;
+import com.prebea.syscafil.business.NumberFieldValidator;
 import com.prebea.syscafil.business.DefaultComboFieldValueValidator;
 import com.prebea.syscafil.business.EmptyFieldValidator;
 import com.prebea.syscafil.business.FieldValidator;
@@ -433,7 +433,7 @@ public class RegistroPlanes extends javax.swing.JFrame {
         emptynessVal = new EmptyFieldValidator();
         DefCombVal = new DefaultComboFieldValueValidator();
         FieldValidator[] emptynessArr = new FieldValidator[]{emptynessVal};
-        decimalVal = new DecimalFieldValidator();
+        decimalVal = new NumberFieldValidator("(\\d{1,})\\.?(\\d{1,})");
 
         HashMap<JLabel, FieldValidator[]> campos = new HashMap<JLabel, FieldValidator[]>();
         campos.put(lblNombreValMarker, emptynessArr);
