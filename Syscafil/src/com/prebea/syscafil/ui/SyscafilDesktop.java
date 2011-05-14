@@ -333,7 +333,7 @@ public class SyscafilDesktop extends JRibbonFrame {
 
     private void initComponents() {
         //LookAndFeelSelector.printAvailableLAF();
-        LookAndFeelSelector.setLookAndFeel(LookAndFeelSelector.LAF.NIMBUS);
+        LookAndFeelSelector.setLookAndFeel(LookAndFeelSelector.LAF.WINDOWS);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setApplicationIcon(getResizableIconFromResource("/resources/imagenes/prebea_logo.PNG"));
         setPreferredSize(new Dimension(1100, 600));

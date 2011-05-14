@@ -29,8 +29,17 @@
  */
 package com.prebea.syscafil.ui;
 
+import com.prebea.syscafil.business.AfiliadoManager;
+import com.prebea.syscafil.business.CategoriaPlanManager;
+import com.prebea.syscafil.business.DependienteManager;
 import com.prebea.syscafil.business.EmpresaManager;
+import com.prebea.syscafil.business.PlanManager;
+import com.prebea.syscafil.model.entities.Afiliado;
+import com.prebea.syscafil.model.entities.CategoriaPlan;
+import com.prebea.syscafil.model.entities.Dependiente;
 import com.prebea.syscafil.model.entities.Empresa;
+import com.prebea.syscafil.model.entities.Plan;
+import java.awt.Color;
 import java.io.Serializable;
 import java.util.List;
 import javax.swing.JButton;
@@ -43,7 +52,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumnModel;
 
 /**
  *
@@ -52,7 +60,7 @@ import javax.swing.table.TableColumnModel;
 public class BusquedaRapida extends javax.swing.JDialog {
 
     private Serializable entityToSearch;
-    private Object entityId;
+    private Object entitySelectedId;
 
     /** Creates new form BusquedaRapida */
     public BusquedaRapida(java.awt.Frame parent, boolean modal) {
@@ -69,6 +77,7 @@ public class BusquedaRapida extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         pnlOpBusqueda = new javax.swing.JPanel();
         chkFiltro = new javax.swing.JCheckBox();
@@ -81,8 +90,14 @@ public class BusquedaRapida extends javax.swing.JDialog {
         btnBuscar = new javax.swing.JButton();
         txtBusqueda = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        lblResultadosBusqueda = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         pnlOpBusqueda.setBorder(javax.swing.BorderFactory.createTitledBorder("Opciones de Busqueda"));
         pnlOpBusqueda.setName("pnlOpBusqueda"); // NOI18N
@@ -95,13 +110,16 @@ public class BusquedaRapida extends javax.swing.JDialog {
             }
         });
 
+        buttonGroup1.add(rdbField1);
         rdbField1.setSelected(true);
         rdbField1.setText("Field 1");
         rdbField1.setName("rdbField1"); // NOI18N
 
+        buttonGroup1.add(rdbField2);
         rdbField2.setText("Field 2");
         rdbField2.setName("rdbField2"); // NOI18N
 
+        buttonGroup1.add(rdbField3);
         rdbField3.setText("Field 3");
         rdbField3.setName("rdbField3"); // NOI18N
 
@@ -165,6 +183,8 @@ public class BusquedaRapida extends javax.swing.JDialog {
             }
         });
 
+        lblResultadosBusqueda.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -172,15 +192,19 @@ public class BusquedaRapida extends javax.swing.JDialog {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(scrEntidades, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 501, Short.MAX_VALUE)
+                    .addComponent(scrEntidades, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 511, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(lblEntidades)
+                        .addGap(84, 84, 84)
+                        .addComponent(lblResultadosBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(pnlOpBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtBusqueda, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtBusqueda, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnBuscar))
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblEntidades, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addComponent(btnBuscar)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -196,7 +220,9 @@ public class BusquedaRapida extends javax.swing.JDialog {
                                 .addComponent(btnBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE))
                             .addComponent(pnlOpBusqueda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(21, 21, 21)
-                        .addComponent(lblEntidades)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblEntidades)
+                            .addComponent(lblResultadosBusqueda))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(scrEntidades, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -206,21 +232,17 @@ public class BusquedaRapida extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 521, Short.MAX_VALUE)
+            .addGap(0, 531, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 275, Short.MAX_VALUE)
+            .addGap(0, 273, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                    .addGap(1, 1, 1)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         pack();
@@ -228,56 +250,227 @@ public class BusquedaRapida extends javax.swing.JDialog {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        if (jtbEntidades.getSelectedRow() == -1 && jtbEntidades.getRowCount() > 1) {
+        if (jtbEntidades.getSelectedRow() == -1) {
             JOptionPane.showMessageDialog(this, "Primero seleccione registro", "Seleccion", JOptionPane.ERROR_MESSAGE);
             return;
-        } else if (jtbEntidades.getSelectedRow() == -1 && jtbEntidades.getRowCount() == 1) {
-            entityId = jtbEntidades.getValueAt(jtbEntidades.getSelectedRow(), 0);
         }
-
-        entityId = jtbEntidades.getValueAt(jtbEntidades.getSelectedRow(), 0);
+        entitySelectedId = jtbEntidades.getValueAt(jtbEntidades.getSelectedRow(), 0);
+        this.dispose();
 }//GEN-LAST:event_jButton1ActionPerformed
 
     private void showEntityOnJtable(Object[][] data) {
-        DefaultTableModel dtm = new DefaultTableModel();
-        for (int i =0; i < jtbEntidades.getColumnCount(); i++) {
-            dtm.addColumn(jtbEntidades.getColumnClass(i));
+        Object[] cols = new Object[jtbEntidades.getColumnCount()];
+        for (int i = 0; i < jtbEntidades.getColumnCount(); i++) {
+            cols[i] = jtbEntidades.getColumnName(i);
         }
-
-        dtm.addRow(data);
+        DefaultTableModel dtm = new DefaultTableModel(data, cols);
         jtbEntidades.setModel(dtm);
     }
 
-    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        // TODO add your handling code here:
+    private void showNoResultMessage() {
+        lblResultadosBusqueda.setText("No hubo resultados");
+        lblResultadosBusqueda.setForeground(Color.red);
+        new Thread(new LabelToolTipShower(lblResultadosBusqueda, 3000)).start();
+        return;
+    }
+
+    private void doSearch() {
+        if (txtBusqueda.getText().equalsIgnoreCase("*")) {
+            loadEntities();
+            return;
+        } else if (txtBusqueda.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Introduzca texto a buscar", "Busqueda", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
         if (entityToSearch instanceof Empresa) {
             EmpresaManager em = new EmpresaManager();
-            if (getRdbField1().getText().equalsIgnoreCase("id")) {
-                Empresa empresaSearched = em.getEmpresaById(Integer.parseInt(txtBusqueda.getText()));
-                showEntityOnJtable(new Object[][] {
-                    {empresaSearched.getEmpId(), empresaSearched.getEmpDni(), empresaSearched.getEmpRazonSocial()}
-                });
-            } else if (getRdbField1().getText().equalsIgnoreCase("dni")) {
-                Empresa empresaSearched = em.getEmpresaByDNI(txtBusqueda.getText());
-                showEntityOnJtable(new Object[][] {
-                    {empresaSearched.getEmpId(), empresaSearched.getEmpDni(), empresaSearched.getEmpRazonSocial()}
-                });
+            Empresa empresaSearched = null;
+            if (getRdbField1().isSelected()) {
+                empresaSearched = em.getEmpresaById(Integer.parseInt(txtBusqueda.getText()));
+                showEntityOnJtable(new Object[][]{
+                            {empresaSearched.getEmpId(), empresaSearched.getEmpDni(), empresaSearched.getEmpRazonSocial()}
+                        });
+            } else if (getRdbField2().isSelected()) {
+                empresaSearched = em.getEmpresaByDNI(txtBusqueda.getText());
+                showEntityOnJtable(new Object[][]{
+                            {empresaSearched.getEmpId(), empresaSearched.getEmpDni(), empresaSearched.getEmpRazonSocial()}
+                        });
             } else {
                 List<Empresa> empresas = em.getEmpresaByRazonSocial(txtBusqueda.getText());
                 Object[][] rows = new Object[empresas.size()][];
-                int i =0;
+                int i = 0;
                 for (Empresa emp : empresas) {
-                    rows[i] = new Object[] {emp.getEmpId(), emp.getEmpDni(), emp.getEmpRazonSocial()};
+                    rows[i] = new Object[]{emp.getEmpId(), emp.getEmpDni(), emp.getEmpRazonSocial()};
+                    i++;
+                }
+                showEntityOnJtable(rows);
+            }
+        } else if (entityToSearch instanceof Afiliado) {
+            AfiliadoManager am = new AfiliadoManager();
+            Afiliado afiliadoSearched = null;
+            if (getRdbField1().isSelected()) {
+                afiliadoSearched = am.getAfiliadoById(txtBusqueda.getText());
+                if (afiliadoSearched == null) {
+                    showNoResultMessage();
+                    return;
+                }
+                showEntityOnJtable(new Object[][]{
+                            {afiliadoSearched.getAflId(), afiliadoSearched.getAflDni(), String.format("%s, %s",
+                                afiliadoSearched.getAflApellido(), afiliadoSearched.getAflNombre())}
+                        });
+            } else if (getRdbField2().isSelected()) {
+                afiliadoSearched = am.getAfiliadoByDNI(txtBusqueda.getText());
+                if (afiliadoSearched == null) {
+                    showNoResultMessage();
+                    return;
+                }
+                showEntityOnJtable(new Object[][]{
+                            {afiliadoSearched.getAflId(), afiliadoSearched.getAflDni(), String.format("%s, %s",
+                                afiliadoSearched.getAflApellido(), afiliadoSearched.getAflNombre())}
+                        });
+            } else {
+                List<Afiliado> afiliados = am.getAfiliadoByApellido(txtBusqueda.getText());
+                if(afiliados != null && afiliados.size() < 1) {
+                    showNoResultMessage();
+                    return;
+                }
+                Object[][] rows = new Object[afiliados.size()][];
+                int i = 0;
+                for (Afiliado afil : afiliados) {
+                    rows[i] = new Object[]{afil.getAflId(), afil.getAflDni(), String.format("%s, %s", afil.getAflApellido(),
+                                afil.getAflNombre())};
+                    i++;
+                }
+                showEntityOnJtable(rows);
+            }
+        } else if (entityToSearch instanceof Dependiente) {
+            DependienteManager dm = new DependienteManager();
+            Dependiente dependienteSearched = null;
+            if (getRdbField1().isSelected()) {
+                dependienteSearched = dm.getDependienteById(Integer.parseInt(txtBusqueda.getText()));
+                showEntityOnJtable(new Object[][]{
+                            {dependienteSearched.getDepId(), dependienteSearched.getDepDni(), String.format("%s, %s",
+                                dependienteSearched.getDepApellido(), dependienteSearched.getDepNombre())}
+                        });
+            } else if (getRdbField2().isSelected()) {
+                dependienteSearched = dm.getDependienteByDNI(txtBusqueda.getText());
+                showEntityOnJtable(new Object[][]{
+                            {dependienteSearched.getDepId(), dependienteSearched.getDepDni(), String.format("%s, %s",
+                                dependienteSearched.getDepApellido(), dependienteSearched.getDepNombre())}
+                        });
+            } else {
+                List<Dependiente> dependientes = dm.getDependienteByApellido(txtBusqueda.getText());
+                Object[][] rows = new Object[dependientes.size()][];
+                int i = 0;
+                for (Dependiente dep : dependientes) {
+                    rows[i] = new Object[]
+                                {dep.getDepId(), dep.getDepDni(), String.format("%s, %s", dep.getDepApellido(),
+                                    dep.getDepNombre())};
+                    i++;
+                }
+                showEntityOnJtable(rows);
+            }
+        } else if (entityToSearch instanceof Plan) {
+            PlanManager pm = new PlanManager();
+            Plan planSearched = null;
+
+            if (getRdbField1().isSelected()) {
+                planSearched = pm.getPlanById(Integer.parseInt(txtBusqueda.getText()));
+                showEntityOnJtable(new Object[][]{
+                            {planSearched.getPlnId(), planSearched.getPlnNombre(), planSearched.getCategoriaPlan().getCapNombre()}
+                        });
+            } else if (getRdbField2().isSelected()) {
+                planSearched = pm.getPlanByNombre(txtBusqueda.getText());
+                showEntityOnJtable(new Object[][]{
+                            {planSearched.getPlnId(), planSearched.getPlnNombre(), planSearched.getCategoriaPlan().getCapNombre()}
+                        });
+            } else {
+                List<Plan> planes = pm.getPlanByCategoriaPlan(
+                        new CategoriaPlanManager().getCategoriaPlanByNombre(txtBusqueda.getText()));
+                Object[][] rows = new Object[planes.size()][];
+                int i = 0;
+                for (Plan plan : planes) {
+                    rows[i] = new Object[][]{
+                                {plan.getPlnId(), plan.getPlnNombre(), plan.getCategoriaPlan().getCapNombre()}
+                            };
                     i++;
                 }
                 showEntityOnJtable(rows);
             }
         }
+    }
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        // TODO add your handling code here:
+        doSearch();
 }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void chkFiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkFiltroActionPerformed
         // TODO add your handling code here:
 }//GEN-LAST:event_chkFiltroActionPerformed
+
+    private Object[][] getDataFromEntity(Serializable entity) {
+        Object[][] data = null;
+        int i = 0;
+        if (entity instanceof Empresa) {
+            List<Empresa> empresas = new EmpresaManager().getEmpresas();
+            if (empresas != null && empresas.size() > 0) {
+                data = new Object[empresas.size()][];
+                for (Empresa emp : empresas) {
+                    data[i] = new Object[]{emp.getEmpId(), emp.getEmpDni(), emp.getEmpRazonSocial()};
+                    i++;
+                }
+            }
+        } else if (entity instanceof Afiliado) {
+            List<Afiliado> afiliados = new AfiliadoManager().getAfiliados();
+            if (afiliados != null && afiliados.size() > 0) {
+                data = new Object[afiliados.size()][];
+                for (Afiliado afil : afiliados) {
+                    data[i] = new Object[]{afil.getAflId(), afil.getAflDni(), String.format("%s, %s", afil.getAflApellido(), afil.getAflNombre())};
+                    i++;
+                }
+            }
+        } else if (entity instanceof Dependiente) {
+            List<Dependiente> dependientes = new DependienteManager().getDependientes();
+            if (dependientes != null && dependientes.size() > 0) {
+                data = new Object[dependientes.size()][];
+                for (Dependiente dep : dependientes) {
+                    data[i] = new Object[]{dep.getDepId(), dep.getDepDni(), String.format("%s, %s", dep.getDepApellido(), dep.getDepNombre())};
+                    i++;
+                }
+            }
+        } else if (entity instanceof Plan) {
+            List<Plan> planes = new PlanManager().getPlanes();
+            if (planes != null && planes.size() > 0) {
+                data = new Object[planes.size()][];
+                for (Plan plan : planes) {
+                    data[i] = new Object[]{plan.getPlnId(), plan.getPlnNombre(), plan.getCategoriaPlan().getCapNombre()};
+                    i++;
+                }
+            }
+        }
+
+        return data;
+    }
+
+    private void loadEntities() {
+        if (entityToSearch != null) {
+            DefaultTableModel dtm = new DefaultTableModel(getDataFromEntity(entityToSearch),
+                    new Object[]{getRdbField1().getText(), getRdbField2().getText(), getRdbField3().getText()});
+
+            jtbEntidades.setModel(dtm);
+        }
+    }
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+        loadEntities();
+    }//GEN-LAST:event_formWindowOpened
+
+    public void setEntityToSearch(Serializable entityToSearch) {
+        this.entityToSearch = entityToSearch;
+    }
 
     public JButton getBtnBuscar() {
         return btnBuscar;
@@ -375,14 +568,14 @@ public class BusquedaRapida extends javax.swing.JDialog {
         this.txtBusqueda = txtBusqueda;
     }
 
-    public Object getEntityId() {
-        return entityId;
+    public Object getEntitySelectedId() {
+        return entitySelectedId;
     }
 
     public Serializable getEntityToSearch() {
         return entityToSearch;
     }
-    
+
     /**
      * @param args the command line arguments
      */
@@ -403,11 +596,13 @@ public class BusquedaRapida extends javax.swing.JDialog {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JCheckBox chkFiltro;
     private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTable jtbEntidades;
     private javax.swing.JLabel lblEntidades;
+    private javax.swing.JLabel lblResultadosBusqueda;
     private javax.swing.JPanel pnlOpBusqueda;
     private javax.swing.JRadioButton rdbField1;
     private javax.swing.JRadioButton rdbField2;

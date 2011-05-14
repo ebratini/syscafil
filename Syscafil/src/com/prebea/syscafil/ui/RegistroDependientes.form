@@ -511,9 +511,9 @@
                       <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="ftfTelefono" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
-                          <Component id="txtEmail" alignment="0" pref="313" max="32767" attributes="1"/>
-                          <Component id="txtDireccion" alignment="0" pref="313" max="32767" attributes="1"/>
-                          <Component id="txtDireccion2" alignment="0" pref="313" max="32767" attributes="1"/>
+                          <Component id="txtEmail" alignment="0" pref="321" max="32767" attributes="1"/>
+                          <Component id="txtDireccion" alignment="0" pref="321" max="32767" attributes="1"/>
+                          <Component id="txtDireccion2" alignment="0" pref="321" max="32767" attributes="1"/>
                           <Component id="txtCiudad" alignment="0" min="-2" pref="112" max="-2" attributes="1"/>
                           <Component id="txtRegion" alignment="0" min="-2" pref="175" max="-2" attributes="1"/>
                           <Component id="txtPais" alignment="0" min="-2" pref="201" max="-2" attributes="0"/>
@@ -735,7 +735,7 @@
                       <Component id="txtParentesco" min="-2" pref="293" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="lblParentescoValMarker" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="32" max="32767" attributes="0"/>
+                      <EmptySpace pref="36" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>

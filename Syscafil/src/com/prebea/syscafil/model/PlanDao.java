@@ -4,6 +4,7 @@
  */
 package com.prebea.syscafil.model;
 
+import com.prebea.syscafil.model.entities.CategoriaPlan;
 import com.prebea.syscafil.model.entities.Plan;
 import java.util.List;
 
@@ -16,4 +17,6 @@ public interface PlanDao extends Dao {
     public List findPlanByStatus(char status);
 
     public  Plan findPlanByNombre(String nombrePlan);
+
+    public List<Plan> findPlanByCategoria(CategoriaPlan categoriaPlan);
 }

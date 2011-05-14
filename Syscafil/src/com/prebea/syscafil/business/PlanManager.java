@@ -6,6 +6,7 @@ package com.prebea.syscafil.business;
 
 import com.prebea.syscafil.model.JpaPlanDao;
 import com.prebea.syscafil.model.PlanDao;
+import com.prebea.syscafil.model.entities.CategoriaPlan;
 import com.prebea.syscafil.model.entities.Plan;
 import java.util.List;
 import java.util.Map;
@@ -64,6 +65,10 @@ public class PlanManager {
 
     public List<Plan> getPlanByStatus(char status) {
         return (List<Plan>) pd.findPlanByStatus(status);
+    }
+
+    public List<Plan> getPlanByCategoriaPlan(CategoriaPlan categoriaPlan) {
+        return (List<Plan>) pd.findPlanByCategoria(categoriaPlan);
     }
 
     public void close() {

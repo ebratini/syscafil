@@ -114,6 +114,7 @@ public class RegistroPlanes extends javax.swing.JFrame {
         lblCategoriaPlan.setText("Categoria Plan");
 
         cmbCategoriaPlan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccion" }));
+        cmbCategoriaPlan.setNextFocusableComponent(cmbSubcategoriaPlan);
         cmbCategoriaPlan.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cmbCategoriaPlanItemStateChanged(evt);
@@ -128,6 +129,7 @@ public class RegistroPlanes extends javax.swing.JFrame {
         lblSubcategoria.setText("Subcategoria");
 
         cmbSubcategoriaPlan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccion" }));
+        cmbSubcategoriaPlan.setNextFocusableComponent(ftfPrecioPlan);
         cmbSubcategoriaPlan.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 cmbSubcategoriaPlanFocusGained(evt);
@@ -154,6 +156,7 @@ public class RegistroPlanes extends javax.swing.JFrame {
 
         btnNuevaCatPlan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/imagenes/MBAdd.active.png"))); // NOI18N
         btnNuevaCatPlan.setBorderPainted(false);
+        btnNuevaCatPlan.setNextFocusableComponent(btnNuevaSubcatPlan);
         btnNuevaCatPlan.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/imagenes/MBAdd.mousedown.png"))); // NOI18N
         btnNuevaCatPlan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -163,6 +166,7 @@ public class RegistroPlanes extends javax.swing.JFrame {
 
         btnNuevaSubcatPlan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/imagenes/MBAdd.active.png"))); // NOI18N
         btnNuevaSubcatPlan.setBorderPainted(false);
+        btnNuevaSubcatPlan.setNextFocusableComponent(txtNombrePlan);
         btnNuevaSubcatPlan.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/imagenes/MBAdd.mousedown.png"))); // NOI18N
         btnNuevaSubcatPlan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -318,6 +322,7 @@ public class RegistroPlanes extends javax.swing.JFrame {
         lblMensajeInsercion.setText("*");
 
         btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/imagenes/salir2-32x32.png"))); // NOI18N
+        btnSalir.setNextFocusableComponent(btnNuevaCatPlan);
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSalirActionPerformed(evt);
