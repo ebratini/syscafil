@@ -468,7 +468,7 @@ public class RegistroPlanes extends javax.swing.JFrame {
                 return;
             }
 
-            Plan plan = new Plan(txtNombrePlan.getText(), jtaDescripcion.getText(), BigDecimal.valueOf(Double.parseDouble(ftfPrecioPlan.getText())),
+            Plan plan = new Plan(txtNombrePlan.getText(), jtaDescripcion.getText().trim(), BigDecimal.valueOf(Double.parseDouble(ftfPrecioPlan.getText())),
                     BigDecimal.valueOf(Double.parseDouble(ftfPrecioDepExtra.getText())), 'A', "RegistroPlanes", new Date());
             
             CategoriaPlan catPlan = new CategoriaPlanManager().getCategoriaPlanByNombre(cmbCategoriaPlan.getSelectedItem().toString());
