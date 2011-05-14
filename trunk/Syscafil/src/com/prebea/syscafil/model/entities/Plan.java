@@ -71,7 +71,7 @@ public class Plan implements Serializable {
     @Column(name = "pln_nombre", nullable = false, length = 40)
     private String plnNombre;
     @Basic(optional = false)
-    @Column(name = "pln_descripcion", nullable = false, length = 80)
+    @Column(name = "pln_descripcion", nullable = false, length = 2147483647)
     private String plnDescripcion;
     @Basic(optional = false)
     @Column(name = "pln_precio", nullable = false, precision = 10, scale = 2)
@@ -96,9 +96,9 @@ public class Plan implements Serializable {
     @ManyToOne(optional = false)
     private CategoriaPlan categoriaPlan;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "plan")
-    private Collection<Afiliado> afiliadoCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "plan")
     private Collection<Factura> facturaCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "plan")
+    private Collection<Afiliado> afiliadoCollection;
 
     public Plan() {
     }
@@ -208,20 +208,20 @@ public class Plan implements Serializable {
         this.categoriaPlan = categoriaPlan;
     }
 
-    public Collection<Afiliado> getAfiliadoCollection() {
-        return afiliadoCollection;
-    }
-
-    public void setAfiliadoCollection(Collection<Afiliado> afiliadoCollection) {
-        this.afiliadoCollection = afiliadoCollection;
-    }
-
     public Collection<Factura> getFacturaCollection() {
         return facturaCollection;
     }
 
     public void setFacturaCollection(Collection<Factura> facturaCollection) {
         this.facturaCollection = facturaCollection;
+    }
+
+    public Collection<Afiliado> getAfiliadoCollection() {
+        return afiliadoCollection;
+    }
+
+    public void setAfiliadoCollection(Collection<Afiliado> afiliadoCollection) {
+        this.afiliadoCollection = afiliadoCollection;
     }
 
     @Override

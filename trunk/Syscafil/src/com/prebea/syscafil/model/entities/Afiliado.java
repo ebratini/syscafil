@@ -124,16 +124,16 @@ public class Afiliado implements Serializable {
     @Basic(optional = false)
     @Column(name = "afl_status", nullable = false)
     private char aflStatus;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "afiliado")
+    private Collection<Factura> facturaCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "afiliado")
+    private Collection<Dependiente> dependienteCollection;
     @JoinColumn(name = "pln_id", referencedColumnName = "pln_id", nullable = false)
     @ManyToOne(optional = false)
     private Plan plan;
     @JoinColumn(name = "emp_id", referencedColumnName = "emp_id")
     @ManyToOne
     private Empresa empresa;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "afiliado")
-    private Collection<Factura> facturaCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "afiliado")
-    private Collection<Dependiente> dependienteCollection;
 
     public Afiliado() {
     }
@@ -311,22 +311,6 @@ public class Afiliado implements Serializable {
         this.aflStatus = aflStatus;
     }
 
-    public Plan getPlan() {
-        return plan;
-    }
-
-    public void setPlan(Plan plan) {
-        this.plan = plan;
-    }
-
-    public Empresa getEmpresa() {
-        return empresa;
-    }
-
-    public void setEmpresa(Empresa empresa) {
-        this.empresa = empresa;
-    }
-
     public Collection<Factura> getFacturaCollection() {
         return facturaCollection;
     }
@@ -341,6 +325,22 @@ public class Afiliado implements Serializable {
 
     public void setDependienteCollection(Collection<Dependiente> dependienteCollection) {
         this.dependienteCollection = dependienteCollection;
+    }
+
+    public Plan getPlan() {
+        return plan;
+    }
+
+    public void setPlan(Plan plan) {
+        this.plan = plan;
+    }
+
+    public Empresa getEmpresa() {
+        return empresa;
+    }
+
+    public void setEmpresa(Empresa empresa) {
+        this.empresa = empresa;
     }
 
     @Override
