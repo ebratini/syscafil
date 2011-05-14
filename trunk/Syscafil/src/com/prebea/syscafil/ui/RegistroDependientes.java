@@ -635,7 +635,18 @@ public class RegistroDependientes extends javax.swing.JFrame {
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         // TODO add your handling code here:
-        BusquedaRapidaFrame br = new BusquedaRapidaFrame();
+        /*BusquedaRapidaFrame br = new BusquedaRapidaFrame();
+        br.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        br.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/resources/imagenes/prebea_logo.png")));
+        br.setLocationRelativeTo(this);
+        br.setTitle("Buscar Afiliado");
+        br.getLblEntidades().setText("Afiliados");
+        br.getRdbField1().setText("Id");
+        br.getRdbField2().setText("DNI");
+        br.getRdbField3().setText("Apellido");
+        br.setVisible(true);*/
+        BusquedaRapida br = new BusquedaRapida(this, true);
+        br.setEntityToSearch(new Afiliado());
         br.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         br.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/resources/imagenes/prebea_logo.png")));
         br.setLocationRelativeTo(this);
@@ -645,6 +656,12 @@ public class RegistroDependientes extends javax.swing.JFrame {
         br.getRdbField2().setText("DNI");
         br.getRdbField3().setText("Apellido");
         br.setVisible(true);
+
+        Object entitySelectedId = br.getEntitySelectedId();
+        if (entitySelectedId != null) {
+            afiliado = new AfiliadoManager().getAfiliadoById(entitySelectedId);
+            txtAfiliado.setText(String.format("%s, %s", afiliado.getAflApellido(), afiliado.getAflNombre()));
+        }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
@@ -727,15 +744,14 @@ public class RegistroDependientes extends javax.swing.JFrame {
                 return;
             }
 
-            afiliado = new AfiliadoManager().getAfiliadoById(1);
+            //afiliado = new AfiliadoManager().getAfiliadoById(1);
             if (afiliado == null) {
                 lblMensajeInsercion.setText("Debe indicar afiliado titular");
                 lblMensajeInsercion.setForeground(Color.red);
                 lblMensajeInsercion.setVisible(true);
                 return;
             }
-
-
+            
             List<Dependiente> deps = dm.getDependienteByAfiliado(afiliado);
             List<Dependiente> depsActivos = new ArrayList<Dependiente>();
 

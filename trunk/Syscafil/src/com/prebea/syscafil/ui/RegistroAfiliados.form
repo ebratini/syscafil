@@ -509,12 +509,12 @@
                       <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="ftfTelefono" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
-                          <Component id="txtEmail" alignment="0" pref="319" max="32767" attributes="1"/>
-                          <Component id="txtDireccion2" alignment="0" pref="319" max="32767" attributes="1"/>
+                          <Component id="txtEmail" alignment="0" pref="327" max="32767" attributes="1"/>
+                          <Component id="txtDireccion2" alignment="0" pref="327" max="32767" attributes="1"/>
                           <Component id="txtCiudad" alignment="0" min="-2" pref="112" max="-2" attributes="1"/>
                           <Component id="txtRegion" alignment="0" min="-2" pref="175" max="-2" attributes="1"/>
                           <Component id="txtPais" alignment="0" min="-2" pref="201" max="-2" attributes="0"/>
-                          <Component id="txtDireccion" alignment="0" pref="319" max="32767" attributes="1"/>
+                          <Component id="txtDireccion" alignment="0" pref="327" max="32767" attributes="1"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -723,7 +723,7 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="lblFechaIngresoValMarker" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="165" max="32767" attributes="0"/>
+                              <EmptySpace pref="169" max="32767" attributes="0"/>
                               <Component id="lblEmpresa" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="txtEmpresa" min="-2" pref="288" max="-2" attributes="0"/>
