@@ -26,10 +26,8 @@ package com.prebea.syscafil.model.entities;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -39,7 +37,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -133,8 +130,6 @@ public class Factura implements Serializable {
     @JoinColumn(name = "afl_id", referencedColumnName = "afl_id", nullable = false)
     @ManyToOne(optional = false)
     private Afiliado afiliado;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "factura")
-    private Collection<AbonoFactura> abonoFacturaCollection;
 
     public Factura() {
     }
@@ -330,14 +325,6 @@ public class Factura implements Serializable {
 
     public void setAfiliado(Afiliado afiliado) {
         this.afiliado = afiliado;
-    }
-
-    public Collection<AbonoFactura> getAbonoFacturaCollection() {
-        return abonoFacturaCollection;
-    }
-
-    public void setAbonoFacturaCollection(Collection<AbonoFactura> abonoFacturaCollection) {
-        this.abonoFacturaCollection = abonoFacturaCollection;
     }
 
     @Override

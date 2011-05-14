@@ -87,13 +87,13 @@ public class SubcategoriaPlan implements Serializable {
         this.supDescripcion = supDescripcion;
         this.supStatus = supStatus;
     }
-
+    
     public SubcategoriaPlan(String supNombre, String supDescripcion, char supStatus) {
         this.supNombre = supNombre;
         this.supDescripcion = supDescripcion;
         this.supStatus = supStatus;
     }
-
+    
     public Integer getSupId() {
         return supId;
     }
