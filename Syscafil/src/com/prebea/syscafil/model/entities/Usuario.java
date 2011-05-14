@@ -70,7 +70,7 @@ public class Usuario implements Serializable {
     @Column(name = "usr_login", nullable = false, length = 20)
     private String usrLogin;
     @Basic(optional = false)
-    @Column(name = "usr_password", nullable = false, length = 10)
+    @Column(name = "usr_password", nullable = false, length = 20)
     private String usrPassword;
     @Basic(optional = false)
     @Column(name = "usr_fecha_creacion", nullable = false)

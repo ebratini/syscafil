@@ -24,6 +24,13 @@
     <class>com.prebea.syscafil.model.entities.Secuencias</class>
     <class>com.prebea.syscafil.model.entities.Roles</class>
     <class>com.prebea.syscafil.model.entities.SubcategoriaPlanes</class>
+    <class>com.prebea.syscafil.model.entities.CategoriaPlanes</class>
+    <class>com.prebea.syscafil.model.entities.Dependientes</class>
+    <class>com.prebea.syscafil.model.entities.Afiliados</class>
+    <class>com.prebea.syscafil.model.entities.Empresas</class>
+    <class>com.prebea.syscafil.model.entities.Facturaciones</class>
+    <class>com.prebea.syscafil.model.entities.AbonoFacturas</class>
+    <class>com.prebea.syscafil.model.entities.Facturas</class>
     <validation-mode>NONE</validation-mode>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:sqlserver://localhost:1433;databaseName=SYSCAFIL_DB"/>

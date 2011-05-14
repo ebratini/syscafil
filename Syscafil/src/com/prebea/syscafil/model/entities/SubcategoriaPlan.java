@@ -60,7 +60,7 @@ public class SubcategoriaPlan implements Serializable {
     @Column(name = "sup_id", nullable = false)
     private Integer supId;
     @Basic(optional = false)
-    @Column(name = "sup_nombre", nullable = false, length = 20)
+    @Column(name = "sup_nombre", nullable = false, length = 40)
     private String supNombre;
     @Basic(optional = false)
     @Column(name = "sup_descripcion", nullable = false, length = 40)

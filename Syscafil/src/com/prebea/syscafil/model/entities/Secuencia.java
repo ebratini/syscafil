@@ -92,6 +92,14 @@ public class Secuencia implements Serializable {
         this.secUpdateDate = secUpdateDate;
     }
 
+    public Secuencia(int secIncremento, int secInicio, int secActual, String secUpdateBy, Date secUpdateDate) {
+        this.secIncremento = secIncremento;
+        this.secInicio = secInicio;
+        this.secActual = secActual;
+        this.secUpdateBy = secUpdateBy;
+        this.secUpdateDate = secUpdateDate;
+    }
+
     public Integer getSecId() {
         return secId;
     }

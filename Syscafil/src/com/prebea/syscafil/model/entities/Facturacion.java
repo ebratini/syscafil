@@ -85,7 +85,7 @@ public class Facturacion implements Serializable {
     @Column(name = "fcn_importe_facturas_generadas", nullable = false, precision = 10, scale = 2)
     private BigDecimal fcnImporteFacturasGeneradas;
     @Basic(optional = false)
-    @Column(name = "fcn_status_facturacion", nullable = false, length = 200)
+    @Column(name = "fcn_status_facturacion", nullable = false, length = 2147483647)
     private String fcnStatusFacturacion;
     @JoinColumn(name = "usr_id", referencedColumnName = "usr_id", nullable = false)
     @ManyToOne(optional = false)
