@@ -25,6 +25,7 @@ package com.prebea.syscafil.ui;
 
 import com.prebea.syscafil.business.TimeDateShower;
 import com.prebea.syscafil.model.entities.Usuario;
+import java.awt.event.FocusEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowEvent;
 import java.awt.BorderLayout;
@@ -32,13 +33,18 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusAdapter;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseListener;
 import java.util.Arrays;
 import java.util.List;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JSeparator;
+import javax.swing.SwingConstants;
 import javax.swing.border.EtchedBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -48,7 +54,6 @@ import org.pushingpixels.flamingo.api.common.icon.ImageWrapperResizableIcon;
 import org.pushingpixels.flamingo.api.common.icon.ResizableIcon;
 import org.pushingpixels.flamingo.api.ribbon.JRibbon;
 import org.pushingpixels.flamingo.api.ribbon.JRibbonBand;
-import org.pushingpixels.flamingo.api.ribbon.JRibbonComponent;
 import org.pushingpixels.flamingo.api.ribbon.JRibbonFrame;
 import org.pushingpixels.flamingo.api.ribbon.RibbonApplicationMenu;
 import org.pushingpixels.flamingo.api.ribbon.RibbonElementPriority;
@@ -57,6 +62,7 @@ import org.pushingpixels.flamingo.api.ribbon.resize.CoreRibbonResizePolicies;
 import org.pushingpixels.flamingo.api.ribbon.resize.IconRibbonBandResizePolicy;
 import org.pushingpixels.flamingo.api.ribbon.resize.RibbonBandResizePolicy;
 import org.pushingpixels.flamingo.internal.ui.common.JRichTooltipPanel;
+import org.pushingpixels.flamingo.internal.ui.ribbon.JBandControlPanel;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 /**
@@ -169,7 +175,7 @@ public class SyscafilDesktop extends JRibbonFrame {
         JCommandButton jcbLogInOut, jcbSalir;
         jcbLogInOut = createJCommandButton("Log In", getResizableIconFromResource("/resources/imagenes/login.png"), "jcbLogIn",
                 new RichTooltip("Login/Logout", "Click aqui para abrir/cerrar sesion de usuario"), buttonActHandler);
-        
+
         jcbSalir = createJCommandButton("Salir", getResizableIconFromResource("/resources/imagenes/salir.png"), "jcbSalir",
                 new RichTooltip("Salir", "Click aqui para salir de la aplicacion"), buttonActHandler);
 
@@ -203,7 +209,7 @@ public class SyscafilDesktop extends JRibbonFrame {
                 "jcbEditarEmpresa", new RichTooltip("Editar", "Click aqui para editar empresa"), buttonActHandler);
 
         jcbEliminarEmpresa = createJCommandButton("Eliminar", getResizableIconFromResource("/resources/imagenes/delete.png"),
-                    "jcbEliminarEmpresa", new RichTooltip("Eliminar", "Click aqui para eliminar empresa"), buttonActHandler);
+                "jcbEliminarEmpresa", new RichTooltip("Eliminar", "Click aqui para eliminar empresa"), buttonActHandler);
 
         JRibbonBand jrbEmpresasBand = new JRibbonBand("Empresas", getResizableIconFromResource("/resources/imagenes/empresas4.png"));
         jrbEmpresasBand.addCommandButton(jcbVerEmpresas, RibbonElementPriority.TOP);
@@ -238,7 +244,7 @@ public class SyscafilDesktop extends JRibbonFrame {
 
         jrbAfiliadosBand.setResizePolicies(getRibbonBandResizePolicy(jrbAfiliadosBand));
 
-        // on afiliados band
+        // on dependientes band
 
         JCommandButton jcbVerDependientes, jcbCrearDependiente, jcbEditarDependiente, jcbEliminarDependiente;
 
@@ -264,7 +270,7 @@ public class SyscafilDesktop extends JRibbonFrame {
         jrbDependientesBand.setResizePolicies(getRibbonBandResizePolicy(jrbDependientesBand));
 
 
-        // on afiliados band
+        // on planes band
 
         JCommandButton jcbVerPlanes, jcbCrearPlan, jcbEditarPlan, jcbEliminarPlan;
 
@@ -288,20 +294,71 @@ public class SyscafilDesktop extends JRibbonFrame {
         jrbPlanesBand.addCommandButton(jcbEliminarPlan, RibbonElementPriority.MEDIUM);
 
         jrbPlanesBand.setResizePolicies(getRibbonBandResizePolicy(jrbPlanesBand));
-        
+
         // creando el la task
         RibbonTask rtMantenimientoTask = new RibbonTask("Mantenimiento", jrbEmpresasBand, jrbAfiliadosBand,
                 jrbDependientesBand, jrbPlanesBand);
 
         return rtMantenimientoTask;
     }
-
-    private RibbonTask getConsultasTask() {
-        throw new NotImplementedException();
-    }
-
+    
     private RibbonTask getReportesTask() {
-        throw new NotImplementedException();
+
+        // Listados band
+        JCommandButton jcbListadoEmpresas, jcbListadoAfiliados, jcbListadoDependientes, jcbListadoPlanes;
+
+        jcbListadoEmpresas = createJCommandButton("Empresas", getResizableIconFromResource("/resources/imagenes/empresas4.png"),
+                "jcbListadoEmpresas", new RichTooltip("Listado Empresas", "Click aqui para ver reporte listado de empresas"), buttonActHandler);
+
+        jcbListadoAfiliados = createJCommandButton("Afiliados", getResizableIconFromResource("/resources/imagenes/afiliados.png"),
+                "jcbListadoAfiliados", new RichTooltip("Listado Afiliados", "Click aqui para ver reporte listado de afiliados"), buttonActHandler);
+
+        jcbListadoDependientes = createJCommandButton("Dependientes", getResizableIconFromResource("/resources/imagenes/dependientes2.png"),
+                "jcbListadoDependientes", new RichTooltip("Listado Dependientes", "Click aqui para ver reporte listado de dependientes"), buttonActHandler);
+
+        jcbListadoPlanes = createJCommandButton("Planes", getResizableIconFromResource("/resources/imagenes/paloma3.png"),
+                "jcbListadoPlanes", new RichTooltip("Listado Planes", "Click aqui para ver reporte listado de planes"), buttonActHandler);
+
+        JRibbonBand jrbListadosBand = new JRibbonBand("Listados", getResizableIconFromResource("/resources/imagenes/listado.png"));
+        jrbListadosBand.addCommandButton(jcbListadoEmpresas, RibbonElementPriority.TOP);
+        jrbListadosBand.addCommandButton(jcbListadoAfiliados, RibbonElementPriority.MEDIUM);
+        jrbListadosBand.addCommandButton(jcbListadoDependientes, RibbonElementPriority.MEDIUM);
+        jrbListadosBand.addCommandButton(jcbListadoPlanes, RibbonElementPriority.MEDIUM);
+
+        jrbListadosBand.setResizePolicies(getRibbonBandResizePolicy(jrbListadosBand));
+
+        // Master/Details Band
+        /*JCommandButton jcbEmpresasAfiliados, jcbAfiliadosDependientes, jcbAfiliadosFacturas, jcbPlanesAfiliados;
+
+        jcbEmpresasAfiliados = createJCommandButton("Empresas - Afiliados", getResizableIconFromResource("/resources/imagenes/empresas4.png"),
+                "jcbEmpresasAfiliados", new RichTooltip("Master/Details", "Click aqui para ver reporte master/detail de empresas y afiliados"), buttonActHandler);
+
+        jcbAfiliadosDependientes = createJCommandButton("Afiliados - Dependientes", getResizableIconFromResource("/resources/imagenes/afiliados.png"),
+                "jcbAfiliadosDependientes", new RichTooltip("Master/Details", "Click aqui para ver reporte master/detail de afiliados y dependientes"), buttonActHandler);
+
+        jcbAfiliadosFacturas = createJCommandButton("Afiliados - Facturas", getResizableIconFromResource("/resources/imagenes/dependientes2.png"),
+                "jcbAfiliadosFacturas", new RichTooltip("Master/Details", "Click aqui para ver reporte master/detail de afiliados y facturas"), buttonActHandler);
+
+        jcbPlanesAfiliados = createJCommandButton("Planes - Afiliados", getResizableIconFromResource("/resources/imagenes/paloma3.png"),
+                "jcbPlanesAfiliados", new RichTooltip("Master/Details", "Click aqui para ver reporte master/detail de planes y afiliados"), buttonActHandler);
+
+        JRibbonBand jrbMasterDetailsBand = new JRibbonBand("Master/Details", getResizableIconFromResource("/resources/imagenes/listado.png"));
+        jrbListadosBand.addCommandButton(jcbEmpresasAfiliados, RibbonElementPriority.TOP);
+        jrbListadosBand.addCommandButton(jcbAfiliadosDependientes, RibbonElementPriority.TOP);
+        jrbListadosBand.addCommandButton(jcbAfiliadosFacturas, RibbonElementPriority.TOP);
+        jrbListadosBand.addCommandButton(jcbPlanesAfiliados, RibbonElementPriority.TOP);
+
+        jrbMasterDetailsBand.setResizePolicies((List) Arrays.asList(
+                new CoreRibbonResizePolicies.Mirror(jrbMasterDetailsBand.getControlPanel()),
+                //new CoreRibbonResizePolicies.Mid2Low(jrbMasterDetailsBand.getControlPanel()),
+                new IconRibbonBandResizePolicy(jrbMasterDetailsBand.getControlPanel())));
+
+        jrbMasterDetailsBand.setResizePolicies(getRibbonBandResizePolicy(jrbMasterDetailsBand));*/
+
+        // creando el la task
+        RibbonTask rtReportesTask = new RibbonTask("Reportes", jrbListadosBand);
+
+        return rtReportesTask;
     }
 
     private RibbonTask getFacturacionTask() {
@@ -311,18 +368,25 @@ public class SyscafilDesktop extends JRibbonFrame {
     private RibbonTask getSettingsTask() {
         throw new NotImplementedException();
     }
-    
+
     private RibbonTask getAdministracionTask() {
         throw new NotImplementedException();
     }
 
-    // TODO: crear subcarpeta imagenes y colocar los .png correspondiente de los iconos
+    private Component getTaskBar() {
+        JPanel pnlTaskBar = new JPanel(new BorderLayout(2, 0));
+        pnlTaskBar.add(new JButton(getResizableIconFromResource("/resources/imagenes/new_15x15.png")));
+        return pnlTaskBar;
+    }
+
     private void initJRibbon() {
         RibbonApplicationMenu ram = new RibbonApplicationMenu();
         JRibbon jr = getRibbon();
         jr.addTask(getHomeTask());
         jr.addTask(getMantenimientoTask());
+        jr.addTask(getReportesTask());
 
+        jr.addTaskbarComponent(getTaskBar());
         jr.addChangeListener(new ChangeListener() {
 
             @Override
@@ -335,46 +399,21 @@ public class SyscafilDesktop extends JRibbonFrame {
         jr.setApplicationMenu(ram);
     }
 
-    private void disableJRibbonComponents() {
+    private void setJRibbonComponentsEnabled(boolean state) {
         JRibbon ribbon = getRibbon();
-        for(int i = 0; i < ribbon.getTaskCount(); i++) {
+        for (int i = 0; i < ribbon.getTaskCount(); i++) {
             RibbonTask rt = ribbon.getTask(i);
             if (rt.getTitle().equalsIgnoreCase("home")) {
                 continue;
             }
             for (int j = 0; j < rt.getBandCount(); j++) {
                 JRibbonBand banda = (JRibbonBand) rt.getBand(j);
-                banda.setEnabled(false);
+                JBandControlPanel jbcp = banda.getControlPanel();
+                for (Component comp : jbcp.getComponents()) {
+                    comp.setEnabled(state);
+                }
             }
         }
-    }
-
-    private void addRibbonListener() {
-        getRibbon().addMouseListener(new MouseListener() {
-
-            @Override
-            public void mouseClicked(MouseEvent e) {
-               if (getRibbon().getSelectedTask().getTitle().equalsIgnoreCase("home")){
-                    System.out.println("Home Task!!");
-               }
-            }
-
-            @Override
-            public void mousePressed(MouseEvent e) {
-            }
-
-            @Override
-            public void mouseReleased(MouseEvent e) {
-            }
-
-            @Override
-            public void mouseEntered(MouseEvent e) {
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-            }
-        });
     }
 
     private void initComponents() {
@@ -385,12 +424,10 @@ public class SyscafilDesktop extends JRibbonFrame {
         setPreferredSize(new Dimension(1100, 600));
         setLocationByPlatform(true);
         initJRibbon();
-        //addGap(0, 10);
         initBodyContent();
         initStatusBar();
         initTimeDate();
-        //addRibbonListener();
-        disableJRibbonComponents();
+        setJRibbonComponentsEnabled(false);
         pack();
     }
 
@@ -401,14 +438,13 @@ public class SyscafilDesktop extends JRibbonFrame {
         usuario = login.getUsuario();
         if (usuario != null) {
             usuarioLogeado.setText(usuario.getUsrLogin());
-
             JRichTooltipPanel rtp = new JRichTooltipPanel(new RichTooltip("Login", "Bienvenido, " + login.getTxtlNombreUsuario().getText()));
             pnlBody.add(rtp, BorderLayout.SOUTH);
             new Thread(new ToolTipShower(rtp)).start();
-
             logInOutButton.setName("jcbLogOut");
             logInOutButton.setIcon(getResizableIconFromResource("/resources/imagenes/th_logout.png"));
             logInOutButton.setText("Log Out");
+            setJRibbonComponentsEnabled(true);
         }
     }
 
@@ -418,6 +454,7 @@ public class SyscafilDesktop extends JRibbonFrame {
         logInOutButton.setName("jcbLogIn");
         logInOutButton.setIcon(getResizableIconFromResource("/resources/imagenes/login.png"));
         logInOutButton.setText("Log In");
+        setJRibbonComponentsEnabled(false);
         // TODO: flush log to db and may be close the managers
         //Syscafil.sl.flushToDataBase();
     }
@@ -429,8 +466,22 @@ public class SyscafilDesktop extends JRibbonFrame {
         System.exit(0);
     }
 
+    private boolean isUsuarioLogged(boolean showWarnMessage) {
+        boolean logged = false;
+        if (usuario != null) {
+            logged = true;
+        } else {
+            logged = false;
+            if (showWarnMessage) {
+                JOptionPane.showMessageDialog(SyscafilDesktop.this, "Usuario no logeado",
+                        "Login / Logout", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        return logged;
+    }
+
     private void throwNoImplMsj() {
-        JOptionPane.showMessageDialog(rootPane, "No Implementado Todavia");
+        JOptionPane.showMessageDialog(this, "No Implementado Todavia");
     }
 
     private class ButtonActionHandler implements ActionListener {
@@ -439,6 +490,12 @@ public class SyscafilDesktop extends JRibbonFrame {
         public void actionPerformed(ActionEvent e) {
             JCommandButton buttonClicked = ((JCommandButton) e.getSource());
             String buttonName = buttonClicked.getName();
+            if (!buttonName.equalsIgnoreCase("jcbLogIn") && !buttonName.equalsIgnoreCase("jcbLogOut") &&
+                    !buttonName.equalsIgnoreCase("jcbSalir")) {
+                if (!isUsuarioLogged(true)) {
+                    return;
+                }
+            }
             if (buttonName.equalsIgnoreCase("jcbLogIn")) {
                 doLogin(buttonClicked);
             } else if (buttonName.equalsIgnoreCase("jcbLogOut")) {
@@ -453,13 +510,9 @@ public class SyscafilDesktop extends JRibbonFrame {
             } else if (buttonName.equalsIgnoreCase("jcbVerEmpresas")) {
                 throwNoImplMsj();
             } else if (buttonName.equalsIgnoreCase("jcbCrearEmpresa")) {
-                if (usuario != null) {
-                    RegistroEmpresas regEmpresas = new RegistroEmpresas();
-                    regEmpresas.setLocationRelativeTo(SyscafilDesktop.this);
-                    regEmpresas.setVisible(true);
-                } else {
-                    JOptionPane.showMessageDialog(SyscafilDesktop.this, "Usuario no logeado", "Login / Logout" , JOptionPane.ERROR_MESSAGE);
-                }
+                RegistroEmpresas regEmpresas = new RegistroEmpresas();
+                regEmpresas.setLocationRelativeTo(SyscafilDesktop.this);
+                regEmpresas.setVisible(true);
             } else if (buttonName.equalsIgnoreCase("jcbEditarEmpresa")) {
                 throwNoImplMsj();
             } else if (buttonName.equalsIgnoreCase("jcbEliminarEmpresa")) {
