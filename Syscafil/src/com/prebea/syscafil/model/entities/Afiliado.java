@@ -21,7 +21,6 @@
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  *  THE SOFTWARE.
  */
-
 package com.prebea.syscafil.model.entities;
 
 import java.io.Serializable;
@@ -70,11 +69,12 @@ import javax.persistence.UniqueConstraint;
     @NamedQuery(name = "Afiliado.findByAflPais", query = "SELECT a FROM Afiliado a WHERE a.aflPais = :aflPais"),
     @NamedQuery(name = "Afiliado.findByAflEmail", query = "SELECT a FROM Afiliado a WHERE a.aflEmail = :aflEmail"),
     @NamedQuery(name = "Afiliado.findByAflStatus", query = "SELECT a FROM Afiliado a WHERE a.aflStatus = :aflStatus")})
-public class Afiliado implements Serializable {
+public class Afiliado implements Serializable, Comparable<Afiliado> {
+
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "afl_id", nullable = false)
     private Integer aflId;
     @Basic(optional = false)
@@ -368,4 +368,8 @@ public class Afiliado implements Serializable {
         return "com.prebea.syscafil.model.entities.Afiliado[aflId=" + aflId + "]";
     }
 
+    @Override
+    public int compareTo(Afiliado o) {
+        return this.getAflApellido().compareTo(o.getAflApellido());
+    }
 }

@@ -21,7 +21,6 @@
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  *  THE SOFTWARE.
  */
-
 package com.prebea.syscafil.model.entities;
 
 import java.io.Serializable;
@@ -50,11 +49,12 @@ import javax.persistence.Table;
     @NamedQuery(name = "CategoriaPlan.findByCapNombre", query = "SELECT c FROM CategoriaPlan c WHERE c.capNombre = :capNombre"),
     @NamedQuery(name = "CategoriaPlan.findByCapDescripcion", query = "SELECT c FROM CategoriaPlan c WHERE c.capDescripcion = :capDescripcion"),
     @NamedQuery(name = "CategoriaPlan.findByCapStatus", query = "SELECT c FROM CategoriaPlan c WHERE c.capStatus = :capStatus")})
-public class CategoriaPlan implements Serializable {
+public class CategoriaPlan implements Serializable, Comparable<CategoriaPlan> {
+
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "cap_id", nullable = false)
     private Integer capId;
     @Basic(optional = false)
@@ -164,4 +164,8 @@ public class CategoriaPlan implements Serializable {
         return "com.prebea.syscafil.model.entities.CategoriaPlan[capId=" + capId + "]";
     }
 
+    @Override
+    public int compareTo(CategoriaPlan o) {
+        return this.getCapNombre().compareTo(o.getCapNombre());
+    }
 }

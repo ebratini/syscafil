@@ -34,6 +34,7 @@ import com.prebea.syscafil.business.DateFieldValidator;
 import com.prebea.syscafil.business.DateUtils;
 import com.prebea.syscafil.business.DefaultComboFieldValueValidator;
 import com.prebea.syscafil.business.EmailFieldValidator;
+import com.prebea.syscafil.business.EmpresaManager;
 import com.prebea.syscafil.business.EmptyFieldValidator;
 import com.prebea.syscafil.business.FieldValidator;
 import com.prebea.syscafil.business.FormFieldValidator;
@@ -45,6 +46,7 @@ import com.prebea.syscafil.model.entities.Plan;
 import java.awt.Color;
 import java.awt.Toolkit;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -644,7 +646,7 @@ public class RegistroAfiliados extends javax.swing.JFrame {
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         // TODO add your handling code here:
-        BusquedaRapidaFrame br = new BusquedaRapidaFrame();
+        BusquedaRapida br = new BusquedaRapida(this, true, new Empresa());
         br.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         br.setLocationRelativeTo(this);
         br.setTitle("Buscar Empresa");
@@ -653,6 +655,12 @@ public class RegistroAfiliados extends javax.swing.JFrame {
         br.getRdbField2().setText("DNI");
         br.getRdbField3().setText("Razon Social");
         br.setVisible(true);
+
+        Object entitySelectedId = br.getEntitySelectedId();
+        if (entitySelectedId != null) {
+            empresa = new EmpresaManager().getEmpresaById((Integer)entitySelectedId);
+            txtEmpresa.setText(empresa.getEmpRazonSocial());
+        }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
@@ -678,6 +686,7 @@ public class RegistroAfiliados extends javax.swing.JFrame {
 
     private void loadPlanesComboBox() {
         List<Plan> planes = new PlanManager().getPlanes();
+        Collections.sort(planes);
         for (Plan plan : planes) {
             cmbPlan.addItem(plan.getPlnNombre());
         }
@@ -799,7 +808,7 @@ public class RegistroAfiliados extends javax.swing.JFrame {
             // ***
             plan.getAfiliadoCollection().add(afiliado);
 
-            if (!txtEmpresa.getText().isEmpty() && empresa != null) {
+            if (empresa != null) {
                 afiliado.setEmpresa(empresa);
 
                 // ***

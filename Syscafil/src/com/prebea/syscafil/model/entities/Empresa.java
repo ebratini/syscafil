@@ -21,9 +21,9 @@
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  *  THE SOFTWARE.
  */
-
 package com.prebea.syscafil.model.entities;
 
+import com.prebea.syscafil.model.EmpresaDao;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
@@ -62,11 +62,12 @@ import javax.persistence.UniqueConstraint;
     @NamedQuery(name = "Empresa.findByEmpEmail", query = "SELECT e FROM Empresa e WHERE e.empEmail = :empEmail"),
     @NamedQuery(name = "Empresa.findByEmpWeb", query = "SELECT e FROM Empresa e WHERE e.empWeb = :empWeb"),
     @NamedQuery(name = "Empresa.findByEmpStatus", query = "SELECT e FROM Empresa e WHERE e.empStatus = :empStatus")})
-public class Empresa implements Serializable {
+public class Empresa implements Serializable, Comparable<Empresa> {
+
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "emp_id", nullable = false)
     private Integer empId;
     @Basic(optional = false)
@@ -300,4 +301,8 @@ public class Empresa implements Serializable {
         return "com.prebea.syscafil.model.entities.Empresa[empId=" + empId + "]";
     }
 
+    @Override
+    public int compareTo(Empresa o) {
+        return this.getEmpRazonSocial().compareTo(o.getEmpRazonSocial());
+    }
 }

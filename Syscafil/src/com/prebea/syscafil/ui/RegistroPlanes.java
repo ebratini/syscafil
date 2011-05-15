@@ -43,6 +43,7 @@ import com.prebea.syscafil.model.entities.SubcategoriaPlan;
 import java.awt.Color;
 import java.awt.Toolkit;
 import java.math.BigDecimal;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -411,6 +412,7 @@ public class RegistroPlanes extends javax.swing.JFrame {
         List<CategoriaPlan> catsPlan = new CategoriaPlanManager().getCategoriaPlanes();
         cmbCategoriaPlan.removeAllItems();
         cmbCategoriaPlan.addItem("Seleccion");
+        Collections.sort(catsPlan);
         for (CategoriaPlan catPlan : catsPlan) {
             cmbCategoriaPlan.addItem(catPlan.getCapNombre());
         }
@@ -419,7 +421,9 @@ public class RegistroPlanes extends javax.swing.JFrame {
     private void loadSubcategoriaPlanComboBox() {
         if (cmbCategoriaPlan.getSelectedItem() != null && new DefaultComboFieldValueValidator().validate(cmbCategoriaPlan.getSelectedItem().toString())) {
             List<SubcategoriaPlan> subCatsPlan = new SubcategoriaPlanManager().getSubcategoriaPlanByCategoriaPlan(new CategoriaPlanManager().getCategoriaPlanByNombre(cmbCategoriaPlan.getSelectedItem().toString()));
-
+            cmbSubcategoriaPlan.removeAllItems();
+            cmbSubcategoriaPlan.addItem("Seleccion");
+            Collections.sort(subCatsPlan);
             for (SubcategoriaPlan subCatPlan : subCatsPlan) {
                 cmbSubcategoriaPlan.addItem(subCatPlan.getSupNombre());
             }
@@ -480,6 +484,8 @@ public class RegistroPlanes extends javax.swing.JFrame {
                 subCatsPlan.put(sp.getSupNombre(), sp);
             }
 
+            // TODO: pendiente revisar, devuelve nulo y tengo que reiniciar la app por completo para que reconozca
+            // quiza tenga que hacer merge o persist
             SubcategoriaPlan subCatPlan = subCatsPlan.get(cmbSubcategoriaPlan.getSelectedItem().toString());
             plan.setSubcategoriaPlan(subCatPlan);
             subCatPlan.getPlanCollection().add(plan);
