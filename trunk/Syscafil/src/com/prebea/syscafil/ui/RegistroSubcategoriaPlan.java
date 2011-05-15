@@ -290,7 +290,7 @@ public class RegistroSubcategoriaPlan extends javax.swing.JDialog {
             lblMensajeInsercion.setVisible(true);
             new Thread(new LabelToolTipShower(lblMensajeInsercion)).start();
             LimpiadorComponentes.limpiarComponentes(this);
-            txtNombreSubcat.requestFocusInWindow();
+            cmbCategoriaPlan.requestFocusInWindow();
         }
     }//GEN-LAST:event_btnAceptarActionPerformed
 

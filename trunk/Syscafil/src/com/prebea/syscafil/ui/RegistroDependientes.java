@@ -635,18 +635,7 @@ public class RegistroDependientes extends javax.swing.JFrame {
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         // TODO add your handling code here:
-        /*BusquedaRapidaFrame br = new BusquedaRapidaFrame();
-        br.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        br.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/resources/imagenes/prebea_logo.png")));
-        br.setLocationRelativeTo(this);
-        br.setTitle("Buscar Afiliado");
-        br.getLblEntidades().setText("Afiliados");
-        br.getRdbField1().setText("Id");
-        br.getRdbField2().setText("DNI");
-        br.getRdbField3().setText("Apellido");
-        br.setVisible(true);*/
-        BusquedaRapida br = new BusquedaRapida(this, true);
-        br.setEntityToSearch(new Afiliado());
+        BusquedaRapida br = new BusquedaRapida(this, true, new Afiliado());
         br.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         br.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/resources/imagenes/prebea_logo.png")));
         br.setLocationRelativeTo(this);

@@ -53,6 +53,7 @@ import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableColumnModel;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -68,6 +69,11 @@ public class BusquedaRapida extends javax.swing.JDialog {
     public BusquedaRapida(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+    }
+
+    public BusquedaRapida(java.awt.Frame parent, boolean modal, Serializable entityToSearch) {
+        this(parent, modal);
+        this.entityToSearch = entityToSearch;
     }
 
     /** This method is called from within the constructor to
@@ -513,6 +519,15 @@ public class BusquedaRapida extends javax.swing.JDialog {
 
     private void loadEntities() {
         if (entityToSearch != null) {
+            jtbEntidades.setColumnModel(new DefaultTableColumnModel() {
+
+                public void moveColumn(int columnIndex, int newIndex) {
+                    if (columnIndex == 0 || newIndex == 0) {
+                        return; // don't allow
+                    }
+                    super.moveColumn(columnIndex, newIndex);
+                }
+            });
             DefaultTableModel dtm = new DefaultTableModel(getDataFromEntity(entityToSearch),
                     new Object[]{getRdbField1().getText(), getRdbField2().getText(), getRdbField3().getText()}) {
 

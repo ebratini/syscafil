@@ -34,6 +34,7 @@ import com.prebea.syscafil.model.entities.Usuario;
 import java.awt.event.KeyEvent;
 import java.util.Arrays;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 /**
  *
@@ -256,6 +257,10 @@ public class Login extends javax.swing.JDialog {
         }
         //um.close();
         return usuarioValido;
+    }
+
+    public JTextField getTxtlNombreUsuario() {
+        return txtlNombreUsuario;
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;

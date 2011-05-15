@@ -21,7 +21,6 @@
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  *  THE SOFTWARE.
  */
-
 package com.prebea.syscafil.model.entities;
 
 import java.io.Serializable;
@@ -52,11 +51,12 @@ import javax.persistence.Table;
     @NamedQuery(name = "SubcategoriaPlan.findBySupNombre", query = "SELECT s FROM SubcategoriaPlan s WHERE s.supNombre = :supNombre"),
     @NamedQuery(name = "SubcategoriaPlan.findBySupDescripcion", query = "SELECT s FROM SubcategoriaPlan s WHERE s.supDescripcion = :supDescripcion"),
     @NamedQuery(name = "SubcategoriaPlan.findBySupStatus", query = "SELECT s FROM SubcategoriaPlan s WHERE s.supStatus = :supStatus")})
-public class SubcategoriaPlan implements Serializable {
+public class SubcategoriaPlan implements Serializable, Comparable<SubcategoriaPlan> {
+
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "sup_id", nullable = false)
     private Integer supId;
     @Basic(optional = false)
@@ -87,13 +87,13 @@ public class SubcategoriaPlan implements Serializable {
         this.supDescripcion = supDescripcion;
         this.supStatus = supStatus;
     }
-    
+
     public SubcategoriaPlan(String supNombre, String supDescripcion, char supStatus) {
         this.supNombre = supNombre;
         this.supDescripcion = supDescripcion;
         this.supStatus = supStatus;
     }
-    
+
     public Integer getSupId() {
         return supId;
     }
@@ -167,4 +167,8 @@ public class SubcategoriaPlan implements Serializable {
         return "com.prebea.syscafil.model.entities.SubcategoriaPlan[supId=" + supId + "]";
     }
 
+    @Override
+    public int compareTo(SubcategoriaPlan o) {
+        return this.getSupNombre().compareTo(o.getSupNombre());
+    }
 }

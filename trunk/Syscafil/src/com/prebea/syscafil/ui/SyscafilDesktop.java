@@ -25,11 +25,14 @@ package com.prebea.syscafil.ui;
 
 import com.prebea.syscafil.business.TimeDateShower;
 import com.prebea.syscafil.model.entities.Usuario;
+import java.awt.event.MouseEvent;
 import java.awt.event.WindowEvent;
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseListener;
 import java.util.Arrays;
 import java.util.List;
 import javax.swing.JFrame;
@@ -45,6 +48,7 @@ import org.pushingpixels.flamingo.api.common.icon.ImageWrapperResizableIcon;
 import org.pushingpixels.flamingo.api.common.icon.ResizableIcon;
 import org.pushingpixels.flamingo.api.ribbon.JRibbon;
 import org.pushingpixels.flamingo.api.ribbon.JRibbonBand;
+import org.pushingpixels.flamingo.api.ribbon.JRibbonComponent;
 import org.pushingpixels.flamingo.api.ribbon.JRibbonFrame;
 import org.pushingpixels.flamingo.api.ribbon.RibbonApplicationMenu;
 import org.pushingpixels.flamingo.api.ribbon.RibbonElementPriority;
@@ -284,7 +288,7 @@ public class SyscafilDesktop extends JRibbonFrame {
         jrbPlanesBand.addCommandButton(jcbEliminarPlan, RibbonElementPriority.MEDIUM);
 
         jrbPlanesBand.setResizePolicies(getRibbonBandResizePolicy(jrbPlanesBand));
-
+        
         // creando el la task
         RibbonTask rtMantenimientoTask = new RibbonTask("Mantenimiento", jrbEmpresasBand, jrbAfiliadosBand,
                 jrbDependientesBand, jrbPlanesBand);
@@ -331,6 +335,48 @@ public class SyscafilDesktop extends JRibbonFrame {
         jr.setApplicationMenu(ram);
     }
 
+    private void disableJRibbonComponents() {
+        JRibbon ribbon = getRibbon();
+        for(int i = 0; i < ribbon.getTaskCount(); i++) {
+            RibbonTask rt = ribbon.getTask(i);
+            if (rt.getTitle().equalsIgnoreCase("home")) {
+                continue;
+            }
+            for (int j = 0; j < rt.getBandCount(); j++) {
+                JRibbonBand banda = (JRibbonBand) rt.getBand(j);
+                banda.setEnabled(false);
+            }
+        }
+    }
+
+    private void addRibbonListener() {
+        getRibbon().addMouseListener(new MouseListener() {
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+               if (getRibbon().getSelectedTask().getTitle().equalsIgnoreCase("home")){
+                    System.out.println("Home Task!!");
+               }
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+            }
+        });
+    }
+
     private void initComponents() {
         //LookAndFeelSelector.printAvailableLAF();
         LookAndFeelSelector.setLookAndFeel(LookAndFeelSelector.LAF.WINDOWS);
@@ -343,6 +389,8 @@ public class SyscafilDesktop extends JRibbonFrame {
         initBodyContent();
         initStatusBar();
         initTimeDate();
+        //addRibbonListener();
+        disableJRibbonComponents();
         pack();
     }
 
@@ -354,8 +402,8 @@ public class SyscafilDesktop extends JRibbonFrame {
         if (usuario != null) {
             usuarioLogeado.setText(usuario.getUsrLogin());
 
-            JRichTooltipPanel rtp = new JRichTooltipPanel(new RichTooltip("Login", "Bienvenido, " + usuario.getUsrLogin()));
-            pnlBody.add(rtp, BorderLayout.EAST);
+            JRichTooltipPanel rtp = new JRichTooltipPanel(new RichTooltip("Login", "Bienvenido, " + login.getTxtlNombreUsuario().getText()));
+            pnlBody.add(rtp, BorderLayout.SOUTH);
             new Thread(new ToolTipShower(rtp)).start();
 
             logInOutButton.setName("jcbLogOut");
@@ -405,9 +453,13 @@ public class SyscafilDesktop extends JRibbonFrame {
             } else if (buttonName.equalsIgnoreCase("jcbVerEmpresas")) {
                 throwNoImplMsj();
             } else if (buttonName.equalsIgnoreCase("jcbCrearEmpresa")) {
-                RegistroEmpresas regEmpresas = new RegistroEmpresas();
-                regEmpresas.setLocationRelativeTo(SyscafilDesktop.this);
-                regEmpresas.setVisible(true);
+                if (usuario != null) {
+                    RegistroEmpresas regEmpresas = new RegistroEmpresas();
+                    regEmpresas.setLocationRelativeTo(SyscafilDesktop.this);
+                    regEmpresas.setVisible(true);
+                } else {
+                    JOptionPane.showMessageDialog(SyscafilDesktop.this, "Usuario no logeado", "Login / Logout" , JOptionPane.ERROR_MESSAGE);
+                }
             } else if (buttonName.equalsIgnoreCase("jcbEditarEmpresa")) {
                 throwNoImplMsj();
             } else if (buttonName.equalsIgnoreCase("jcbEliminarEmpresa")) {
