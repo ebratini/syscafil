@@ -101,6 +101,7 @@ public class BusquedaRapida extends javax.swing.JDialog {
         lblResultadosBusqueda = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
@@ -318,7 +319,6 @@ public class BusquedaRapida extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, "Introduzca texto a buscar", "Busqueda", JOptionPane.ERROR_MESSAGE);
             return;
         }
-
         if (entityToSearch instanceof Empresa) {
             EmpresaManager em = new EmpresaManager();
             Empresa empresaSearched = null;
@@ -343,6 +343,11 @@ public class BusquedaRapida extends javax.swing.JDialog {
                         });
             } else {
                 List<Empresa> empresas = em.getEmpresaByRazonSocial(txtBusqueda.getText());
+                if (empresas != null && empresas.size() < 1) {
+                    showNoResultMessage();
+                    showEntityOnJtable(new Object[][]{});
+                    return;
+                }
                 Object[][] rows = new Object[empresas.size()][];
                 int i = 0;
                 for (Empresa emp : empresas) {
@@ -379,7 +384,8 @@ public class BusquedaRapida extends javax.swing.JDialog {
                 List<Afiliado> afiliados = am.getAfiliadoByApellido(txtBusqueda.getText());
                 if(afiliados != null && afiliados.size() < 1) {
                     showNoResultMessage();
-                    //return;
+                    showEntityOnJtable(new Object[][]{});
+                    return;
                 }
                 Object[][] rows = new Object[afiliados.size()][];
                 int i = 0;
@@ -416,6 +422,11 @@ public class BusquedaRapida extends javax.swing.JDialog {
                         });
             } else {
                 List<Dependiente> dependientes = dm.getDependienteByApellido(txtBusqueda.getText());
+                if(dependientes != null && dependientes.size() < 1) {
+                    showNoResultMessage();
+                    showEntityOnJtable(new Object[][]{});
+                    return;
+                }
                 Object[][] rows = new Object[dependientes.size()][];
                 int i = 0;
                 for (Dependiente dep : dependientes) {
@@ -449,8 +460,12 @@ public class BusquedaRapida extends javax.swing.JDialog {
                             {planSearched.getPlnId(), planSearched.getPlnNombre(), planSearched.getCategoriaPlan().getCapNombre()}
                         });
             } else {
-                List<Plan> planes = pm.getPlanByCategoriaPlan(
-                        new CategoriaPlanManager().getCategoriaPlanByNombre(txtBusqueda.getText()));
+                List<Plan> planes = pm.getPlanByCategoriaPlan(new CategoriaPlanManager().getCategoriaPlanByNombre(txtBusqueda.getText()));
+                if(planes != null && planes.size() < 1) {
+                    showNoResultMessage();
+                    showEntityOnJtable(new Object[][]{});
+                    return;
+                }
                 Object[][] rows = new Object[planes.size()][];
                 int i = 0;
                 for (Plan plan : planes) {
@@ -523,13 +538,14 @@ public class BusquedaRapida extends javax.swing.JDialog {
 
                 public void moveColumn(int columnIndex, int newIndex) {
                     if (columnIndex == 0 || newIndex == 0) {
-                        return; // don't allow
+                        return;
                     }
                     super.moveColumn(columnIndex, newIndex);
                 }
             });
             DefaultTableModel dtm = new DefaultTableModel(getDataFromEntity(entityToSearch),
-                    new Object[]{getRdbField1().getText(), getRdbField2().getText(), getRdbField3().getText()}) {
+                    new Object[]{getRdbField1().getText(), getRdbField2().getText(),
+                    ((entityToSearch instanceof Afiliado || entityToSearch instanceof Dependiente) ? "Nombre" : getRdbField3().getText())}) {
 
                 public boolean isCellEditable(int rowIndex, int mColIndex) {
                     return false;
