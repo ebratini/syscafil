@@ -25,17 +25,12 @@ package com.prebea.syscafil.ui;
 
 import com.prebea.syscafil.business.TimeDateShower;
 import com.prebea.syscafil.model.entities.Usuario;
-import java.awt.event.FocusEvent;
-import java.awt.event.MouseEvent;
 import java.awt.event.WindowEvent;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.FocusAdapter;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseListener;
 import java.util.Arrays;
 import java.util.List;
 import javax.swing.JButton;
@@ -43,8 +38,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JSeparator;
-import javax.swing.SwingConstants;
 import javax.swing.border.EtchedBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -71,6 +64,7 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
  */
 public class SyscafilDesktop extends JRibbonFrame {
 
+    private static int appInstances;
     // user logged
     private Usuario usuario;
     // button action handler
@@ -96,11 +90,12 @@ public class SyscafilDesktop extends JRibbonFrame {
             }
         });
         initComponents();
+        //appInstances += 1;
     }
 
     public static void main(String[] args) {
-        SyscafilDesktop sd = new SyscafilDesktop();
-        sd.setVisible(true);
+            SyscafilDesktop sd = new SyscafilDesktop();
+            sd.setVisible(true);
     }
 
     private void addGap(int width, int height) {
@@ -132,9 +127,9 @@ public class SyscafilDesktop extends JRibbonFrame {
         pnlStatusBar.setPreferredSize(new Dimension(400, 25));
         pnlStatusBar.add(statusMessageLabel, BorderLayout.WEST);
 
-        usuarioLogeado.setBorder(new EtchedBorder(EtchedBorder.RAISED));
-        taskSelectedLabel.setBorder(new EtchedBorder(EtchedBorder.RAISED));
-        timeDate.setBorder(new EtchedBorder(EtchedBorder.RAISED));
+        usuarioLogeado.setBorder(new EtchedBorder(EtchedBorder.LOWERED));
+        taskSelectedLabel.setBorder(new EtchedBorder(EtchedBorder.LOWERED));
+        timeDate.setBorder(new EtchedBorder(EtchedBorder.LOWERED));
 
         JPanel pnl = new JPanel(new BorderLayout(2, 0));
         pnl.add(taskSelectedLabel, BorderLayout.WEST);
@@ -146,11 +141,7 @@ public class SyscafilDesktop extends JRibbonFrame {
         pnlStatusBar.setBorder(new EtchedBorder());
         add(pnlStatusBar, BorderLayout.SOUTH);
     }
-
-    private JCommandButton createJCommandButton(String title, ResizableIcon icon, String name, RichTooltip rToolTip) {
-        return createJCommandButton(title, icon, name, rToolTip);
-    }
-
+    
     private JCommandButton createJCommandButton(String title, ResizableIcon icon, String name, RichTooltip rToolTip, ActionListener aListener) {
         JCommandButton commandButton = new JCommandButton(title, icon);
         commandButton.setName(name);
