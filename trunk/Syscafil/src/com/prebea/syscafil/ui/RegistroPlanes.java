@@ -479,17 +479,20 @@ public class RegistroPlanes extends javax.swing.JFrame {
             plan.setCategoriaPlan(catPlan);
             catPlan.getPlanCollection().add(plan);
 
-            HashMap<String, SubcategoriaPlan> subCatsPlan = new HashMap<String, SubcategoriaPlan>();
+            SubcategoriaPlan subCatPlan = null;
             for (SubcategoriaPlan sp : catPlan.getSubcategoriaPlanCollection()) {
-                subCatsPlan.put(sp.getSupNombre(), sp);
+                if (sp.getSupNombre().equalsIgnoreCase(cmbSubcategoriaPlan.getSelectedItem().toString())) {
+                    subCatPlan = sp;
+                    break;
+                }
             }
-
             // TODO: pendiente revisar, devuelve nulo y tengo que reiniciar la app por completo para que reconozca
             // quiza tenga que hacer merge o persist
-            SubcategoriaPlan subCatPlan = subCatsPlan.get(cmbSubcategoriaPlan.getSelectedItem().toString());
-            plan.setSubcategoriaPlan(subCatPlan);
-            subCatPlan.getPlanCollection().add(plan);
-
+            if (subCatPlan != null) {
+                plan.setSubcategoriaPlan(subCatPlan);
+                subCatPlan.getPlanCollection().add(plan);
+            }
+            
             pm.crearPlan(plan);
 
             lblMensajeInsercion.setText("Plan creado exitosamente");
