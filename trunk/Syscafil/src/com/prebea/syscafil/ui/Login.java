@@ -111,7 +111,7 @@ public class Login extends javax.swing.JDialog {
             }
         });
 
-        lblPrebeaLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/imagenes/prebea_logo.PNG"))); // NOI18N
+        lblPrebeaLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/imagenes/prebea_logo.png"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

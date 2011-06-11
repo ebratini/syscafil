@@ -112,7 +112,7 @@ public class SyscafilDesktop extends JRibbonFrame {
     private void initBodyContent() {
         pnlBody = new JPanel();
         pnlBody.setBorder(new EtchedBorder());
-        backGroundImagePnlBody.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/imagenes/prebea_banner.PNG")));
+        backGroundImagePnlBody.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/imagenes/prebea_banner.png")));
         backGroundImagePnlBody.setBounds(pnlBody.getBounds());
         pnlBody.add(backGroundImagePnlBody);
         add(pnlBody, BorderLayout.CENTER);
@@ -411,7 +411,7 @@ public class SyscafilDesktop extends JRibbonFrame {
         //LookAndFeelSelector.printAvailableLAF();
         LookAndFeelSelector.setLookAndFeel(LookAndFeelSelector.LAF.WINDOWS);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setApplicationIcon(getResizableIconFromResource("/resources/imagenes/prebea_logo.PNG"));
+        setApplicationIcon(getResizableIconFromResource("/resources/imagenes/prebea_logo.png"));
         setPreferredSize(new Dimension(1100, 600));
         setLocationByPlatform(true);
         initJRibbon();

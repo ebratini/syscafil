@@ -126,11 +126,11 @@ public class BusquedaRapidaFrame extends javax.swing.JFrame {
                     .addGroup(pnlOpBusquedaLayout.createSequentialGroup()
                         .addComponent(rdbField1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(rdbField2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(rdbField2, javax.swing.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(rdbField3, javax.swing.GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE))
                     .addComponent(chkFiltro))
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         pnlOpBusquedaLayout.setVerticalGroup(
             pnlOpBusquedaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -165,7 +165,7 @@ public class BusquedaRapidaFrame extends javax.swing.JFrame {
 
         txtBusqueda.setName("txtBusqueda"); // NOI18N
 
-        btnSeleccionar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/imagenes/ok.PNG"))); // NOI18N
+        btnSeleccionar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/imagenes/ok.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
