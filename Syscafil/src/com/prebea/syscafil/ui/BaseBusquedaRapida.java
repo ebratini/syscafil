@@ -71,7 +71,7 @@ public class BaseBusquedaRapida extends JComponent {
         jtbEntidades = new javax.swing.JTable();
         btnBuscar = new javax.swing.JButton();
         txtBusqueda = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        btnSeleccionar = new javax.swing.JButton();
 
         pnlOpBusqueda.setBorder(javax.swing.BorderFactory.createTitledBorder("Opciones de Busqueda"));
         pnlOpBusqueda.setName("pnlOpBusqueda"); // NOI18N
@@ -145,7 +145,7 @@ public class BaseBusquedaRapida extends JComponent {
 
         txtBusqueda.setName("txtBusqueda"); // NOI18N
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/imagenes/ok.PNG"))); // NOI18N
+        btnSeleccionar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/imagenes/ok.png"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -161,7 +161,7 @@ public class BaseBusquedaRapida extends JComponent {
                         .addComponent(txtBusqueda, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnBuscar))
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSeleccionar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblEntidades, javax.swing.GroupLayout.Alignment.LEADING))
                 .addContainerGap())
         );
@@ -169,7 +169,7 @@ public class BaseBusquedaRapida extends JComponent {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSeleccionar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -191,8 +191,8 @@ public class BaseBusquedaRapida extends JComponent {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup bgrOpBusqueda;
     private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnSeleccionar;
     private javax.swing.JCheckBox chkFiltro;
-    private javax.swing.JButton jButton1;
     private javax.swing.JTable jtbEntidades;
     private javax.swing.JLabel lblEntidades;
     private javax.swing.JPanel pnlOpBusqueda;

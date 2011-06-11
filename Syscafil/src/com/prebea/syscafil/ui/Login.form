@@ -127,7 +127,7 @@
     <Component class="javax.swing.JLabel" name="lblPrebeaLogo">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/resources/imagenes/prebea_logo.PNG"/>
+          <Image iconType="3" name="/resources/imagenes/prebea_logo.png"/>
         </Property>
       </Properties>
     </Component>

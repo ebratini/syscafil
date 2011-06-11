@@ -131,13 +131,13 @@
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="rdbField1" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="rdbField2" max="32767" attributes="0"/>
+                              <Component id="rdbField2" pref="59" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="rdbField3" pref="58" max="32767" attributes="0"/>
                           </Group>
                           <Component id="chkFiltro" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="28" max="32767" attributes="0"/>
+                      <EmptySpace pref="30" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -235,7 +235,7 @@
         <Component class="javax.swing.JButton" name="btnSeleccionar">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/resources/imagenes/ok.PNG"/>
+              <Image iconType="3" name="/resources/imagenes/ok.png"/>
             </Property>
           </Properties>
         </Component>

@@ -36,7 +36,6 @@ import com.prebea.syscafil.business.EmpresaManager;
 import com.prebea.syscafil.business.NumberFieldValidator;
 import com.prebea.syscafil.business.PlanManager;
 import com.prebea.syscafil.model.entities.Afiliado;
-import com.prebea.syscafil.model.entities.CategoriaPlan;
 import com.prebea.syscafil.model.entities.Dependiente;
 import com.prebea.syscafil.model.entities.Empresa;
 import com.prebea.syscafil.model.entities.Plan;
@@ -44,6 +43,7 @@ import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.io.Serializable;
 import java.util.List;
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
@@ -97,7 +97,7 @@ public class BusquedaRapida extends javax.swing.JDialog {
         jtbEntidades = new javax.swing.JTable();
         btnBuscar = new javax.swing.JButton();
         txtBusqueda = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        btnSeleccionar = new javax.swing.JButton();
         lblResultadosBusqueda = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -190,10 +190,10 @@ public class BusquedaRapida extends javax.swing.JDialog {
             }
         });
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/imagenes/ok.PNG"))); // NOI18N
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnSeleccionar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/imagenes/ok.png"))); // NOI18N
+        btnSeleccionar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnSeleccionarActionPerformed(evt);
             }
         });
 
@@ -212,7 +212,7 @@ public class BusquedaRapida extends javax.swing.JDialog {
                         .addGap(84, 84, 84)
                         .addComponent(lblResultadosBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnSeleccionar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(pnlOpBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -225,7 +225,7 @@ public class BusquedaRapida extends javax.swing.JDialog {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSeleccionar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -262,7 +262,7 @@ public class BusquedaRapida extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnSeleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeleccionarActionPerformed
         // TODO add your handling code here:
         if (jtbEntidades.getSelectedRow() == -1) {
             JOptionPane.showMessageDialog(this, "Primero seleccione registro", "Seleccion", JOptionPane.ERROR_MESSAGE);
@@ -270,7 +270,7 @@ public class BusquedaRapida extends javax.swing.JDialog {
         }
         entitySelectedId = jtbEntidades.getValueAt(jtbEntidades.getSelectedRow(), 0);
         this.dispose();
-}//GEN-LAST:event_jButton1ActionPerformed
+}//GEN-LAST:event_btnSeleccionarActionPerformed
 
     private void showEntityOnJtable(Object[][] data) {
         Object[] cols = new Object[jtbEntidades.getColumnCount()];
@@ -588,12 +588,28 @@ public class BusquedaRapida extends javax.swing.JDialog {
         this.chkFiltro = chkFiltro;
     }
 
-    public JButton getjButton1() {
-        return jButton1;
+    public JButton getBtnSeleccionar() {
+        return btnSeleccionar;
     }
 
-    public void setjButton1(JButton jButton1) {
-        this.jButton1 = jButton1;
+    public void setBtnSeleccionar(JButton btnSeleccionar) {
+        this.btnSeleccionar = btnSeleccionar;
+    }
+
+    public ButtonGroup getButtonGroup1() {
+        return buttonGroup1;
+    }
+
+    public void setButtonGroup1(ButtonGroup buttonGroup1) {
+        this.buttonGroup1 = buttonGroup1;
+    }
+
+    public JLabel getLblResultadosBusqueda() {
+        return lblResultadosBusqueda;
+    }
+
+    public void setLblResultadosBusqueda(JLabel lblResultadosBusqueda) {
+        this.lblResultadosBusqueda = lblResultadosBusqueda;
     }
 
     public JPanel getjPanel1() {
@@ -696,9 +712,9 @@ public class BusquedaRapida extends javax.swing.JDialog {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnSeleccionar;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JCheckBox chkFiltro;
-    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTable jtbEntidades;
     private javax.swing.JLabel lblEntidades;
