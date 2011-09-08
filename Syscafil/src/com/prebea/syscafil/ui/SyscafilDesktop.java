@@ -23,6 +23,7 @@
  */
 package com.prebea.syscafil.ui;
 
+import com.prebea.syscafil.business.BehaviorNotImplementedException;
 import com.prebea.syscafil.business.TimeDateShower;
 import com.prebea.syscafil.model.entities.Usuario;
 import java.awt.event.WindowEvent;
@@ -56,7 +57,6 @@ import org.pushingpixels.flamingo.api.ribbon.resize.IconRibbonBandResizePolicy;
 import org.pushingpixels.flamingo.api.ribbon.resize.RibbonBandResizePolicy;
 import org.pushingpixels.flamingo.internal.ui.common.JRichTooltipPanel;
 import org.pushingpixels.flamingo.internal.ui.ribbon.JBandControlPanel;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 /**
  *
@@ -151,11 +151,11 @@ public class SyscafilDesktop extends JRibbonFrame {
     }
 
     private List<RibbonBandResizePolicy> getRibbonBandResizePolicy(JRibbonBand jRibbonBand) {
-        return (List) Arrays.asList(
+        return (List) Arrays.asList(new Object [] {
                 //new CoreRibbonResizePolicies.None(jrbAfiliadosBand.getControlPanel()),
                 new CoreRibbonResizePolicies.Mirror(jRibbonBand.getControlPanel()),
                 new CoreRibbonResizePolicies.High2Mid(jRibbonBand.getControlPanel()),
-                new CoreRibbonResizePolicies.Mid2Low(jRibbonBand.getControlPanel()) //new CoreRibbonResizePolicies.High2Low(jrbAfiliadosBand.getControlPanel()),
+                new CoreRibbonResizePolicies.Mid2Low(jRibbonBand.getControlPanel())} //new CoreRibbonResizePolicies.High2Low(jrbAfiliadosBand.getControlPanel()),
                 /*new IconRibbonBandResizePolicy(jrbAfiliadosBand.getControlPanel())*/);
     }
 
@@ -353,15 +353,15 @@ public class SyscafilDesktop extends JRibbonFrame {
     }
 
     private RibbonTask getFacturacionTask() {
-        throw new NotImplementedException();
+        throw new BehaviorNotImplementedException();
     }
 
     private RibbonTask getSettingsTask() {
-        throw new NotImplementedException();
+        throw new BehaviorNotImplementedException();
     }
 
     private RibbonTask getAdministracionTask() {
-        throw new NotImplementedException();
+        throw new BehaviorNotImplementedException();
     }
 
     private Component getTaskBar() {
