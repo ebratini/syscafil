@@ -32,6 +32,7 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
 import java.util.Arrays;
 import java.util.List;
 import javax.swing.JButton;
@@ -81,7 +82,7 @@ public class SyscafilDesktop extends JRibbonFrame {
 
     public SyscafilDesktop() {
         super("Syscafil");
-        addWindowListener(new ExitHandler() {
+        addWindowListener(new WindowAdapter() {
 
             @Override
             public void windowClosing(WindowEvent e) {
